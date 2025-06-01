@@ -20,8 +20,8 @@ public class OrderItemStatusHistoryConfiguration : IEntityTypeConfiguration<Orde
                .HasForeignKey(x => x.OrderItemId)
                .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasOne(x => x.Status)
-               .WithMany()
+        builder.HasOne(x => x.OrderItemStatus)
+               .WithMany(x => x.OrderItemStatusHistory)
                .HasForeignKey(x => x.StatusId)
                .OnDelete(DeleteBehavior.Restrict);
     }

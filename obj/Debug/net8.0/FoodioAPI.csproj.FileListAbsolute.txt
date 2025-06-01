@@ -167,3 +167,4 @@ D:\Semester - 8\PRN232\Foodio\FoodioAPI\obj\Debug\net8.0\FoodioAPI.RazorAssembly
 D:\Semester - 8\PRN232\Foodio\FoodioAPI\obj\Debug\net8.0\FoodioAPI.RazorAssemblyInfo.cs
 D:\Semester - 8\PRN232\Foodio\FoodioAPI\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 D:\Semester - 8\PRN232\Foodio\FoodioAPI\obj\Debug\net8.0\scopedcss\projectbundle\FoodioAPI.bundle.scp.css
+D:\Semester - 8\PRN232\Foodio\FoodioAPI\obj\Debug\net8.0\FoodioAPI.sourcelink.json

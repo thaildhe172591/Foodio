@@ -13,5 +13,5 @@ public class OrderItemStatus
     public string Name { get; set; } = default!;
 
     // Navigation
-    public virtual ICollection<OrderItemStatusHistory> StatusHistories { get; set; } = new List<OrderItemStatusHistory>();
+    public virtual ICollection<OrderItemStatusHistory> OrderItemStatusHistory { get; set; } = new List<OrderItemStatusHistory>();
 }

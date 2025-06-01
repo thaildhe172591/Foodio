@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using FoodioAPI.Entities;
 
 namespace FoodioAPI.Entities;
@@ -22,5 +23,7 @@ public class Delivery
     // Navigation properties
     public virtual Order Order { get; set; } = default!;
     public virtual User Shipper { get; set; } = default!;
-    public virtual DeliveryStatus Status { get; set; } = default!;
+
+    [ForeignKey(nameof(StatusId))]
+    public virtual DeliveryStatus DeliveryStatus { get; set; } = default!;
 }

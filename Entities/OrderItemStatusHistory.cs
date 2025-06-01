@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodioAPI.Entities;
 
@@ -16,5 +17,8 @@ public class OrderItemStatusHistory
 
     // Navigation properties
     public virtual OrderItem OrderItem { get; set; } = default!;
-    public virtual OrderItemStatus Status { get; set; } = default!;
+
+
+    [ForeignKey(nameof(StatusId))]
+    public virtual OrderItemStatus OrderItemStatus { get; set; } = default!;
 }

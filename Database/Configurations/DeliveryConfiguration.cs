@@ -26,8 +26,8 @@ public class DeliveryConfiguration : IEntityTypeConfiguration<Delivery>
                .HasForeignKey(x => x.ShipperId)
                .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasOne(x => x.Status)
-               .WithMany()
+        builder.HasOne(x => x.DeliveryStatus)
+               .WithMany(x => x.Deliveries)
                .HasForeignKey(x => x.StatusId)
                .OnDelete(DeleteBehavior.Restrict);
     }

@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FoodioAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8db3c92fcdca4bb9d31dcf991ff1235b5c13c36a")]
 [assembly: System.Reflection.AssemblyProductAttribute("FoodioAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FoodioAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
