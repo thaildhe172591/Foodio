@@ -1,6 +1,12 @@
-namespace FoodioAPI.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-public interface IStorageService
+namespace FoodioAPI.Services
 {
-    Task<Uri> UploadFileAsync(string name, IFormFile file);
+    public interface IStorageService
+    {
+        Task<Uri> UploadFileAsync(string name, IFormFile file);
+    }
 }

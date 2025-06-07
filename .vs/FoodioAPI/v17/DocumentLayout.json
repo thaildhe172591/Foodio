@@ -1,7 +1,40 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Semester - 8\\PRN232\\Foodio\\FoodioAPI\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|d:\\semester - 8\\prn232\\foodio\\foodio_api\\foodio\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|d:\\semester - 8\\prn232\\foodio\\foodio_api\\foodio\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|d:\\semester - 8\\prn232\\foodio\\foodio_api\\foodio\\constants\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:constants\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|d:\\semester - 8\\prn232\\foodio\\foodio_api\\foodio\\helpers\\modelbuilderextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:helpers\\modelbuilderextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|d:\\semester - 8\\prn232\\foodio\\foodio_api\\foodio\\services\\implements\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:services\\implements\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|d:\\semester - 8\\prn232\\foodio\\foodio_api\\foodio\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|d:\\semester - 8\\prn232\\foodio\\foodio_api\\foodio\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|d:\\semester - 8\\prn232\\foodio\\foodio_api\\foodio\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +42,115 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:46:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ModelBuilderExtensions.cs",
+              "DocumentMoniker": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Helpers\\ModelBuilderExtensions.cs",
+              "RelativeDocumentMoniker": "Helpers\\ModelBuilderExtensions.cs",
+              "ToolTip": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Helpers\\ModelBuilderExtensions.cs",
+              "RelativeToolTip": "Helpers\\ModelBuilderExtensions.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T09:10:40.951Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserRole.cs",
+              "DocumentMoniker": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Constants\\UserRole.cs",
+              "RelativeDocumentMoniker": "Constants\\UserRole.cs",
+              "ToolTip": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Constants\\UserRole.cs",
+              "RelativeToolTip": "Constants\\UserRole.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T09:09:15.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AQIAAOAAAAAAAAAAAAAuwPoAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T09:07:27.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Services\\Implements\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\Implements\\UserService.cs",
+              "ToolTip": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Services\\Implements\\UserService.cs",
+              "RelativeToolTip": "Services\\Implements\\UserService.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAcwFAAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T09:01:51.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Services\\IUserService.cs",
+              "RelativeDocumentMoniker": "Services\\IUserService.cs",
+              "ToolTip": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Services\\IUserService.cs",
+              "RelativeToolTip": "Services\\IUserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T09:01:49.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T08:47:19.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAUAAAAAAAAAAADwvyIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-07T08:47:13.524Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "DependencyInjection.cs",
+              "ToolTip": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\DependencyInjection.cs",
+              "RelativeToolTip": "DependencyInjection.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAgwGkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T08:38:03.232Z",
+              "EditorCaption": ""
             }
           ]
         }

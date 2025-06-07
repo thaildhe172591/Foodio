@@ -1,6 +1,12 @@
-namespace FoodioAPI.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-public interface IEmailService
+namespace FoodioAPI.Services
 {
-    Task SendEmailAsync(string email, string subject, string message);
+    public interface IEmailService
+    {
+        Task SendEmailAsync(string toEmail, string subject, string body);
+    }
 }

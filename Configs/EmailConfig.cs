@@ -1,4 +1,4 @@
-namespace FoodioAPI.DTOs.Configs;
+namespace FoodioAPI.Configs;
 
 public class EmailConfig
 {
