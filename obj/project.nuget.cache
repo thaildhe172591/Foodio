@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QGMZNROFzCuB0onHvCKSgLO3iVVlYMxKqDdEthzr6ZXY8v0Uz38nktXEwsWi/p8o9B6AeQy4rxHbNd9pbhRgKw==",
+  "dgSpecHash": "2MRnPYp5O9L7Ud7TiuXnvfGw13UT97avbYXESUrvIW0cQH1MqAekuKWTIN8XdexOu75giWgItKE5Up9Ng5nhXw==",
   "success": true,
-  "projectFilePath": "D:\\Semester - 8\\PRN232\\Foodio\\FoodioAPI\\FoodioAPI.csproj",
+  "projectFilePath": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\FoodioAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LDT\\.nuget\\packages\\azure.core\\1.44.1\\azure.core.1.44.1.nupkg.sha512",
     "C:\\Users\\LDT\\.nuget\\packages\\azure.storage.blobs\\12.23.0\\azure.storage.blobs.12.23.0.nupkg.sha512",
