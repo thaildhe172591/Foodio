@@ -8,5 +8,6 @@ namespace FoodioAPI.Services
     public interface IEmailService
     {
         Task SendEmailAsync(string toEmail, string subject, string body);
+        Task SendTemplateEmailAsync(string toEmail, string templateId, object dynamicData);
     }
 }

@@ -58,8 +58,7 @@
               "RelativeToolTip": "Helpers\\ModelBuilderExtensions.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T09:10:40.951Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-07T09:10:40.951Z"
             },
             {
               "$type": "Document",
@@ -71,8 +70,7 @@
               "RelativeToolTip": "Constants\\UserRole.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T09:09:15.036Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-07T09:09:15.036Z"
             },
             {
               "$type": "Document",
@@ -82,7 +80,7 @@
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
               "ToolTip": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\Controllers\\AuthController.cs",
               "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AQIAAOAAAAAAAAAAAAAuwPoAAAARAAAA",
+              "ViewState": "AQIAAD4BAAAAAAAAAAAuwEwBAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-07T09:07:27.316Z",
               "EditorCaption": ""
@@ -97,8 +95,7 @@
               "RelativeToolTip": "Services\\Implements\\UserService.cs",
               "ViewState": "AQIAADYAAAAAAAAAAAAcwFAAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T09:01:51.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-07T09:01:51.834Z"
             },
             {
               "$type": "Document",
@@ -110,8 +107,7 @@
               "RelativeToolTip": "Services\\IUserService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T09:01:49.796Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-07T09:01:49.796Z"
             },
             {
               "$type": "Document",
@@ -123,8 +119,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T08:47:19.868Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-07T08:47:19.868Z"
             },
             {
               "$type": "Document",
@@ -136,8 +131,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AQIAAAUAAAAAAAAAAADwvyIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-07T08:47:13.524Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-07T08:47:13.524Z"
             },
             {
               "$type": "Document",
@@ -149,8 +143,7 @@
               "RelativeToolTip": "DependencyInjection.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAgwGkAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T08:38:03.232Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-07T08:38:03.232Z"
             }
           ]
         }

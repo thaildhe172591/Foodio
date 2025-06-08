@@ -322,13 +322,23 @@ public class AuthController : ControllerBase
     {
         var token = await _identityService.GenerateEmailConfirmationTokenAsync(email);
         var confirmationLink = Url.Action(nameof(ConfirmEmail), "auth", new { token, email, action = "register" }, Request.Scheme);
-        var emailContent =
-            $@"<p>Dear user, {email}</p>
-            <p>Welcome to FStudy!</p>
-            <p>Thank you for registering. Please confirm your email by follow the link below:</p>
-            <p><a href='{confirmationLink}'>Confirm Email</a></p>";
+        // var emailContent =
+        //     $@"<p>Dear user, {email}</p>
+        //     <p>Welcome to FStudy!</p>
+        //     <p>Thank you for registering. Please confirm your email by follow the link below:</p>
+        //     <p><a href='{confirmationLink}'>Confirm Email</a></p>";
+        // Dùng Dynamic Template SendGrid
+        var templateId = "d-7c1609c208b24818a594235ca793eefd";
 
-        await _emailService.SendEmailAsync(email, "Confirm your email", emailContent);
+        var dynamicData = new
+        {
+            user_email = email,
+            confirm_link = confirmationLink
+        };
+
+        // await _emailService.SendEmailAsync(email, "Confirm your email", emailContent);
+        await _emailService.SendTemplateEmailAsync(email, templateId, dynamicData);
+
         return token;
     }
 

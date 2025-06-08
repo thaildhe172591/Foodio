@@ -24,5 +24,22 @@ namespace FoodioAPI.Services.Implements
             var msg = MailHelper.CreateSingleEmail(from, to, subject, null, verificationLink);
             var response = await client.SendEmailAsync(msg);
         }
+
+        public async Task SendTemplateEmailAsync(string toEmail, string templateId, object dynamicData)
+        {
+            var apiKey = _emailConfig.Key;
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress(_emailConfig.OwnerMail, _emailConfig.Company);
+            var to = new EmailAddress(toEmail);
+
+            var msg = MailHelper.CreateSingleTemplateEmail(from, to, templateId, dynamicData);
+
+            var response = await client.SendEmailAsync(msg);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Failed to send email: {response.StatusCode}");
+            }
+        }
     }
 }
