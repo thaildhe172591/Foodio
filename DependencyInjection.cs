@@ -42,6 +42,9 @@ public static class DependencyInjection
         services.AddHttpClient();
         services.AddScoped<ApplicationDbContext>();
         services.AddScoped<IEmailSender, EmailService>();
+        services.AddScoped<ICartService, CartService>();
+        services.AddScoped<IOrderService, OrderService>();
+        services.AddScoped<IMenuService, MenuService>();
         services.AddSingleton<IStorageService>(s => new StorageService());
 
         services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork))
