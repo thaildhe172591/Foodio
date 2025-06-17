@@ -18,6 +18,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Semester - 8\PRN232\Foodio\Foodio_API\Foodio
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Semester - 8/PRN232/Foodio/Foodio_API/Foodio/Pages/Auth/ConfirmSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxDb25maXJtU3VjY2Vzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Semester - 8/PRN232/Foodio/Foodio_API/Foodio/Pages/Auth/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Semester - 8/PRN232/Foodio/Foodio_API/Foodio/Pages/Auth/login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxsb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Semester - 8/PRN232/Foodio/Foodio_API/Foodio/Pages/Auth/register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxyZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Semester - 8/PRN232/Foodio/Foodio_API/Foodio/Pages/Auth/ResetPassword/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxSZXNldFBhc3N3b3JkXENoYW5nZVBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Semester - 8/PRN232/Foodio/Foodio_API/Foodio/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -28,6 +48,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Semester - 8/PRN232/Foodio/Foodio_API/Foodio/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Semester - 8/PRN232/Foodio/Foodio_API/Foodio/Pages/Shared/_ToastrScripts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Ub2FzdHJTY3JpcHRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Semester - 8/PRN232/Foodio/Foodio_API/Foodio/Pages/Shared/_ValidationScriptsPartial.cshtml]

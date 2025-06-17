@@ -1,11 +1,13 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FoodioAPI.DTOs.Auth;
 
 public class LoginDTO
 {
-    [Required]
-    public string Email { get; set; } = string.Empty;
-    [Required]
-    public string Password { get; set; } = string.Empty;
+    [Required(ErrorMessage = "Vui lòng nhập Email")]
+    [EmailAddress(ErrorMessage = "Định dạng Email không hợp lệ")]
+    public string Email { get; set; }
+
+    [Required(ErrorMessage = "Vui lòng nhập Mật khẩu")]
+    public string Password { get; set; }
 }

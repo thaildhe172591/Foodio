@@ -1,0 +1,59 @@
+﻿@using System.Text.Json
+
+<!-- Toastr Stylesheet -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+<style>
+    .toast-success {
+        background-color: #28a745 !important;
+        color: white !important;
+    }
+
+    .toast-error {
+        background-color: #dc3545 !important;
+        color: white !important;
+    }
+
+    .toast-warning {
+        background-color: #ffc107 !important;
+        color: black !important;
+    }
+
+    .toast-info {
+        background-color: #17a2b8 !important;
+        color: white !important;
+    }
+</style>
+
+<!-- Toastr Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    function showToast(type, message) {
+        toastr.options = {
+            closeButton: true,
+            progressBar: true,
+            newestOnTop: true,
+            positionClass: "toast-bottom-right",
+            timeOut: "4000",
+            extendedTimeOut: "1000",
+            showDuration: "300",
+            hideDuration: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut"
+        };
+        toastr[type](message);
+    }
+
+    $(document).ready(function () {
+        const message = @Html.Raw(JsonSerializer.Serialize(ViewData["Message"] ?? TempData["Message"]));
+        if (message) {
+            if (message.includes("thành công") || message.includes("successful")) {
+                showToast("success", message);
+            } else {
+                showToast("error", message);
+            }
+        }
+    });
+</script>

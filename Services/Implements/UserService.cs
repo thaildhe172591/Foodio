@@ -37,7 +37,7 @@ public class UserService : IUserService
     {
         user.RefreshToken = _tokenService.GenerateRefreshToken();
         if (expDays > 0)
-            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(expDays);
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(expDays);
         await _userManager.UpdateAsync(user);
         var claims = new List<Claim>
         {

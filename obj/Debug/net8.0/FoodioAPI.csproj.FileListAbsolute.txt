@@ -339,3 +339,4 @@ D:\Semester - 8\PRN232\Foodio\Foodio_API\Foodio\obj\Debug\net8.0\FoodioAPI.pdb
 D:\Semester - 8\PRN232\Foodio\Foodio_API\Foodio\obj\Debug\net8.0\FoodioAPI.genruntimeconfig.cache
 D:\Semester - 8\PRN232\Foodio\Foodio_API\Foodio\obj\Debug\net8.0\ref\FoodioAPI.dll
 D:\Semester - 8\PRN232\Foodio\Foodio_API\Foodio\bin\Debug\net8.0\AutoMapper.dll
+D:\Semester - 8\PRN232\Foodio\Foodio_API\Foodio\bin\Debug\net8.0\appsettings.Secret.json

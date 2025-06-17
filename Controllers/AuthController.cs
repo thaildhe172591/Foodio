@@ -35,14 +35,64 @@ public class AuthController : ControllerBase
     }
 
 
+    //[HttpPost("login")]
+    //public async Task<IActionResult> Authenticate([FromBody] LoginDTO loginDTO)
+    //{
+    //    if (!ModelState.IsValid) return BadRequest(ModelState);
+    //    try
+    //    {
+    //        var isValid = await _identityService.SigninUserAsync(loginDTO);
+    //        if (!isValid) throw new Exception("Email or password is incorrect");
+    //        var tokenDTO = await _userService
+    //            .CreateAuthTokenAsync(EmailHelper.GetUsername(loginDTO.Email), _jwtConfig.RefreshTokenValidityInDays);
+    //        SetTokensInsideCookie(tokenDTO, HttpContext);
+
+    //        return Ok(new Response
+    //        {
+    //            Status = ResponseStatus.SUCCESS,
+    //            Message = "Login successfully"
+    //        });
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        var error = ex.InnerException?.Message ?? ex.Message;
+    //        return BadRequest(new Response
+    //        {
+    //            Status = ResponseStatus.ERROR,
+    //            Message = $"Internal error: {error}"
+    //        });
+    //    }
+    //}
+
     [HttpPost("login")]
     public async Task<IActionResult> Authenticate([FromBody] LoginDTO loginDTO)
     {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+
+            return BadRequest(new Response
+            {
+                Status = ResponseStatus.ERROR,
+                Message = errors.FirstOrDefault() ?? "Dữ liệu không hợp lệ"
+            });
+        }
+
         try
         {
             var isValid = await _identityService.SigninUserAsync(loginDTO);
-            if (!isValid) throw new Exception("Email or password is incorrect");
+            if (!isValid)
+            {
+                return BadRequest(new Response
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = "Email hoặc mật khẩu không chính xác"
+                });
+            }
+
             var tokenDTO = await _userService
                 .CreateAuthTokenAsync(EmailHelper.GetUsername(loginDTO.Email), _jwtConfig.RefreshTokenValidityInDays);
             SetTokensInsideCookie(tokenDTO, HttpContext);
@@ -50,7 +100,7 @@ public class AuthController : ControllerBase
             return Ok(new Response
             {
                 Status = ResponseStatus.SUCCESS,
-                Message = "Login successfully"
+                Message = "Đăng nhập thành công"
             });
         }
         catch (Exception ex)
@@ -58,12 +108,12 @@ public class AuthController : ControllerBase
             return BadRequest(new Response
             {
                 Status = ResponseStatus.ERROR,
-                Message = ex.Message
+                Message = ex.InnerException?.Message ?? ex.Message
             });
         }
-
-
     }
+
+
 
     [HttpPost("login-google")]
     public async Task<IActionResult> GoogleAuthenticate(ExternalAuthDTO externalAuth)
@@ -199,12 +249,20 @@ public class AuthController : ControllerBase
             Message = "We cannot find your email"
         });
         var token = await _userService.GeneratePasswordResetTokenAsync(model.Email);
-        var resetLink = $"http://localhost:3000/auth/reset-password/change-password?token={token}&email={model.Email}";
-        var emailContent = $@"
-        <p>Please click the link below to reset your password:</p>
-        <p><a href='{resetLink}'>Reset Password</a></p>";
-        await _emailService.SendEmailAsync(model.Email, "Reset Password", emailContent);
+        var resetLink = $"https://localhost:5001/auth/resetpassword/changepassword?token={token}&email={model.Email}";
+        //var emailContent = $@"
+        //<p>Please click the link below to reset your password:</p>
+        //<p><a href='{resetLink}'>Reset Password</a></p>";
+        //await _emailService.SendEmailAsync(model.Email, "Reset Password", emailContent);
+        var templateId = "d-6333b0eeed4542858fa5cc4e5a38764b";
 
+        var dynamicData = new
+        {
+            user_email = model.Email,
+            reset_link = resetLink
+        };
+
+        await _emailService.SendTemplateEmailAsync(model.Email, templateId, dynamicData);
         return Ok(new Response
         {
             Status = ResponseStatus.SUCCESS,
@@ -237,29 +295,90 @@ public class AuthController : ControllerBase
     }
 
 
+    //[HttpPost("register")]
+    //public async Task<IActionResult> Register([FromBody] RegisterDTO registerDTO)
+    //{
+    //    if (!ModelState.IsValid) return BadRequest(ModelState);
+
+    //    //if (!EmailHelper.IsFptMail(registerDTO.Email))
+    //    //{
+    //    //    return BadRequest(new Response
+    //    //    {
+    //    //        Status = ResponseStatus.ERROR,
+    //    //        Message = "Email must be FPT email"
+    //    //    });
+    //    //}
+    //    var (isUserExists, isConfirmed) = await _identityService.CheckUserExistsWithEmailConfirmedAsync(registerDTO.Email);
+    //    if (isUserExists && isConfirmed)
+
+    //    {
+    //        return BadRequest(new Response
+    //        {
+    //            Status = ResponseStatus.ERROR,
+    //            Message = "Email already exists"
+    //        });
+    //    }
+    //    if (isUserExists && !isConfirmed)
+    //    {
+    //        var userId = await _identityService.GetUserIdAsync(registerDTO.Email);
+    //        var result = await _identityService.DeleteUserAsync(userId);
+    //        if (!result)
+    //        {
+    //            return BadRequest(new Response
+    //            {
+    //                Status = ResponseStatus.ERROR,
+    //                Message = "An error occurred while deleting the existing user"
+    //            });
+    //        }
+    //    }
+    //    var isSucceed = await _identityService.CreateUserAsync(registerDTO, [UserRole.Customer]);
+    //    if (!isSucceed)
+    //    {
+    //        return StatusCode(500, new Response
+    //        {
+    //            Status = ResponseStatus.ERROR,
+    //            Message = "An error occurred while creating the user"
+    //        });
+    //    }
+
+    //    var token = await SendConfirmationEmailAsync(registerDTO.Email);
+
+    //    return Ok(new Response
+    //    {
+    //        Status = ResponseStatus.SUCCESS,
+    //        Message = "Registration successful, please check your email to confirm your account",
+    //        Data = token
+    //    });
+    //}
+
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterDTO registerDTO)
     {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
 
-        //if (!EmailHelper.IsFptMail(registerDTO.Email))
-        //{
-        //    return BadRequest(new Response
-        //    {
-        //        Status = ResponseStatus.ERROR,
-        //        Message = "Email must be FPT email"
-        //    });
-        //}
+            return BadRequest(new Response
+            {
+                Status = ResponseStatus.ERROR,
+                Message = errors.FirstOrDefault() ?? "Dữ liệu không hợp lệ"
+            });
+        }
+
         var (isUserExists, isConfirmed) = await _identityService.CheckUserExistsWithEmailConfirmedAsync(registerDTO.Email);
-        if (isUserExists && isConfirmed)
 
+        if (isUserExists && isConfirmed)
         {
             return BadRequest(new Response
             {
                 Status = ResponseStatus.ERROR,
-                Message = "Email already exists"
+                Message = "Email đã được sử dụng"
             });
         }
+
         if (isUserExists && !isConfirmed)
         {
             var userId = await _identityService.GetUserIdAsync(registerDTO.Email);
@@ -269,17 +388,18 @@ public class AuthController : ControllerBase
                 return BadRequest(new Response
                 {
                     Status = ResponseStatus.ERROR,
-                    Message = "An error occurred while deleting the existing user"
+                    Message = "Có lỗi xảy ra khi xoá người dùng cũ chưa xác nhận"
                 });
             }
         }
+
         var isSucceed = await _identityService.CreateUserAsync(registerDTO, [UserRole.Customer]);
         if (!isSucceed)
         {
             return StatusCode(500, new Response
             {
                 Status = ResponseStatus.ERROR,
-                Message = "An error occurred while creating the user"
+                Message = "Có lỗi xảy ra khi tạo tài khoản"
             });
         }
 
@@ -288,10 +408,11 @@ public class AuthController : ControllerBase
         return Ok(new Response
         {
             Status = ResponseStatus.SUCCESS,
-            Message = "Registration successful, please check your email to confirm your account",
+            Message = "Đăng ký thành công. Vui lòng kiểm tra email để xác nhận tài khoản.",
             Data = token
         });
     }
+
 
     [HttpPost("resend-confirm-email")]
     public async Task<IActionResult> ResendConfirmationEmail([FromQuery] string email)
@@ -349,7 +470,7 @@ public class AuthController : ControllerBase
         {
             var result = await _identityService.ConfirmEmailAsync(email, token);
             if (!result) throw new Exception("Email or token invalid");
-            return Redirect(_jwtConfig.Audience + "/auth/signin");
+            return Redirect(_jwtConfig.Audience + "/auth/confirmsuccess");
             // return Ok(new Response
             // {
             //     Status = ResponseStatus.SUCCESS,
@@ -365,6 +486,7 @@ public class AuthController : ControllerBase
             });
         }
     }
+
     [HttpPost("locked")]
     public async Task<IActionResult> LockUser([FromBody] LockUserDTO lockUserDTO)
     {

@@ -5,12 +5,2900 @@
       "PackagePath": "staticwebassets\\FoodioAPI.bundle.scp.css"
     },
     {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\css\\bootstrap-extended.css",
+      "PackagePath": "staticwebassets\\assets\\css\\bootstrap-extended.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\css\\extra-icons.css",
+      "PackagePath": "staticwebassets\\assets\\css\\extra-icons.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\css\\pace.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\pace.min.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ad.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ad.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ae.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ae.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\af.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\af.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ag.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ag.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ai.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ai.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\al.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\al.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\am.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\am.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ao.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ao.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\aq.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\aq.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ar.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ar.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\as.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\as.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\at.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\at.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\au.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\au.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\aw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\aw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ax.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ax.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\az.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\az.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ba.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ba.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bb.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bb.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bd.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bd.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\be.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\be.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bh.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bh.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bi.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bi.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bj.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bj.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bo.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bo.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bq.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bq.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\br.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\br.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bs.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bs.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bv.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bv.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\by.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\by.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\bz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\bz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ca.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ca.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cd.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cd.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ch.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ch.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ci.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ci.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ck.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ck.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\co.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\co.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cv.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cv.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cx.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cx.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cy.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cy.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\cz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\cz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\de.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\de.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\dj.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\dj.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\dk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\dk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\dm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\dm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\do.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\do.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\dz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\dz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ec.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ec.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ee.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ee.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\eg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\eg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\eh.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\eh.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\er.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\er.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\es-ct.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\es-ct.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\es.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\es.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\et.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\et.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\eu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\eu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\fi.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\fi.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\fj.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\fj.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\fk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\fk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\fm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\fm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\fo.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\fo.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\fr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\fr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ga.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ga.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gb-eng.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gb-eng.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gb-nir.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gb-nir.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gb-sct.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gb-sct.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gb-wls.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gb-wls.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gb.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gb.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gd.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gd.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ge.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ge.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gh.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gh.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gi.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gi.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gp.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gp.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gq.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gq.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gs.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gs.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\gy.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\gy.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\hk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\hk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\hm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\hm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\hn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\hn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\hr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\hr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ht.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ht.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\hu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\hu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\id.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\id.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ie.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ie.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\il.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\il.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\im.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\im.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\in.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\in.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\io.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\io.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\iq.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\iq.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ir.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ir.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\is.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\is.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\it.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\it.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\je.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\je.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\jm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\jm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\jo.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\jo.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\jp.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\jp.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ke.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ke.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\kg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\kg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\kh.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\kh.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ki.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ki.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\km.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\km.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\kn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\kn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\kp.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\kp.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\kr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\kr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\kw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\kw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ky.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ky.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\kz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\kz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\la.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\la.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\lb.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\lb.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\lc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\lc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\li.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\li.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\lk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\lk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\lr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\lr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ls.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ls.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\lt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\lt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\lu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\lu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\lv.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\lv.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ly.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ly.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ma.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ma.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\md.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\md.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\me.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\me.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mh.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mh.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ml.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ml.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mo.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mo.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mp.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mp.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mq.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mq.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ms.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ms.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mv.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mv.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mx.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mx.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\my.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\my.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\mz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\mz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\na.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\na.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\nc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\nc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ne.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ne.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\nf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\nf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ng.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ng.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ni.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ni.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\nl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\nl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\no.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\no.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\np.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\np.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\nr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\nr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\nu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\nu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\nz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\nz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\om.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\om.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\pa.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\pa.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\pe.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\pe.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\pf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\pf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\pg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\pg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ph.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ph.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\pk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\pk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\pl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\pl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\pm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\pm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\pn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\pn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\pr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\pr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ps.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ps.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\pt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\pt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\pw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\pw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\py.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\py.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\qa.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\qa.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\re.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\re.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ro.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ro.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\rs.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\rs.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ru.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ru.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\rw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\rw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sa.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sa.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sb.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sb.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sd.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sd.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\se.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\se.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sh.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sh.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\si.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\si.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sj.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sj.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\so.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\so.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ss.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ss.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\st.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\st.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sv.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sv.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sx.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sx.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sy.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sy.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\sz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\sz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\td.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\td.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\th.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\th.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tj.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tj.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\to.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\to.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tv.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tv.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\tz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\tz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ua.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ua.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ug.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ug.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\um.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\um.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\un.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\un.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\us.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\us.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\uy.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\uy.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\uz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\uz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\va.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\va.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\vc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\vc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ve.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ve.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\vg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\vg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\vi.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\vi.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\vn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\vn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\vu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\vu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\wf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\wf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ws.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ws.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\ye.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\ye.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\yt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\yt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\za.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\za.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\zm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\zm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\1x1\\zw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\1x1\\zw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ad.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ad.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ae.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ae.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\af.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\af.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ag.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ag.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ai.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ai.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\al.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\al.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\am.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\am.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ao.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ao.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\aq.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\aq.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ar.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ar.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\as.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\as.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\at.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\at.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\au.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\au.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\aw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\aw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ax.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ax.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\az.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\az.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ba.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ba.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bb.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bb.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bd.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bd.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\be.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\be.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bh.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bh.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bi.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bi.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bj.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bj.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bo.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bo.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bq.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bq.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\br.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\br.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bs.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bs.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bv.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bv.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\by.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\by.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\bz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\bz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ca.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ca.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cd.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cd.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ch.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ch.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ci.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ci.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ck.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ck.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\co.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\co.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cv.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cv.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cx.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cx.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cy.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cy.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\cz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\cz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\de.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\de.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\dj.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\dj.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\dk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\dk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\dm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\dm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\do.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\do.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\dz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\dz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ec.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ec.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ee.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ee.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\eg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\eg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\eh.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\eh.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\er.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\er.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\es-ct.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\es-ct.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\es.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\es.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\et.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\et.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\eu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\eu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\fi.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\fi.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\fj.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\fj.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\fk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\fk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\fm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\fm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\fo.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\fo.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\fr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\fr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ga.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ga.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gb-eng.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gb-eng.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gb-nir.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gb-nir.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gb-sct.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gb-sct.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gb-wls.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gb-wls.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gb.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gb.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gd.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gd.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ge.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ge.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gh.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gh.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gi.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gi.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gp.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gp.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gq.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gq.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gs.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gs.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\gy.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\gy.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\hk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\hk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\hm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\hm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\hn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\hn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\hr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\hr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ht.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ht.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\hu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\hu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\id.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\id.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ie.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ie.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\il.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\il.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\im.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\im.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\in.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\in.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\io.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\io.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\iq.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\iq.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ir.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ir.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\is.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\is.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\it.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\it.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\je.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\je.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\jm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\jm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\jo.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\jo.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\jp.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\jp.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ke.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ke.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\kg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\kg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\kh.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\kh.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ki.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ki.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\km.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\km.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\kn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\kn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\kp.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\kp.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\kr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\kr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\kw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\kw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ky.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ky.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\kz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\kz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\la.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\la.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\lb.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\lb.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\lc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\lc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\li.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\li.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\lk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\lk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\lr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\lr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ls.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ls.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\lt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\lt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\lu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\lu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\lv.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\lv.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ly.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ly.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ma.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ma.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\md.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\md.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\me.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\me.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mh.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mh.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ml.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ml.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mo.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mo.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mp.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mp.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mq.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mq.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ms.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ms.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mv.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mv.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mx.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mx.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\my.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\my.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\mz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\mz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\na.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\na.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\nc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\nc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ne.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ne.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\nf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\nf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ng.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ng.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ni.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ni.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\nl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\nl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\no.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\no.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\np.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\np.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\nr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\nr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\nu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\nu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\nz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\nz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\om.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\om.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\pa.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\pa.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\pe.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\pe.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\pf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\pf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\pg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\pg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ph.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ph.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\pk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\pk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\pl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\pl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\pm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\pm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\pn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\pn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\pr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\pr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ps.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ps.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\pt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\pt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\pw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\pw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\py.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\py.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\qa.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\qa.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\re.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\re.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ro.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ro.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\rs.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\rs.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ru.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ru.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\rw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\rw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sa.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sa.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sb.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sb.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sd.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sd.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\se.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\se.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sh.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sh.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\si.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\si.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sj.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sj.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\so.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\so.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ss.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ss.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\st.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\st.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sv.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sv.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sx.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sx.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sy.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sy.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\sz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\sz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\td.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\td.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\th.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\th.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tj.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tj.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tk.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tk.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tl.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tl.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\to.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\to.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tr.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tr.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tv.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tv.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\tz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\tz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ua.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ua.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ug.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ug.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\um.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\um.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\un.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\un.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\us.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\us.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\uy.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\uy.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\uz.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\uz.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\va.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\va.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\vc.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\vc.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ve.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ve.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\vg.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\vg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\vi.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\vi.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\vn.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\vn.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\vu.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\vu.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\wf.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\wf.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ws.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ws.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\ye.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\ye.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\yt.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\yt.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\za.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\za.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\zm.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\zm.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\flags\\4x3\\zw.html",
+      "PackagePath": "staticwebassets\\assets\\flags\\4x3\\zw.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\fonts\\LineIcons.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\LineIcons.eot"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\fonts\\LineIcons.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\LineIcons.svg"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\fonts\\LineIcons.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\LineIcons.ttf"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\fonts\\LineIcons.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\LineIcons.woff"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\fonts\\LineIcons.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\LineIcons.woff2"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\fonts\\boxicons.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\boxicons.eot"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\fonts\\boxicons.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\boxicons.ttf"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\fonts\\boxicons.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\boxicons.woff"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\fonts\\boxicons.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\boxicons.woff2"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\fonts\\boxiconsd41d.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\boxiconsd41d.svg"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\01.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\01.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\02.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\02.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\03.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\03.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\04.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\04.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\05.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\05.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\06.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\06.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\07.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\07.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\08.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\08.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\09.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\09.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\10.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\10.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\11.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\11.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\12.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\12.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\13.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\13.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\14.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\14.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\17.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\17.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\18.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\18.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\19.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\19.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\20.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\20.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\apple.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\apple.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\behance.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\behance.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\gift-box-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\gift-box-3.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\party-popper.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\party-popper.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\paypal.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\paypal.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\apps\\twitter-circle.png",
+      "PackagePath": "staticwebassets\\assets\\images\\apps\\twitter-circle.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\auth\\bg-forgot.html",
+      "PackagePath": "staticwebassets\\assets\\images\\auth\\bg-forgot.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\auth\\bg-login.html",
+      "PackagePath": "staticwebassets\\assets\\images\\auth\\bg-login.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\auth\\bg-register.html",
+      "PackagePath": "staticwebassets\\assets\\images\\auth\\bg-register.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\auth\\bg-reset-password.html",
+      "PackagePath": "staticwebassets\\assets\\images\\auth\\bg-reset-password.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\auth\\error-bg.html",
+      "PackagePath": "staticwebassets\\assets\\images\\auth\\error-bg.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\auth\\forgot-password1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\auth\\forgot-password1.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\auth\\login1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\auth\\login1.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\auth\\register1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\auth\\register1.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\auth\\reset-password1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\auth\\reset-password1.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\avatars\\01.png",
+      "PackagePath": "staticwebassets\\assets\\images\\avatars\\01.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\avatars\\02.png",
+      "PackagePath": "staticwebassets\\assets\\images\\avatars\\02.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\avatars\\03.png",
+      "PackagePath": "staticwebassets\\assets\\images\\avatars\\03.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\avatars\\04.png",
+      "PackagePath": "staticwebassets\\assets\\images\\avatars\\04.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\avatars\\05.png",
+      "PackagePath": "staticwebassets\\assets\\images\\avatars\\05.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\avatars\\06.png",
+      "PackagePath": "staticwebassets\\assets\\images\\avatars\\06.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\avatars\\07.png",
+      "PackagePath": "staticwebassets\\assets\\images\\avatars\\07.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\avatars\\08.png",
+      "PackagePath": "staticwebassets\\assets\\images\\avatars\\08.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\avatars\\09.png",
+      "PackagePath": "staticwebassets\\assets\\images\\avatars\\09.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\avatars\\10.png",
+      "PackagePath": "staticwebassets\\assets\\images\\avatars\\10.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\avatars\\11.png",
+      "PackagePath": "staticwebassets\\assets\\images\\avatars\\11.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\avatars\\12.png",
+      "PackagePath": "staticwebassets\\assets\\images\\avatars\\12.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\bg-themes\\body-background-1.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\bg-themes\\body-background-1.webp"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\01.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\01.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\02.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\02.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\03.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\03.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\04.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\04.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\05.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\05.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\06.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\06.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\07.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\07.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\08.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\08.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\09.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\09.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\10.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\10.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\11.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\11.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\12.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\12.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\13.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\13.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\14.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\14.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\carousels\\15.png",
+      "PackagePath": "staticwebassets\\assets\\images\\carousels\\15.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\cat\\01.png",
+      "PackagePath": "staticwebassets\\assets\\images\\cat\\01.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\cat\\02.png",
+      "PackagePath": "staticwebassets\\assets\\images\\cat\\02.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\cat\\03.png",
+      "PackagePath": "staticwebassets\\assets\\images\\cat\\03.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\cat\\04.png",
+      "PackagePath": "staticwebassets\\assets\\images\\cat\\04.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\cat\\05.png",
+      "PackagePath": "staticwebassets\\assets\\images\\cat\\05.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\cat\\06.png",
+      "PackagePath": "staticwebassets\\assets\\images\\cat\\06.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\county\\01.png",
+      "PackagePath": "staticwebassets\\assets\\images\\county\\01.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\county\\02.png",
+      "PackagePath": "staticwebassets\\assets\\images\\county\\02.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\county\\03.png",
+      "PackagePath": "staticwebassets\\assets\\images\\county\\03.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\county\\04.png",
+      "PackagePath": "staticwebassets\\assets\\images\\county\\04.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\county\\05.png",
+      "PackagePath": "staticwebassets\\assets\\images\\county\\05.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\county\\06.png",
+      "PackagePath": "staticwebassets\\assets\\images\\county\\06.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\county\\07.png",
+      "PackagePath": "staticwebassets\\assets\\images\\county\\07.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\county\\08.png",
+      "PackagePath": "staticwebassets\\assets\\images\\county\\08.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\favicon-32x32.png",
+      "PackagePath": "staticwebassets\\assets\\images\\favicon-32x32.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\01.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\01.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\02.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\02.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\03.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\03.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\04.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\04.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\05.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\05.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\06.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\06.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\08.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\08.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\09.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\09.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\10.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\10.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\11.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\11.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\12.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\12.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\14.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\14.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\15.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\15.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\16.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\16.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\17.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\17.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\18.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\18.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\19.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\19.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\20.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\20.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\21.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\21.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\22.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\22.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\23.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\23.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\24.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\24.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\25.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\25.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\26.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\26.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\profile-cover.html",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\profile-cover.html"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\gallery\\welcome-back-3.png",
+      "PackagePath": "staticwebassets\\assets\\images\\gallery\\welcome-back-3.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\logo-icon.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo-icon.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\logo-transparent.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo-transparent.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\logo.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\logo1.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo1.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\megaIcons\\01.png",
+      "PackagePath": "staticwebassets\\assets\\images\\megaIcons\\01.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\megaIcons\\02.png",
+      "PackagePath": "staticwebassets\\assets\\images\\megaIcons\\02.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\megaIcons\\03.png",
+      "PackagePath": "staticwebassets\\assets\\images\\megaIcons\\03.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\megaIcons\\08.png",
+      "PackagePath": "staticwebassets\\assets\\images\\megaIcons\\08.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\megaIcons\\09.png",
+      "PackagePath": "staticwebassets\\assets\\images\\megaIcons\\09.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\megaIcons\\11.png",
+      "PackagePath": "staticwebassets\\assets\\images\\megaIcons\\11.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\megaIcons\\12.png",
+      "PackagePath": "staticwebassets\\assets\\images\\megaIcons\\12.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\megaIcons\\13.png",
+      "PackagePath": "staticwebassets\\assets\\images\\megaIcons\\13.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\orders\\01.png",
+      "PackagePath": "staticwebassets\\assets\\images\\orders\\01.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\orders\\02.png",
+      "PackagePath": "staticwebassets\\assets\\images\\orders\\02.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\orders\\03.png",
+      "PackagePath": "staticwebassets\\assets\\images\\orders\\03.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\orders\\04.png",
+      "PackagePath": "staticwebassets\\assets\\images\\orders\\04.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\orders\\05.png",
+      "PackagePath": "staticwebassets\\assets\\images\\orders\\05.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\orders\\06.png",
+      "PackagePath": "staticwebassets\\assets\\images\\orders\\06.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\orders\\07.png",
+      "PackagePath": "staticwebassets\\assets\\images\\orders\\07.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\orders\\08.png",
+      "PackagePath": "staticwebassets\\assets\\images\\orders\\08.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\orders\\09.png",
+      "PackagePath": "staticwebassets\\assets\\images\\orders\\09.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\projects\\angular.png",
+      "PackagePath": "staticwebassets\\assets\\images\\projects\\angular.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\projects\\bootstrap.png",
+      "PackagePath": "staticwebassets\\assets\\images\\projects\\bootstrap.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\projects\\django.png",
+      "PackagePath": "staticwebassets\\assets\\images\\projects\\django.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\projects\\magento.png",
+      "PackagePath": "staticwebassets\\assets\\images\\projects\\magento.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\projects\\python.png",
+      "PackagePath": "staticwebassets\\assets\\images\\projects\\python.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\projects\\react.png",
+      "PackagePath": "staticwebassets\\assets\\images\\projects\\react.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\projects\\vue.png",
+      "PackagePath": "staticwebassets\\assets\\images\\projects\\vue.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\top-products\\01.png",
+      "PackagePath": "staticwebassets\\assets\\images\\top-products\\01.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\top-products\\02.png",
+      "PackagePath": "staticwebassets\\assets\\images\\top-products\\02.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\top-products\\03.png",
+      "PackagePath": "staticwebassets\\assets\\images\\top-products\\03.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\top-products\\04.png",
+      "PackagePath": "staticwebassets\\assets\\images\\top-products\\04.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\top-products\\05.png",
+      "PackagePath": "staticwebassets\\assets\\images\\top-products\\05.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\top-products\\06.png",
+      "PackagePath": "staticwebassets\\assets\\images\\top-products\\06.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\images\\top-products\\07.png",
+      "PackagePath": "staticwebassets\\assets\\images\\top-products\\07.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\js\\dashboard1.js",
+      "PackagePath": "staticwebassets\\assets\\js\\dashboard1.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\js\\dashboard2.js",
+      "PackagePath": "staticwebassets\\assets\\js\\dashboard2.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\js\\data-widgets.js",
+      "PackagePath": "staticwebassets\\assets\\js\\data-widgets.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\js\\jquery.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\js\\main.js",
+      "PackagePath": "staticwebassets\\assets\\js\\main.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\js\\pace.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pace.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\Drag-And-Drop\\dist\\imageuploadify.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\Drag-And-Drop\\dist\\imageuploadify.min.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\Drag-And-Drop\\dist\\imageuploadify.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\Drag-And-Drop\\dist\\imageuploadify.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\apexchart\\apex-custom-chart.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\apexchart\\apex-custom-chart.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\apexchart\\apexcharts.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\apexchart\\apexcharts.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\bs-stepper\\css\\bs-stepper.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\bs-stepper\\css\\bs-stepper.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\bs-stepper\\js\\bs-stepper.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\bs-stepper\\js\\bs-stepper.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\bs-stepper\\js\\main.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\bs-stepper\\js\\main.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\chartjs\\js\\chart.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\chartjs\\js\\chart.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\chartjs\\js\\chartjs-custom.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\chartjs\\js\\chartjs-custom.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\datatable\\css\\dataTables.bootstrap5.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\datatable\\css\\dataTables.bootstrap5.min.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\datatable\\js\\dataTables.bootstrap5.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\datatable\\js\\dataTables.bootstrap5.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\datatable\\js\\jquery.dataTables.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\datatable\\js\\jquery.dataTables.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\fancy-file-uploader\\fancy_fileupload.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fancy-file-uploader\\fancy_fileupload.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\fancy-file-uploader\\fancy_microphone.png",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fancy-file-uploader\\fancy_microphone.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\fancy-file-uploader\\fancy_okay.png",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fancy-file-uploader\\fancy_okay.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\fancy-file-uploader\\fancy_remove.png",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fancy-file-uploader\\fancy_remove.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\fancy-file-uploader\\fancy_upload.png",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fancy-file-uploader\\fancy_upload.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\fancy-file-uploader\\fancy_webcam.png",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fancy-file-uploader\\fancy_webcam.png"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\fancy-file-uploader\\jquery.fancy-fileupload.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fancy-file-uploader\\jquery.fancy-fileupload.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\fancy-file-uploader\\jquery.fileupload.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fancy-file-uploader\\jquery.fileupload.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\fancy-file-uploader\\jquery.iframe-transport.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fancy-file-uploader\\jquery.iframe-transport.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\fancy-file-uploader\\jquery.ui.widget.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fancy-file-uploader\\jquery.ui.widget.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\form-repeater\\repeater.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\form-repeater\\repeater.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\fullcalendar\\css\\main.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fullcalendar\\css\\main.min.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\fullcalendar\\js\\main.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fullcalendar\\js\\main.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\gmaps\\map-custom-script.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\gmaps\\map-custom-script.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\input-tags\\css\\tagsinput.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\input-tags\\css\\tagsinput.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\input-tags\\js\\tagsinput.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\input-tags\\js\\tagsinput.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\metismenu\\metisMenu.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\metismenu\\metisMenu.min.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\metismenu\\metisMenu.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\metismenu\\metisMenu.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\metismenu\\mm-vertical.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\metismenu\\mm-vertical.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\notifications\\css\\lobibox.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\notifications\\css\\lobibox.min.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\notifications\\js\\lobibox.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\notifications\\js\\lobibox.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\notifications\\js\\notification-custom-script.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\notifications\\js\\notification-custom-script.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\notifications\\js\\notifications.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\notifications\\js\\notifications.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\peity\\jquery.peity.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\peity\\jquery.peity.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\perfect-scrollbar\\css\\perfect-scrollbar.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\perfect-scrollbar\\css\\perfect-scrollbar.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\perfect-scrollbar\\js\\perfect-scrollbar.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\perfect-scrollbar\\js\\perfect-scrollbar.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\select2\\js\\select2-custom.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\select2\\js\\select2-custom.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\simplebar\\css\\simplebar.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\simplebar\\css\\simplebar.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\simplebar\\js\\simplebar.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\simplebar\\js\\simplebar.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\validation\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\validation\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\validation\\validation-script.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\validation\\validation-script.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\vectormap\\jquery-jvectormap-2.0.2.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\vectormap\\jquery-jvectormap-2.0.2.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\vectormap\\jquery-jvectormap-2.0.2.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\vectormap\\jquery-jvectormap-2.0.2.min.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\vectormap\\jquery-jvectormap-au-mill.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\vectormap\\jquery-jvectormap-au-mill.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\vectormap\\jquery-jvectormap-in-mill.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\vectormap\\jquery-jvectormap-in-mill.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\vectormap\\jquery-jvectormap-uk-mill-en.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\vectormap\\jquery-jvectormap-uk-mill-en.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\vectormap\\jquery-jvectormap-us-aea-en.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\vectormap\\jquery-jvectormap-us-aea-en.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\vectormap\\jquery-jvectormap-world-mill-en.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\vectormap\\jquery-jvectormap-world-mill-en.js"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\assets\\plugins\\vectormap\\jvectormap.custom.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\vectormap\\jvectormap.custom.js"
+    },
+    {
       "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\js\\login-validation.js",
+      "PackagePath": "staticwebassets\\js\\login-validation.js"
     },
     {
       "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\js\\site.js",
@@ -243,6 +3131,30 @@
     {
       "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\sass\\blue-theme.css",
+      "PackagePath": "staticwebassets\\sass\\blue-theme.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\sass\\bordered-theme.css",
+      "PackagePath": "staticwebassets\\sass\\bordered-theme.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\sass\\dark-theme.css",
+      "PackagePath": "staticwebassets\\sass\\dark-theme.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\sass\\main.css",
+      "PackagePath": "staticwebassets\\sass\\main.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\sass\\responsive.css",
+      "PackagePath": "staticwebassets\\sass\\responsive.css"
+    },
+    {
+      "Id": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\wwwroot\\sass\\semi-dark.css",
+      "PackagePath": "staticwebassets\\sass\\semi-dark.css"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.FoodioAPI.Microsoft.AspNetCore.StaticWebAssets.props",
