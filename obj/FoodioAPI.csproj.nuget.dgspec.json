@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Semester - 8\\PRN232\\Foodio\\FoodioAPI\\FoodioAPI.csproj": {}
+    "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\FoodioAPI.csproj": {}
   },
   "projects": {
-    "D:\\Semester - 8\\PRN232\\Foodio\\FoodioAPI\\FoodioAPI.csproj": {
+    "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\FoodioAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Semester - 8\\PRN232\\Foodio\\FoodioAPI\\FoodioAPI.csproj",
+        "projectUniqueName": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\FoodioAPI.csproj",
         "projectName": "FoodioAPI",
-        "projectPath": "D:\\Semester - 8\\PRN232\\Foodio\\FoodioAPI\\FoodioAPI.csproj",
+        "projectPath": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\FoodioAPI.csproj",
         "packagesPath": "C:\\Users\\LDT\\.nuget\\packages\\",
-        "outputPath": "D:\\Semester - 8\\PRN232\\Foodio\\FoodioAPI\\obj\\",
+        "outputPath": "D:\\Semester - 8\\PRN232\\Foodio\\Foodio_API\\Foodio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
