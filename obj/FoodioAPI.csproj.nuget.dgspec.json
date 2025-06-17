@@ -50,6 +50,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "Azure.Storage.Blobs": {
               "target": "Package",
               "version": "[12.23.0, )"
@@ -61,6 +65,10 @@
             "EPPlus": {
               "target": "Package",
               "version": "[5.8.3, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.68.0, )"
             },
             "Google.Cloud.Storage.V1": {
               "target": "Package",

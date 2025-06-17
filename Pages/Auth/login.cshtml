@@ -1,0 +1,284 @@
+﻿@page
+@model FoodioAPI.Pages.Auth.loginModel
+@using System.Text.Json
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en" data-bs-theme="blue-theme">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Foodio</title>
+    <!--favicon-->
+    <link rel="icon" href="~/assets/images/logo.png" type="image/png">
+    <!-- loader-->
+    <link href="~/assets/css/pace.min.css" rel="stylesheet">
+    <script src="~/assets/js/pace.min.js"></script>
+
+    <!--plugins-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+    <link href="~/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/metismenu/metisMenu.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/metismenu/mm-vertical.css">
+    <!--bootstrap css-->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+    <!--main css-->
+    <link href="~/assets/css/bootstrap-extended.css" rel="stylesheet">
+    <link href="~/sass/main.css" rel="stylesheet">
+    <link href="~/sass/dark-theme.css" rel="stylesheet">
+    <link href="~/sass/blue-theme.css" rel="stylesheet">
+    <link href="~/sass/responsive.css" rel="stylesheet">
+
+    <style>
+        .toast-success {
+            background-color: #28a745 !important;
+            color: white !important;
+        }
+
+        .toast-error {
+            background-color: #dc3545 !important; 
+            color: white !important;
+        }
+
+        .toast-warning {
+            background-color: #ffc107 !important; 
+            color: black !important;
+        }
+
+        .toast-info {
+            background-color: #17a2b8 !important;
+            color: white !important;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <!--authentication-->
+
+    <div class="mx-3 mx-lg-0">
+
+        <div class="card my-5 col-xl-9 col-xxl-8 mx-auto rounded-4 overflow-hidden p-4">
+            <div class="row g-4">
+                <div class="col-lg-6 d-flex">
+                    <div class="card-body">
+                        <img src="~/assets/images/logo-transparent.png" class="mb-4" width="145" alt="">
+                        <h4 class="fw-bold">Bắt đầu ngay bây giờ</h4>
+                        <p class="mb-0">Nhập thông tin đăng nhập của bạn để đăng nhập vào tài khoản của bạn</p>
+                        <div class="row gy-2 gx-0 my-4">
+                            <div class="col-12 col-lg-12">
+                                <button
+                                    class="btn btn-filter py-2 px-4 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">
+                                    <span class=""><img src="~/assets/images/apps/05.png" width="20" class="me-2"
+                                            alt="">Đăng nhập bằng Google</span>
+                                </button>
+                            </div>
+                            @* <div class="col-12 col-lg-12">
+                                <button
+                                    class="btn btn-filter py-2 px-4 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">
+                                    <span class=""><img src="~/assets/images/apps/17.png" width="20" class="me-2"
+                                            alt="">Sign in with Facebook</span>
+                                </button>
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <button
+                                    class="btn btn-filter py-2 px-4 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">
+                                    <span class=""><img src="~/assets/images/apps/18.png" width="20" class="me-2"
+                                            alt="">Sign in with LinkedIn</span>
+                                </button>
+                            </div> *@
+                        </div>
+
+                        <div class="separator">
+                            <div class="line"></div>
+                            <p class="mb-0 fw-bold">HOẶC ĐĂNG NHẬP BẰNG</p>
+                            <div class="line"></div>
+                        </div>
+                        <div class="form-body mt-4">
+                            <form method="post" class="row g-3">
+                                <div class="col-12">
+                                    <label for="inputEmailAddress" class="form-label">Email</label>
+                                    <input asp-for="Email" class="form-control" id="inputEmailAddress" placeholder="jhon@example.com">
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputChoosePassword" class="form-label">Mật khẩu</label>
+                                    <div class="input-group" id="show_hide_password">
+                                        <input asp-for="Password" class="form-control border-end-0"
+                                            id="inputChoosePassword" placeholder="Nhập mật khẩu">
+                                        <a href="javascript:;" class="input-group-text bg-transparent">
+                                            <i class="bi bi-eye-slash-fill"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                            checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Nhớ mật khẩu</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <a href="/auth/forgotpassword">Quên mật khẩu?</a>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-grd-primary">Đăng nhập</button>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="text-start">
+                                        <p class="mb-0">
+                                            Bạn chưa có tài khoản? <a href="/Auth/register">Đăng ký tại đây</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="col-12 text-center">
+                                <span id="resendMessage" class="text-success fw-semibold" style="display:none;">
+                                    Chúng tôi đã gửi email xác nhận. Nếu chưa nhận được, hãy thử gửi lại sau <span id="countdown">60</span> giây.
+                                </span>
+                                <button type="button" class="btn btn-link p-0" id="resendButton" style="display:none;">
+                                    Gửi lại email xác nhận
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-lg-flex d-none">
+                    <div class="p-3 rounded-4 w-100 d-flex align-items-center justify-content-center bg-grd-primary">
+                        <img src="~/assets/images/auth/login1.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+            </div><!--end row-->
+        </div>
+
+    </div>
+
+
+
+
+    <!--authentication-->
+    <!--plugins-->
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="~/assets/js/login-validation.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#show_hide_password a").on('click', function (event) {
+                event.preventDefault();
+                if ($('#show_hide_password input').attr("type") == "text") {
+                    $('#show_hide_password input').attr('type', 'password');
+                    $('#show_hide_password i').addClass("bi-eye-slash-fill");
+                    $('#show_hide_password i').removeClass("bi-eye-fill");
+                } else if ($('#show_hide_password input').attr("type") == "password") {
+                    $('#show_hide_password input').attr('type', 'text');
+                    $('#show_hide_password i').removeClass("bi-eye-slash-fill");
+                    $('#show_hide_password i').addClass("bi-eye-fill");
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function showToast(type, message) {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                newestOnTop: true,
+                positionClass: "toast-bottom-right",
+                timeOut: "4000",
+                extendedTimeOut: "1000",
+                showDuration: "300",
+                hideDuration: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut"
+            };
+            toastr[type](message);
+        }
+
+        function startCountdown() {
+            let seconds = 60;
+            $('#resendMessage').show();
+            $('#resendButton').hide();
+
+            const interval = setInterval(() => {
+                seconds--;
+                $('#countdown').text(seconds);
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    $('#resendMessage').hide();
+                    $('#resendButton').show();
+                }
+            }, 1000);
+        }
+
+        $(document).ready(function () {
+            const message = @Html.Raw(JsonSerializer.Serialize(ViewData["Message"] ?? TempData["Message"]));
+            const registeredEmail = '@Model.Email';
+            if (message) {
+                if (message.includes("successful")) {
+                    showToast("success", message);
+                    startCountdown();
+                } else {
+                    showToast("error", message);
+                }
+            }
+
+            $('#resendButton').click(async function () {
+                const email = registeredEmail;
+                if (!email) {
+                    showToast("warning", "Vui lòng nhập email để gửi lại!");
+                    return;
+                }
+
+                try {
+                    const res = await fetch(`/api/auth/resend-confirm-email?email=${encodeURIComponent(email)}`, {
+                        method: "POST"
+                    });
+                    const data = await res.json();
+
+                    if (res.ok) {
+                        showToast("success", data.message);
+                        $('#resendButton').hide();
+                        startCountdown();
+                    } else {
+                        showToast("error", data.message || "Gửi lại thất bại");
+                    }
+                } catch {
+                    showToast("error", "Đã xảy ra lỗi khi gửi lại email xác nhận.");
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('form').on('submit', function (e) {
+                const email = $('#inputEmailAddress').val().trim();
+                const password = $('#inputChoosePassword').val().trim();
+
+                if (!email || !password) {
+                    showToast('error', 'Vui lòng nhập đầy đủ Email và Mật khẩu.');
+                    e.preventDefault();
+                    return;
+                }    
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
