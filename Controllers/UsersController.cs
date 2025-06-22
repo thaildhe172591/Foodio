@@ -472,5 +472,35 @@ namespace FoodioAPI.Controllers
                 });
             }
         }
+
+        /// <summary>
+        /// Cập nhật thông tin cơ bản của người dùng (email, phone ...)
+        /// </summary>
+        /// <param name="id">ID người dùng</param>
+        /// <param name="dto">Thông tin cập nhật</param>
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(Response<bool>), 200)]
+        [ProducesResponseType(typeof(Response<bool>), 400)]
+        public async Task<ActionResult<Response<bool>>> UpdateUser(string id, [FromBody] UpdateUserDto dto)
+        {
+            try
+            {
+                var result = await _userManagementService.UpdateUserAsync(id, dto);
+                return Ok(new Response<bool>
+                {
+                    Status = ResponseStatus.SUCCESS,
+                    Message = "Cập nhật thông tin người dùng thành công",
+                    Data = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response<bool>
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = ex.Message
+                });
+            }
+        }
     }
 }

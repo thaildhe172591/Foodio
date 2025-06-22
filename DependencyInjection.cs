@@ -78,6 +78,14 @@ public static class DependencyInjection
 
         // StorageService
         services.AddHttpClient();
+        
+        // Configure named HttpClient for API calls
+        services.AddHttpClient("API", client =>
+        {
+            client.BaseAddress = new Uri("https://localhost:5001/"); // Thay đổi port theo cấu hình của bạn
+            client.DefaultRequestHeaders.Add("Accept", "application/json");
+        });
+        
         services.AddScoped<ApplicationDbContext>();
         //services.AddScoped<IEmailSender, EmailService>();
         services.AddScoped<ICartService, CartService>();

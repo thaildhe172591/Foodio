@@ -12,6 +12,11 @@ namespace FoodioAPI.DTOs.UserDtos
         public string Id { get; set; } = default!;
 
         /// <summary>
+        /// Tên vai trò (tên gốc trong hệ thống)
+        /// </summary>
+        public string Name { get; set; } = default!;
+
+        /// <summary>
         /// Tên hiển thị của vai trò
         /// </summary>
         public string DisplayName { get; set; } = default!;

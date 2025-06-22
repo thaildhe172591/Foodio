@@ -44,5 +44,25 @@ namespace FoodioAPI.DTOs.UserDtos
         /// Có xác nhận số điện thoại ngay không (mặc định: false)
         /// </summary>
         public bool PhoneNumberConfirmed { get; set; } = false;
+
+        [Required(ErrorMessage = "Họ không được để trống")]
+        [StringLength(50, ErrorMessage = "UserName không được vượt quá 50 ký tự")]
+        public string UserName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Giới tính (Male, Female, Other)
+        /// </summary>
+        public string? Gender { get; set; }
+
+        /// <summary>
+        /// Ngày sinh (không bắt buộc)
+        /// </summary>
+        public DateTime? DateOfBirth { get; set; }
+
+        /// <summary>
+        /// Địa chỉ người dùng (không bắt buộc)
+        /// </summary>
+        [StringLength(200, ErrorMessage = "Địa chỉ không được vượt quá 200 ký tự")]
+        public string? Address { get; set; }
     }
-} 
+}

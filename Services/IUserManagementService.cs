@@ -105,4 +105,12 @@ public interface IUserManagementService
     /// <param name="dto">Thông tin người dùng cần tạo</param>
     /// <returns>Thông tin người dùng đã tạo</returns>
     Task<UserDto> CreateUserAsync(CreateUserDto dto);
+
+    /// <summary>
+    /// Cập nhật thông tin cơ bản của người dùng (email, phone, tên, vai trò...)
+    /// </summary>
+    /// <param name="userId">ID người dùng</param>
+    /// <param name="dto">Thông tin cần cập nhật</param>
+    /// <returns>True nếu thành công</returns>
+    Task<bool> UpdateUserAsync(string userId, UpdateUserDto dto);
 } 

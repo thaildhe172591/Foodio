@@ -7,17 +7,18 @@
 | # | Method | Endpoint | Công dụng | Input | Output |
 |---|--------|----------|-----------|-------|--------|
 | 1 | POST | `/api/admin/users` | Tạo người dùng mới | `CreateUserDto` | `UserDto` |
-| 2 | GET | `/api/admin/users` | Lấy danh sách người dùng | `page`, `pageSize`, `searchTerm` | `PaginatedData<UserDto>` |
-| 3 | GET | `/api/admin/users/get-by-id/{id}` | Lấy người dùng theo ID | `id` | `UserDto` |
-| 4 | GET | `/api/admin/users/get-by-email/{email}` | Lấy người dùng theo Email | `email` | `UserDto` |
-| 5 | PUT | `/api/admin/users/update-roles/{id}` | Cập nhật vai trò người dùng | `id`, `UpdateUserRoleDto` | `bool` |
-| 6 | DELETE | `/api/admin/users/delete/{id}` | Xóa người dùng | `id` | `bool` |
-| 7 | POST | `/api/admin/users/lock/{id}` | Khóa người dùng | `id`, `LockUserDto` | `bool` |
-| 8 | POST | `/api/admin/users/unlock/{id}` | Mở khóa người dùng | `id` | `bool` |
-| 9 | GET | `/api/admin/users/check-lock-status/{id}` | Kiểm tra trạng thái khóa | `id` | `bool` |
-| 10 | GET | `/api/admin/users/get-lockout-end/{id}` | Lấy thời gian mở khóa | `id` | `DateTimeOffset?` |
-| 11 | GET | `/api/admin/users/get-user-roles/{id}` | Lấy vai trò của người dùng | `id` | `List<string>` |
-| 12 | GET | `/api/admin/users/get-all-roles` | Lấy tất cả vai trò hệ thống | - | `List<RoleDto>` |
+| 2 | GET | `/api/admin/users` | Lấy danh sách người dùng (cơ bản) | `page`, `pageSize`, `searchTerm` | `PaginatedData<UserDto>` |
+| 3 | GET | `/api/admin/users/search` | Lấy danh sách người dùng (nâng cao) | `UserSearchDto` (query) | `PaginatedData<UserDto>` |
+| 4 | GET | `/api/admin/users/get-by-id/{id}` | Lấy người dùng theo ID | `id` | `UserDto` |
+| 5 | GET | `/api/admin/users/get-by-email/{email}` | Lấy người dùng theo Email | `email` | `UserDto` |
+| 6 | PUT | `/api/admin/users/update-roles/{id}` | Cập nhật vai trò người dùng | `id`, `UpdateUserRoleDto` | `bool` |
+| 7 | DELETE | `/api/admin/users/delete/{id}` | Xóa người dùng | `id` | `bool` |
+| 8 | POST | `/api/admin/users/lock/{id}` | Khóa người dùng | `id`, `LockUserDto` | `bool` |
+| 9 | POST | `/api/admin/users/unlock/{id}` | Mở khóa người dùng | `id` | `bool` |
+| 10 | GET | `/api/admin/users/check-lock-status/{id}` | Kiểm tra trạng thái khóa | `id` | `bool` |
+| 11 | GET | `/api/admin/users/get-lockout-end/{id}` | Lấy thời gian mở khóa | `id` | `DateTimeOffset?` |
+| 12 | GET | `/api/admin/users/get-user-roles/{id}` | Lấy vai trò của người dùng | `id` | `List<string>` |
+| 13 | GET | `/api/admin/users/get-all-roles` | Lấy tất cả vai trò hệ thống | - | `List<RoleDto>` |
 
 ---
 
@@ -52,9 +53,13 @@
 ```json
 {
   "id": "string",
-  "userName": "string", 
+  "userName": "string",
+  "firstName": "string",
+  "lastName": "string",
   "email": "string",
-  "role": "string",
+  "phoneNumber": "string",
+  "createdDate": "2024-06-10T10:00:00Z",
+  "roles": ["Admin", "Staff"],
   "isLocked": false,
   "lockoutEnd": "2024-01-01T00:00:00Z",
   "emailConfirmed": true
@@ -65,6 +70,7 @@
 ```json
 {
   "id": "role-id",
+  "name": "Admin", 
   "displayName": "Quản trị viên",
   "description": "Quyền quản trị cao nhất",
   "isSystemRole": true
@@ -240,11 +246,15 @@
 {
     "id": "string",              // ID người dùng
     "userName": "string",        // Tên đăng nhập
+    "firstName": "string",       // Họ
+    "lastName": "string",        // Tên
     "email": "string",           // Email
-    "role": "string",            // Danh sách vai trò (comma-separated)
-    "isLocked": false,           // Trạng thái khóa
+    "phoneNumber": "string",     // Số điện thoại
+    "createdDate": "DateTime?",  // Ngày tạo tài khoản
+    "roles": ["Admin","Staff"],   // Danh sách vai trò
+    "isLocked": false,            // Trạng thái khóa
     "lockoutEnd": "DateTimeOffset?", // Thời gian mở khóa
-    "emailConfirmed": false      // Trạng thái xác nhận email
+    "emailConfirmed": false       // Trạng thái xác nhận email
 }
 ```
 
@@ -252,9 +262,10 @@
 ```csharp
 {
     "id": "string",              // ID vai trò
+    "name": "Admin",             // Tên gốc của vai trò
     "displayName": "string",     // Tên hiển thị tiếng Việt
     "description": "string",     // Mô tả vai trò
-    "isSystemRole": false        // Có phải vai trò hệ thống không
+    "isSystemRole": false         // Có phải vai trò hệ thống không
 }
 ```
 

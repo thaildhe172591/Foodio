@@ -359,6 +359,7 @@ namespace FoodioAPI.Services.Implements
                 Price = menuItem.Price,
                 ImageUrl = menuItem.ImageUrl,
                 CategoryId = menuItem.CategoryId,
+                Category = menuItem.Category.Name,
                 IsAvailable = menuItem.IsAvailable
             };
         }
@@ -418,22 +419,16 @@ namespace FoodioAPI.Services.Implements
             switch (sortBy)
             {
                 case "name":
-                    query = sortOrder == "desc"
-                        ? query.OrderByDescending(m => m.Name)
-                        : query.OrderBy(m => m.Name);
+                    query = query.OrderByDescending(m => m.Name);
                     break;
                 case "price":
-                    query = sortOrder == "desc"
-                        ? query.OrderByDescending(m => m.Price)
-                        : query.OrderBy(m => m.Price);
+                    query = query.OrderByDescending(m => m.Price);
                     break;
                 case "createddate":
-                    query = sortOrder == "desc"
-                        ? query.OrderByDescending(m => m.Id) // Sử dụng ID làm proxy cho created date
-                        : query.OrderBy(m => m.Id);
+                    query = query.OrderByDescending(m => m.Id);
                     break;
                 default:
-                    query = query.OrderBy(m => m.Name);
+                    //query = query.OrderByDescending(m => m.Name);
                     break;
             }
 

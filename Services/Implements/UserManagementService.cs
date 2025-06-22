@@ -25,30 +25,31 @@ public class UserManagementService : IUserManagementService
     }
 
     /// <summary>
-    /// Lấy danh sách người dùng với phân trang và tìm kiếm
+    /// Lấy danh sách tất cả người dùng trong hệ thống với phân trang và tìm kiếm
     /// </summary>
-    /// <param name="page">Số trang (bắt đầu từ 1)</param>
-    /// <param name="pageSize">Số lượng người dùng trên mỗi trang</param>
+    /// <param name="page">Số trang (mặc định: 1)</param>
+    /// <param name="pageSize">Số lượng item trên mỗi trang (mặc định: 10)</param>
     /// <param name="searchTerm">Từ khóa tìm kiếm theo tên người dùng hoặc email</param>
-    /// <returns>Dữ liệu phân trang chứa danh sách người dùng</returns>
+    /// <returns>Danh sách người dùng với thông tin phân trang</returns>
     /// <exception cref="ValidationException">Khi có lỗi validation</exception>
     public async Task<PaginatedData<UserDto>> GetUsersAsync(int page = 1, int pageSize = 10, string? searchTerm = null)
     {
-        // Bắt đầu với query tất cả người dùng
+        // Xây dựng query cơ bản
         var query = _userManager.Users.AsQueryable();
 
-        // Áp dụng filter tìm kiếm nếu có
-        if (!string.IsNullOrWhiteSpace(searchTerm))
+        // Áp dụng tìm kiếm nếu có
+        if (!string.IsNullOrEmpty(searchTerm))
         {
+            searchTerm = searchTerm.ToLower();
             query = query.Where(u =>
-                u.UserName!.Contains(searchTerm) ||
-                u.Email!.Contains(searchTerm));
+                u.UserName!.ToLower().Contains(searchTerm) ||
+                u.Email!.ToLower().Contains(searchTerm));
         }
 
-        // Đếm tổng số người dùng để tính phân trang
+        // Tính tổng số bản ghi
         var totalCount = await query.CountAsync();
 
-        // Lấy danh sách người dùng theo phân trang
+        // Áp dụng phân trang
         var users = await query
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
@@ -64,6 +65,9 @@ public class UserManagementService : IUserManagementService
                 Id = user.Id,
                 UserName = user.UserName!,
                 Email = user.Email!,
+                PhoneNumber = user.PhoneNumber,
+                CreatedDate = DateTime.UtcNow, // Tạm thời sử dụng thời gian hiện tại
+                Roles = roles.ToList(),
                 Role = string.Join(", ", roles),
                 IsLocked = await _userManager.IsLockedOutAsync(user),
                 LockoutEnd = await _userManager.GetLockoutEndDateAsync(user),
@@ -80,6 +84,7 @@ public class UserManagementService : IUserManagementService
     /// </summary>
     /// <param name="id">ID của người dùng</param>
     /// <returns>Thông tin người dùng hoặc null nếu không tìm thấy</returns>
+    /// <exception cref="NotFoundException">Khi không tìm thấy người dùng</exception>
     public async Task<UserDto?> GetUserByIdAsync(string id)
     {
         // Tìm người dùng theo ID
@@ -95,6 +100,9 @@ public class UserManagementService : IUserManagementService
             Id = user.Id,
             UserName = user.UserName!,
             Email = user.Email!,
+            PhoneNumber = user.PhoneNumber,
+            CreatedDate = DateTime.UtcNow, // Tạm thời sử dụng thời gian hiện tại
+            Roles = roles.ToList(),
             Role = string.Join(", ", roles),
             IsLocked = await _userManager.IsLockedOutAsync(user),
             LockoutEnd = await _userManager.GetLockoutEndDateAsync(user),
@@ -107,6 +115,7 @@ public class UserManagementService : IUserManagementService
     /// </summary>
     /// <param name="email">Email của người dùng</param>
     /// <returns>Thông tin người dùng hoặc null nếu không tìm thấy</returns>
+    /// <exception cref="NotFoundException">Khi không tìm thấy người dùng</exception>
     public async Task<UserDto?> GetUserByEmailAsync(string email)
     {
         // Tìm người dùng theo email
@@ -122,6 +131,9 @@ public class UserManagementService : IUserManagementService
             Id = user.Id,
             UserName = user.UserName!,
             Email = user.Email!,
+            PhoneNumber = user.PhoneNumber,
+            CreatedDate = DateTime.UtcNow, // Tạm thời sử dụng thời gian hiện tại
+            Roles = roles.ToList(),
             Role = string.Join(", ", roles),
             IsLocked = await _userManager.IsLockedOutAsync(user),
             LockoutEnd = await _userManager.GetLockoutEndDateAsync(user),
@@ -175,6 +187,50 @@ public class UserManagementService : IUserManagementService
         var addResult = await _userManager.AddToRolesAsync(user, roleNames);
         if (!addResult.Succeeded)
             throw new ValidationException(addResult.Errors);
+
+        return true;
+    }
+
+    /// <summary>
+    /// Cập nhật thông tin cơ bản của người dùng. Cho phép cập nhật email, số điện thoại, họ tên và (tùy chọn) vai trò.
+    /// </summary>
+    public async Task<bool> UpdateUserAsync(string userId, UpdateUserDto dto)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user is null) throw new NotFoundException("User not found");
+
+        // Email
+        if (!string.IsNullOrWhiteSpace(dto.Email) && dto.Email != user.Email)
+        {
+            // Kiểm tra email trùng
+            var existingEmail = await _userManager.FindByEmailAsync(dto.Email);
+            if (existingEmail != null && existingEmail.Id != userId)
+                throw new BadRequestException("Email đã tồn tại trong hệ thống");
+
+            user.Email = dto.Email;
+            user.UserName = dto.Email; // đồng bộ username với email
+        }
+
+        // Phone
+        if (!string.IsNullOrWhiteSpace(dto.PhoneNumber))
+            user.PhoneNumber = dto.PhoneNumber;
+
+        // FirstName + LastName hiện đang được lưu trong UserName khi tạo, nếu muốn tách cần field riêng.
+        // Ta sẽ cập nhật UserName thành FirstName LastName (nếu cung cấp)
+        if (!string.IsNullOrWhiteSpace(dto.UserName))
+        {
+            user.UserName = dto.UserName;
+        }
+
+        var result = await _userManager.UpdateAsync(user);
+        if (!result.Succeeded)
+            throw new ValidationException(result.Errors);
+
+        // update roles if provided
+        if (dto.RoleIds != null && dto.RoleIds.Any())
+        {
+            await UpdateUserRoleAsync(userId, dto.RoleIds);
+        }
 
         return true;
     }
@@ -263,7 +319,7 @@ public class UserManagementService : IUserManagementService
     /// Kiểm tra trạng thái khóa của người dùng
     /// </summary>
     /// <param name="userId">ID của người dùng cần kiểm tra</param>
-    /// <returns>True nếu tài khoản đang bị khóa, false nếu không</returns>
+    /// <returns>True nếu người dùng đang bị khóa</returns>
     /// <exception cref="NotFoundException">Khi không tìm thấy người dùng</exception>
     public async Task<bool> IsUserLockedAsync(string userId)
     {
@@ -277,10 +333,10 @@ public class UserManagementService : IUserManagementService
     }
 
     /// <summary>
-    /// Lấy thời gian mở khóa của người dùng
+    /// Lấy thời gian kết thúc khóa của người dùng
     /// </summary>
     /// <param name="userId">ID của người dùng</param>
-    /// <returns>Thời gian mở khóa hoặc null nếu tài khoản không bị khóa</returns>
+    /// <returns>Thời gian kết thúc khóa hoặc null nếu không bị khóa</returns>
     /// <exception cref="NotFoundException">Khi không tìm thấy người dùng</exception>
     public async Task<DateTimeOffset?> GetUserLockoutEndDateAsync(string userId)
     {
@@ -289,12 +345,12 @@ public class UserManagementService : IUserManagementService
         if (user == null)
             throw new NotFoundException("User not found");
 
-        // Lấy thời gian mở khóa
+        // Lấy thời gian kết thúc khóa
         return await _userManager.GetLockoutEndDateAsync(user);
     }
 
     /// <summary>
-    /// Lấy danh sách tất cả vai trò của một người dùng
+    /// Lấy danh sách vai trò của người dùng
     /// </summary>
     /// <param name="userId">ID của người dùng</param>
     /// <returns>Danh sách tên vai trò</returns>
@@ -312,29 +368,23 @@ public class UserManagementService : IUserManagementService
     }
 
     /// <summary>
-    /// Lấy danh sách tất cả vai trò có trong hệ thống
-    /// Dùng để hiển thị dropdown chọn vai trò khi cập nhật quyền người dùng
-    /// Chỉ trả về thông tin an toàn, không expose sensitive data
+    /// Lấy danh sách tất cả vai trò trong hệ thống
     /// </summary>
-    /// <returns>Danh sách vai trò với thông tin an toàn</returns>
+    /// <returns>Danh sách vai trò với thông tin chi tiết</returns>
+    /// <exception cref="NotFoundException">Khi không tìm thấy vai trò</exception>
     public async Task<List<RoleDto>> GetAllRolesAsync()
     {
-        // Lấy tất cả vai trò từ database
-        var roles = await _roleManager.Roles
-            .Select(r => new { r.Id, r.Name })
-            .ToListAsync();
-
-        // Chuyển đổi sang DTO an toàn
+        var roles = await _roleManager.Roles.ToListAsync();
         var roleDtos = new List<RoleDto>();
+
         foreach (var role in roles)
         {
-            var isSystemRole = role.Name == "Administrator" || role.Name == "System";
             roleDtos.Add(new RoleDto
             {
                 Id = role.Id,
-                DisplayName = GetRoleDisplayName(role.Name ?? string.Empty),
-                Description = GetRoleDescription(role.Name ?? string.Empty),
-                IsSystemRole = isSystemRole
+                Name = role.Name!,
+                DisplayName = GetRoleDisplayName(role.Name!),
+                Description = GetRoleDescription(role.Name!)
             });
         }
 
@@ -342,94 +392,58 @@ public class UserManagementService : IUserManagementService
     }
 
     /// <summary>
-    /// Lấy tên hiển thị cho vai trò
-    /// </summary>
-    private string GetRoleDisplayName(string roleName)
-    {
-        return roleName switch
-        {
-            "Administrator" => "Quản trị viên",
-            "Manager" => "Quản lý",
-            "Staff" => "Nhân viên",
-            "User" => "Người dùng",
-            "System" => "Hệ thống",
-            _ => roleName
-        };
-    }
-
-    /// <summary>
-    /// Lấy mô tả cho vai trò
-    /// </summary>
-    private string GetRoleDescription(string roleName)
-    {
-        return roleName switch
-        {
-            "Administrator" => "Quyền quản trị cao nhất, có thể quản lý tất cả chức năng hệ thống",
-            "Manager" => "Quyền quản lý, có thể quản lý nhân viên và đơn hàng",
-            "Staff" => "Quyền nhân viên, có thể xử lý đơn hàng và quản lý menu",
-            "User" => "Quyền người dùng thường, có thể đặt hàng và xem menu",
-            "System" => "Quyền hệ thống, chỉ dành cho các tác vụ hệ thống",
-            _ => "Vai trò người dùng"
-        };
-    }
-
-    /// <summary>
     /// Tạo người dùng mới
     /// </summary>
     /// <param name="dto">Thông tin người dùng cần tạo</param>
     /// <returns>Thông tin người dùng đã tạo</returns>
-    /// <exception cref="BadRequestException">Khi email đã tồn tại hoặc role ID không hợp lệ</exception>
-    /// <exception cref="ValidationException">Khi có lỗi validation</exception>
+    /// <exception cref="ValidationException">Khi có lỗi trong quá trình tạo</exception>
+    /// <exception cref="BadRequestException">Khi role ID không hợp lệ</exception>
     public async Task<UserDto> CreateUserAsync(CreateUserDto dto)
     {
-        // Kiểm tra email đã tồn tại chưa
-        var existingUser = await _userManager.FindByEmailAsync(dto.Email);
-        if (existingUser != null)
-            throw new BadRequestException("Email đã tồn tại trong hệ thống");
-
-        // Validate role IDs
-        var validRoles = new List<IdentityRole>();
-        foreach (var roleId in dto.RoleIds)
-        {
-            var role = await _roleManager.FindByIdAsync(roleId);
-            if (role == null)
-                throw new BadRequestException($"Role ID '{roleId}' không tồn tại trong hệ thống");
-
-            validRoles.Add(role);
-        }
-
         // Tạo user mới
         var user = new User
         {
-            UserName = dto.Email, // Sử dụng email làm username
+            UserName = dto.UserName,
             Email = dto.Email,
-            EmailConfirmed = dto.EmailConfirmed,
             PhoneNumber = dto.PhoneNumber,
+            EmailConfirmed = dto.EmailConfirmed,
             PhoneNumberConfirmed = dto.PhoneNumberConfirmed
         };
 
-        // Tạo user với password
+        // Tạo user
         var createResult = await _userManager.CreateAsync(user, dto.Password);
         if (!createResult.Succeeded)
             throw new ValidationException(createResult.Errors);
 
-        // Gán vai trò cho user
-        var roleNames = validRoles.Select(r => r.Name).ToList();
-        var addRoleResult = await _userManager.AddToRolesAsync(user, roleNames);
-        if (!addRoleResult.Succeeded)
+        // Gán vai trò nếu có
+        if (dto.RoleIds.Any())
         {
-            // Nếu gán role thất bại, xóa user đã tạo
-            await _userManager.DeleteAsync(user);
-            throw new ValidationException(addRoleResult.Errors);
+            var roleNames = new List<string>();
+            foreach (var roleId in dto.RoleIds)
+            {
+                var role = await _roleManager.FindByIdAsync(roleId);
+                if (role == null)
+                    throw new BadRequestException($"Role ID '{roleId}' không tồn tại trong hệ thống");
+                roleNames.Add(role.Name!);
+            }
+
+            var addRoleResult = await _userManager.AddToRolesAsync(user, roleNames);
+            if (!addRoleResult.Succeeded)
+                throw new ValidationException(addRoleResult.Errors);
         }
 
-        // Trả về thông tin user đã tạo
+        // Lấy thông tin vai trò đã gán
         var roles = await _userManager.GetRolesAsync(user);
+
+        // Trả về DTO với đầy đủ thông tin
         return new UserDto
         {
             Id = user.Id,
             UserName = user.UserName!,
             Email = user.Email!,
+            PhoneNumber = user.PhoneNumber,
+            CreatedDate = DateTime.UtcNow, // Tạm thời sử dụng thời gian hiện tại
+            Roles = roles.ToList(),
             Role = string.Join(", ", roles),
             IsLocked = false,
             LockoutEnd = null,
@@ -442,24 +456,56 @@ public class UserManagementService : IUserManagementService
     /// </summary>
     /// <param name="searchDto">Các tham số tìm kiếm và lọc</param>
     /// <returns>Danh sách người dùng với thông tin phân trang</returns>
+    /// <exception cref="ValidationException">Khi có lỗi validation</exception>
     public async Task<PaginatedData<UserDto>> GetUsersWithFiltersAsync(UserSearchDto searchDto)
     {
-        // Bắt đầu với query cơ bản
+        // Xây dựng query cơ bản
         var query = _userManager.Users.AsQueryable();
+
+        // ===== Lọc theo Role (RoleId hoặc RoleName) =====
+        if (!string.IsNullOrWhiteSpace(searchDto.RoleId) || !string.IsNullOrWhiteSpace(searchDto.RoleName))
+        {
+            // Xác định tên vai trò cần lọc
+            string? roleName = null;
+
+            if (!string.IsNullOrWhiteSpace(searchDto.RoleId))
+            {
+                var role = await _roleManager.FindByIdAsync(searchDto.RoleId);
+                if (role == null)
+                    throw new BadRequestException($"Role ID '{searchDto.RoleId}' không tồn tại trong hệ thống");
+
+                roleName = role.Name;
+            }
+
+            // Nếu người dùng truyền trực tiếp RoleName thì ưu tiên, ngược lại dùng tên vai trò lấy từ RoleId
+            if (!string.IsNullOrWhiteSpace(searchDto.RoleName))
+            {
+                roleName = searchDto.RoleName;
+            }
+
+            if (!string.IsNullOrWhiteSpace(roleName))
+            {
+                // Lấy danh sách UserIds thuộc vai trò này
+                var usersInRole = await _userManager.GetUsersInRoleAsync(roleName);
+                var userIdsInRole = usersInRole.Select(u => u.Id).ToList();
+
+                // Áp dụng vào query
+                query = query.Where(u => userIdsInRole.Contains(u.Id));
+            }
+        }
 
         // Áp dụng các bộ lọc
         query = ApplyUserFilters(query, searchDto);
 
+        // Tính tổng số bản ghi
+        var totalCount = await query.CountAsync();
+
         // Áp dụng sắp xếp
         query = ApplyUserSorting(query, searchDto.SortBy, searchDto.SortOrder);
 
-        // Đếm tổng số records
-        var totalCount = await query.CountAsync();
-
         // Áp dụng phân trang
-        var skip = (searchDto.Page - 1) * searchDto.PageSize;
         var users = await query
-            .Skip(skip)
+            .Skip((searchDto.Page - 1) * searchDto.PageSize)
             .Take(searchDto.PageSize)
             .ToListAsync();
 
@@ -468,17 +514,17 @@ public class UserManagementService : IUserManagementService
         foreach (var user in users)
         {
             var roles = await _userManager.GetRolesAsync(user);
-            var isLocked = await _userManager.IsLockedOutAsync(user);
-            var lockoutEnd = await _userManager.GetLockoutEndDateAsync(user);
-
             userDtos.Add(new UserDto
             {
                 Id = user.Id,
                 UserName = user.UserName!,
                 Email = user.Email!,
+                PhoneNumber = user.PhoneNumber,
+                CreatedDate = DateTime.UtcNow, // Tạm thời sử dụng thời gian hiện tại
+                Roles = roles.ToList(),
                 Role = string.Join(", ", roles),
-                IsLocked = isLocked,
-                LockoutEnd = lockoutEnd,
+                IsLocked = await _userManager.IsLockedOutAsync(user),
+                LockoutEnd = await _userManager.GetLockoutEndDateAsync(user),
                 EmailConfirmed = user.EmailConfirmed
             });
         }
@@ -498,32 +544,44 @@ public class UserManagementService : IUserManagementService
     /// </summary>
     private IQueryable<User> ApplyUserFilters(IQueryable<User> query, UserSearchDto searchDto)
     {
-        // Lọc theo từ khóa tìm kiếm
-        if (!string.IsNullOrWhiteSpace(searchDto.SearchKeyword))
+        // Tìm kiếm theo từ khóa
+        if (!string.IsNullOrEmpty(searchDto.SearchKeyword))
         {
             var keyword = searchDto.SearchKeyword.ToLower();
             query = query.Where(u =>
-                (u.UserName != null && u.UserName.ToLower().Contains(keyword)) ||
-                (u.Email != null && u.Email.ToLower().Contains(keyword))
-            );
+                u.UserName!.ToLower().Contains(keyword) ||
+                u.Email!.ToLower().Contains(keyword));
         }
 
-        // Lọc theo email cụ thể
-        if (!string.IsNullOrWhiteSpace(searchDto.Email))
+        // Lọc theo email
+        if (!string.IsNullOrEmpty(searchDto.Email))
         {
-            query = query.Where(u => u.Email != null && u.Email.ToLower() == searchDto.Email.ToLower());
+            query = query.Where(u => u.Email == searchDto.Email);
         }
 
-        // Lọc theo username cụ thể
-        if (!string.IsNullOrWhiteSpace(searchDto.UserName))
+        // Lọc theo username
+        if (!string.IsNullOrEmpty(searchDto.UserName))
         {
-            query = query.Where(u => u.UserName != null && u.UserName.ToLower() == searchDto.UserName.ToLower());
+            query = query.Where(u => u.UserName == searchDto.UserName);
         }
 
         // Lọc theo trạng thái xác nhận email
         if (searchDto.EmailConfirmed.HasValue)
         {
             query = query.Where(u => u.EmailConfirmed == searchDto.EmailConfirmed.Value);
+        }
+
+        // Lọc theo trạng thái khóa
+        if (searchDto.IsLocked.HasValue)
+        {
+            if (searchDto.IsLocked.Value)
+            {
+                query = query.Where(u => u.LockoutEnd > DateTimeOffset.UtcNow);
+            }
+            else
+            {
+                query = query.Where(u => u.LockoutEnd == null || u.LockoutEnd <= DateTimeOffset.UtcNow);
+            }
         }
 
         // Lọc theo trạng thái xác nhận số điện thoại
@@ -545,12 +603,40 @@ public class UserManagementService : IUserManagementService
             "username" => sortOrder.ToUpper() == "ASC"
                 ? query.OrderBy(u => u.UserName)
                 : query.OrderByDescending(u => u.UserName),
-
             "email" => sortOrder.ToUpper() == "ASC"
                 ? query.OrderBy(u => u.Email)
                 : query.OrderByDescending(u => u.Email),
+            _ => query.OrderBy(u => u.UserName)
+        };
+    }
 
-            _ => query.OrderBy(u => u.UserName) // Mặc định sắp xếp theo UserName
+    /// <summary>
+    /// Lấy tên hiển thị của vai trò
+    /// </summary>
+    private string GetRoleDisplayName(string roleName)
+    {
+        return roleName switch
+        {
+            "Admin" => "Quản trị viên",
+            "Manager" => "Quản lý",
+            "Staff" => "Nhân viên",
+            "Customer" => "Khách hàng",
+            _ => roleName
+        };
+    }
+
+    /// <summary>
+    /// Lấy mô tả của vai trò
+    /// </summary>
+    private string GetRoleDescription(string roleName)
+    {
+        return roleName switch
+        {
+            "Admin" => "Quản trị viên hệ thống với toàn quyền",
+            "Manager" => "Quản lý với quyền quản lý nhân viên và đơn hàng",
+            "Staff" => "Nhân viên với quyền xử lý đơn hàng",
+            "Customer" => "Khách hàng với quyền đặt hàng và xem thông tin cá nhân",
+            _ => "Vai trò trong hệ thống"
         };
     }
 }
