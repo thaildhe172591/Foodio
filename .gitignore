@@ -480,4 +480,5 @@ $RECYCLE.BIN/
 .vs/
 [Bb]in/
 [Oo]bj/
+*.cache
 
