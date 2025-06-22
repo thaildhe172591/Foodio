@@ -83,11 +83,15 @@ public static class DependencyInjection
         services.AddScoped<ICartService, CartService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IMenuService, MenuService>();
+        services.AddScoped<ICategoryService, CategoryService>();
         services.AddSingleton<IStorageService>(s => new StorageService());
 
         // UnitOfWork, BaseRepository
         services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork))
             .AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
+        // Repository registrations
+        services.AddScoped<IMenuItemRepository, MenuItemRepository>();
 
         // Auth related services
         services.AddScoped<ITokenService, TokenService>();

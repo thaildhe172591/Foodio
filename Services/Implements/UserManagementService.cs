@@ -1,5 +1,5 @@
-using FoodioAPI.DTOs.UserDtos;
 using FoodioAPI.DTOs;
+using FoodioAPI.DTOs.UserDtos;
 using FoodioAPI.Entities;
 using FoodioAPI.Exceptions;
 using Microsoft.AspNetCore.Identity;
@@ -40,14 +40,14 @@ public class UserManagementService : IUserManagementService
         // Áp dụng filter tìm kiếm nếu có
         if (!string.IsNullOrWhiteSpace(searchTerm))
         {
-            query = query.Where(u => 
-                u.UserName!.Contains(searchTerm) || 
+            query = query.Where(u =>
+                u.UserName!.Contains(searchTerm) ||
                 u.Email!.Contains(searchTerm));
         }
 
         // Đếm tổng số người dùng để tính phân trang
         var totalCount = await query.CountAsync();
-        
+
         // Lấy danh sách người dùng theo phân trang
         var users = await query
             .Skip((page - 1) * pageSize)
@@ -88,7 +88,7 @@ public class UserManagementService : IUserManagementService
 
         // Lấy danh sách vai trò của người dùng
         var roles = await _userManager.GetRolesAsync(user);
-        
+
         // Trả về DTO với đầy đủ thông tin
         return new UserDto
         {
@@ -115,7 +115,7 @@ public class UserManagementService : IUserManagementService
 
         // Lấy danh sách vai trò của người dùng
         var roles = await _userManager.GetRolesAsync(user);
-        
+
         // Trả về DTO với đầy đủ thông tin
         return new UserDto
         {
@@ -154,17 +154,17 @@ public class UserManagementService : IUserManagementService
             var role = await _roleManager.FindByIdAsync(roleId);
             if (role == null)
                 throw new BadRequestException($"Role ID '{roleId}' không tồn tại trong hệ thống");
-            
+
             // Kiểm tra không cho phép gán role Administrator cho user thường
             if (role.Name == "Administrator" && user.UserName != "admin" && user.UserName != "system")
                 throw new BadRequestException("Không thể gán quyền Administrator cho người dùng thường");
-            
+
             validRoles.Add(role);
         }
 
         // Lấy danh sách vai trò hiện tại
         var existingRoles = await _userManager.GetRolesAsync(user);
-        
+
         // Xóa tất cả vai trò hiện tại
         var removeResult = await _userManager.RemoveFromRolesAsync(user, existingRoles);
         if (!removeResult.Succeeded)
@@ -225,10 +225,10 @@ public class UserManagementService : IUserManagementService
 
         // Tính thời gian mở khóa
         var lockoutEnd = DateTimeOffset.UtcNow.AddDays(lockoutDays);
-        
+
         // Thực hiện khóa tài khoản
         var result = await _userManager.SetLockoutEndDateAsync(user, lockoutEnd);
-        
+
         if (!result.Succeeded)
             throw new ValidationException(result.Errors);
 
@@ -252,7 +252,7 @@ public class UserManagementService : IUserManagementService
 
         // Mở khóa bằng cách set lockout end date thành null
         var result = await _userManager.SetLockoutEndDateAsync(user, null);
-        
+
         if (!result.Succeeded)
             throw new ValidationException(result.Errors);
 
@@ -394,7 +394,7 @@ public class UserManagementService : IUserManagementService
             var role = await _roleManager.FindByIdAsync(roleId);
             if (role == null)
                 throw new BadRequestException($"Role ID '{roleId}' không tồn tại trong hệ thống");
-            
+
             validRoles.Add(role);
         }
 
@@ -485,7 +485,7 @@ public class UserManagementService : IUserManagementService
 
         return new PaginatedData<UserDto>
         {
-            Items = userDtos,
+            Data = userDtos,
             TotalCount = totalCount,
             Page = searchDto.Page,
             PageSize = searchDto.PageSize,
@@ -502,7 +502,7 @@ public class UserManagementService : IUserManagementService
         if (!string.IsNullOrWhiteSpace(searchDto.SearchKeyword))
         {
             var keyword = searchDto.SearchKeyword.ToLower();
-            query = query.Where(u => 
+            query = query.Where(u =>
                 (u.UserName != null && u.UserName.ToLower().Contains(keyword)) ||
                 (u.Email != null && u.Email.ToLower().Contains(keyword))
             );
@@ -542,15 +542,15 @@ public class UserManagementService : IUserManagementService
     {
         return sortBy.ToLower() switch
         {
-            "username" => sortOrder.ToUpper() == "ASC" 
-                ? query.OrderBy(u => u.UserName) 
+            "username" => sortOrder.ToUpper() == "ASC"
+                ? query.OrderBy(u => u.UserName)
                 : query.OrderByDescending(u => u.UserName),
-            
-            "email" => sortOrder.ToUpper() == "ASC" 
-                ? query.OrderBy(u => u.Email) 
+
+            "email" => sortOrder.ToUpper() == "ASC"
+                ? query.OrderBy(u => u.Email)
                 : query.OrderByDescending(u => u.Email),
-            
+
             _ => query.OrderBy(u => u.UserName) // Mặc định sắp xếp theo UserName
         };
     }
-} 
+}
