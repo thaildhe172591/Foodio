@@ -6,6 +6,8 @@
         public string UserName { get; set; } = default!;
         public string Email { get; set; } = default!;
         public string Role { get; set; } = default!;
+        public bool IsLocked { get; set; }
+        public DateTimeOffset? LockoutEnd { get; set; }
+        public bool EmailConfirmed { get; set; }
     }
-
 }

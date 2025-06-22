@@ -1,17 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FoodioAPI.Configs;
 using FoodioAPI.Database;
-using FoodioAPI.Services.Implements;
-using Microsoft.EntityFrameworkCore;
-using FoodioAPI.Database.Repositories.Implements;
-using FoodioAPI.Exceptions.Handler;
-using FoodioAPI.Configs;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Authentication.OAuth;
-using Microsoft.Extensions.Options;
-using FoodioAPI.Entities;
-using FoodioAPI.Services;
 using FoodioAPI.Database.Repositories;
+using FoodioAPI.Database.Repositories.Implements;
+using FoodioAPI.Entities;
+using FoodioAPI.Exceptions.Handler;
+using FoodioAPI.Services;
+using FoodioAPI.Services.Implements;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -82,7 +79,7 @@ public static class DependencyInjection
         // StorageService
         services.AddHttpClient();
         services.AddScoped<ApplicationDbContext>();
-        services.AddScoped<IEmailSender, EmailService>();
+        //services.AddScoped<IEmailSender, EmailService>();
         services.AddScoped<ICartService, CartService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IMenuService, MenuService>();
@@ -97,7 +94,7 @@ public static class DependencyInjection
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<IUserRepository, UserRepository>();
-
+        services.AddScoped<IUserManagementService, UserManagementService>();
 
         // Common services
         services.AddHttpClient();
