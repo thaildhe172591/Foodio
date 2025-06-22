@@ -436,4 +436,121 @@ public class UserManagementService : IUserManagementService
             EmailConfirmed = user.EmailConfirmed
         };
     }
+
+    /// <summary>
+    /// Lấy danh sách người dùng với các bộ lọc chi tiết
+    /// </summary>
+    /// <param name="searchDto">Các tham số tìm kiếm và lọc</param>
+    /// <returns>Danh sách người dùng với thông tin phân trang</returns>
+    public async Task<PaginatedData<UserDto>> GetUsersWithFiltersAsync(UserSearchDto searchDto)
+    {
+        // Bắt đầu với query cơ bản
+        var query = _userManager.Users.AsQueryable();
+
+        // Áp dụng các bộ lọc
+        query = ApplyUserFilters(query, searchDto);
+
+        // Áp dụng sắp xếp
+        query = ApplyUserSorting(query, searchDto.SortBy, searchDto.SortOrder);
+
+        // Đếm tổng số records
+        var totalCount = await query.CountAsync();
+
+        // Áp dụng phân trang
+        var skip = (searchDto.Page - 1) * searchDto.PageSize;
+        var users = await query
+            .Skip(skip)
+            .Take(searchDto.PageSize)
+            .ToListAsync();
+
+        // Chuyển đổi sang DTO
+        var userDtos = new List<UserDto>();
+        foreach (var user in users)
+        {
+            var roles = await _userManager.GetRolesAsync(user);
+            var isLocked = await _userManager.IsLockedOutAsync(user);
+            var lockoutEnd = await _userManager.GetLockoutEndDateAsync(user);
+
+            userDtos.Add(new UserDto
+            {
+                Id = user.Id,
+                UserName = user.UserName!,
+                Email = user.Email!,
+                Role = string.Join(", ", roles),
+                IsLocked = isLocked,
+                LockoutEnd = lockoutEnd,
+                EmailConfirmed = user.EmailConfirmed
+            });
+        }
+
+        return new PaginatedData<UserDto>
+        {
+            Items = userDtos,
+            TotalCount = totalCount,
+            Page = searchDto.Page,
+            PageSize = searchDto.PageSize,
+            TotalPages = (int)Math.Ceiling((double)totalCount / searchDto.PageSize)
+        };
+    }
+
+    /// <summary>
+    /// Áp dụng các bộ lọc cho query người dùng
+    /// </summary>
+    private IQueryable<User> ApplyUserFilters(IQueryable<User> query, UserSearchDto searchDto)
+    {
+        // Lọc theo từ khóa tìm kiếm
+        if (!string.IsNullOrWhiteSpace(searchDto.SearchKeyword))
+        {
+            var keyword = searchDto.SearchKeyword.ToLower();
+            query = query.Where(u => 
+                (u.UserName != null && u.UserName.ToLower().Contains(keyword)) ||
+                (u.Email != null && u.Email.ToLower().Contains(keyword))
+            );
+        }
+
+        // Lọc theo email cụ thể
+        if (!string.IsNullOrWhiteSpace(searchDto.Email))
+        {
+            query = query.Where(u => u.Email != null && u.Email.ToLower() == searchDto.Email.ToLower());
+        }
+
+        // Lọc theo username cụ thể
+        if (!string.IsNullOrWhiteSpace(searchDto.UserName))
+        {
+            query = query.Where(u => u.UserName != null && u.UserName.ToLower() == searchDto.UserName.ToLower());
+        }
+
+        // Lọc theo trạng thái xác nhận email
+        if (searchDto.EmailConfirmed.HasValue)
+        {
+            query = query.Where(u => u.EmailConfirmed == searchDto.EmailConfirmed.Value);
+        }
+
+        // Lọc theo trạng thái xác nhận số điện thoại
+        if (searchDto.PhoneNumberConfirmed.HasValue)
+        {
+            query = query.Where(u => u.PhoneNumberConfirmed == searchDto.PhoneNumberConfirmed.Value);
+        }
+
+        return query;
+    }
+
+    /// <summary>
+    /// Áp dụng sắp xếp cho query người dùng
+    /// </summary>
+    private IQueryable<User> ApplyUserSorting(IQueryable<User> query, string sortBy, string sortOrder)
+    {
+        return sortBy.ToLower() switch
+        {
+            "username" => sortOrder.ToUpper() == "ASC" 
+                ? query.OrderBy(u => u.UserName) 
+                : query.OrderByDescending(u => u.UserName),
+            
+            "email" => sortOrder.ToUpper() == "ASC" 
+                ? query.OrderBy(u => u.Email) 
+                : query.OrderByDescending(u => u.Email),
+            
+            _ => query.OrderBy(u => u.UserName) // Mặc định sắp xếp theo UserName
+        };
+    }
 } 

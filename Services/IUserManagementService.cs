@@ -10,13 +10,20 @@ namespace FoodioAPI.Services;
 public interface IUserManagementService
 {
     /// <summary>
-    /// Lấy danh sách người dùng với phân trang và tìm kiếm
+    /// Lấy danh sách người dùng với phân trang và tìm kiếm cơ bản
     /// </summary>
-    /// <param name="page">Số trang (mặc định: 1)</param>
-    /// <param name="pageSize">Số lượng item trên mỗi trang (mặc định: 10)</param>
-    /// <param name="searchTerm">Từ khóa tìm kiếm theo tên người dùng hoặc email</param>
-    /// <returns>Dữ liệu phân trang chứa danh sách người dùng</returns>
+    /// <param name="page">Số trang</param>
+    /// <param name="pageSize">Số lượng item trên mỗi trang</param>
+    /// <param name="searchTerm">Từ khóa tìm kiếm</param>
+    /// <returns>Danh sách người dùng với thông tin phân trang</returns>
     Task<PaginatedData<UserDto>> GetUsersAsync(int page = 1, int pageSize = 10, string? searchTerm = null);
+
+    /// <summary>
+    /// Lấy danh sách người dùng với các bộ lọc chi tiết
+    /// </summary>
+    /// <param name="searchDto">Các tham số tìm kiếm và lọc</param>
+    /// <returns>Danh sách người dùng với thông tin phân trang</returns>
+    Task<PaginatedData<UserDto>> GetUsersWithFiltersAsync(UserSearchDto searchDto);
 
     /// <summary>
     /// Lấy thông tin chi tiết của một người dùng theo ID
