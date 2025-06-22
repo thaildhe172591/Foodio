@@ -1,4 +1,4 @@
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using AutoMapper;
 using FoodioAPI.DTOs.Token;
 using FoodioAPI.DTOs.User;
@@ -78,15 +78,35 @@ public class UserService : IUserService
         if (user == null)
         {
             user = await _userManager.FindByEmailAsync(payload.Email);
+            //if (user == null)
+            //{
+            //    user = new User { Email = payload.Email, UserName = EmailHelper.GetUsername(payload.Email), EmailConfirmed = true };
+            //    await _userManager.CreateAsync(user);
+            //    await _userManager.AddToRolesAsync(user, roles);
+            //    await _userManager.AddLoginAsync(user, info);
+            //}
+            //else
+            //    throw new Exception("Email already exists");
             if (user == null)
             {
-                user = new User { Email = payload.Email, UserName = EmailHelper.GetUsername(payload.Email), EmailConfirmed = true };
+                user = new User
+                {
+                    Email = payload.Email,
+                    UserName = EmailHelper.GetUsername(payload.Email),
+                    EmailConfirmed = true
+                };
                 await _userManager.CreateAsync(user);
                 await _userManager.AddToRolesAsync(user, roles);
                 await _userManager.AddLoginAsync(user, info);
             }
             else
-                throw new Exception("Email already exists");
+            {
+                var logins = await _userManager.GetLoginsAsync(user);
+                var hasGoogleLogin = logins.Any(x => x.LoginProvider == externalAuth.Provider);
+                if (!hasGoogleLogin)
+                    await _userManager.AddLoginAsync(user, info);
+            }
+
         }
         return user == null ? null : _mapper.Map<UserDTO>(user);
     }
@@ -164,7 +184,7 @@ public class UserService : IUserService
             ?? throw new ApplicationException($"User '{userName}' not found.");
         return await _userManager.IsLockedOutAsync(user);
     }
-    public async Task<DateTimeOffset?> GetUnlockTime(string userName)
+    public async Task<DateTimeOffset?> GetUnlockTime(string userName)   
     {
         var user = await _userManager.FindByNameAsync(userName)
             ?? throw new ApplicationException($"User '{userName}' not found.");

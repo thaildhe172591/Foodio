@@ -74,6 +74,8 @@ public static class DependencyInjection
                 }
             };
         });
+        //Google Config
+        services.Configure<GoogleConfig>(configuration.GetSection("Google"));
 
         // Email Service
         services.Configure<EmailConfig>(configuration.GetSection("EmailApiKey"));
@@ -94,7 +96,10 @@ public static class DependencyInjection
 
 
         // Common services
-        services.AddHttpClient();
+        services.AddHttpClient("FoodioAPI", c =>
+        {
+            c.BaseAddress = new Uri("https://localhost:5001");
+        });
         services.AddExceptionHandler<CustomExceptionHandler>();
         services.AddRazorPages();
 

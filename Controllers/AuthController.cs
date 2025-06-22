@@ -15,6 +15,7 @@ namespace FoodioAPI.Controllers;
 [ApiController]
 public class AuthController : ControllerBase
 {
+    private readonly ILogger<AuthController> _logger;
     private readonly JwtConfig _jwtConfig;
     private readonly IUserService _userService;
     private readonly IIdentityService _identityService;
@@ -25,13 +26,14 @@ public class AuthController : ControllerBase
         IOptions<JwtConfig> jwtConfig,
         IUserService accountService,
         IIdentityService identityService,
-        IEmailService emailService)
+        IEmailService emailService,
+        ILogger<AuthController> logger)
     {
         _jwtConfig = jwtConfig.Value;
         _userService = accountService;
         _identityService = identityService;
         _emailService = emailService;
-
+        _logger = logger;
     }
 
 
@@ -138,10 +140,12 @@ public class AuthController : ControllerBase
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Google login failed");
+
             return BadRequest(new Response
             {
                 Status = ResponseStatus.ERROR,
-                Message = ex.Message
+                Message = ex.ToString()
             });
         }
     }
