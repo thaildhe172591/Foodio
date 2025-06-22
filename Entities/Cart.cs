@@ -24,4 +24,6 @@ public class Cart
     public virtual User User { get; set; } = default!;
     public virtual DiningTable? Table { get; set; }
     public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
+
+    public virtual ICollection<OrderItem>? OrderItems { get; set; } = new List<OrderItem>();
 }

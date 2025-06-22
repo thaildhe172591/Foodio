@@ -44,7 +44,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
         builder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims");
         builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
-
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
