@@ -1,17 +1,20 @@
 using FoodioAPI;
 using FoodioAPI.Database.Repositories.Implements;
 using FoodioAPI.Exceptions.Handler;
+using FoodioAPI.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("appsettings.Secret.json", optional: true, reloadOnChange: true)
+    .AddUserSecrets<Program>()
     .AddEnvironmentVariables();
 
 // Add services to the container.
 builder.Services.AddDependencyInjection(builder.Configuration);
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 // Add Razor Pages + API Controllers
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();

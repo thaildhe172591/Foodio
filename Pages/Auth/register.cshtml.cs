@@ -1,6 +1,9 @@
-﻿using FoodioAPI.DTOs.Auth;
+﻿using FoodioAPI.Configs;
+using FoodioAPI.DTOs.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Options;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -12,9 +15,12 @@ namespace FoodioAPI.Pages.Auth
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public registerModel(IHttpClientFactory httpClientFactory)
+        private readonly GoogleConfig _google;
+
+        public registerModel(IHttpClientFactory httpClientFactory, IOptions<GoogleConfig> googleConfig)
         {
             _httpClientFactory = httpClientFactory;
+            _google = googleConfig.Value;
         }
 
 
@@ -25,6 +31,23 @@ namespace FoodioAPI.Pages.Auth
         [TempData] public string Message { get; set; } = string.Empty;
 
         public void OnGet() { }
+
+        public IActionResult OnGetGoogleLogin()
+        {
+            var query = new Dictionary<string, string?>
+            {
+                ["client_id"] = _google.ClientId,
+                ["redirect_uri"] = _google.RedirectUri,
+                ["response_type"] = "code",
+                ["scope"] = "openid email profile",
+                ["access_type"] = "offline",
+                ["prompt"] = "select_account"
+            };
+
+            var googleUrl = QueryHelpers.AddQueryString("https://accounts.google.com/o/oauth2/v2/auth", query);
+            return Redirect(googleUrl);
+        }
+
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -48,10 +71,10 @@ namespace FoodioAPI.Pages.Auth
 
             if (response.IsSuccessStatusCode)
             {
-                Message = "Đăng ký thành công. Vui lòng kiểm tra email của bạn.";
-                Email = registerPayload.Email;
-                ViewData["Message"] = "Đăng ký thành công. Vui lòng kiểm tra email để xác nhận.";
-                return RedirectToPage("/Auth/Login", new { email = Email, msg = Message });
+                TempData["RegisterSuccess"] = true;                                
+                TempData["Message"] = "Đăng ký thành công. Vui lòng kiểm tra email để xác nhận.";
+
+                return RedirectToPage("/Auth/Login", new { email = Email });
             }
 
             var responseString = await response.Content.ReadAsStringAsync();

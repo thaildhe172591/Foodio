@@ -70,16 +70,21 @@ public class TokenService : ITokenService
     {
         try
         {
+            Console.WriteLine("Validating Google token...");
+            Console.WriteLine($"_googleConfig.ClientId = '{_googleConfig.ClientId}'");
             var settings = new GoogleJsonWebSignature.ValidationSettings()
             {
                 Audience = [_googleConfig.ClientId],
             };
             var payload = await GoogleJsonWebSignature.ValidateAsync(externalAuth.IdToken, settings);
+            Console.WriteLine("Google token is valid.");
             return payload;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            Console.WriteLine("Google token validation failed:");
+            Console.WriteLine(ex.ToString()); 
             return null;
         }
-    }
+    }   
 }

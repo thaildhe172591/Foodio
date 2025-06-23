@@ -5,6 +5,9 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using FoodioAPI.DTOs;
+using FoodioAPI.Configs;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.WebUtilities;
 
 
 namespace FoodioAPI.Pages.Auth
@@ -12,10 +15,11 @@ namespace FoodioAPI.Pages.Auth
     public class loginModel : PageModel
     {
         private readonly IHttpClientFactory _httpClientFactory;
-
-        public loginModel(IHttpClientFactory httpClientFactory)
+        private readonly GoogleConfig _google;
+        public loginModel(IHttpClientFactory httpClientFactory, IOptions<GoogleConfig> googleConfig)
         {
             _httpClientFactory = httpClientFactory;
+            _google            = googleConfig.Value;
         }
 
         [BindProperty]
@@ -24,14 +28,23 @@ namespace FoodioAPI.Pages.Auth
         [BindProperty]
         public string Password { get; set; }
 
-        [ViewData]
+        [TempData]
         public string ErrorMessage { get; set; }
 
-        [ViewData] public string Message { get; set; } = string.Empty;
-        public void OnGet(string? email = null, string? msg = null)
+        [TempData] 
+        public string Message { get; set; } = string.Empty;
+
+        public bool RegisterSuccess { get; private set; } = false;
+        public void OnGet(string? email = null)
         {
-            if (!string.IsNullOrEmpty(msg)) Message = msg;
-            if (!string.IsNullOrEmpty(email)) Email = email;
+            if (TempData["RegisterSuccess"] != null)
+            {
+                RegisterSuccess = true;
+                Message = TempData["Message"]?.ToString() ?? "";
+            }
+
+            if (!string.IsNullOrEmpty(email))
+                Email = email;
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -77,6 +90,25 @@ namespace FoodioAPI.Pages.Auth
                 Message = "Đăng nhập thất bại. Lỗi không chắc chắn.";
             }
             return Page();
+        }
+
+        public IActionResult OnGetGoogleLogin()
+        {
+            var query = new Dictionary<string, string?>
+            {
+                ["client_id"] = _google.ClientId,
+                ["redirect_uri"] = _google.RedirectUri,
+                ["response_type"] = "code",
+                ["scope"] = "openid email profile",
+                ["access_type"] = "offline",
+                ["prompt"] = "select_account"
+            };
+
+            var googleUrl = QueryHelpers.AddQueryString(
+                                "https://accounts.google.com/o/oauth2/v2/auth",
+                                query);
+
+            return Redirect(googleUrl);
         }
     }
 }
