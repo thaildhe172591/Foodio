@@ -1,0 +1,156 @@
+﻿@page
+@{
+    ViewData["Title"] = "Chọn món";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Menu</h2>
+    <div id="menuItems" class="row"></div>
+</div>
+
+<!-- Thanh bar giỏ hàng -->
+<div class="fixed-bottom bg-light border-top shadow p-3 d-flex justify-content-between align-items-center">
+    <div>
+        🛒 <span id="cartCount">0</span> món | Tổng: <span id="cartTotal">0 đ</span>
+    </div>
+    <button class="btn btn-danger" onclick="goToCheckout()">Giao hàng</button>
+</div>
+
+<!-- Modal chi tiết món -->
+<div class="modal fade" id="itemModal" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="itemModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" class="img-fluid mb-3" />
+                <p id="modalDescription"></p>
+                <p class="fw-bold">Giá: <span id="modalPrice"></span></p>
+                <div class="input-group">
+                    <input type="number" id="modalQuantity" class="form-control" min="1" value="1" />
+                    <button id="modalAddBtn" class="btn btn-primary">Thêm vào giỏ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let cart = {};
+    let selectedItem = null;
+
+    function updateCartBar() {
+        let count = 0;
+        let total = 0;
+        for (const id in cart) {
+            const item = cart[id];
+            count += item.qty;
+            total += item.qty * item.price;
+        }
+        document.getElementById("cartCount").textContent = count;
+        document.getElementById("cartTotal").textContent = total.toLocaleString() + " đ";
+    }
+
+    async function goToCheckout() {
+        window.location.href = "/checkout"; // Điều hướng đến trang giao hàng
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        const response = await fetch("/api/menu/list", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({})
+        });
+
+        const items = await response.json();
+        const container = document.getElementById("menuItems");
+
+        if (items.length === 0) {
+            container.innerHTML = `<p>Không có món nào!</p>`;
+            return;
+        }
+
+        for (const item of items) {
+            const card = document.createElement("div");
+            card.className = "col-md-4 mb-4";
+            card.innerHTML = `
+                <div class="card h-100">
+                    <img src="${item.imageUrl ?? 'https://via.placeholder.com/150'}" class="card-img-top menu-img" alt="${item.name}" data-id="${item.id}" />
+                    <div class="card-body">
+                        <h5 class="card-title menu-name" data-id="${item.id}">${item.name}</h5>
+                        <p class="card-text">${item.description ?? ''}</p>
+                        <p class="card-text fw-bold">${item.price.toLocaleString()} đ</p>
+                        <div class="input-group mb-2">
+                            <input type="number" min="1" value="1" class="form-control quantity-input" data-id="${item.id}" />
+                            <button class="btn btn-primary add-to-cart" data-id="${item.id}" data-price="${item.price}" data-name="${item.name}">Thêm</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        }
+
+        document.querySelectorAll(".add-to-cart").forEach(btn => {
+            btn.addEventListener("click", async () => {
+                const id = btn.dataset.id;
+                const name = btn.dataset.name;
+                const price = Number(btn.dataset.price);
+                const qty = Number(document.querySelector(`.quantity-input[data-id='${id}']`).value);
+
+                await fetch("/api/cart/add-menu-item", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ menuItemId: id, quantity: qty })
+                });
+
+                if (!cart[id]) {
+                    cart[id] = { name, price, qty };
+                } else {
+                    cart[id].qty += qty;
+                }
+                updateCartBar();
+            });
+        });
+
+        document.querySelectorAll(".menu-img, .menu-name").forEach(elem => {
+            elem.addEventListener("click", () => {
+                const id = elem.dataset.id;
+                selectedItem = items.find(x => x.id === id);
+                if (!selectedItem) return;
+
+                document.getElementById("itemModalLabel").textContent = selectedItem.name;
+                document.getElementById("modalImage").src = selectedItem.imageUrl ?? 'https://via.placeholder.com/300';
+                document.getElementById("modalDescription").textContent = selectedItem.description ?? '';
+                document.getElementById("modalPrice").textContent = selectedItem.price.toLocaleString() + ' đ';
+                document.getElementById("modalQuantity").value = 1;
+
+                const modal = new bootstrap.Modal(document.getElementById("itemModal"));
+                modal.show();
+            });
+        });
+
+        document.getElementById("modalAddBtn").addEventListener("click", async () => {
+            const qty = Number(document.getElementById("modalQuantity").value);
+            const id = selectedItem.id;
+            const name = selectedItem.name;
+            const price = selectedItem.price;
+
+            await fetch("/api/cart/add-menu-item", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ menuItemId: id, quantity: qty })
+            });
+
+            if (!cart[id]) {
+                cart[id] = { name, price, qty };
+            } else {
+                cart[id].qty += qty;
+            }
+            updateCartBar();
+
+            bootstrap.Modal.getInstance(document.getElementById("itemModal")).hide();
+        });
+    });
+</script>

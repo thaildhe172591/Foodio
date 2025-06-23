@@ -110,6 +110,7 @@ public class CartService : ICartService
 
         return cart.CartItems.Select(i => new CartItemDto
         {
+            Id = i.Id,
             MenuItemId = i.MenuItemId,
             Name = i.MenuItem.Name,
             Description = i.MenuItem.Description,
@@ -130,6 +131,7 @@ public class CartService : ICartService
 
         return cart.CartItems.Select(i => new CartItemDto
         {
+            Id = i.Id,
             MenuItemId = i.MenuItemId,
             Name = i.MenuItem.Name,
             ImageUrl = i.MenuItem.ImageUrl,
@@ -205,6 +207,49 @@ public class CartService : ICartService
         _context.Carts.Remove(cart);
         await _context.SaveChangesAsync();
 
+        return true;
+    }
+    public async Task<bool> RemoveCartItemAsync(string userId, Guid cartItemId)
+    {
+        var cart = await _context.Carts
+            .Include(c => c.CartItems)
+            .FirstOrDefaultAsync(c => c.UserId == userId && !c.IsOrdered);
+
+        if (cart == null)
+            return false;
+
+        var itemToRemove = cart.CartItems.FirstOrDefault(i => i.Id == cartItemId);
+        if (itemToRemove == null)
+            return false;
+
+        cart.CartItems.Remove(itemToRemove);
+        await _context.SaveChangesAsync();
+
+        return true;
+    }
+    public async Task<bool> UpdateCartItemQuantityAsync(string userId, UpdateCartItemDto dto)
+    {
+        var cart = await _context.Carts
+            .Include(c => c.CartItems)
+            .FirstOrDefaultAsync(c => c.UserId == userId && !c.IsOrdered);
+
+        if (cart == null)
+            return false;
+
+        var itemToUpdate = cart.CartItems.FirstOrDefault(i => i.Id == dto.CartItemId);
+        if (itemToUpdate == null)
+            return false;
+
+        if (dto.Quantity <= 0)
+        {
+            cart.CartItems.Remove(itemToUpdate); // xoá nếu số lượng = 0
+        }
+        else
+        {
+            itemToUpdate.Quantity = dto.Quantity;
+        }
+
+        await _context.SaveChangesAsync();
         return true;
     }
 }
