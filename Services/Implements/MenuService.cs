@@ -171,7 +171,7 @@ namespace FoodioAPI.Services.Implements
             // Lưu vào database
             await _menuItemRepository.AddAsync(menuItem);
             await _context.SaveChangesAsync();
-
+            menuItem = await _menuItemRepository.GetByIdAsync(menuItem.Id);
             return MapToDto(menuItem);
         }
 

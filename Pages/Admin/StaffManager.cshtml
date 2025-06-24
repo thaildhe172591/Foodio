@@ -7,16 +7,14 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
 
 <style>
     #usersTable th,
-    #usersTable td {
-        color: whitesmoke !important;
-    }
-
+    #usersTable td,
     #shiftsTable th,
     #shiftsTable td {
-        color: whitesmoke !important;
+       color: whitesmoke !important;
     }
     
 </style>
@@ -200,6 +198,7 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     @await Html.PartialAsync("_ToastrScripts")
 
     <script>
@@ -346,12 +345,23 @@
                     body: JSON.stringify(dto)
                 });
                 if (res.ok) {
-                    toastr.success("Lưu thành công");
                     $('#userModal').modal('hide');
                     fetchUsers();
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Thành công!',
+                        text: id ? 'Đã cập nhật nhân viên' : 'Đã thêm nhân viên mới',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                  
                 } else {
                     const err = await res.json();
-                    toastr.error(err.message ?? 'Có lỗi xảy ra');
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!',
+                        text: err.message ?? 'Có lỗi xảy ra khi lưu thông tin'
+                    });
                 }
             });
 
@@ -368,17 +378,40 @@
 
             // delete
             $(document).on('click', '.delete-btn', async function () {
-                if (!confirm('Bạn có chắc muốn xoá?')) return;
+                const result = await Swal.fire({
+                    icon: 'warning',
+                    title: 'Xác nhận xóa',
+                    text: 'Bạn có chắc chắn muốn xóa nhân viên này?',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Xóa',
+                    cancelButtonText: 'Hủy'
+                });
+                
+                if (!result.isConfirmed) return;
+                
                 const id = $(this).data('id');
                 const res = await fetch(`${apiBase}/delete/${id}`, {
                     method: 'DELETE',
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 if (res.ok) {
-                    toastr.success('Đã xoá');
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Đã xóa!',
+                        text: 'Nhân viên đã được xóa thành công',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
                     fetchUsers();
                 } else {
-                    toastr.error('Không thể xoá');
+                    const err = await res.json();
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!',
+                        text: err.message ??'Không thể xóa nhân viên. Vui lòng thử lại.'
+                    });
                 }
             });
 
@@ -517,7 +550,11 @@
             const role = $('#shiftRole').val();
 
             if (!startDate || !startTime || !endTime || !role) {
-                toastr.error('Vui lòng điền đầy đủ thông tin');
+                await Swal.fire({
+                    icon: 'warning',
+                    title: 'Thiếu thông tin!',
+                    text: 'Vui lòng điền đầy đủ thông tin ca làm việc'
+                });
                 return;
             }
 
@@ -525,7 +562,11 @@
             const endDateTime = new Date(`${startDate}T${endTime}:00`);
 
             if (endDateTime <= startDateTime) {
-                toastr.error('Giờ kết thúc phải sau giờ bắt đầu');
+                await Swal.fire({
+                    icon: 'warning',
+                    title: 'Thời gian không hợp lệ!',
+                    text: 'Giờ kết thúc phải sau giờ bắt đầu'
+                });
                 return;
             }
 
@@ -562,16 +603,30 @@
 
                 if (res.ok) {
                     const response = await res.json();
-                    toastr.success(response.message || (shiftId ? 'Đã cập nhật ca làm việc' : 'Đã thêm ca làm việc'));
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Thành công!',
+                        text: shiftId ? 'Đã cập nhật ca làm việc' : 'Đã thêm ca làm việc',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
                     resetShiftForm();
                     loadShifts(currentUserId); // Reload danh sách ca làm việc
                 } else {
                     const error = await res.json();
-                    toastr.error(error.message || 'Có lỗi xảy ra');
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!',
+                        text: error.message || 'Có lỗi xảy ra khi lưu ca làm việc'
+                    });
                 }
             } catch (error) {
                 console.error('Lỗi khi lưu ca làm việc:', error);
-                toastr.error('Có lỗi xảy ra khi lưu ca làm việc');
+                await Swal.fire({
+                    icon: 'error',
+                    title: 'Lỗi!',
+                    text: 'Có lỗi xảy ra khi lưu ca làm việc'
+                });
             }
         }
 
@@ -590,7 +645,18 @@
         }
 
         async function deleteShift(shiftId) {
-            if (!confirm('Bạn có chắc muốn xóa ca làm việc này?')) return;
+            const result = await Swal.fire({
+                icon: 'warning',
+                title: 'Xác nhận xóa',
+                text: 'Bạn có chắc chắn muốn xóa ca làm việc này?',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Xóa',
+                cancelButtonText: 'Hủy'
+            });
+            
+            if (!result.isConfirmed) return;
             
             try {
                 const res = await fetch(`${shiftApiBase}/${shiftId}`, {
@@ -600,15 +666,29 @@
 
                 if (res.ok) {
                     const response = await res.json();
-                    toastr.success(response.message || 'Đã xóa ca làm việc');
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Đã xóa!',
+                        text: 'Ca làm việc đã được xóa thành công',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
                     loadShifts(currentUserId); // Reload danh sách ca làm việc
                 } else {
                     const error = await res.json();
-                    toastr.error(error.message || 'Không thể xóa ca làm việc');
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!',
+                        text: error.message || 'Không thể xóa ca làm việc'
+                    });
                 }
             } catch (error) {
                 console.error('Lỗi khi xóa ca làm việc:', error);
-                toastr.error('Có lỗi xảy ra khi xóa ca làm việc');
+                await Swal.fire({
+                    icon: 'error',
+                    title: 'Lỗi!',
+                    text: 'Có lỗi xảy ra khi xóa ca làm việc'
+                });
             }
         }
     </script>

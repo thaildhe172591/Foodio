@@ -7,6 +7,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
 
 <style>
     #usersTable th,
@@ -111,6 +112,7 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     @await Html.PartialAsync("_ToastrScripts")
 
     <script>
@@ -197,12 +199,22 @@
                     body: JSON.stringify(dto)
                 });
                 if (res.ok) {
-                    toastr.success("Lưu thành công");
                     $('#userModal').modal('hide');
                     fetchUsers();
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Thành công!',
+                        text: id ? 'Đã cập nhật khách hàng' : 'Đã thêm khách hàng mới',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
                 } else {
                     const err = await res.json();
-                    toastr.error(err.message ?? 'Có lỗi xảy ra');
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!',
+                        text: err.message ?? 'Có lỗi xảy ra khi lưu thông tin khách hàng'
+                    });
                 }
             });
 
@@ -219,17 +231,39 @@
 
             // delete
             $(document).on('click', '.delete-btn', async function () {
-                if (!confirm('Bạn có chắc muốn xoá?')) return;
+                const result = await Swal.fire({
+                    icon: 'warning',
+                    title: 'Xác nhận xóa',
+                    text: 'Bạn có chắc chắn muốn xóa khách hàng này?',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Xóa',
+                    cancelButtonText: 'Hủy'
+                });
+                
+                if (!result.isConfirmed) return;
+                
                 const id = $(this).data('id');
                 const res = await fetch(`${apiBase}/delete/${id}`, {
                     method: 'DELETE',
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 if (res.ok) {
-                    toastr.success('Đã xoá');
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Đã xóa!',
+                        text: 'Khách hàng đã được xóa thành công',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
                     fetchUsers();
                 } else {
-                    toastr.error('Không thể xoá');
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!',
+                        text: 'Không thể xóa khách hàng. Vui lòng thử lại.'
+                    });
                 }
             });
         });
