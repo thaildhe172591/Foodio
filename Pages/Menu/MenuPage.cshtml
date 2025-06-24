@@ -108,14 +108,19 @@
                 const price = Number(btn.dataset.price);
                 const qty = Number(document.querySelector(`.quantity-input[data-id='${id}']`).value);
 
-                await fetch("/api/cart/add-menu-item", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ menuItemId: id, quantity: qty })
-                });
+            await fetch("/api/cart/add-menu-item", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                menuItemId: id,
+                quantity: qty,
+                note: "" // hoặc thêm từ input nếu bạn có ô ghi chú
+            })
+    });
 
                 if (!cart[id]) {
                     cart[id] = { name, price, qty };
+                    localStorage.setItem("foodioCart", JSON.stringify(cart));
                 } else {
                     cart[id].qty += qty;
                 }

@@ -1,0 +1,23 @@
+[33m4987ffd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mHai[m[33m)[m HEAD@{0}: commit: update
+[33m21dff8b[m[33m ([m[1;31morigin/Hai[m[33m)[m HEAD@{1}: checkout: moving from main to Hai
+[33me21ba2e[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{2}: checkout: moving from Hai to main
+[33m21dff8b[m[33m ([m[1;31morigin/Hai[m[33m)[m HEAD@{3}: reset: moving to HEAD
+[33m21dff8b[m[33m ([m[1;31morigin/Hai[m[33m)[m HEAD@{4}: checkout: moving from main to Hai
+[33me21ba2e[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{5}: checkout: moving from Hai to main
+[33m21dff8b[m[33m ([m[1;31morigin/Hai[m[33m)[m HEAD@{6}: commit: discard
+[33m9b4e241[m HEAD@{7}: commit: update
+[33md525308[m HEAD@{8}: commit: moi truong
+[33m87e848e[m HEAD@{9}: checkout: moving from main to Hai
+[33me21ba2e[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{10}: checkout: moving from Hai to main
+[33m87e848e[m HEAD@{11}: checkout: moving from main to Hai
+[33me21ba2e[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{12}: checkout: moving from Hai to main
+[33m87e848e[m HEAD@{13}: commit: update
+[33m783f56a[m HEAD@{14}: checkout: moving from main to Hai
+[33me21ba2e[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{15}: checkout: moving from Hai to main
+[33m783f56a[m HEAD@{16}: commit: màn menu
+[33m7d7c53f[m HEAD@{17}: checkout: moving from main to Hai
+[33m88d4ef0[m[33m ([m[1;31morigin/Hieu[m[33m)[m HEAD@{18}: reset: moving to HEAD
+[33m88d4ef0[m[33m ([m[1;31morigin/Hieu[m[33m)[m HEAD@{19}: checkout: moving from Hai to main
+[33m7d7c53f[m HEAD@{20}: commit: logic backend cho đặt món delivery
+[33m88d4ef0[m[33m ([m[1;31morigin/Hieu[m[33m)[m HEAD@{21}: checkout: moving from main to Hai
+[33m88d4ef0[m[33m ([m[1;31morigin/Hieu[m[33m)[m HEAD@{22}: clone: from https://github.com/thaildhe172591/Foodio.git

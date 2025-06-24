@@ -168,15 +168,11 @@ D:\Semester - 8\PRN232\Foodio\FoodioAPI\obj\Debug\net8.0\FoodioAPI.RazorAssembly
 D:\Semester - 8\PRN232\Foodio\FoodioAPI\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 D:\Semester - 8\PRN232\Foodio\FoodioAPI\obj\Debug\net8.0\scopedcss\projectbundle\FoodioAPI.bundle.scp.css
 D:\Semester - 8\PRN232\Foodio\FoodioAPI\obj\Debug\net8.0\FoodioAPI.sourcelink.json
+C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\FoodioAPI.exe
 C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\appsettings.json
 C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\FoodioAPI.staticwebassets.runtime.json
 C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\FoodioAPI.staticwebassets.endpoints.json
-C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\FoodioAPI.exe
-C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\FoodioAPI.deps.json
-C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\FoodioAPI.runtimeconfig.json
-C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\FoodioAPI.dll
-C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\FoodioAPI.pdb
 C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\Azure.Storage.Blobs.dll
 C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\Azure.Storage.Common.dll
@@ -339,5 +335,9 @@ C:\Users\dokat\Downloads\New folder\Foodio\obj\Debug\net8.0\FoodioAPI.csproj.Up2
 C:\Users\dokat\Downloads\New folder\Foodio\obj\Debug\net8.0\FoodioAPI.dll
 C:\Users\dokat\Downloads\New folder\Foodio\obj\Debug\net8.0\refint\FoodioAPI.dll
 C:\Users\dokat\Downloads\New folder\Foodio\obj\Debug\net8.0\FoodioAPI.pdb
+C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\FoodioAPI.deps.json
+C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\FoodioAPI.runtimeconfig.json
+C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\FoodioAPI.dll
+C:\Users\dokat\Downloads\New folder\Foodio\bin\Debug\net8.0\FoodioAPI.pdb
 C:\Users\dokat\Downloads\New folder\Foodio\obj\Debug\net8.0\FoodioAPI.genruntimeconfig.cache
 C:\Users\dokat\Downloads\New folder\Foodio\obj\Debug\net8.0\ref\FoodioAPI.dll

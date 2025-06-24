@@ -10,6 +10,7 @@
         public decimal Price { get; set; }
         public string ImageUrl { get; set; } = default!;
         public int Quantity { get; set; }
+        public string? Note { get; set; }
     }
 
 }

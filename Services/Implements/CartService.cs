@@ -30,18 +30,19 @@ public class CartService : ICartService
                 UserId = userId,
                 CreatedAt = DateTime.UtcNow,
                 IsOrdered = false,
-                Type = "delivery", // default
+                Type = "delivery",
                 CartItems = new List<CartItem>()
             };
 
             _context.Carts.Add(cart);
+            await _context.SaveChangesAsync();
         }
 
-        var existingItem = cart.CartItems.FirstOrDefault(i => i.MenuItemId == dto.MenuItemId);
+        var existingItem = cart.CartItems.FirstOrDefault(i => i.MenuItemId == dto.MenuItemId && i.Note == dto.Note);
+
         if (existingItem != null)
         {
             existingItem.Quantity += dto.Quantity;
-            existingItem.Note = dto.Note ?? existingItem.Note;
         }
         else
         {
@@ -77,21 +78,24 @@ public class CartService : ICartService
             };
 
             _context.Carts.Add(cart);
+            await _context.SaveChangesAsync();
         }
 
-        var existingItem = cart.CartItems.FirstOrDefault(i => i.MenuItemId == dto.MenuItemId);
-        if (existingItem != null)
+        var item = cart.CartItems.FirstOrDefault(i => i.MenuItemId == dto.MenuItemId);
+
+        if (item != null)
         {
-            existingItem.Quantity += dto.Quantity;
+            item.Quantity += dto.Quantity;
         }
         else
         {
             cart.CartItems.Add(new CartItem
             {
                 Id = Guid.NewGuid(),
+                CartId = cart.Id,
                 MenuItemId = dto.MenuItemId,
                 Quantity = dto.Quantity,
-                CartId = cart.Id
+                Note = dto.Note
             });
         }
 
@@ -116,7 +120,8 @@ public class CartService : ICartService
             Description = i.MenuItem.Description,
             Price = i.MenuItem.Price,
             ImageUrl = i.MenuItem.ImageUrl,
-            Quantity = i.Quantity
+            Quantity = i.Quantity,
+            Note = i.Note
         }).ToList();
     }
 
@@ -149,7 +154,6 @@ public class CartService : ICartService
             return false;
 
         cart.Type = dto.Type.ToLower();
-
         await _context.SaveChangesAsync();
         return true;
     }
@@ -173,7 +177,7 @@ public class CartService : ICartService
             return false;
 
         var statusId = await _context.OrderStatuses
-            .Where(s => s.Name.ToLower() == "processing")
+            .Where(s => s.Code.ToLower() == "pending")
             .Select(s => s.Id)
             .FirstOrDefaultAsync();
 
@@ -185,12 +189,21 @@ public class CartService : ICartService
             StatusId = statusId,
             CreatedAt = DateTime.UtcNow,
             Total = cart.CartItems.Sum(i => i.MenuItem.Price * i.Quantity),
-            OrderItems = cart.CartItems.Select(i => new OrderItem
-            {
-                MenuItemId = i.MenuItemId,
-                Quantity = i.Quantity
-            }).ToList()
+            OrderItems = new List<OrderItem>()
         };
+
+        // Sửa phần gây lỗi EF tại đây:
+        foreach (var i in cart.CartItems)
+        {
+            order.OrderItems.Add(new OrderItem
+            {
+                Id = Guid.NewGuid(),
+                OrderId = order.Id,
+                MenuItemId = i.MenuItemId,
+                Quantity = i.Quantity,
+                Note = i.Note
+            });
+        }
 
         if (dto.Type.ToLower() == "delivery")
         {
@@ -205,10 +218,11 @@ public class CartService : ICartService
 
         _context.Orders.Add(order);
         _context.Carts.Remove(cart);
-        await _context.SaveChangesAsync();
 
+        await _context.SaveChangesAsync();
         return true;
     }
+
     public async Task<bool> RemoveCartItemAsync(string userId, Guid cartItemId)
     {
         var cart = await _context.Carts
@@ -224,9 +238,9 @@ public class CartService : ICartService
 
         cart.CartItems.Remove(itemToRemove);
         await _context.SaveChangesAsync();
-
         return true;
     }
+
     public async Task<bool> UpdateCartItemQuantityAsync(string userId, UpdateCartItemDto dto)
     {
         var cart = await _context.Carts
@@ -242,7 +256,7 @@ public class CartService : ICartService
 
         if (dto.Quantity <= 0)
         {
-            cart.CartItems.Remove(itemToUpdate); // xoá nếu số lượng = 0
+            cart.CartItems.Remove(itemToUpdate);
         }
         else
         {
