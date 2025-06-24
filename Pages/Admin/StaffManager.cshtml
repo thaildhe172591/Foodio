@@ -345,8 +345,8 @@
                     body: JSON.stringify(dto)
                 });
                 if (res.ok) {
-                    $('#userModal').modal('hide');
-                    fetchUsers();
+                    closeModalSafely('#userModal');
+                    await fetchUsers();
                     await Swal.fire({
                         icon: 'success',
                         title: 'Thành công!',
@@ -404,7 +404,7 @@
                         timer: 2000,
                         showConfirmButton: false
                     });
-                    fetchUsers();
+                    await fetchUsers();
                 } else {
                     const err = await res.json();
                     await Swal.fire({
@@ -493,6 +493,16 @@
             }
 
             $("#userModalLabel").text(user ? 'Cập nhật Người dùng' : 'Thêm Người dùng');
+        }
+
+        // Helper function để đóng modal an toàn
+        function closeModalSafely(modalId) {
+            $(modalId).modal('hide');
+            // Đảm bảo backdrop được xóa và body được reset
+            setTimeout(() => {
+                $('.modal-backdrop').remove();
+                $('body').removeClass('modal-open').css('padding-right', '');
+            }, 300); // Đợi animation hoàn tất
         }
 
         // ===== QUẢN LÝ CA LÀM VIỆC =====

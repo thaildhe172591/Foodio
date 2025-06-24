@@ -199,8 +199,8 @@
                     body: JSON.stringify(dto)
                 });
                 if (res.ok) {
-                    $('#userModal').modal('hide');
-                    fetchUsers();
+                    closeModalSafely('#userModal');
+                    await fetchUsers();
                     await Swal.fire({
                         icon: 'success',
                         title: 'Thành công!',
@@ -284,6 +284,16 @@
             usersTable.clear();
             usersTable.rows.add(json.data.data ?? json.data);
             usersTable.draw();
+        }
+
+        // Helper function để đóng modal an toàn
+        function closeModalSafely(modalId) {
+            $(modalId).modal('hide');
+            // Đảm bảo backdrop được xóa và body được reset
+            setTimeout(() => {
+                $('.modal-backdrop').remove();
+                $('body').removeClass('modal-open').css('padding-right', '');
+            }, 300); // Đợi animation hoàn tất
         }
 
         function resetModal(user = null) {
