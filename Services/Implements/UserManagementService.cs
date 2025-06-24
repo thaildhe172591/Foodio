@@ -453,14 +453,23 @@ public class UserManagementService : IUserManagementService
 
     /// <summary>
     /// Lấy danh sách người dùng với các bộ lọc chi tiết
+    /// Chỉ lấy staff (loại trừ user có role Customer)
     /// </summary>
     /// <param name="searchDto">Các tham số tìm kiếm và lọc</param>
     /// <returns>Danh sách người dùng với thông tin phân trang</returns>
     /// <exception cref="ValidationException">Khi có lỗi validation</exception>
-    public async Task<PaginatedData<UserDto>> SearchWithStaff(UserSearchDto searchDto)
+    public async Task<PaginatedData<UserDto>> Search(UserSearchDto searchDto, string roleNotQuerry = "")
     {
         // Xây dựng query cơ bản
         var query = _userManager.Users.AsQueryable();
+
+        if (!String.IsNullOrEmpty(roleNotQuerry))
+        {
+            // Loại trừ user có role Customer
+            var usersInCustomerRole = await _userManager.GetUsersInRoleAsync(roleNotQuerry);
+            var customerUserIds = usersInCustomerRole.Select(u => u.Id).ToList();
+            query = query.Where(u => !customerUserIds.Contains(u.Id));
+        }
 
         // ===== Lọc theo Role (RoleId hoặc RoleName) =====
         if (!string.IsNullOrWhiteSpace(searchDto.RoleId) || !string.IsNullOrWhiteSpace(searchDto.RoleName))

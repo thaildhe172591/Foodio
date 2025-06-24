@@ -1,5 +1,5 @@
-using FoodioAPI.DTOs.UserDtos;
 using FoodioAPI.DTOs;
+using FoodioAPI.DTOs.UserDtos;
 
 namespace FoodioAPI.Services;
 
@@ -23,7 +23,7 @@ public interface IUserManagementService
     /// </summary>
     /// <param name="searchDto">Các tham số tìm kiếm và lọc</param>
     /// <returns>Danh sách người dùng với thông tin phân trang</returns>
-    Task<PaginatedData<UserDto>> SearchWithStaff(UserSearchDto searchDto);
+    Task<PaginatedData<UserDto>> Search(UserSearchDto searchDto, string roleNotQuerry = "");
 
     /// <summary>
     /// Lấy thông tin chi tiết của một người dùng theo ID
@@ -113,4 +113,4 @@ public interface IUserManagementService
     /// <param name="dto">Thông tin cần cập nhật</param>
     /// <returns>True nếu thành công</returns>
     Task<bool> UpdateUserAsync(string userId, UpdateUserDto dto);
-} 
+}

@@ -1,6 +1,7 @@
 ﻿@page
 @model FoodioAPI.Pages.Admin.UserManagerModel
 @{
+    ViewData["Title"] = "Quản lý khách hàng";
 }
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -17,7 +18,7 @@
 <main class="main-wrapper">
     <div class="main-content">
         <div class="container-fluid py-4">
-            <h3 class="mb-4">Quản lý Tài khoản</h3>
+            <h3 class="mb-4">Quản lý khách hàng</h3>
 
             <!-- Search & Actions -->
             <div class="card mb-4">
@@ -26,12 +27,6 @@
                         <div class="col-sm-4">
                             <label class="form-label">Từ khóa</label>
                             <input type="text" class="form-control" id="keyword" placeholder="Tên / Email" />
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="form-label">Vai trò</label>
-                            <select class="form-select" id="roleFilter">
-                                <option value="">Tất cả</option>
-                            </select>
                         </div>
                         <div class="col-sm-3">
                             <label class="form-label">Trạng thái</label>
@@ -157,7 +152,6 @@
                 ]
             });
 
-            loadRoles();
             fetchUsers();
 
             // search
@@ -237,17 +231,6 @@
             });
         });
 
-        async function loadRoles() {
-            const res = await fetch(`${apiBase}/get-all-roles`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            const { data } = await res.json();
-            rolesMaster = data;
-            data.forEach(r => {
-                $("#rolesSelect, #roleFilter").append(`<option value="${r.id}">${r.displayName}</option>`);
-            });
-        }
-
         async function fetchUsers() {
             const params = new URLSearchParams();
             const kw = $("#keyword").val();
@@ -257,7 +240,7 @@
             const locked = $("#lockFilter").val();
             if (locked !== '') params.append('isLocked', locked);
 
-            const res = await fetch(`${apiBase}/search?${params.toString()}`, {
+            const res = await fetch(`${apiBase}/search-customer?${params.toString()}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const json = await res.json();

@@ -66,7 +66,7 @@ namespace FoodioAPI.Controllers
         /// <returns>Danh sách người dùng với thông tin phân trang</returns>
         /// <response code="200">Trả về danh sách người dùng thành công</response>
         /// <response code="400">Lỗi khi xử lý yêu cầu</response>
-        [HttpGet("search")]
+        [HttpGet("search-staff")]
         [ProducesResponseType(typeof(Response<PaginatedData<UserDto>>), 200)]
         [ProducesResponseType(typeof(Response<PaginatedData<UserDto>>), 400)]
         public async Task<ActionResult<Response<PaginatedData<UserDto>>>> SearchWithStaff(
@@ -74,7 +74,7 @@ namespace FoodioAPI.Controllers
         {
             try
             {
-                var result = await _userManagementService.SearchWithStaff(searchDto);
+                var result = await _userManagementService.Search(searchDto, Constants.UserRole.Customer);
                 return Ok(new Response<PaginatedData<UserDto>>
                 {
                     Status = ResponseStatus.SUCCESS,
@@ -91,6 +91,35 @@ namespace FoodioAPI.Controllers
                 });
             }
         }
+
+        [HttpGet("search-customer")]
+        [ProducesResponseType(typeof(Response<PaginatedData<UserDto>>), 200)]
+        [ProducesResponseType(typeof(Response<PaginatedData<UserDto>>), 400)]
+        public async Task<ActionResult<Response<PaginatedData<UserDto>>>> SearchWithCustomer(
+            [FromQuery] UserSearchDto searchDto)
+        {
+            try
+            {
+                searchDto.RoleName = Constants.UserRole.Customer;
+                var result = await _userManagementService.Search(searchDto);
+                return Ok(new Response<PaginatedData<UserDto>>
+                {
+                    Status = ResponseStatus.SUCCESS,
+                    Message = "Lấy danh sách người dùng thành công",
+                    Data = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response<PaginatedData<UserDto>>
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = ex.Message
+                });
+            }
+        }
+
+
 
         /// <summary>
         /// Lấy thông tin chi tiết của một người dùng theo ID

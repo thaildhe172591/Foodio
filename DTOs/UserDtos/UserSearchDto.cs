@@ -80,4 +80,4 @@ namespace FoodioAPI.DTOs.UserDtos
         [RegularExpression("^(ASC|DESC)$", ErrorMessage = "Thứ tự sắp xếp phải là ASC hoặc DESC")]
         public string SortOrder { get; set; } = "ASC";
     }
-} 
+}
