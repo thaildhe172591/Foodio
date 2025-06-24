@@ -261,6 +261,16 @@
             $('#itemModal').modal('show');
         }
 
+        // Helper function để đóng modal an toàn
+        function closeModalSafely(modalId) {
+            $(modalId).modal('hide');
+            // Đảm bảo backdrop được xóa và body được reset
+            setTimeout(() => {
+                $('.modal-backdrop').remove();
+                $('body').removeClass('modal-open').css('padding-right', '');
+            }, 300); // Đợi animation hoàn tất
+        }
+
         async function saveItem(e){
             e.preventDefault();
             const id=$('#itemId').val();
@@ -280,7 +290,7 @@
             const url=id?`${menuApi}/${id}`:menuApi;
             const res=await fetch(url,opt);
             if(res.ok){
-                $('#itemModal').modal('hide');
+                closeModalSafely('#itemModal');
                 await fetchItems();
                 await Swal.fire({
                     icon: 'success',
