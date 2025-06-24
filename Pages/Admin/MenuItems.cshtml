@@ -64,6 +64,7 @@
                                 <th>Tên</th>
                                 <th>Danh mục</th>
                                 <th>Giá</th>
+                                <th>Ảnh</th>
                                 <th>Trạng thái</th>
                                 <th>Hành động</th>
                             </tr>
@@ -88,6 +89,14 @@
                     <div class="mb-3">
                         <label class="form-label">Tên</label>
                         <input class="form-control" id="itemName" required/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mô tả</label>
+                        <textarea class="form-control" id="itemDescription" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Link ảnh</label>
+                        <input type="url" class="form-control" id="itemImageUrl" placeholder="https://example.com/image.jpg"/>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Giá</label>
@@ -141,6 +150,16 @@
                         }
                     },
                     {
+                        data: 'imageUrl',
+                        render: function(url) {
+                            if (url && url.trim()) {
+                                return `<img src="${url}" alt="Ảnh món ăn" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;" onerror="this.src='https://png.pngtree.com/element_our/20200610/ourmid/pngtree-black-default-avatar-image_2237212.jpg'" />`;
+                            } else {
+                                return `<img src="https://png.pngtree.com/element_our/20200610/ourmid/pngtree-black-default-avatar-image_2237212.jpg" alt="Ảnh món ăn" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;" onerror="this.src='https://png.pngtree.com/element_our/20200610/ourmid/pngtree-black-default-avatar-image_2237212.jpg'" />`;
+                            }
+                        }
+                    },
+                    {
                         data: 'isAvailable',
                         render: d => d ? '<span class="badge bg-success">Còn</span>' : '<span class="badge bg-secondary">Hết món</span>'
                     },
@@ -189,6 +208,8 @@
         function resetModal(item=null){
             $('#itemId').val(item?.id||'');
             $('#itemName').val(item?.name||'');
+            $('#itemDescription').val(item?.description||'');
+            $('#itemImageUrl').val(item?.imageUrl||'');
             $('#itemPrice').val(item?.price||'');
             $('#itemCategory').val(item?.categoryId||'');
             $('#itemAvailable').prop('checked', item?.isAvailable ?? true);
@@ -208,6 +229,8 @@
             const id=$('#itemId').val();
             const dto={
                 name:$('#itemName').val(),
+                description:$('#itemDescription').val(),
+                imageUrl:$('#itemImageUrl').val(),
                 price:parseFloat($('#itemPrice').val()),
                 categoryId:$('#itemCategory').val(),
                 isAvailable: $('#itemAvailable').is(':checked')
