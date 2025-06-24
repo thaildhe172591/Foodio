@@ -5,6 +5,20 @@
 
 <div class="container mt-4">
     <h2 class="mb-4">Menu</h2>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" id="searchInput" class="form-control" placeholder="Tìm món theo tên...">
+        </div>
+        <div class="col-md-4">
+            <select id="priceFilter" class="form-select">
+                <option value="">Lọc theo giá</option>
+                <option value="asc">Giá tăng dần</option>
+                <option value="desc">Giá giảm dần</option>
+            </select>
+        </div>
+    </div>
+
     <div id="menuItems" class="row"></div>
 </div>
 
@@ -40,6 +54,7 @@
 <script>
     let cart = {};
     let selectedItem = null;
+    let allItems = [];
 
     function updateCartBar() {
         let count = 0;
@@ -54,18 +69,12 @@
     }
 
     async function goToCheckout() {
-        window.location.href = "/checkout"; // Điều hướng đến trang giao hàng
+        window.location.href = "/checkout";
     }
 
-    document.addEventListener("DOMContentLoaded", async () => {
-        const response = await fetch("/api/menu/list", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({})
-        });
-
-        const items = await response.json();
+    function renderItems(items) {
         const container = document.getElementById("menuItems");
+        container.innerHTML = "";
 
         if (items.length === 0) {
             container.innerHTML = `<p>Không có món nào!</p>`;
@@ -117,7 +126,7 @@
         document.querySelectorAll(".menu-img, .menu-name").forEach(elem => {
             elem.addEventListener("click", () => {
                 const id = elem.dataset.id;
-                selectedItem = items.find(x => x.id === id);
+                selectedItem = allItems.find(x => x.id === id);
                 if (!selectedItem) return;
 
                 document.getElementById("itemModalLabel").textContent = selectedItem.name;
@@ -130,6 +139,17 @@
                 modal.show();
             });
         });
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        const response = await fetch("/api/menu/list", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({})
+        });
+
+        allItems = await response.json();
+        renderItems(allItems);
 
         document.getElementById("modalAddBtn").addEventListener("click", async () => {
             const qty = Number(document.getElementById("modalQuantity").value);
@@ -149,8 +169,29 @@
                 cart[id].qty += qty;
             }
             updateCartBar();
-
             bootstrap.Modal.getInstance(document.getElementById("itemModal")).hide();
+        });
+
+        document.getElementById("searchInput").addEventListener("input", () => {
+            const keyword = document.getElementById("searchInput").value.toLowerCase();
+            let filtered = allItems.filter(x => x.name.toLowerCase().includes(keyword));
+
+            const sortValue = document.getElementById("priceFilter").value;
+            if (sortValue === "asc") filtered.sort((a, b) => a.price - b.price);
+            else if (sortValue === "desc") filtered.sort((a, b) => b.price - a.price);
+
+            renderItems(filtered);
+        });
+
+        document.getElementById("priceFilter").addEventListener("change", () => {
+            const keyword = document.getElementById("searchInput").value.toLowerCase();
+            let filtered = allItems.filter(x => x.name.toLowerCase().includes(keyword));
+
+            const sortValue = document.getElementById("priceFilter").value;
+            if (sortValue === "asc") filtered.sort((a, b) => a.price - b.price);
+            else if (sortValue === "desc") filtered.sort((a, b) => b.price - a.price);
+
+            renderItems(filtered);
         });
     });
 </script>
