@@ -3,6 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\",
   "Documents": [
     {
+<<<<<<< Updated upstream
       "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\pages\\menu\\menupage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:pages\\menu\\menupage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -13,6 +14,94 @@
     {
       "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\entities\\orderdeliveryinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:entities\\orderdeliveryinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\database\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:database\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\entities\\ordertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:entities\\ordertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\database\\configurations\\ordertypeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:database\\configurations\\ordertypeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\entities\\delivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:entities\\delivery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\database\\configurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:database\\configurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\database\\configurations\\cartconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:database\\configurations\\cartconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\pages\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:pages\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\dtos\\configs\\emailconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:dtos\\configs\\emailconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\entities\\diningtable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:entities\\diningtable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|c:\\users\\dokat\\downloads\\new folder\\foodio\\entities\\ordershipper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C860E3-0D0A-45AA-83D6-A782904593D7}|FoodioAPI.csproj|solutionrelative:entities\\ordershipper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> Stashed changes
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +111,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< Updated upstream
           "SelectedChildIndex": 6,
+=======
+          "SelectedChildIndex": 7,
+>>>>>>> Stashed changes
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,6 +134,7 @@
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
+<<<<<<< Updated upstream
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
@@ -69,10 +163,23 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-23T20:34:36.395Z",
               "EditorCaption": ""
+=======
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Database\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Database\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Database\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Database\\ApplicationDbContext.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAC0AAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T21:47:09.446Z"
+>>>>>>> Stashed changes
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+<<<<<<< Updated upstream
               "Title": "Checkout.cshtml",
               "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Pages\\Menu\\Checkout.cshtml",
               "RelativeDocumentMoniker": "Pages\\Menu\\Checkout.cshtml",
@@ -82,6 +189,261 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-23T20:29:03.634Z",
               "EditorCaption": ""
+=======
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\Order.cs",
+              "RelativeDocumentMoniker": "Entities\\Order.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\Order.cs",
+              "RelativeToolTip": "Entities\\Order.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAAB0AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T09:22:14.356Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrderDeliveryInfo.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\OrderDeliveryInfo.cs",
+              "RelativeDocumentMoniker": "Entities\\OrderDeliveryInfo.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\OrderDeliveryInfo.cs",
+              "RelativeToolTip": "Entities\\OrderDeliveryInfo.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAiwBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T22:13:38.331Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\Cart.cs",
+              "RelativeDocumentMoniker": "Entities\\Cart.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\Cart.cs",
+              "RelativeToolTip": "Entities\\Cart.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAgwBkAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T18:37:51.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OrderTypeConfig.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Database\\Configurations\\OrderTypeConfig.cs",
+              "RelativeDocumentMoniker": "Database\\Configurations\\OrderTypeConfig.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Database\\Configurations\\OrderTypeConfig.cs",
+              "RelativeToolTip": "Database\\Configurations\\OrderTypeConfig.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T18:22:09.111Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderType.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\OrderType.cs",
+              "RelativeDocumentMoniker": "Entities\\OrderType.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\OrderType.cs",
+              "RelativeToolTip": "Entities\\OrderType.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T18:24:52.185Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CartConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Database\\Configurations\\CartConfiguration.cs",
+              "RelativeDocumentMoniker": "Database\\Configurations\\CartConfiguration.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Database\\Configurations\\CartConfiguration.cs",
+              "RelativeToolTip": "Database\\Configurations\\CartConfiguration.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T21:47:56.264Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Delivery.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\Delivery.cs",
+              "RelativeDocumentMoniker": "Entities\\Delivery.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\Delivery.cs",
+              "RelativeToolTip": "Entities\\Delivery.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAiwAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T21:53:53.461Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Database\\Configurations\\UserConfiguration.cs",
+              "RelativeDocumentMoniker": "Database\\Configurations\\UserConfiguration.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Database\\Configurations\\UserConfiguration.cs",
+              "RelativeToolTip": "Database\\Configurations\\UserConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T18:00:54.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "DependencyInjection.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\DependencyInjection.cs",
+              "RelativeToolTip": "DependencyInjection.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAQwC4AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T19:14:20.08Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T19:41:02.259Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Pages\\Error.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Error.cshtml",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Pages\\Error.cshtml",
+              "RelativeToolTip": "Pages\\Error.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-13T20:42:15.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-13T20:29:30.851Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Pages\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Pages\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Pages\\_ViewStart.cshtml",
+              "RelativeToolTip": "Pages\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-13T20:42:17.777Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ApplicationDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "RelativeToolTip": "Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "ViewState": "AgIAAI8CAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T21:46:37.693Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Pages\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Pages\\Privacy.cshtml",
+              "RelativeToolTip": "Pages\\Privacy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-13T20:42:18.78Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Pages\\Index.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Index.cshtml",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Pages\\Index.cshtml",
+              "RelativeToolTip": "Pages\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-13T20:42:10.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "Entities\\User.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\User.cs",
+              "RelativeToolTip": "Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T19:10:08.951Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "DiningTable.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\DiningTable.cs",
+              "RelativeDocumentMoniker": "Entities\\DiningTable.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\DiningTable.cs",
+              "RelativeToolTip": "Entities\\DiningTable.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwA0AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T18:55:43.618Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\Category.cs",
+              "RelativeDocumentMoniker": "Entities\\Category.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\Category.cs",
+              "RelativeToolTip": "Entities\\Category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T18:55:38.356Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "EmailConfig.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\DTOs\\Configs\\EmailConfig.cs",
+              "RelativeDocumentMoniker": "DTOs\\Configs\\EmailConfig.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\DTOs\\Configs\\EmailConfig.cs",
+              "RelativeToolTip": "DTOs\\Configs\\EmailConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T18:47:18.082Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "OrderShipper.cs",
+              "DocumentMoniker": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\OrderShipper.cs",
+              "RelativeDocumentMoniker": "Entities\\OrderShipper.cs",
+              "ToolTip": "C:\\Users\\dokat\\Downloads\\New folder\\Foodio\\Entities\\OrderShipper.cs",
+              "RelativeToolTip": "Entities\\OrderShipper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T18:41:43.587Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+>>>>>>> Stashed changes
             }
           ]
         }

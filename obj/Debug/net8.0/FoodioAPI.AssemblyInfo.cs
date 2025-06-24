@@ -15,7 +15,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FoodioAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< Updated upstream
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5253082b631ca5ee8be437fcb881add5c89f6f8")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+88d4ef0ab7bec4c261af95e7fe2832b6287a9a44")]
+>>>>>>> Stashed changes
 [assembly: System.Reflection.AssemblyProductAttribute("FoodioAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FoodioAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
