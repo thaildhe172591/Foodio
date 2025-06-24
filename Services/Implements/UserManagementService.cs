@@ -372,9 +372,13 @@ public class UserManagementService : IUserManagementService
     /// </summary>
     /// <returns>Danh sách vai trò với thông tin chi tiết</returns>
     /// <exception cref="NotFoundException">Khi không tìm thấy vai trò</exception>
-    public async Task<List<RoleDto>> GetAllRolesAsync()
+    public async Task<List<RoleDto>> GetAllRolesAsync(string roleNot = "")
     {
         var roles = await _roleManager.Roles.ToListAsync();
+        if (!String.IsNullOrEmpty(roleNot))
+        {
+            roles = roles.Where(x => !x.Name.ToLower().Equals(roleNot.ToLower())).ToList();
+        }
         var roleDtos = new List<RoleDto>();
 
         foreach (var role in roles)

@@ -469,6 +469,31 @@ namespace FoodioAPI.Controllers
             }
         }
 
+        [HttpGet("get-all-roles-staff")]
+        [ProducesResponseType(typeof(Response<List<RoleDto>>), 200)]
+        [ProducesResponseType(typeof(Response<List<RoleDto>>), 400)]
+        public async Task<ActionResult<Response<List<RoleDto>>>> GetAllRolesStaff()
+        {
+            try
+            {
+                var result = await _userManagementService.GetAllRolesAsync(Constants.UserRole.Customer);
+                return Ok(new Response<List<RoleDto>>
+                {
+                    Status = ResponseStatus.SUCCESS,
+                    Message = "Lấy danh sách vai trò thành công",
+                    Data = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response<List<RoleDto>>
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = ex.Message
+                });
+            }
+        }
+
         /// <summary>
         /// Tạo người dùng mới
         /// Cho phép admin tạo tài khoản người dùng với vai trò cụ thể

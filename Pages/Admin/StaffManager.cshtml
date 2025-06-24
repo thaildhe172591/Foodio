@@ -246,7 +246,7 @@
         });
 
         async function loadRoles() {
-            const res = await fetch(`${apiBase}/get-all-roles`, {
+            const res = await fetch(`${apiBase}/get-all-roles-staff`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const { data } = await res.json();

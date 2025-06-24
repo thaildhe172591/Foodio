@@ -97,7 +97,7 @@ public interface IUserManagementService
     /// Lấy danh sách tất cả vai trò có trong hệ thống
     /// </summary>
     /// <returns>Danh sách vai trò với thông tin an toàn</returns>
-    Task<List<RoleDto>> GetAllRolesAsync();
+    Task<List<RoleDto>> GetAllRolesAsync(string roleNot = "");
 
     /// <summary>
     /// Tạo người dùng mới
