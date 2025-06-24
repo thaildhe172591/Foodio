@@ -69,12 +69,12 @@ namespace FoodioAPI.Controllers
         [HttpGet("search")]
         [ProducesResponseType(typeof(Response<PaginatedData<UserDto>>), 200)]
         [ProducesResponseType(typeof(Response<PaginatedData<UserDto>>), 400)]
-        public async Task<ActionResult<Response<PaginatedData<UserDto>>>> GetUsersWithFilters(
+        public async Task<ActionResult<Response<PaginatedData<UserDto>>>> SearchWithStaff(
             [FromQuery] UserSearchDto searchDto)
         {
             try
             {
-                var result = await _userManagementService.GetUsersWithFiltersAsync(searchDto);
+                var result = await _userManagementService.SearchWithStaff(searchDto);
                 return Ok(new Response<PaginatedData<UserDto>>
                 {
                     Status = ResponseStatus.SUCCESS,

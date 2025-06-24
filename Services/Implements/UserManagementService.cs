@@ -457,7 +457,7 @@ public class UserManagementService : IUserManagementService
     /// <param name="searchDto">Các tham số tìm kiếm và lọc</param>
     /// <returns>Danh sách người dùng với thông tin phân trang</returns>
     /// <exception cref="ValidationException">Khi có lỗi validation</exception>
-    public async Task<PaginatedData<UserDto>> GetUsersWithFiltersAsync(UserSearchDto searchDto)
+    public async Task<PaginatedData<UserDto>> SearchWithStaff(UserSearchDto searchDto)
     {
         // Xây dựng query cơ bản
         var query = _userManager.Users.AsQueryable();

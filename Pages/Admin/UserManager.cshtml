@@ -2,594 +2,287 @@
 @model FoodioAPI.Pages.Admin.UserManagerModel
 @{
 }
-  <main class="main-wrapper">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+
+<style>
+    #usersTable th,
+    #usersTable td {
+        color: whitesmoke !important;
+    }
+</style>
+
+<main class="main-wrapper">
     <div class="main-content">
-      <!--breadcrumb-->
-      <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">eCommerce</div>
-        <div class="ps-3">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0 p-0">
-              <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">Products</li>
-            </ol>
-          </nav>
-        </div>
-        <div class="ms-auto">
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary">Settings</button>
-            <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
-              data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a class="dropdown-item"
-                href="javascript:;">Action</a>
-              <a class="dropdown-item" href="javascript:;">Another action</a>
-              <a class="dropdown-item" href="javascript:;">Something else here</a>
-              <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated link</a>
+        <div class="container-fluid py-4">
+            <h3 class="mb-4">Quản lý Tài khoản</h3>
+
+            <!-- Search & Actions -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form id="searchForm" class="row g-2 align-items-end">
+                        <div class="col-sm-4">
+                            <label class="form-label">Từ khóa</label>
+                            <input type="text" class="form-control" id="keyword" placeholder="Tên / Email" />
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="form-label">Vai trò</label>
+                            <select class="form-select" id="roleFilter">
+                                <option value="">Tất cả</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="form-label">Trạng thái</label>
+                            <select class="form-select" id="lockFilter">
+                                <option value="">Tất cả</option>
+                                <option value="true">Đã khoá</option>
+                                <option value="false">Hoạt động</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2 d-grid">
+                            <button type="button" id="btnSearch" class="btn btn-primary w-100">Tìm kiếm</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <!--end breadcrumb-->
 
-      <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
-        <a href="javascript:;"><span class="me-1">All</span><span class="text-secondary">(88754)</span></a>
-        <a href="javascript:;"><span class="me-1">Published</span><span class="text-secondary">(56242)</span></a>
-        <a href="javascript:;"><span class="me-1">Drafts</span><span class="text-secondary">(17)</span></a>
-        <a href="javascript:;"><span class="me-1">On Discount</span><span class="text-secondary">(88754)</span></a>
-      </div>
-
-      <div class="row g-3">
-        <div class="col-auto">
-          <div class="position-relative">
-            <input class="form-control px-5" type="search" placeholder="Search Products">
-            <span
-              class="material-icons-outlined position-absolute ms-3 translate-middle-y start-0 top-50 fs-5">search</span>
-          </div>
-        </div>
-        <div class="col-auto flex-grow-1 overflow-auto">
-          <div class="btn-group position-static">
-            <div class="btn-group position-static">
-              <button type="button" class="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Category
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:;">Action</a></li>
-                <li><a class="dropdown-item" href="javascript:;">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="javascript:;">Something else here</a></li>
-              </ul>
+            <!-- Table -->
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Danh sách người dùng</h5>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#userModal" data-mode="add">Thêm Người dùng</button>
+                </div>
+                <div class="card-body">
+                    <table id="usersTable" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>User Name</th>
+                                <th>Phone</th>
+                                <th>Roles</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
-            <div class="btn-group position-static">
-              <button type="button" class="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Vendor
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:;">Action</a></li>
-                <li><a class="dropdown-item" href="javascript:;">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="javascript:;">Something else here</a></li>
-              </ul>
-            </div>
-            <div class="btn-group position-static">
-              <button type="button" class="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Collection
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:;">Action</a></li>
-                <li><a class="dropdown-item" href="javascript:;">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="javascript:;">Something else here</a></li>
-              </ul>
-            </div>
-          </div>
         </div>
-        <div class="col-auto">
-          <div class="d-flex align-items-center gap-2 justify-content-lg-end">
-            <button class="btn btn-filter px-4"><i class="bi bi-box-arrow-right me-2"></i>Export</button>
-            <button class="btn btn-primary px-4"><i class="bi bi-plus-lg me-2"></i>Add Product</button>
-          </div>
-        </div>
-      </div><!--end row-->
-
-      <div class="card mt-4">
-        <div class="card-body">
-          <div class="product-table">
-            <div class="table-responsive white-space-nowrap">
-              <table class="table align-middle">
-                <thead class="table-light">
-                  <tr>
-                    <th>
-                      <input class="form-check-input" type="checkbox">
-                    </th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>Tags</th>
-                    <th>Rating</th>
-                    <th>Vendor</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/01.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/02.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/03.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/04.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/05.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/06.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/07.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/08.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/09.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
     </div>
-  </main>
+</main>
+
+<!-- Modal Add/Edit -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">Thêm Người dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="userForm">
+                <div class="modal-body row g-3">
+                    <input type="hidden" id="userId" />
+                    <div class="col-sm-6">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-control" id="password" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="userName" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="text" class="form-control" id="phoneNumber" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Vai trò</label>
+                        <select multiple class="form-select" id="rolesSelect"></select>
+                    </div>
+                    <div class="col-sm-6 form-check ms-2">
+                        <input class="form-check-input" type="checkbox" id="emailConfirmed" />
+                        <label class="form-check-label">Xác nhận Email</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @await Html.PartialAsync("_ToastrScripts")
+
+    <script>
+        const apiBase = "/api/admin/users";
+        let usersTable;
+        const token = localStorage.getItem("access_token");
+        let rolesMaster = [];
+
+        $(function () {
+            usersTable = $("#usersTable").DataTable({
+                columns: [
+                    { data: "email" },
+                    { data: "userName" },
+                    { data: "phoneNumber" },
+                    {
+                        data: "roles",
+                        render: roles => roles.join(", ")
+                    },
+                    {
+                        data: null,
+                        render: d => d.isLocked ? '<span class="badge bg-danger">Khoá</span>' : '<span class="badge bg-success">Hoạt động</span>'
+                    },
+                    {
+                        data: null,
+                        orderable: false,
+                        render: d => `
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-primary edit-btn" data-id="${d.id}"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-outline-danger delete-btn" data-id="${d.id}"><i class="bi bi-trash"></i></button>
+                            </div>`
+                    }
+                ]
+            });
+
+            loadRoles();
+            fetchUsers();
+
+            // search
+            $("#btnSearch").click(fetchUsers);
+
+            // open modal add
+            $('#userModal').on('show.bs.modal', function (e) {
+                const btn = $(e.relatedTarget);
+                const mode = btn.data('mode');
+                if (mode === 'add') {
+                    resetModal();
+                }
+            });
+
+            // submit add / edit
+            $("#userForm").on("submit", async function (e) {
+                e.preventDefault();
+                const id = $("#userId").val();
+                const dto = {
+                    email: $("#email").val(),
+                    phoneNumber: $("#phoneNumber").val(),
+                    userName: $("#userName").val(),
+                    roleIds: $("#rolesSelect").val()
+                };
+
+                if (!id) {
+                    dto.password = $("#password").val();
+                    dto.emailConfirmed = $("#emailConfirmed").is(":checked");
+                }
+
+                const method = id ? "PUT" : "POST";
+                const url = id ? `${apiBase}/${id}` : apiBase;
+
+                const res = await fetch(url, {
+                    method: method,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify(dto)
+                });
+                if (res.ok) {
+                    toastr.success("Lưu thành công");
+                    $('#userModal').modal('hide');
+                    fetchUsers();
+                } else {
+                    const err = await res.json();
+                    toastr.error(err.message ?? 'Có lỗi xảy ra');
+                }
+            });
+
+            // edit
+            $(document).on('click', '.edit-btn', async function () {
+                const id = $(this).data('id');
+                const res = await fetch(`${apiBase}/get-by-id/${id}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                const { data } = await res.json();
+                resetModal(data);
+                $('#userModal').modal('show');
+            });
+
+            // delete
+            $(document).on('click', '.delete-btn', async function () {
+                if (!confirm('Bạn có chắc muốn xoá?')) return;
+                const id = $(this).data('id');
+                const res = await fetch(`${apiBase}/delete/${id}`, {
+                    method: 'DELETE',
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    toastr.success('Đã xoá');
+                    fetchUsers();
+                } else {
+                    toastr.error('Không thể xoá');
+                }
+            });
+        });
+
+        async function loadRoles() {
+            const res = await fetch(`${apiBase}/get-all-roles`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const { data } = await res.json();
+            rolesMaster = data;
+            data.forEach(r => {
+                $("#rolesSelect, #roleFilter").append(`<option value="${r.id}">${r.displayName}</option>`);
+            });
+        }
+
+        async function fetchUsers() {
+            const params = new URLSearchParams();
+            const kw = $("#keyword").val();
+            if (kw) params.append('searchKeyword', kw);
+            const role = $("#roleFilter").val();
+            if (role) params.append('roleId', role);
+            const locked = $("#lockFilter").val();
+            if (locked !== '') params.append('isLocked', locked);
+
+            const res = await fetch(`${apiBase}/search?${params.toString()}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const json = await res.json();
+            usersTable.clear();
+            usersTable.rows.add(json.data.data ?? json.data);
+            usersTable.draw();
+        }
+
+        function resetModal(user = null) {
+            $("#userId").val(user?.id || '');
+            $("#email").val(user?.email || '').prop('readonly', !!user);
+            $("#password").val('');
+            $("#userName").val(user?.userName || '');
+            $("#phoneNumber").val(user?.phoneNumber || '');
+            $("#emailConfirmed").prop('checked', user?.emailConfirmed ?? false);
+
+            // map role names -> ids for preselect
+            if (user?.roles && rolesMaster.length) {
+                const ids = rolesMaster.filter(r => user.roles.includes(r.displayName) || user.roles.includes(r.name)).map(r => r.id);
+                $("#rolesSelect").val(ids).change();
+            } else {
+                $("#rolesSelect").val([]).change();
+            }
+
+            $("#userModalLabel").text(user ? 'Cập nhật Người dùng' : 'Thêm Người dùng');
+        }
+    </script>
+}
