@@ -36,9 +36,6 @@
                                 <option value="false">Hoạt động</option>
                             </select>
                         </div>
-                        <div class="col-sm-2 d-grid">
-                            <button type="button" id="btnSearch" class="btn btn-primary w-100">Tìm kiếm</button>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -156,6 +153,16 @@
 
             // search
             $("#btnSearch").click(fetchUsers);
+            
+            // Tự động tìm kiếm khi nhập text
+            let searchTimeout;
+            $('#keyword').on('input keyup', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(fetchUsers, 500); // Debounce 500ms
+            });
+            
+            // Tự động tìm kiếm khi thay đổi dropdown
+            $('#lockFilter').on('change', fetchUsers);
 
             // open modal add
             $('#userModal').on('show.bs.modal', function (e) {
