@@ -1,595 +1,894 @@
 ﻿@page
 @model FoodioAPI.Pages.Admin.StaffManagerModel
 @{
+    ViewData["Title"] = "Quản lý Nhân viên";
 }
-  <main class="main-wrapper">
+
+<main class="main-wrapper">
     <div class="main-content">
-      <!--breadcrumb-->
-      <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">eCommerce</div>
-        <div class="ps-3">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0 p-0">
-              <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">Products</li>
-            </ol>
-          </nav>
-        </div>
-        <div class="ms-auto">
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary">Settings</button>
-            <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
-              data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a class="dropdown-item"
-                href="javascript:;">Action</a>
-              <a class="dropdown-item" href="javascript:;">Another action</a>
-              <a class="dropdown-item" href="javascript:;">Something else here</a>
-              <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated link</a>
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">eCommerce</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Products</li>
+                    </ol>
+                </nav>
             </div>
-          </div>
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">Settings</button>
+                    <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
+                            data-bs-toggle="dropdown">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
+                        <a class="dropdown-item"
+                           href="javascript:;">Action</a>
+                        <a class="dropdown-item" href="javascript:;">Another action</a>
+                        <a class="dropdown-item" href="javascript:;">Something else here</a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated link</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <!--end breadcrumb-->
+        <!--end breadcrumb-->
 
-      <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
-        <a href="javascript:;"><span class="me-1">All</span><span class="text-secondary">(88754)</span></a>
-        <a href="javascript:;"><span class="me-1">Published</span><span class="text-secondary">(56242)</span></a>
-        <a href="javascript:;"><span class="me-1">Drafts</span><span class="text-secondary">(17)</span></a>
-        <a href="javascript:;"><span class="me-1">On Discount</span><span class="text-secondary">(88754)</span></a>
-      </div>
+        <div class="product-count d-flex align-items-center gap-3 gap-lg-4 mb-4 fw-medium flex-wrap font-text1">
+            <a href="javascript:;" id="filterAll"><span class="me-1">Tất cả</span><span class="text-secondary" id="countAll">(0)</span></a>
+            <a href="javascript:;" id="filterActive"><span class="me-1">Đang làm việc</span><span class="text-secondary" id="countActive">(0)</span></a>
+            <a href="javascript:;" id="filterInactive"><span class="me-1">Đã nghỉ việc</span><span class="text-secondary" id="countInactive">(0)</span></a>
+            <a href="javascript:;" id="filterNewStaff"><span class="me-1">Nhân viên mới</span><span class="text-secondary" id="countNew">(0)</span></a>
+        </div>
 
-      <div class="row g-3">
-        <div class="col-auto">
-          <div class="position-relative">
-            <input class="form-control px-5" type="search" placeholder="Search Products">
-            <span
-              class="material-icons-outlined position-absolute ms-3 translate-middle-y start-0 top-50 fs-5">search</span>
-          </div>
-        </div>
-        <div class="col-auto flex-grow-1 overflow-auto">
-          <div class="btn-group position-static">
-            <div class="btn-group position-static">
-              <button type="button" class="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Category
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:;">Action</a></li>
-                <li><a class="dropdown-item" href="javascript:;">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="javascript:;">Something else here</a></li>
-              </ul>
+        <div class="row g-3">
+            <div class="col-auto">
+                <div class="position-relative">
+                    <input class="form-control px-5" type="search" id="keyword" placeholder="Tìm nhân viên...">
+                    <span class="material-icons-outlined position-absolute ms-3 translate-middle-y start-0 top-50 fs-5">search</span>
+                </div>
             </div>
-            <div class="btn-group position-static">
-              <button type="button" class="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Vendor
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:;">Action</a></li>
-                <li><a class="dropdown-item" href="javascript:;">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="javascript:;">Something else here</a></li>
-              </ul>
+            
+            <div class="col-auto flex-grow-1 overflow-auto">
+                <div class="btn-group position-static">
+                    <div class="btn-group position-static">
+                        <button type="button" class="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ca làm việc
+                        </button>
+                        <ul class="dropdown-menu" id="shiftFilterDropdown">
+                            <li><a class="dropdown-item" href="javascript:;" data-value="">Tất cả</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group position-static">
+                        <button type="button" class="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Vai trò
+                        </button>
+                        <ul class="dropdown-menu" id="roleFilterDropdown">
+                            <li><a class="dropdown-item" href="javascript:;" data-value="">Tất cả</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group position-static">
+                        <button type="button" class="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Trạng thái
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item status-filter" href="javascript:;" data-value="">Tất cả</a></li>
+                            <li><a class="dropdown-item status-filter" href="javascript:;" data-value="true">Đang làm việc</a></li>
+                            <li><a class="dropdown-item status-filter" href="javascript:;" data-value="false">Đã nghỉ việc</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="btn-group position-static">
-              <button type="button" class="btn btn-filter dropdown-toggle px-4" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Collection
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:;">Action</a></li>
-                <li><a class="dropdown-item" href="javascript:;">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="javascript:;">Something else here</a></li>
-              </ul>
+            <div class="col-auto">
+                <div class="d-flex align-items-center gap-2 justify-content-lg-end">
+                    <button class="btn btn-filter px-4" id="btnExport"><i class="bi bi-box-arrow-right me-2"></i>Xuất Excel</button>
+                    <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#staffModal" data-mode="add">
+                        <i class="bi bi-plus-lg me-2"></i>Thêm Nhân viên
+                    </button>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-auto">
-          <div class="d-flex align-items-center gap-2 justify-content-lg-end">
-            <button class="btn btn-filter px-4"><i class="bi bi-box-arrow-right me-2"></i>Export</button>
-            <button class="btn btn-primary px-4"><i class="bi bi-plus-lg me-2"></i>Add Product</button>
-          </div>
-        </div>
-      </div><!--end row-->
+        </div><!--end row-->
 
-      <div class="card mt-4">
-        <div class="card-body">
-          <div class="product-table">
-            <div class="table-responsive white-space-nowrap">
-              <table class="table align-middle">
-                <thead class="table-light">
-                  <tr>
-                    <th>
-                      <input class="form-check-input" type="checkbox">
-                    </th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>Tags</th>
-                    <th>Rating</th>
-                    <th>Vendor</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/01.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/02.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/03.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/04.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/05.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/06.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/07.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/08.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="form-check-input" type="checkbox">
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="product-box">
-                          <img src="assets/images/orders/09.png" width="70" class="rounded-3" alt="">
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript:;" class="product-title">Women Pink Floral Printed</a>
-                          <p class="mb-0 product-category">Category : Fashion</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$49</td>
-                    <td>Palazzos</td>
-                    <td>
-                      <div class="product-tags">
-                        <a href="javascript:;" class="btn-tags">Jeans</a>
-                        <a href="javascript:;" class="btn-tags">iPhone</a>
-                        <a href="javascript:;" class="btn-tags">Laptops</a>
-                        <a href="javascript:;" class="btn-tags">Mobiles</a>
-                        <a href="javascript:;" class="btn-tags">Wallets</a>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="product-rating">
-                        <i class="bi bi-star-fill text-warning me-2"></i><span>5.0</span>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="javascript:;">Michle Shoes England</a>
-                    </td>
-                    <td>
-                      Nov 12, 10:45 PM
-                    </td>
-                    <td>
-                      <div class="dropdown">
-                        <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
-                          type="button" data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div>
-                    </td>
-                  </tr>
-
-                </tbody>
-              </table>
+        <div class="card mt-4">
+            <div class="card-body">
+                <div class="product-table">
+                    <div class="table-responsive white-space-nowrap">
+                        <table class="table align-middle" id="staffTable">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>
+                                        <input class="form-check-input" type="checkbox" id="checkAll">
+                                    </th>
+                                    <th>Nhân viên</th>
+                                    <th>Email</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Ca làm việc</th>
+                                    <th>Vai trò</th>
+                                    <th>Trạng thái</th>
+                                    <th>Ngày tham gia</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
 
 
     </div>
-  </main>
+</main>
+
+<!-- Modal Add/Edit Staff -->
+<div class="modal fade" id="staffModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staffModalLabel">Thêm Nhân viên</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="staffForm">
+                <div class="modal-body row g-3">
+                    <input type="hidden" id="staffId" />
+
+                    <div class="col-12 text-center">
+                        <div class="avatar-upload">
+                            <div class="avatar-preview">
+                                <div id="imagePreview" style="background-image: url('/assets/images/avatars/01.png'); width: 120px; height: 120px; background-size: cover; background-position: center; border-radius: 50%; margin: 0 auto; border: 3px solid #ddd;"></div>
+                            </div>
+                            <div class="avatar-edit mt-2">
+                                <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" style="display: none;" />
+                                <label for="imageUpload" class="btn btn-outline-primary btn-sm">Chọn ảnh</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="form-label">Họ tên <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="fullName" required />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="email" required />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="text" class="form-control" id="phoneNumber" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-control" id="password" />
+                        <small class="text-muted">Để trống nếu không đổi mật khẩu</small>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Ca làm việc</label>
+                        <select class="form-select" id="shiftSelect">
+                            <option value="">Chọn ca làm việc</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Vai trò</label>
+                        <select multiple class="form-select" id="rolesSelect" size="3"></select>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="isActive" checked />
+                            <label class="form-check-label">Đang làm việc</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ToastrScripts")
+
+    <script>
+        const apiBase = "/api/admin/users";
+        const roleApiBase = "/api/admin/users/get-all-roles";
+        const token = localStorage.getItem("access_token");
+        let staffData = [];
+        let rolesMaster = [];
+        let currentFilter = '';
+        let currentRoleFilter = '';
+
+        console.log('Token:', token ? `Available (${token.substring(0, 20)}...)` : 'Not found');
+        console.log('API Base:', apiBase);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Document ready, initializing...');
+            loadInitialData();
+            setupEventHandlers();
+        });
+
+        async function loadInitialData() {
+            await Promise.all([
+                loadRoles(),
+                fetchStaff()
+            ]);
+        }
+
+
+
+        function setupEventHandlers() {
+            // Search functionality
+            const keywordInput = document.getElementById('keyword');
+            keywordInput.addEventListener('input', debounce(fetchStaff, 300));
+            keywordInput.addEventListener('keypress', function(e) {
+                if (e.which === 13 || e.keyCode === 13) fetchStaff();
+            });
+
+            // Filter buttons
+            document.getElementById('filterAll').addEventListener('click', () => { 
+                currentFilter = ''; 
+                currentRoleFilter = ''; 
+                fetchStaff(); 
+            });
+            document.getElementById('filterActive').addEventListener('click', () => { 
+                currentFilter = 'active'; 
+                fetchStaff(); 
+            });
+            document.getElementById('filterInactive').addEventListener('click', () => { 
+                currentFilter = 'inactive'; 
+                fetchStaff(); 
+            });
+            document.getElementById('filterNewStaff').addEventListener('click', () => { 
+                currentFilter = 'new'; 
+                fetchStaff(); 
+            });
+
+            // Status filter dropdown
+            document.querySelectorAll('.status-filter').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const status = this.getAttribute('data-value');
+                    currentFilter = status === '' ? '' : (status === 'true' ? 'active' : 'inactive');
+                    fetchStaff();
+                });
+            });
+
+            // Check all functionality
+            document.getElementById('checkAll').addEventListener('change', function() {
+                const checkboxes = document.querySelectorAll('.staff-checkbox');
+                checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+            });
+
+            // Modal events
+            const staffModal = document.getElementById('staffModal');
+            staffModal.addEventListener('show.bs.modal', function (e) {
+                const btn = e.relatedTarget;
+                const mode = btn.getAttribute('data-mode');
+                if (mode === 'add') {
+                    resetModal();
+                }
+            });
+
+            // Image upload preview
+            document.getElementById('imageUpload').addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('imagePreview').style.backgroundImage = 'url(' + e.target.result + ')';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Form submission
+            document.getElementById('staffForm').addEventListener('submit', async function (e) {
+                e.preventDefault();
+                await saveStaff();
+            });
+
+            // Edit, Delete, Lock, Unlock buttons (event delegation)
+            document.addEventListener('click', async function(e) {
+                if (e.target.classList.contains('edit-btn') || e.target.closest('.edit-btn')) {
+                    const btn = e.target.classList.contains('edit-btn') ? e.target : e.target.closest('.edit-btn');
+                    const id = btn.getAttribute('data-id');
+                    await loadStaffForEdit(id);
+                }
+                
+                if (e.target.classList.contains('delete-btn') || e.target.closest('.delete-btn')) {
+                    const btn = e.target.classList.contains('delete-btn') ? e.target : e.target.closest('.delete-btn');
+                    const id = btn.getAttribute('data-id');
+                    await deleteStaff(id);
+                }
+                
+                if (e.target.classList.contains('lock-btn') || e.target.closest('.lock-btn')) {
+                    const btn = e.target.classList.contains('lock-btn') ? e.target : e.target.closest('.lock-btn');
+                    const id = btn.getAttribute('data-id');
+                    await lockUser(id);
+                }
+                
+                if (e.target.classList.contains('unlock-btn') || e.target.closest('.unlock-btn')) {
+                    const btn = e.target.classList.contains('unlock-btn') ? e.target : e.target.closest('.unlock-btn');
+                    const id = btn.getAttribute('data-id');
+                    await unlockUser(id);
+                }
+            });
+
+            // Export functionality
+            document.getElementById('btnExport').addEventListener('click', exportToExcel);
+        }
+
+        function filterByRole(roleId) {
+            currentRoleFilter = roleId === '' ? '' : roleId;
+            console.log('Filtering by role:', roleId || 'All');
+            fetchStaff();
+        }
+
+
+
+        async function loadRoles() {
+            try {
+                console.log('=== LOADING ROLES DEBUG ===');
+                console.log('Loading roles from:', roleApiBase);
+                
+                const headers = {};
+                if (token) {
+                    headers.Authorization = `Bearer ${token}`;
+                }
+                
+                const res = await fetch(roleApiBase, {
+                    headers: headers
+                });
+                console.log('Roles response status:', res.status);
+                if (res.ok) {
+                    const json = await res.json();
+                    console.log('Roles response:', json);
+                    rolesMaster = json.data || [];
+                    populateRoleFilters();
+                } else {
+                    console.error('Failed to load roles:', res.status, res.statusText);
+                    // Mock data for testing
+                    rolesMaster = [
+                        { id: '1', name: 'Admin', displayName: 'Admin' },
+                        { id: '2', name: 'Staff', displayName: 'Nhân viên' },
+                        { id: '3', name: 'Manager', displayName: 'Quản lý' }
+                    ];
+                    populateRoleFilters();
+                }
+            } catch (error) {
+                console.error('Error loading roles:', error);
+                rolesMaster = [
+                    { id: '1', name: 'Admin', displayName: 'Admin' },
+                    { id: '2', name: 'Staff', displayName: 'Nhân viên' },
+                    { id: '3', name: 'Manager', displayName: 'Quản lý' }
+                ];
+                populateRoleFilters();
+            }
+        }
+
+
+
+        function populateRoleFilters() {
+            const roleSelect = document.getElementById('rolesSelect');
+            const roleDropdown = document.getElementById('roleFilterDropdown');
+
+            roleSelect.innerHTML = '';
+
+            if (rolesMaster && rolesMaster.length > 0) {
+                rolesMaster.forEach(role => {
+                    const displayName = role.displayName || role.name;
+                    roleSelect.innerHTML += `<option value="${role.id}">${displayName}</option>`;
+                    roleDropdown.innerHTML += `<li><a class="dropdown-item role-filter" href="javascript:;" data-value="${role.id}">${displayName}</a></li>`;
+                });
+            } else {
+                console.log('No roles data available');
+                roleDropdown.innerHTML += `<li><a class="dropdown-item" href="javascript:;">Không có dữ liệu vai trò</a></li>`;
+            }
+
+            // Add event listeners for ALL role filter items (including "Tất cả")
+            roleDropdown.querySelectorAll('a.dropdown-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const roleId = this.getAttribute('data-value');
+                    console.log('Role filter clicked:', roleId || 'All');
+                    filterByRole(roleId || '');
+                });
+            });
+        }
+
+        async function fetchStaff() {
+            try {
+                console.log('=== FETCHING STAFF DEBUG ===');
+                const params = new URLSearchParams();
+                const keyword = document.getElementById('keyword').value.trim();
+                
+                // Thử cả 2 endpoint để debug
+                let url = `${apiBase}`;
+                if (keyword || currentFilter || currentRoleFilter) {
+                    url = `${apiBase}/search`;
+                    // Build search parameters theo UserSearchDto
+                    if (keyword) params.append('searchKeyword', keyword);
+
+                    // Build search parameters based on filter
+                    if (currentFilter === 'active') params.append('isLocked', 'false');
+                    else if (currentFilter === 'inactive') params.append('isLocked', 'true');
+
+                    // Add role filter bằng roleId
+                    if (currentRoleFilter) {
+                        params.append('roleId', currentRoleFilter);
+                    }
+                }
+
+                // Thêm pagination mặc định
+                params.append('page', '1');
+                params.append('pageSize', '100');
+
+                const finalUrl = `${url}${params.toString() ? '?' + params.toString() : ''}`;
+                console.log('Request URL:', finalUrl);
+                console.log('Request headers:', { Authorization: `Bearer ${token}` });
+
+                const headers = {};
+                if (token) {
+                    headers.Authorization = `Bearer ${token}`;
+                }
+                
+                console.log('Request headers to send:', headers);
+                
+                const res = await fetch(finalUrl, {
+                    headers: headers
+                });
+
+                console.log('Response status:', res.status);
+                console.log('Response headers:', res.headers);
+
+                if (res.ok) {
+                    const json = await res.json();
+                    console.log('Raw response data:', json);
+                    
+                    // Debug multiple possible data structures
+                    console.log('json.data:', json.data);
+                    console.log('json.data?.items:', json.data?.items);
+                    console.log('json.items:', json.items);
+                    
+                    // Try different data extraction methods
+                    let extractedData = [];
+                    if (json.data?.data) {
+                        extractedData = json.data.data;
+                        console.log('Using json.data.items');
+                    } else if (json.data && Array.isArray(json.data)) {
+                        extractedData = json.data;
+                        console.log('Using json.data as array');
+                    } else if (json.items) {
+                        extractedData = json.items;
+                        console.log('Using json.items');
+                    } else if (Array.isArray(json)) {
+                        extractedData = json;
+                        console.log('Using json as array');
+                    }
+                    
+                    staffData = extractedData;
+                    console.log('Final staff data:', staffData);
+                    console.log('Staff data length:', staffData.length);
+                    
+                    renderStaffTable();
+                    updateCounters();
+                } else {
+                    const errorText = await res.text();
+                    console.error('Failed to fetch staff:', res.status, res.statusText, errorText);
+                    toastr.error('Không thể tải danh sách nhân viên: ' + res.status);
+                    
+                    // Add mock data for testing
+                    staffData = [
+                        {
+                            id: '1',
+                            userName: 'Test User',
+                            email: 'test@example.com',
+                            phoneNumber: '0123456789',
+                            roles: ['Admin'],
+                            isLocked: false,
+                            createdDate: new Date().toISOString()
+                        }
+                    ];
+                    console.log('Using mock data:', staffData);
+                    renderStaffTable();
+                    updateCounters();
+                }
+            } catch (error) {
+                console.error('Error fetching staff:', error);
+                toastr.error('Có lỗi xảy ra khi tải dữ liệu: ' + error.message);
+                
+                // Add mock data for testing
+                staffData = [
+                    {
+                        id: '1',
+                        userName: 'Mock User',
+                        email: 'mock@example.com',
+                        phoneNumber: '0123456789',
+                        roles: ['Admin'],
+                        isLocked: false,
+                        createdDate: new Date().toISOString()
+                    }
+                ];
+                console.log('Using mock data due to error:', staffData);
+                renderStaffTable();
+                updateCounters();
+            }
+        }
+
+        function renderStaffTable() {
+            console.log('=== RENDER TABLE DEBUG ===');
+            const tbody = document.querySelector('#staffTable tbody');
+            console.log('Table tbody element:', tbody);
+            
+            if (!tbody) {
+                console.error('Table tbody not found!');
+                return;
+            }
+            
+            tbody.innerHTML = '';
+            console.log('Original staff data:', staffData);
+            console.log('Staff data type:', typeof staffData);
+            console.log('Is array:', Array.isArray(staffData));
+
+            // Apply local filtering if needed
+            let filteredData = staffData;
+
+            // Apply role filter locally nếu cần (API đã handle rồi, nhưng để backup)
+            if (currentRoleFilter) {
+                filteredData = filteredData.filter(staff => 
+                    staff.roles && staff.roles.some(role => {
+                        const matchingRole = rolesMaster.find(r => r.id === currentRoleFilter);
+                        return matchingRole && role === matchingRole.name;
+                    })
+                );
+            }
+
+            console.log('Filtered data:', filteredData);
+
+            if (filteredData.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="text-center py-4">
+                            <i class="bi bi-person-x fs-1 text-muted"></i>
+                            <p class="text-muted mt-2">Không có nhân viên nào phù hợp với bộ lọc</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            console.log('About to render', filteredData.length, 'items');
+            
+            filteredData.forEach((staff, index) => {
+                console.log(`Processing staff ${index}:`, staff);
+                const avatarUrl = '/assets/images/avatars/01.png'; // Default avatar
+                const roles = staff.roles && staff.roles.length > 0
+                    ? staff.roles.map(r => `<span class="badge bg-secondary me-1">${r}</span>`).join('')
+                    : '<span class="text-muted">Chưa có vai trò</span>';
+                const statusBadge = !staff.isLocked
+                    ? '<span class="badge bg-success">Đang hoạt động</span>'
+                    : '<span class="badge bg-danger">Bị khóa</span>';
+                const joinDate = staff.createdDate ? new Date(staff.createdDate).toLocaleDateString('vi-VN') : 'N/A';
+
+                const rowHTML = `
+                    <tr>
+                        <td><input class="form-check-input staff-checkbox" type="checkbox" value="${staff.id}"></td>
+                        <td>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="product-box">
+                                    <img src="${avatarUrl}" width="50" height="50" class="rounded-circle object-fit-cover" alt="${staff.userName || staff.email}">
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-title fw-bold">${staff.userName || staff.email || 'N/A'}</div>
+                                    <p class="mb-0 product-category text-muted">ID: ${staff.id}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${staff.email || 'N/A'}</td>
+                        <td>${staff.phoneNumber || 'N/A'}</td>
+                        <td><span class="text-muted">N/A</span></td>
+                        <td>${roles}</td>
+                        <td>${statusBadge}</td>
+                        <td>${joinDate}</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-filter dropdown-toggle dropdown-toggle-nocaret"
+                                        type="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item edit-btn" href="javascript:void(0)" data-id="${staff.id}">
+                                        <i class="bi bi-pencil me-2"></i>Sửa
+                                    </a></li>
+                                    <li><a class="dropdown-item delete-btn" href="javascript:void(0)" data-id="${staff.id}">
+                                        <i class="bi bi-trash me-2"></i>Xóa
+                                    </a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item ${staff.isLocked ? 'unlock-btn' : 'lock-btn'}"
+                                           href="javascript:void(0)"
+                                           data-id="${staff.id}">
+                                        <i class="bi bi-${staff.isLocked ? 'unlock' : 'lock'} me-2"></i>
+                                        ${staff.isLocked ? 'Mở khóa' : 'Khóa tài khoản'}
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                console.log(`Adding row ${index} to table`);
+                tbody.innerHTML += rowHTML;
+            });
+            
+            console.log('Table render complete. Final tbody content length:', tbody.innerHTML.length);
+        }
+
+        function updateCounters() {
+            const total = staffData.length;
+            const active = staffData.filter(s => !s.isLocked).length;
+            const inactive = total - active;
+            const oneMonthAgo = new Date();
+            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+            const newStaff = staffData.filter(s => new Date(s.createdDate) > oneMonthAgo).length;
+
+            document.getElementById('countAll').textContent = `(${total})`;
+            document.getElementById('countActive').textContent = `(${active})`;
+            document.getElementById('countInactive').textContent = `(${inactive})`;
+            document.getElementById('countNew').textContent = `(${newStaff})`;
+        }
+
+        async function saveStaff() {
+            try {
+                const id = document.getElementById('staffId').value;
+                const rolesSelect = document.getElementById('rolesSelect');
+                const selectedRoles = Array.from(rolesSelect.selectedOptions).map(option => option.value);
+                
+                if (id) {
+                    // Update existing user - chỉ update thông tin cơ bản
+                    const userData = {
+                        userName: document.getElementById('fullName').value,
+                        email: document.getElementById('email').value,
+                        phoneNumber: document.getElementById('phoneNumber').value || ''
+                    };
+
+                    const password = document.getElementById('password').value;
+                    if (password) userData.password = password;
+
+                    const res = await fetch(`${apiBase}/${id}`, {
+                        method: "PUT",
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(userData)
+                    });
+
+                    if (res.ok) {
+                        // Update roles riêng
+                        if (selectedRoles.length > 0) {
+                            await updateUserRoles(id, selectedRoles);
+                        }
+                        toastr.success("Cập nhật nhân viên thành công");
+                        const staffModal = bootstrap.Modal.getInstance(document.getElementById('staffModal'));
+                        staffModal.hide();
+                        fetchStaff();
+                    } else {
+                        const err = await res.json();
+                        toastr.error(err.message || 'Có lỗi xảy ra');
+                    }
+                } else {
+                    // Create new user - sử dụng CreateUserDto
+                    const userData = {
+                        userName: document.getElementById('fullName').value,
+                        email: document.getElementById('email').value,
+                        phoneNumber: document.getElementById('phoneNumber').value || '',
+                        password: document.getElementById('password').value || 'TempPassword123!', // Required field
+                        roleIds: selectedRoles,
+                        emailConfirmed: true // Tự động confirm email cho admin tạo
+                    };
+
+                    const res = await fetch(apiBase, {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(userData)
+                    });
+
+                    if (res.ok) {
+                        toastr.success("Thêm nhân viên thành công");
+                        const staffModal = bootstrap.Modal.getInstance(document.getElementById('staffModal'));
+                        staffModal.hide();
+                        fetchStaff();
+                    } else {
+                        const err = await res.json();
+                        toastr.error(err.message || 'Có lỗi xảy ra');
+                    }
+                }
+
+
+            } catch (error) {
+                console.error('Error saving staff:', error);
+                toastr.error('Có lỗi xảy ra khi lưu dữ liệu');
+            }
+        }
+
+        async function updateUserRoles(userId, roleIds) {
+            try {
+                const res = await fetch(`${apiBase}/update-roles/${userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ roleIds: roleIds })
+                });
+
+                if (!res.ok) {
+                    const err = await res.json();
+                    toastr.warning(`Lưu vai trò thất bại: ${err.message}`);
+                }
+            } catch (error) {
+                console.error('Error updating user roles:', error);
+                toastr.warning('Có lỗi khi cập nhật vai trò');
+            }
+        }
+
+        async function loadStaffForEdit(id) {
+            try {
+                const res = await fetch(`${apiBase}/get-by-id/${id}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                if (res.ok) {
+                    const { data } = await res.json();
+                    resetModal(data);
+                    const staffModal = new bootstrap.Modal(document.getElementById('staffModal'));
+                    staffModal.show();
+                } else {
+                    toastr.error('Không thể tải thông tin nhân viên');
+                }
+            } catch (error) {
+                console.error('Error loading staff for edit:', error);
+                toastr.error('Có lỗi xảy ra');
+            }
+        }
+
+        async function deleteStaff(id) {
+            if (!confirm('Bạn có chắc chắn muốn xóa nhân viên này?')) return;
+
+            try {
+                const res = await fetch(`${apiBase}/delete/${id}`, {
+                    method: 'DELETE',
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                if (res.ok) {
+                    toastr.success('Đã xóa nhân viên');
+                    fetchStaff();
+                } else {
+                    toastr.error('Không thể xóa nhân viên');
+                }
+            } catch (error) {
+                console.error('Error deleting staff:', error);
+                toastr.error('Có lỗi xảy ra');
+            }
+        }
+
+        function resetModal(staff = null) {
+            document.getElementById('staffId').value = staff?.id || '';
+            document.getElementById('fullName').value = staff?.userName || '';
+            const emailInput = document.getElementById('email');
+            emailInput.value = staff?.email || '';
+            emailInput.readOnly = !!staff;
+            document.getElementById('phoneNumber').value = staff?.phoneNumber || '';
+            document.getElementById('password').value = '';
+            // Note: API không có shift field, bỏ qua phần này
+            // document.getElementById('shiftSelect').value = staff?.shiftId || '';
+            document.getElementById('isActive').checked = !staff?.isLocked ?? true;
+
+            const defaultAvatar = '/assets/images/avatars/01.png';
+            document.getElementById('imagePreview').style.backgroundImage = `url(${staff?.avatar || defaultAvatar})`;
+            document.getElementById('imageUpload').value = '';
+
+            const rolesSelect = document.getElementById('rolesSelect');
+            // Clear all selections first
+            Array.from(rolesSelect.options).forEach(option => option.selected = false);
+            
+            if (staff?.roles && rolesMaster.length) {
+                // staff.roles là array string, rolesMaster có id và name
+                const roleIds = rolesMaster
+                    .filter(r => staff.roles.includes(r.name))
+                    .map(r => r.id);
+                
+                roleIds.forEach(roleId => {
+                    const option = rolesSelect.querySelector(`option[value="${roleId}"]`);
+                    if (option) option.selected = true;
+                });
+            }
+
+            document.getElementById('staffModalLabel').textContent = staff ? 'Cập nhật Nhân viên' : 'Thêm Nhân viên';
+        }
+
+        async function lockUser(id) {
+            const days = prompt('Nhập số ngày khóa tài khoản:', '30');
+            if (!days || isNaN(days)) return;
+
+            try {
+                const res = await fetch(`${apiBase}/lock/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ lockoutDays: parseInt(days) })
+                });
+
+                if (res.ok) {
+                    toastr.success('Đã khóa tài khoản nhân viên');
+                    fetchStaff();
+                } else {
+                    toastr.error('Không thể khóa tài khoản');
+                }
+            } catch (error) {
+                console.error('Error locking user:', error);
+                toastr.error('Có lỗi xảy ra');
+            }
+        }
+
+        async function unlockUser(id) {
+            if (!confirm('Bạn có chắc chắn muốn mở khóa tài khoản này?')) return;
+
+            try {
+                const res = await fetch(`${apiBase}/unlock/${id}`, {
+                    method: 'POST',
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                if (res.ok) {
+                    toastr.success('Đã mở khóa tài khoản nhân viên');
+                    fetchStaff();
+                } else {
+                    toastr.error('Không thể mở khóa tài khoản');
+                }
+            } catch (error) {
+                console.error('Error unlocking user:', error);
+                toastr.error('Có lỗi xảy ra');
+            }
+        }
+
+        function exportToExcel() {
+            const selectedCheckboxes = document.querySelectorAll('.staff-checkbox:checked');
+            const selectedIds = Array.from(selectedCheckboxes).map(checkbox => checkbox.value);
+
+            if (selectedIds.length === 0) {
+                toastr.warning('Vui lòng chọn ít nhất một nhân viên để xuất');
+                return;
+            }
+
+            // Implement export functionality
+            toastr.info('Tính năng xuất Excel đang được phát triển');
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+    </script>
+}
