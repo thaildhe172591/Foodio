@@ -103,6 +103,7 @@ public static class DependencyInjection
 
         // Repository registrations
         services.AddScoped<IMenuItemRepository, MenuItemRepository>();
+        services.AddScoped<IShiftRepository, ShiftRepository>();
 
         // Auth related services
         services.AddScoped<ITokenService, TokenService>();
@@ -110,6 +111,9 @@ public static class DependencyInjection
         services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserManagementService, UserManagementService>();
+
+        // Shift management services
+        services.AddScoped<IShiftService, ShiftService>();
 
         // Common services
         services.AddHttpClient("FoodioAPI", c =>

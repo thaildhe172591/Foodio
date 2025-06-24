@@ -13,6 +13,12 @@
     #usersTable td {
         color: whitesmoke !important;
     }
+
+    #shiftsTable th,
+    #shiftsTable td {
+        color: whitesmoke !important;
+    }
+    
 </style>
 
 <main class="main-wrapper">
@@ -247,34 +253,58 @@
             
             // Khởi tạo DataTable cho ca làm việc
             window.shiftsTable = $('#shiftsTable').DataTable({
+                order: [[0, 'desc']], // Sắp xếp theo ngày mới nhất
                 columns: [
                     { 
                         data: 'startTime',
+                        title: 'Ngày',
                         render: function(data) {
+                            if (!data) return '';
                             return new Date(data).toLocaleDateString('vi-VN');
                         }
                     },
                     { 
                         data: 'startTime',
+                        title: 'Giờ bắt đầu',
                         render: function(data) {
+                            if (!data) return '';
                             return new Date(data).toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
                         }
                     },
                     { 
                         data: 'endTime',
+                        title: 'Giờ kết thúc',
                         render: function(data) {
+                            if (!data) return '';
                             return new Date(data).toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
                         }
                     },
-                    { data: 'role' },
+                    { 
+                        data: 'role',
+                        title: 'Vai trò',
+                        render: function(data) {
+                            const roleMap = {
+                                'Admin': 'Quản lý',
+                                'Cashier': 'Thu ngân', 
+                                'Kitchen': 'Bếp',
+                                'Shipper': 'Giao hàng'
+                            };
+                            return roleMap[data] || data;
+                        }
+                    },
                     {
                         data: null,
+                        title: 'Hành động',
                         orderable: false,
-                        render: d => `
-                            <div class="btn-group btn-group-sm">
-                                <button class="btn btn-outline-primary edit-shift-btn" style='margin-right:6px' data-shift='${JSON.stringify(d)}' title="Sửa ca làm"><i class="bi bi-pencil"></i></button>
-                                <button class="btn btn-outline-danger delete-shift-btn" data-id="${d.id}" title="Xóa ca làm"><i class="bi bi-trash"></i></button>
-                            </div>`
+                        render: function(d) {
+                            // Escape single quotes trong JSON để tránh lỗi
+                            const shiftDataEncoded = encodeURIComponent(JSON.stringify(d));
+                            return `
+                                <div class="btn-group btn-group-sm">
+                                    <button class="btn btn-outline-primary edit-shift-btn" style='margin-right:6px' data-shift='${shiftDataEncoded}' title="Sửa ca làm"><i class="bi bi-pencil"></i></button>
+                                    <button class="btn btn-outline-danger delete-shift-btn" data-id="${d.id}" title="Xóa ca làm"><i class="bi bi-trash"></i></button>
+                                </div>`;
+                        }
                     }
                 ]
             });
@@ -372,7 +402,8 @@
 
             // Chỉnh sửa ca làm việc
             $(document).on('click', '.edit-shift-btn', function () {
-                const shiftData = JSON.parse($(this).data('shift'));
+                const shiftDataEncoded = $(this).data('shift');
+                const shiftData = JSON.parse(decodeURIComponent(shiftDataEncoded));
                 editShift(shiftData);
             });
 
@@ -433,7 +464,8 @@
 
         // ===== QUẢN LÝ CA LÀM VIỆC =====
         let currentUserId = '';
-        let shiftsData = []; // Mock data cho demo
+        let shiftsData = [];
+        const shiftApiBase = "/api/admin/shifts";
 
         function openShiftModal(userId, userName) {
             currentUserId = userId;
@@ -444,29 +476,30 @@
             $('#shiftModal').modal('show');
         }
 
-        function loadShifts(userId) {
-            // Mock data - trong thực tế sẽ gọi API
-            const mockShifts = [
-                {
-                    id: '1',
-                    userId: userId,
-                    startTime: '2024-01-15T08:00:00',
-                    endTime: '2024-01-15T16:00:00',
-                    role: 'Cashier'
-                },
-                {
-                    id: '2', 
-                    userId: userId,
-                    startTime: '2024-01-16T14:00:00',
-                    endTime: '2024-01-16T22:00:00',
-                    role: 'Kitchen'
+        async function loadShifts(userId) {
+            try {
+                const res = await fetch(`${shiftApiBase}/user/${userId}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                
+                if (res.ok) {
+                    const response = await res.json();
+                    shiftsData = response.data || [];
+                    window.shiftsTable.clear();
+                    window.shiftsTable.rows.add(shiftsData);
+                    window.shiftsTable.draw();
+                } else {
+                    console.error('Lỗi khi tải ca làm việc:', res.statusText);
+                    toastr.error('Không thể tải danh sách ca làm việc');
+                    shiftsData = [];
+                    window.shiftsTable.clear().draw();
                 }
-            ];
-            
-            shiftsData = mockShifts;
-            window.shiftsTable.clear();
-            window.shiftsTable.rows.add(mockShifts);
-            window.shiftsTable.draw();
+            } catch (error) {
+                console.error('Lỗi khi gọi API ca làm việc:', error);
+                toastr.error('Có lỗi xảy ra khi tải ca làm việc');
+                shiftsData = [];
+                window.shiftsTable.clear().draw();
+            }
         }
 
         function resetShiftForm() {
@@ -476,7 +509,7 @@
             $('#cancelShiftBtn').hide();
         }
 
-        function saveShift() {
+        async function saveShift() {
             const shiftId = $('#shiftId').val();
             const startDate = $('#shiftStartDate').val();
             const startTime = $('#shiftStartTime').val();
@@ -497,30 +530,49 @@
             }
 
             const shiftData = {
-                id: shiftId || Date.now().toString(),
                 userId: currentUserId,
                 startTime: startDateTime.toISOString(),
                 endTime: endDateTime.toISOString(),
                 role: role
             };
 
-            if (shiftId) {
-                // Cập nhật ca làm việc
-                const index = shiftsData.findIndex(s => s.id === shiftId);
-                if (index !== -1) {
-                    shiftsData[index] = shiftData;
-                    toastr.success('Đã cập nhật ca làm việc');
+            try {
+                let res;
+                if (shiftId) {
+                    // Cập nhật ca làm việc
+                    res = await fetch(`${shiftApiBase}/${shiftId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${token}`
+                        },
+                        body: JSON.stringify(shiftData)
+                    });
+                } else {
+                    // Thêm ca làm việc mới
+                    res = await fetch(shiftApiBase, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${token}`
+                        },
+                        body: JSON.stringify(shiftData)
+                    });
                 }
-            } else {
-                // Thêm ca làm việc mới
-                shiftsData.push(shiftData);
-                toastr.success('Đã thêm ca làm việc');
-            }
 
-            window.shiftsTable.clear();
-            window.shiftsTable.rows.add(shiftsData);
-            window.shiftsTable.draw();
-            resetShiftForm();
+                if (res.ok) {
+                    const response = await res.json();
+                    toastr.success(response.message || (shiftId ? 'Đã cập nhật ca làm việc' : 'Đã thêm ca làm việc'));
+                    resetShiftForm();
+                    loadShifts(currentUserId); // Reload danh sách ca làm việc
+                } else {
+                    const error = await res.json();
+                    toastr.error(error.message || 'Có lỗi xảy ra');
+                }
+            } catch (error) {
+                console.error('Lỗi khi lưu ca làm việc:', error);
+                toastr.error('Có lỗi xảy ra khi lưu ca làm việc');
+            }
         }
 
         function editShift(shiftData) {
@@ -537,14 +589,27 @@
             $('#cancelShiftBtn').show();
         }
 
-        function deleteShift(shiftId) {
+        async function deleteShift(shiftId) {
             if (!confirm('Bạn có chắc muốn xóa ca làm việc này?')) return;
             
-            shiftsData = shiftsData.filter(s => s.id !== shiftId);
-            window.shiftsTable.clear();
-            window.shiftsTable.rows.add(shiftsData);
-            window.shiftsTable.draw();
-            toastr.success('Đã xóa ca làm việc');
+            try {
+                const res = await fetch(`${shiftApiBase}/${shiftId}`, {
+                    method: 'DELETE',
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                if (res.ok) {
+                    const response = await res.json();
+                    toastr.success(response.message || 'Đã xóa ca làm việc');
+                    loadShifts(currentUserId); // Reload danh sách ca làm việc
+                } else {
+                    const error = await res.json();
+                    toastr.error(error.message || 'Không thể xóa ca làm việc');
+                }
+            } catch (error) {
+                console.error('Lỗi khi xóa ca làm việc:', error);
+                toastr.error('Có lỗi xảy ra khi xóa ca làm việc');
+            }
         }
     </script>
 }
