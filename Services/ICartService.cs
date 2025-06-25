@@ -12,4 +12,6 @@ public interface ICartService
     Task<IEnumerable<CartItemDto>> GetCartAsync(string userId);
     Task<bool> SubmitDeliveryInfoAsync(string userId, DeliveryInfoDto dto);
     Task<bool> ConfirmOrderAsync(string userId, ConfirmOrderDto dto);
+    Task<bool> RemoveCartItemAsync(string userId, Guid cartItemId);
+    Task<bool> UpdateCartItemQuantityAsync(string userId, UpdateCartItemDto dto);
 }

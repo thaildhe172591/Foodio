@@ -14,7 +14,9 @@ namespace FoodioAPI.Controllers
 
         private string GetCurrentUserId()
         {
-            return User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value!;
+            //return User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value!;
+            return "044f88e2-0944-4fa0-a27f-7a368a55b35c";
+
         }
         public CartController(ICartService cartService)
         {
@@ -75,6 +77,29 @@ namespace FoodioAPI.Controllers
             var success = await _cartService.ConfirmOrderAsync(userId, dto);
             return success ? Ok(new { message = "Xác nhận đơn hàng thành công!" })
                            : BadRequest(new { message = "Không thể xác nhận đơn hàng." });
+        }
+
+        [HttpDelete("remove/{cartItemId}")]
+        public async Task<IActionResult> RemoveCartItem(Guid cartItemId)
+        {
+            var userId = GetCurrentUserId();
+
+            var result = await _cartService.RemoveCartItemAsync(userId, cartItemId);
+            if (!result)
+                return NotFound(new { message = "Không tìm thấy món để xoá." });
+
+            return Ok(new { message = "Đã xoá món khỏi giỏ hàng." });
+        }
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateCartItem([FromBody] UpdateCartItemDto dto)
+        {
+            var userId = GetCurrentUserId();
+            var result = await _cartService.UpdateCartItemQuantityAsync(userId, dto);
+
+            if (!result)
+                return NotFound(new { message = "Không tìm thấy món hoặc giỏ hàng." });
+
+            return Ok(new { message = "Cập nhật số lượng thành công." });
         }
     }
 }

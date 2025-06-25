@@ -95,6 +95,9 @@ public static class DependencyInjection
         services.AddScoped<IMenuService, MenuService>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IStatisticsService, StatisticsService>();
+        services.AddScoped<ICartService, CartService>();
+        services.AddScoped<IOrderService, OrderService>();
+        services.AddScoped<IMenuService, MenuService>();
         services.AddSingleton<IStorageService>(s => new StorageService());
 
         // UnitOfWork, BaseRepository

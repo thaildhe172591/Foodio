@@ -1,0 +1,146 @@
+﻿@page "/checkout"
+@{
+    ViewData["Title"] = "Xác nhận đơn hàng";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Xác nhận đơn hàng</h2>
+
+    <div class="card mb-3 p-3">
+        <h5>Thông tin giao hàng</h5>
+        <div class="mb-2">
+            <label class="form-label">Họ tên</label>
+            <input type="text" class="form-control" id="customerName">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Số điện thoại</label>
+            <input type="tel" class="form-control" id="phone">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Địa chỉ giao hàng</label>
+            <textarea class="form-control" rows="2" id="address"></textarea>
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Ghi chú đơn hàng</label>
+            <textarea class="form-control" rows="2" id="note" placeholder="VD: Gọi trước khi giao, không lấy hành..."></textarea>
+        </div>
+    </div>
+
+    <div class="card p-3 mb-3">
+        <h5>Danh sách món đã đặt</h5>
+        <div id="cartItems"></div>
+    </div>
+
+    <div class="card p-3 mb-3">
+        <h5>Chi tiết thanh toán</h5>
+        <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Tổng giá món</span>
+                <strong id="itemTotal">0 đ</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Phí giao hàng</span>
+                <span id="deliveryFee">15.000 đ</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Phí áp dụng</span>
+                <span id="serviceFee">3.000 đ</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <strong>Tổng thanh toán</strong>
+                <strong id="totalPrice">0 đ</strong>
+            </li>
+        </ul>
+    </div>
+
+    <div class="d-grid">
+        <button class="btn btn-danger btn-lg" onclick="submitOrder()">Đặt đơn</button>
+    </div>
+</div>
+
+<script>
+    const cart = JSON.parse(localStorage.getItem("foodioCart") || "{}");
+    const cartItemsContainer = document.getElementById("cartItems");
+    let itemTotal = 0;
+
+    for (const id in cart) {
+        const item = cart[id];
+        itemTotal += item.price * item.qty;
+
+        const div = document.createElement("div");
+        div.className = "d-flex justify-content-between align-items-center border-bottom py-2";
+        div.innerHTML = `
+            <div>
+                <strong>${item.name}</strong><br/>
+                Số lượng:
+                <input type="number" min="1" value="${item.qty}" data-id="${id}" class="form-control d-inline w-auto qty-input" style="width: 60px;">
+                <button class="btn btn-sm btn-outline-danger ms-2" onclick="removeItem('${id}')">Xoá</button>
+            </div>
+            <div>${(item.price * item.qty).toLocaleString()} đ</div>
+        `;
+        cartItemsContainer.appendChild(div);
+    }
+
+    document.querySelectorAll(".qty-input").forEach(input => {
+        input.addEventListener("change", () => {
+            const id = input.dataset.id;
+            const newQty = parseInt(input.value);
+            cart[id].qty = newQty;
+            localStorage.setItem("foodioCart", JSON.stringify(cart));
+            location.reload();
+        });
+    });
+
+    function removeItem(id) {
+        delete cart[id];
+        localStorage.setItem("foodioCart", JSON.stringify(cart));
+        location.reload();
+    }
+
+    const deliveryFee = 15000;
+    const serviceFee = 3000;
+    document.getElementById("itemTotal").textContent = itemTotal.toLocaleString() + " đ";
+    document.getElementById("totalPrice").textContent = (itemTotal + deliveryFee + serviceFee).toLocaleString() + " đ";
+
+    async function submitOrder() {
+        const name = document.getElementById("customerName").value;
+        const phone = document.getElementById("phone").value;
+        const address = document.getElementById("address").value;
+        const note = document.getElementById("note").value;
+
+        if (!name || !phone || !address) {
+            alert("Vui lòng nhập đủ thông tin giao hàng!");
+            return;
+        }
+
+        try {
+            const deliveryInfoResponse = await fetch("/api/cart/delivery-info", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    receiverName: name,
+                    receiverPhone: phone,
+                    deliveryAddress: address,
+                    note: note,
+                    type: "delivery"
+                })
+            });
+
+            if (!deliveryInfoResponse.ok) throw new Error("Không gửi được thông tin giao hàng");
+
+            const confirmResponse = await fetch("/api/cart/confirm", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ type: "delivery" })
+            });
+
+            if (!confirmResponse.ok) throw new Error("Xác nhận đơn hàng thất bại");
+
+            alert("Đặt hàng thành công!");
+            localStorage.removeItem("foodioCart");
+            window.location.href = "/";
+        } catch (error) {
+            alert("Lỗi khi đặt hàng: " + error.message);
+        }
+    }
+</script>
