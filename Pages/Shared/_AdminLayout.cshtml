@@ -1,0 +1,134 @@
+﻿<!doctype html>
+<html lang="en" data-bs-theme="blue-theme">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PRN</title>
+    <!--favicon-->
+    <link rel="icon" href="~/assets/images/favicon-32x32.png" type="image/png">
+    <!-- loader-->
+    <link href="~/assets/css/pace.min.css" rel="stylesheet">
+    <script src="~/assets/js/pace.min.js"></script>
+
+    <!--plugins-->
+    <link href="~/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/metismenu/metisMenu.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/metismenu/mm-vertical.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/simplebar/css/simplebar.css">
+    <!--bootstrap css-->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+    <!--main css-->
+    <link href="~/assets/css/bootstrap-extended.css" rel="stylesheet">
+    <link href="~/sass/main.css" rel="stylesheet">
+    <link href="~/sass/responsive.css" rel="stylesheet">
+    <link href="~/sass/dark-theme.css" rel="stylesheet">
+    <link href="~/sass/blue-theme.css" rel="stylesheet">
+    <link href="~/sass/semi-dark.css" rel="stylesheet">
+    <link href="~/sass/bordered-theme.css" rel="stylesheet">
+    @* <style>
+    body { background-color: #f8f9fa; color: #212529; }
+    .card { background-color: #ffffff; }
+    table.dataTable tbody tr:hover { background-color: #e9ecef; }
+    </style> *@
+</head>
+
+<body>
+    <!--start sidebar-->
+    <aside class="sidebar-wrapper" data-simplebar="true">
+        <div class="sidebar-header">
+            <div class="logo-icon">
+                <img src="assets/images/logo-icon.png" class="logo-img" alt="">
+            </div>
+            <div class="logo-name flex-grow-1">
+                <h5 class="mb-0">Maxton</h5>
+            </div>
+            <div class="sidebar-close">
+                <span class="material-icons-outlined">close</span>
+            </div>
+        </div>
+        <div class="sidebar-nav">
+            <!--navigation-->
+            <ul class="metismenu" id="sidenav">
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="material-icons-outlined">home</i>
+                        </div>
+                        <div class="menu-title">Quản lý tài khoản</div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/Admin/StaffManager"><i class="material-icons-outlined">arrow_right</i>Quản lý nhân viên</a>
+                        </li>
+                        <li>
+                            <a href="/Admin/UserManager"><i class="material-icons-outlined">arrow_right</i>Quản lý khách hàng</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="material-icons-outlined">shopping_bag</i>
+                        </div>
+                        <div class="menu-title">Menu</div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/Admin/MenuItems"><i class="material-icons-outlined">arrow_right</i>Danh sách Menu</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="material-icons-outlined">shopping_bag</i>
+                        </div>
+                        <div class="menu-title">Statistics</div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/Admin/Statistics"><i class="material-icons-outlined">arrow_right</i>Statistics Management</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascrpt:;">
+                        <div class="parent-icon">
+                            <i class="material-icons-outlined">support</i>
+                        </div>
+                        <div class="menu-title">Logout</div>
+                    </a>
+                </li>
+            </ul>
+            <!--end navigation-->
+        </div>
+    </aside>
+    <!--end sidebar-->
+    @RenderBody()
+
+    <!--start overlay-->
+    <div class="overlay btn-toggle"></div>
+    <!--end overlay-->
+    <!--start footer-->
+    <footer class="page-footer">
+        <p class="mb-0">Copyright © 2024. All right reserved.</p>
+    </footer>
+    <!--top footer-->
+
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!--plugins-->
+    <script src="~/assets/js/jquery.min.js"></script>
+    <!--plugins-->
+    <script src="~/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+    <script src="~/assets/plugins/metismenu/metisMenu.min.js"></script>
+    <script src="~/assets/plugins/simplebar/js/simplebar.min.js"></script>
+    <script src="~/assets/js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
