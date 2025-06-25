@@ -1,0 +1,94 @@
+﻿@page
+@model FoodieAPII.Pages.Offline.CustomerSupportModel
+@{
+}
+
+
+<div class="container mt-4">
+    <h3 class="fw-bold mb-4">Hỗ trợ khách hàng</h3>
+    <form id="supportForm">
+        <div class="form-group">
+            <h5>Vui lòng chọn vấn đề bạn gặp phải:</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="water" id="water">
+                <label class="form-check-label" for="water">
+                    Cần nước uống
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="cleaning" id="cleaning">
+                <label class="form-check-label" for="cleaning">
+                    Cần dọn dẹp
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="orderHelp" id="orderHelp">
+                <label class="form-check-label" for="orderHelp">
+                    Cần hỗ trợ về đơn hàng
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="menuHelp" id="menuHelp">
+                <label class="form-check-label" for="menuHelp">
+                    Cần hỗ trợ về menu
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="billIssue" id="billIssue">
+                <label class="form-check-label" for="billIssue">
+                    Có vấn đề với hóa đơn
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="wifi" id="wifi">
+                <label class="form-check-label" for="wifi">
+                    Cần hỗ trợ wifi
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="other" id="other">
+                <label class="form-check-label" for="other">
+                    Vấn đề khác (Vui lòng ghi rõ)
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Gửi yêu cầu</button>
+    </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="supportModal" tabindex="-1" aria-labelledby="supportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="supportModalLabel">Cảm ơn bạn!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Sẽ có bạn nhân viên hỗ trợ bạn trong ít phút tới.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="closeButton">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script>
+    document.getElementById("supportForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Trigger modal after form submission
+        var modal = new bootstrap.Modal(document.getElementById('supportModal'));
+        modal.show();
+    });
+
+    // Redirect to CartAtRestaurant page after closing the modal
+    document.getElementById("closeButton").addEventListener("click", function() {
+        var modal = bootstrap.Modal.getInstance(document.getElementById('supportModal')); 
+        modal.hide(); 
+        window.location.href = '/Offline/CartAtRestaurent';  
+    });
+</script>

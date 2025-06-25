@@ -1,0 +1,167 @@
+﻿@page
+@model FoodieAPII.Pages.Cashier.TableManagementModel
+@{
+    ViewData["HideLayoutHeader"] = true;
+
+}
+
+
+<div class="sticky-top bg-white shadow-sm py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+        <img src="~/images/logo_foddie.jpg" style="height: 80px; object-fit: contain;" />
+        <div class="fw-bold fs-5">Quản lý bàn ăn</div>
+        <div class="d-flex">
+            <a href="#" class="fw-bold fs-5 mx-3">Thu ngân </a>
+       
+        </div>
+    </div>
+</div>
+
+<!-- Danh sách bàn và chức năng bên phải -->
+<div class="container mt-4">
+    <div class="row">
+        <!-- Bàn ăn chiếm 8 phần -->
+        <div class="col-md-10">
+            <div class="row" id="table-management">
+                <!-- Bàn Trống và Có khách sẽ được tạo động ở đây -->
+            </div>
+        </div>
+
+        <!-- Chức năng bên phải chiếm 4 phần -->
+        <div class="col-md-2">
+            <!-- Các liên kết chức năng hiển thị theo chiều dọc -->
+            <div class="sticky-top bg-light py-2 shadow-sm">
+                <div class="d-flex flex-column">
+                    <a href="/Cashier/OrderOnlineCashier" class="sidebar-link mb-2">Đơn online</a>
+                    <a href="/Cashier/SalesRevenue" class="sidebar-link mb-2">Doanh thu</a>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .sidebar-link {
+        text-decoration: none;
+        color: inherit;
+        padding: 10px;
+        font-size: 18px;
+        display: flex; /* Sử dụng Flexbox */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        justify-content: center; /* Căn giữa theo chiều ngang */
+        height: 50px; /* Chiều cao của mỗi mục liên kết */
+        transition: background-color 0.3s;
+    }
+
+        .sidebar-link:hover {
+            background-color: #007bff;
+            color: white;
+        }
+    a {
+        text-decoration: none; /* Loại bỏ dấu chân (underline) */
+        color: inherit; /* Đảm bảo màu sắc của thẻ a giống với màu sắc mặc định của văn bản */
+    }
+
+    /* Tùy chỉnh cho các cột */
+    .col-md-8 {
+        padding-right: 15px;
+    }
+
+    .col-md-4 {
+        padding-left: 15px;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 250px;
+        background-color: #f8f9fa;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        padding-top: 20px;
+    }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            padding: 12px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+            .sidebar a:hover {
+                background-color: #007bff;
+                color: white;
+            }
+
+        .sidebar .icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+</style>
+
+<!-- Scripts -->
+<script>
+    // Dữ liệu trạng thái bàn (có 8 bàn)
+    const tables = [
+        { id: 1, status: 'empty' },
+        { id: 2, status: 'empty' },
+        { id: 3, status: 'empty' },
+        { id: 4, status: 'empty' },
+        { id: 5, status: 'empty' },
+        { id: 6, status: 'empty' },
+        { id: 7, status: 'empty' },
+        { id: 8, status: 'empty' }
+    ];
+
+    function createTableElement(table) {
+        return `
+            <div class="col-md-3 mb-4">
+                <a href="/Cashier/FoodManagementCashier" class="d-block text-decoration-none" id="table-${table.id}">
+                    <div class="card text-center shadow-sm rounded-3">
+                        <div class="card-body">
+                            <div class="fw-bold d-block mb-2">Bàn ${table.id}</div>
+                            <p class="text-muted">${table.status === 'empty' ? 'Trống' : 'Có khách'}</p>
+                              </a>
+                            <button class="btn btn-${table.status === 'empty' ? 'success' : 'warning'} btn-sm"
+                                    onclick="toggleTableStatus(event, ${table.id})">
+                                ${table.status === 'empty' ? 'Có khách' : 'Trống lại'}
+                            </button>
+                        </div>
+                    </div>
+              
+            </div>
+        `;
+    }
+
+    function toggleTableStatus(event, tableId) {
+        const table = tables.find(t => t.id === tableId);
+
+        // Nếu trạng thái bàn là 'Có khách', ngừng hành động mặc định của thẻ <a>
+        if (table.status === 'occupied') {
+            event.preventDefault();  // Ngừng điều hướng của <a>
+        }
+
+        // Cập nhật trạng thái bàn
+        table.status = table.status === 'empty' ? 'occupied' : 'empty';
+
+        // Render lại các bàn
+        renderTables();
+    }
+
+    // Hàm render tất cả các bàn
+    function renderTables() {
+        const tableManagementElement = document.getElementById('table-management');
+        tableManagementElement.innerHTML = tables.map(createTableElement).join('');
+    }
+
+    // Khởi tạo trang
+    document.addEventListener('DOMContentLoaded', function () {
+        renderTables();
+    });
+</script>

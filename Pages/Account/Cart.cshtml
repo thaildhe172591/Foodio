@@ -1,0 +1,300 @@
+﻿
+@page "/Account/Cart"
+@model FoodieAPII.Pages.Account.CartModel
+@{
+    ViewData["HideLayoutHeader"] = true;
+}
+
+<!-- HEADER -->
+<div class="sticky-top bg-white shadow-sm" style="z-index:1030;">
+    <div class="container">
+        <div class="header d-flex align-items-center justify-content-between py-3">
+            <img src="~/images/logo_foddie.jpg" alt="GrabFood Logo" style="height:80px;">
+            <div class="d-flex align-items-center gap-4">
+                <button class="btn btn-success rounded-circle position-relative"
+                        style="width:50px;height:50px;"
+                        data-bs-toggle="modal" data-bs-target="#cartModal">
+                    <i class="bi bi-cart3 fs-4 text-white"></i>
+                    <span id="cart-quantity-badge"
+                          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                          style="font-size:0.7em;">4</span>
+                </button>
+                <a href="/Account/User">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="bi bi-person-circle text-dark" style="font-size: 30px;"></i>
+                        <div class="fw-semibold text-dark mt-1">Nguyễn Văn A</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CART BODY -->
+<div class="container py-5">
+    <h2 class="mb-4">Giỏ Hàng của bạn</h2>
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Đơn giá</th>
+                <th class="text-center">Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody id="cart-body">
+            <!-- Ví dụ tĩnh, JS sẽ quản lý qty -->
+            <tr data-id="ITEM001">
+                <td>Combo: Nem nướng + Trà Tắc 500ml</td>
+                <td class="price">58900</td>
+                <td class="text-center">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button class="btn btn-sm btn-danger btn-decrease">–</button>
+                        <span class="qty mx-2">6</span>
+                        <button class="btn btn-sm btn-success btn-increase">+</button>
+                    </div>
+                </td>
+                <td class="subtotal">353,400 ₫</td>
+            </tr>
+            <tr data-id="ITEM002">
+                <td>Bánh Mì Cô Chun</td>
+                <td class="price">35000</td>
+                <td class="text-center">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button class="btn btn-sm btn-danger btn-decrease">–</button>
+                        <span class="qty mx-2">1</span>
+                        <button class="btn btn-sm btn-success btn-increase">+</button>
+                    </div>
+                </td>
+                <td class="subtotal">35,000 ₫</td>
+            </tr>
+            <tr data-id="ITEM003">
+                <td>Chả Giò Rế</td>
+                <td class="price">42000</td>
+                <td class="text-center">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button class="btn btn-sm btn-danger btn-decrease">–</button>
+                        <span class="qty mx-2">1</span>
+                        <button class="btn btn-sm btn-success btn-increase">+</button>
+                    </div>
+                </td>
+                <td class="subtotal">42,000 ₫</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3" class="text-end">Tổng cộng:</th>
+                <th id="cart-total">430,400 ₫</th>
+            </tr>
+        </tfoot>
+    </table>
+    <a href="/Account/HomePageLogin" class="btn btn-secondary">Tiếp tục mua sắm</a>
+    <a href="/Account/TakeoutPayment" class="btn btn-primary ms-2">
+        Thanh toán <i class="bi bi-credit-card ms-1"></i>
+    </a>
+</div>
+
+<!-- DYNAMIC UPDATE SCRIPT -->
+<script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const badge = document.getElementById("cart-quantity-badge");
+        const tbody = document.getElementById('cart-body');
+        const totalCell = document.getElementById('cart-total');
+
+        // Lấy số lượng giỏ hàng từ localStorage và cập nhật badge
+        let qty = parseInt(localStorage.getItem("cartQuantity")) || 0;
+        badge.textContent = qty;
+
+        function formatVND(n) {
+            return n.toLocaleString('vi-VN') + ' ₫';
+        }
+
+        // Tính và cập nhật Tổng cộng
+        function updateTotal() {
+            let sum = 0;
+            tbody.querySelectorAll('tr').forEach(tr => {
+                const txt = tr.querySelector('.subtotal').textContent.replace(/\D/g, '') || '0';
+                sum += parseInt(txt, 10);
+            });
+            totalCell.textContent = formatVND(sum);
+        }
+
+        // Xử lý click + / –
+        tbody.addEventListener('click', e => {
+            let btn = null;
+            if (e.target.classList.contains('btn-increase')) btn = e.target;
+            if (e.target.classList.contains('btn-decrease')) btn = e.target;
+            if (!btn) return;
+
+            const tr    = btn.closest('tr');
+            const price = parseInt(tr.querySelector('.price').textContent, 10);
+            const qtyEl = tr.querySelector('.qty');
+            let   qty   = parseInt(qtyEl.textContent, 10);
+
+            if (btn.classList.contains('btn-increase')) {
+                qty++;
+            } else {
+                qty = Math.max(0, qty - 1);
+            }
+            qtyEl.textContent = qty;
+
+            const sub = price * qty;
+            tr.querySelector('.subtotal').textContent = formatVND(sub);
+
+            // Cập nhật tổng cộng
+            updateTotal();
+
+            // Cập nhật số lượng giỏ hàng vào localStorage
+            localStorage.setItem("cartQuantity", qty);
+        });
+
+        // Khởi tạo lại Tổng cộng ngay khi load
+        updateTotal();
+    });
+
+</script>
+
+<!-- STYLES -->
+<style>
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 24px;
+        background: #fff;
+    }
+
+        .header img {
+            border-radius: 8px;
+        }
+
+    .btn-success.position-relative .badge {
+        transform: translate(25%, -25%);
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .table tfoot th {
+        background: #f8f9fa;
+        font-weight: bold;
+    }
+
+    /* Custom styles */
+    .btn-increase, .btn-decrease {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+        font-size: 18px;
+        border-radius: 50%;
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+        .btn-increase:hover, .btn-decrease:hover {
+            background-color: #e0e0e0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+    .qty {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        margin: 0 10px; /* Adjust space around the quantity */
+    }
+
+    .subtotal {
+        font-size: 16px;
+        font-weight: bold;
+        color: #2d3e50;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    /* Nút thanh toán và tiếp tục mua sắm */
+    .btn-secondary, .btn-primary {
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 25px;
+        display: inline-block;
+        text-align: center;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+    }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+    /* Modal styling */
+    .modal-content {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-header {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .modal-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .modal-body {
+        font-size: 16px;
+    }
+
+    /* Tổng cộng giỏ hàng */
+    #cart-total {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    .btn-success {
+        background: linear-gradient(90deg, #ffc107, #ff8800);
+        color: white;
+        font-weight: 600;
+        border: none;
+        border-radius: 50%;
+        
+        position: relative;
+    }
+
+        .btn-success:hover {
+            background: linear-gradient(90deg, #ff9800, #ff5722);
+        }
+
+    /* Số lượng giỏ hàng (cart quantity badge) */
+    #cart-quantity-badge {
+        position: absolute;
+        top: 0;
+        start: 100%;
+        translate: middle;
+        badge rounded-pill bg-danger;
+        font-size: 0.7em;
+    }
+</style>

@@ -1,0 +1,48 @@
+﻿@page
+@model FoodieAPII.Pages.SplashModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>beFood - Loading</title>
+    <meta http-equiv="refresh" content="5;url=/Account/HomePage" /> <!-- Tự chuyển sau 5 giây -->
+    <style>
+        body {
+            background-color: white;
+            text-align: center;
+            font-family: 'Segoe UI', sans-serif;
+            margin-top: 15%;
+        }
+
+        img {
+            width: 200px;
+        }
+
+        .spinner {
+            margin: 30px auto;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #0055aa;
+        }
+    </style>
+</head>
+<body>
+    <img src="~/images/logo_foddie.jpg" alt="beFood logo" />
+    <div class="title">Hệ Thống Quản Lý Gọi Món</div>
+    <div class="spinner">
+        <img src="~/images/spinner.gif" alt="Loading..." width="40" height="40" />
+    </div>
+</body>
+</html>

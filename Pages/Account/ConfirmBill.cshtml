@@ -1,0 +1,220 @@
+﻿
+@page
+@model FoodieAPII.Pages.Account.ConfirmBillModel
+@{
+    ViewData["HideLayoutHeader"] = true;
+}
+<div class="sticky-top bg-white shadow-sm" style="z-index:1030;">
+    <div class="container sticky-top bd-white">
+        <div class="header">
+            <img src="~/images/logo_foddie.jpg" alt="GrabFood Logo" style="height: 80px;">
+            
+            <div class="header-search-button d-flex align-items-center gap-3">
+               
+                <a href="/Account/User">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="bi bi-person-circle text-dark" style="font-size: 30px;"></i>
+                        <div class="fw-semibold text-dark mt-1">Nguyễn Văn A</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- CSS -->
+<style>
+    .order-summary {
+        background: #fff;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        max-width: 500px;
+        margin: 40px auto;
+    }
+
+    .summary-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .summary-item {
+        margin-bottom: 12px;
+        font-size: 16px;
+    }
+
+    .summary-label {
+        font-weight: 500;
+    }
+
+    .food-list {
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px dashed #ccc;
+    }
+
+    .food-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+        .food-item span:first-child {
+            font-weight: 500;
+        }
+
+    .btn-add-to-cart-custom {
+        background: linear-gradient(90deg, #ffbf2f, #ff9e3e);
+        color: #222;
+        border: none;
+        border-radius: 22px;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 10px 20px;
+        box-shadow: 0 3px 12px 0 rgba(255, 190, 50, 0.13);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+        text-decoration: none;
+        width: 100%;
+    }
+
+        .btn-add-to-cart-custom:hover {
+            background: linear-gradient(90deg, #ffc107, #ff8800);
+            color: #fff !important;
+            box-shadow: 0 6px 20px 0 rgba(255, 180, 30, 0.18);
+            transform: translateY(-2px) scale(1.04);
+            text-decoration: none;
+        }
+
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Đưa phần header-search-button sang phải */
+        padding: 12px 24px;
+        background: #fff;
+        gap: 0;
+    }
+
+        .header img {
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+    .search-container {
+        display: flex;
+        align-items: center;
+        background-color: #f0f0f0;
+        border-radius: 20px;
+        padding: 6px 16px;
+        flex: 1 1 280px;
+        min-width: 180px;
+        max-width: 420px;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    .header-search-button {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .search-container:focus-within {
+        box-shadow: 0 0 0 2px #ff5722;
+    }
+
+    .search-container .bi {
+        font-size: 18px;
+        color: #888;
+    }
+
+    .search-input {
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 16px;
+        width: 100%;
+        padding: 4px 0;
+    }
+</style>
+
+<!-- HTML -->
+<div class="order-summary">
+    <div class="summary-title text-center">Xác Nhận Đơn Hàng</div>
+
+    <div class="summary-item">
+        <span class="summary-label">Loại đơn:</span> Giao hàng
+    </div>
+    <div class="summary-item">
+        <span class="summary-label">Địa chỉ:</span> 123 Đường A, Quận B
+    </div>
+    <div class="summary-item">
+        <span class="summary-label">Số điện thoại:</span> 0123 456 789
+    </div>
+    <div class="summary-item">
+        <span class="summary-label">Ghi chú:</span> Giao trước 11h, không lấy ớt
+    </div>
+
+    <div class="food-list">
+        <div class="summary-label mb-2">Món đã đặt:</div>
+        <div class="food-item">
+            <span>Bánh mì bò nướng</span>
+            <span>1 x 35.000đ</span>
+        </div>
+        <div class="food-item">
+            <span>Trà sữa truyền thống</span>
+            <span>2 x 28.000đ</span>
+        </div>
+        <div class="food-item">
+            <span>Cơm gà xối mỡ</span>
+            <span>1 x 42.000đ</span>
+        </div>
+        <hr />
+        <div class="food-item fw-bold">
+            <span>Tổng cộng</span>
+            <span>133.000đ</span>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-add-to-cart-custom mt-4" onclick="showSuccessPopup()">Đặt hàng</button>
+</div>
+
+<!-- Modal popup -->
+<div class="modal fade" id="orderSuccessModal" tabindex="-1" aria-labelledby="orderSuccessModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+            <div class="modal-header border-0">
+                <h5 class="modal-title w-100 fw-bold" id="orderSuccessModalLabel">✅ Đặt hàng thành công!</h5>
+            </div>
+            <div class="modal-body">
+                Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ xử lý đơn hàng trong thời gian sớm nhất.
+            </div>
+            <div class="modal-footer border-0 justify-content-center">
+                <button type="button" class="btn btn-success" onclick="redirectAfterClose()">Đóng</button>
+                <!-- New 'Theo dõi đơn hàng' button -->
+                <button type="button" class="btn btn-outline-primary" onclick="trackOrder()">Theo dõi đơn hàng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS -->
+<script>
+    function showSuccessPopup() {
+        var modal = new bootstrap.Modal(document.getElementById('orderSuccessModal'));
+        modal.show();
+    }
+
+    function redirectAfterClose() {
+        window.location.href = "/Account/HomePageLogin";
+    }
+        function trackOrder() {
+        window.location.href = "/Account/TrackOrder"; 
+    }
+</script>

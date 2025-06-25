@@ -1,0 +1,138 @@
+﻿@page
+@model FoodieAPII.Pages.Cashier.OrderOnlineCashierModel
+@{
+    ViewData["HideLayoutHeader"] = true;
+}
+
+
+
+
+<body>
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Đơn Online - Món ăn</h1>
+
+      
+        <table class="table table-striped" id="orders-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Khách hàng</th>
+                    <th>Món ăn</th>
+                    <th>Địa chỉ giao</th>
+                    <th>Trạng thái</th>
+                    <th>Phân cho Shipper</th>
+                    <th>Hành động</th> <!-- Cột "Hành động" mới thêm -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dữ liệu đơn hàng sẽ được điền vào đây bằng JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal để chọn shipper -->
+    <div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="assignModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="assignModalLabel">Phân công cho Shipper</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="assign-form">
+                        <div class="mb-3">
+                            <label for="shipper-select" class="form-label">Chọn Shipper</label>
+                            <select class="form-select" id="shipper-select">
+                                <!-- Shippers sẽ được điền vào đây bằng JavaScript -->
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Phân công</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dữ liệu tĩnh về đơn hàng và shipper
+        const orders = [
+            { id: 1, customerName: "Nguyễn Văn A", foodName: "Phở bò", shippingAddress: "123 Đường ABC", status: "Chờ xử lý" },
+            { id: 2, customerName: "Lê Thị B", foodName: "Bánh mì", shippingAddress: "456 Đường XYZ", status: "Chờ xử lý" },
+            { id: 3, customerName: "Trần Minh C", foodName: "Cơm gà", shippingAddress: "789 Đường DEF", status: "Đang giao" }
+        ];
+
+        const shippers = [
+            { id: 1, name: "Shipper 1" },
+            { id: 2, name: "Shipper 2" },
+            { id: 3, name: "Shipper 3" }
+        ];
+
+        // Hàm để hiển thị danh sách đơn hàng món ăn
+        function renderOrders() {
+            const ordersTable = document.getElementById("orders-table").getElementsByTagName('tbody')[0];
+            ordersTable.innerHTML = ''; // Xóa dữ liệu cũ
+
+            orders.forEach(order => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${order.id}</td>
+                    <td>${order.customerName}</td>
+                    <td>${order.foodName}</td>
+                    <td>${order.shippingAddress}</td>
+                    <td>${order.status}</td>
+                    <td>
+                        ${order.status === "Chờ xử lý" ?
+                            `<button class="btn btn-primary" onclick="openAssignModal(${order.id})">Phân cho Shipper</button>` :
+                            `<span>Đã phân công</span>`}
+                    </td>
+                    <td>
+                        <a href="/Cashier/PayBillCashier" class="btn btn-outline-success">In hóa đơn</a> <!-- Thêm liên kết đến trang PayBillCashier -->
+                    </td>
+                `;
+                ordersTable.appendChild(row);
+            });
+        }
+
+        // Hàm mở modal phân công cho shipper
+        function openAssignModal(orderId) {
+            const assignModal = new bootstrap.Modal(document.getElementById('assignModal'));
+            const shipperSelect = document.getElementById("shipper-select");
+
+            // Xóa các shipper cũ trong modal
+            shipperSelect.innerHTML = '';
+
+            // Điền danh sách shipper vào modal
+            shippers.forEach(shipper => {
+                const option = document.createElement('option');
+                option.value = shipper.id;
+                option.textContent = shipper.name;
+                shipperSelect.appendChild(option);
+            });
+
+            // Gán event cho form phân công shipper
+            document.getElementById("assign-form").onsubmit = function (event) {
+                event.preventDefault();
+                const selectedShipperId = shipperSelect.value;
+                assignOrderToShipper(orderId, selectedShipperId);
+                assignModal.hide();
+            }
+
+            assignModal.show();
+        }
+
+        // Hàm phân công shipper cho đơn hàng
+        function assignOrderToShipper(orderId, shipperId) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.status = "Đang giao"; // Cập nhật trạng thái
+                renderOrders(); // Cập nhật lại danh sách đơn hàng
+            }
+        }
+
+        // Gọi hàm để render đơn hàng ngay khi trang tải
+        renderOrders();
+    </script>
+
+</body>

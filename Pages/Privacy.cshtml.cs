@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace FoodioClient.Pages
+namespace FoodieAPIChuan.Pages
 {
     public class PrivacyModel : PageModel
     {

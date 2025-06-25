@@ -1,0 +1,121 @@
+﻿@page
+@model FoodieAPII.Pages.Account.TakeoutPaymentModel
+@{
+    ViewData["HideLayoutHeader"] = true;
+
+}
+
+
+
+<div class="sticky-top bg-white shadow-sm" style="z-index:1030;">
+    <div class="container sticky-top bd-white">
+        <div class="header">
+            <img src="~/images/logo_foddie.jpg" alt="GrabFood Logo" style="height: 80px;">
+
+            <div class="header-search-button d-flex align-items-center gap-3">
+
+                <a href="/Account/User">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="bi bi-person-circle text-dark" style="font-size: 30px;"></i>
+                        <div class="fw-semibold text-dark mt-1">Nguyễn Văn A</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<style>
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 24px;
+    }
+
+        .header img {
+            margin-right: 20px;
+            border-radius: 8px;
+        }
+
+    .btn-warning {
+        background: linear-gradient(90deg, #ffbf2f, #ff9e3e);
+        color: #222;
+        font-weight: 600;
+        border: none;
+    }
+
+        .btn-warning:hover {
+            background: linear-gradient(90deg, #ffc107, #ff8800);
+            color: white;
+        }
+
+    .btn-add-to-cart-custom {
+        background: linear-gradient(90deg, #ffbf2f, #ff9e3e);
+        color: #222;
+        border: none;
+        border-radius: 22px;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 10px 20px;
+        box-shadow: 0 3px 12px 0 rgba(255, 190, 50, 0.13);
+        display: flex;
+        justify-content: center; /* thêm dòng này để căn giữa */
+        align-items: center;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+        text-decoration: none;
+        width: 100%;
+    }
+
+
+        .btn-add-to-cart-custom:hover {
+            background: linear-gradient(90deg, #ffc107, #ff8800);
+            color: #fff !important;
+            box-shadow: 0 6px 20px 0 rgba(255, 180, 30, 0.18);
+            transform: translateY(-2px) scale(1.04);
+            text-decoration: none;
+        }
+</style>
+
+<div class="container mt-5">
+    <div class="bg-white p-4 rounded shadow mx-auto" style="max-width: 500px;">
+        <h2 class="mb-4 text-center">Thông Tin Giao Hàng</h2>
+
+        <form>
+            <div class="mb-3">
+                <label class="form-label">Loại đơn</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="orderType" id="delivery" value="delivery" checked>
+                        <label class="form-check-label" for="delivery">Giao hàng</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="orderType" id="pickup" value="pickup">
+                        <label class="form-check-label" for="pickup">Mang về</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="address" class="form-label">Địa chỉ</label>
+                <input type="text" class="form-control" id="address" placeholder="123 Đường A, Quận B">
+            </div>
+
+            <div class="mb-3">
+                <label for="phone" class="form-label">Số điện thoại</label>
+                <input type="text" class="form-control" id="phone" placeholder="0123 456 789">
+            </div>
+
+            <div class="mb-3">
+                <label for="note" class="form-label">Ghi chú</label>
+                <textarea class="form-control" id="note" rows="3" placeholder="VD: Giao trước 11h, không lấy ớt..."></textarea>
+            </div>
+
+            <a href="/Account/ConfirmBill" type="button" class="btn btn-add-to-cart-custom w-100">Xác nhận</a>
+        </form>
+    </div>
+</div>

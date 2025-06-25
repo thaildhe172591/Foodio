@@ -1,0 +1,132 @@
+﻿@page
+@model FoodieAPII.Pages.Offline.OrderStatusModel
+@{
+    ViewData["HideLayoutHeader"] = true;
+    var tableNumber = Request.Query["tableNumber"].ToString();
+}
+
+
+<!-- GLOBAL HEADER -->
+<div class="sticky-top bg-white shadow-sm px-4 py-2 d-flex align-items-center justify-content-between" style="z-index:1040;">
+    <div class="d-flex align-items-center">
+        <img src="~/images/logo_foddie.jpg" alt="GrabFood Logo" style="height: 60px; border-radius: 8px;">
+        <div class="text-dark fw-bold fs-5 ms-3">
+            Bàn Đặt số @tableNumber
+        </div>
+    </div>
+    <div class="header-search-button d-flex align-items-center gap-3">
+        <input type="text" class="form-control" placeholder="Tìm món..." style="width: 300px;">
+    </div>
+</div>
+
+<!-- Sử dụng container thay vì container-fluid -->
+<div class="container mt-5">
+    <h3>Trạng thái món ăn của bạn</h3>
+
+    <!-- Thêm nút "Quay về đặt món" -->
+    <div class="mb-3">
+        <a href="/Offline/CartAtRestaurent" class="btn btn-secondary">Quay về Menu</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Danh sách món đã đặt</h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Tên Món</th>
+                                <th>Trạng Thái</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-status-body">
+                            <!-- Dữ liệu sẽ được thêm vào đây -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Style for table -->
+<style>
+    /* Màu sắc thống nhất và tinh tế */
+    .status-in-progress {
+        color: #ff8c00; /* Cam nhẹ, dễ nhìn */
+        font-weight: bold;
+    }
+
+    .status-completed {
+        color: #28a745; /* Xanh lá cây nhẹ, dễ chịu */
+        font-weight: bold;
+    }
+
+    .status-pending {
+        color: #ffc107; /* Vàng nhẹ, dễ nhìn */
+        font-weight: bold;
+    }
+
+    /* Header sticky */
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 24px;
+    }
+
+        .header img {
+            margin-right: 20px;
+            border-radius: 8px;
+        }
+
+    /* Các style tổng thể */
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #ddd;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Dữ liệu tĩnh về trạng thái món ăn
+            const orderStatuses = [
+                { id: 1, name: "Phở bò tái", status: "In Progress" },
+                { id: 2, name: "Chè thái sầu riêng", status: "Completed" },
+                { id: 3, name: "Trà đào", status: "Pending" }
+            ];
+
+            // Thêm các món ăn và trạng thái vào bảng
+            const orderStatusBody = document.getElementById("order-status-body");
+            orderStatuses.forEach(function (order) {
+                const row = document.createElement("tr");
+                row.setAttribute("data-id", order.id);
+                row.innerHTML = `
+                    <td>${order.name}</td>
+                    <td class="order-status ${getStatusClass(order.status)}">${order.status}</td>
+                `;
+                orderStatusBody.appendChild(row);
+            });
+
+            // Hàm để thêm lớp trạng thái cho mỗi món ăn
+            function getStatusClass(status) {
+                if (status === "In Progress") return "status-in-progress";
+                if (status === "Completed") return "status-completed";
+                return "status-pending";
+            }
+        });
+    </script>
+}
