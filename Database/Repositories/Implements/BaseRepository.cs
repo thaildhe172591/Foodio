@@ -19,8 +19,10 @@ public class BaseRepository<T>(ApplicationDbContext dbContext)
 
     public Task UpdateAsync(T entity)
     {
-        T exist = _dbContext.Set<T>().Find(entity.Id)
-            ?? throw new NotFoundException(nameof(T), entity.Id);
+        var exist = _dbContext.Set<T>().Find(entity.Id);
+        if (exist is null)
+            throw new NotFoundException(nameof(T), entity.Id);
+        
         _dbContext.Entry(exist).CurrentValues.SetValues(entity);
         return Task.CompletedTask;
     }

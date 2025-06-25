@@ -1,0 +1,152 @@
+﻿@page
+@model FoodieAPII.Pages.Account.TrackOrderModel
+@{
+    ViewData["HideLayoutHeader"] = true;
+
+}
+<div class="sticky-top bg-white shadow-sm" style="z-index:1030;">
+    <div class="container">
+        <div class="header d-flex align-items-center justify-content-between py-3">
+            <div class="d-flex align-items-center">
+                <img src="~/images/logo_foddie.jpg" alt="GrabFood Logo" style="height: 80px;">
+                <div class="header-menu mx-3">
+                    <!-- Sử dụng class 'menu-link' giống như trong ConfirmBill -->
+                    <a href="/Account/HomePageLogin" class=" fw-semibold menu-link">Trang chủ</a>
+                </div>
+            </div>
+            <a href="/Account/User">
+                <div class="d-flex flex-column align-items-center">
+                    <i class="bi bi-person-circle text-dark" style="font-size: 30px;"></i>
+                    <div class="fw-semibold text-dark mt-1">Nguyễn Văn A</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="card shadow rounded">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Đơn hàng của bạn đang được xử lý</h5>
+        </div>
+        <div class="card-body">
+
+            <!-- Mã đơn và thời gian -->
+            <div class="mb-3">
+                <p><strong>Mã đơn hàng:</strong> #DH001</p>
+                <p><strong>Thời gian đặt:</strong> 11:42 - 23/06/2025</p>
+                <p><strong>Tổng tiền:</strong> 145.000₫</p>
+            </div>
+
+            <!-- Tiến trình đơn hàng -->
+            <div class="mb-4">
+                <h6 class="mb-3">Theo dõi đơn hàng</h6>
+                <ul class="list-group list-group-horizontal-sm">
+                    <li class="list-group-item flex-fill text-center bg-success text-white">
+                        <i class="bi bi-check-circle-fill me-1"></i> Đang xác nhận
+                    </li>
+                    <li class="list-group-item flex-fill text-center bg-warning text-dark">
+                        <i class="bi bi-hourglass-split me-1"></i> Đang chuẩn bị
+                    </li>
+                    <li class="list-group-item flex-fill text-center">
+                        <i class="bi bi-truck me-1"></i> Đang giao
+                    </li>
+                    <li class="list-group-item flex-fill text-center">
+                        <i class="bi bi-check2-circle me-1"></i> Hoàn tất
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Thông tin người nhận -->
+            <div class="mb-3">
+                <h6>Thông tin giao hàng</h6>
+                <p><strong>Tên:</strong> Trần Văn B</p>
+                <p><strong>Địa chỉ:</strong> CT1 Mỹ Đình, Hà Nội</p>
+                <p><strong>SĐT:</strong> 0987654321</p>
+            </div>
+
+            <!-- Ghi chú và nút -->
+            <div class="mb-3">
+                <h6>Ghi chú:</h6>
+                <p>Không cho rau sống, thêm ớt</p>
+            </div>
+
+            <!-- Button to show shipper info -->
+            <div class="mb-3">
+                <button class="btn btn-outline-primary" id="showShipperBtn">Hiển thị thông tin người ship</button>
+            </div>
+
+            <!-- Shipper info (Initially hidden) -->
+            <div id="shipperInfo" class="mb-3" style="display: none;">
+                <h6>Thông tin người ship:</h6>
+                <p><strong>Tên shipper:</strong> Nguyễn Văn A</p>
+                <p><strong>SĐT:</strong> 0908765432</p>
+            </div>
+
+            <!-- Hủy đơn button -->
+            <div class="text-end">
+                <button class="btn btn-outline-danger">Hủy đơn hàng</button>
+            </div>
+            <div class="text-end mt-3">
+                <a href="/Account/Cart" class="btn btn-outline-secondary">Quay lại giỏ hàng</a>
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 900px;
+    }
+
+    /* Styling for the button and shipper info */
+    #shipperInfo {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-outline-primary {
+        margin-top: 10px;
+    }
+
+    .btn-outline-danger {
+        margin-top: 20px;
+    }
+
+    .header-menu .menu-link {
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 600;
+        transition: color 0.3s ease;
+        color: #000; /* Đặt màu mặc định */
+    }
+
+
+    .menu-link {
+        text-decoration: none; /* Remove underline */
+        transition: background 0.3s ease-in-out; /* Smooth transition for the hover effect */
+    }
+
+        .menu-link:hover {
+            background: linear-gradient(90deg, #ffc107, #ff8800); /* Gradient on hover */
+            color: white; /* Change text color to white on hover */
+            padding: 5px 10px; /* Optional: Add padding to make the effect more noticeable */
+        }
+</style>
+
+<script>
+    // Show the shipper's information when the button is clicked
+    document.getElementById('showShipperBtn').addEventListener('click', function() {
+        var shipperInfo = document.getElementById('shipperInfo');
+        if (shipperInfo.style.display === 'none') {
+            shipperInfo.style.display = 'block';
+            this.innerText = 'Ẩn thông tin người ship'; // Change button text
+        } else {
+            shipperInfo.style.display = 'none';
+            this.innerText = 'Hiển thị thông tin người ship'; // Reset button text
+        }
+    });
+</script>

@@ -1,0 +1,154 @@
+﻿@page
+@model FoodieAPII.Pages.Shipper.ShipperManagementModel
+@{
+    ViewData["HideLayoutHeader"] = true;
+}
+
+
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Quản lý Đơn Hàng - Shipper</h1>
+
+        <!-- Thanh điều hướng -->
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <nav id="navbar-example3" class="nav-container p-3 border rounded">
+                    <nav class="nav nav-pills justify-content-center">
+                        <a class="nav-link active" href="javascript:void(0);" onclick="showSection('item-1')">Đơn Chờ Giao</a>
+                        <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-2')">Cập Nhật Trạng Thái</a>
+                        <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-3')">Lịch Sử Giao Hàng</a>
+                        <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-4')">Màn Tổng Thu</a>
+                    </nav>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Phần bên phải: Nội dung theo từng mục -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <!-- Đơn Chờ Giao -->
+                <div id="item-1" class="section-content">
+                    <h4>Đơn Chờ Giao</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên Khách</th>
+                                    <th>SĐT</th>
+                                    <th>Địa Chỉ</th>
+                                    <th>Món</th>
+                                    <th>Phí Ship</th>
+                                    <th>Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Danh sách đơn chờ giao sẽ được điền vào đây -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Cập Nhật Trạng Thái -->
+                <div id="item-2" class="section-content" style="display:none;">
+                    <h4>Cập Nhật Trạng Thái</h4>
+                    <div>
+                        <label for="order-id">Chọn Mã Đơn:</label>
+                        <input type="text" id="order-id" class="form-control" placeholder="Mã đơn hàng">
+                    </div>
+                    <div class="mt-3">
+                        <label for="order-status">Trạng Thái:</label>
+                        <select id="order-status" class="form-select">
+                            <option value="completed">Đã giao</option>
+                            <option value="failed">Thất bại</option>
+                        </select>
+                    </div>
+                    <div class="mt-3">
+                        <label for="failure-reason">Lý Do Thất Bại (nếu có):</label>
+                        <textarea id="failure-reason" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button class="btn btn-primary mt-3">Cập Nhật Trạng Thái</button>
+                </div>
+
+                <!-- Lịch Sử Giao Hàng -->
+                <div id="item-3" class="section-content" style="display:none;">
+                    <h4>Lịch Sử Giao Hàng</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Mã Đơn</th>
+                                    <th>Ngày Giao</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Khách Hàng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Danh sách đơn đã giao sẽ được điền vào đây -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Màn Tổng Thu -->
+                <div id="item-4" class="section-content" style="display:none;">
+                    <h4>Màn Tổng Thu</h4>
+                    <p>Số Đơn Ship: <span id="total-orders">0</span></p>
+                    <p>Tổng Tiền Ship: <span id="total-shipping">0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => section.style.display = 'none');
+
+            const selectedSection = document.getElementById(sectionId);
+            selectedSection.style.display = 'block';
+
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => link.classList.remove('active'));
+
+            const activeLink = Array.from(links).find(link => link.innerText.toLowerCase() === sectionId.split('-')[1].replace(/_/g, ' '));
+            activeLink.classList.add('active');
+        }
+
+        // Mặc định hiển thị Đơn Chờ Giao
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('item-1');
+        });
+    </script>
+</body>
+
+<style>
+    .nav-container {
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-pills .nav-link {
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 0.2rem;
+        margin-right: 10px;
+        color: #007bff;
+    }
+
+        .nav-pills .nav-link.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+    .menu-item {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+</style>

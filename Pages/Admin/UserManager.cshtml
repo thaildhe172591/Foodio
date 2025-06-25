@@ -1,0 +1,319 @@
+﻿@page
+@model FoodioAPI.Pages.Admin.UserManagerModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Quản lý khách hàng";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
+
+<style>
+    #usersTable th,
+    #usersTable td {
+        color: whitesmoke !important;
+    }
+</style>
+
+<main class="main-wrapper">
+    <div class="main-content">
+        <div class="container-fluid py-4">
+            <h3 class="mb-4">Quản lý khách hàng</h3>
+
+            <!-- Search & Actions -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form id="searchForm" class="row g-2 align-items-end">
+                        <div class="col-sm-4">
+                            <label class="form-label">Từ khóa</label>
+                            <input type="text" class="form-control" id="keyword" placeholder="Tên / Email" />
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="form-label">Trạng thái</label>
+                            <select class="form-select" id="lockFilter">
+                                <option value="">Tất cả</option>
+                                <option value="true">Đã khoá</option>
+                                <option value="false">Hoạt động</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Danh sách người dùng</h5>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#userModal" data-mode="add">Thêm Người dùng</button>
+                </div>
+                <div class="card-body">
+                    <table id="usersTable" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>User Name</th>
+                                <th>Phone</th>
+                                <th>Roles</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal Add/Edit -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">Thêm Người dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="userForm">
+                <div class="modal-body row g-3">
+                    <input type="hidden" id="userId" />
+                    <div class="col-sm-6">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-control" id="password" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="userName" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="text" class="form-control" id="phoneNumber" />
+                    </div>
+                    <div class="col-sm-6 form-check ms-2">
+                        <input class="form-check-input" type="checkbox" id="emailConfirmed" />
+                        <label class="form-check-label">Xác nhận Email</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    @await Html.PartialAsync("_ToastrScripts")
+
+    <script>
+        const apiBase = "/api/admin/users";
+        let usersTable;
+        const token = localStorage.getItem("access_token");
+        let rolesMaster = [];
+
+        $(function () {
+            usersTable = $("#usersTable").DataTable({
+                columns: [
+                    { data: "email" },
+                    { data: "userName" },
+                    { data: "phoneNumber" },
+                    {
+                        data: "roles",
+                        render: roles => roles.join(", ")
+                    },
+                    {
+                        data: null,
+                        render: d => d.isLocked ? '<span class="badge bg-danger">Khoá</span>' : '<span class="badge bg-success">Hoạt động</span>'
+                    },
+                    {
+                        data: null,
+                        orderable: false,
+                        render: d => `
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-primary edit-btn"  style='margin-right:12px' data-id="${d.id}"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-outline-danger delete-btn" data-id="${d.id}"><i class="bi bi-trash"></i></button>
+                            </div>`
+                    }
+                ]
+            });
+
+            fetchUsers();
+
+            // search
+            $("#btnSearch").click(fetchUsers);
+            
+            // Tự động tìm kiếm khi nhập text
+            let searchTimeout;
+            $('#keyword').on('input keyup', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(fetchUsers, 500); // Debounce 500ms
+            });
+            
+            // Tự động tìm kiếm khi thay đổi dropdown
+            $('#lockFilter').on('change', fetchUsers);
+
+            // open modal add
+            $('#userModal').on('show.bs.modal', function (e) {
+                const btn = $(e.relatedTarget);
+                const mode = btn.data('mode');
+                if (mode === 'add') {
+                    resetModal();
+                }
+            });
+
+            // submit add / edit
+            $("#userForm").on("submit", async function (e) {
+                e.preventDefault();
+                const id = $("#userId").val();
+                const dto = {
+                    email: $("#email").val(),
+                    phoneNumber: $("#phoneNumber").val(),
+                    userName: $("#userName").val(),
+                    roleIds: ['7a44c481-6c91-4c56-a68b-04bdbe0f1aa3']
+                };
+
+                if (!id) {
+                    dto.password = $("#password").val();
+                    dto.emailConfirmed = $("#emailConfirmed").is(":checked");
+                }
+
+                const method = id ? "PUT" : "POST";
+                const url = id ? `${apiBase}/${id}` : apiBase;
+
+                const res = await fetch(url, {
+                    method: method,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify(dto)
+                });
+                if (res.ok) {
+                    closeModalSafely('#userModal');
+                    await fetchUsers();
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Thành công!',
+                        text: id ? 'Đã cập nhật khách hàng' : 'Đã thêm khách hàng mới',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                } else {
+                    const err = await res.json();
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!',
+                        text: err.message ?? 'Có lỗi xảy ra khi lưu thông tin khách hàng'
+                    });
+                }
+            });
+
+            // edit
+            $(document).on('click', '.edit-btn', async function () {
+                const id = $(this).data('id');
+                const res = await fetch(`${apiBase}/get-by-id/${id}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                const { data } = await res.json();
+                resetModal(data);
+                $('#userModal').modal('show');
+            });
+
+            // delete
+            $(document).on('click', '.delete-btn', async function () {
+                const result = await Swal.fire({
+                    icon: 'warning',
+                    title: 'Xác nhận xóa',
+                    text: 'Bạn có chắc chắn muốn xóa khách hàng này?',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Xóa',
+                    cancelButtonText: 'Hủy'
+                });
+                
+                if (!result.isConfirmed) return;
+                
+                const id = $(this).data('id');
+                const res = await fetch(`${apiBase}/delete/${id}`, {
+                    method: 'DELETE',
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Đã xóa!',
+                        text: 'Khách hàng đã được xóa thành công',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    fetchUsers();
+                } else {
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!',
+                        text: 'Không thể xóa khách hàng. Vui lòng thử lại.'
+                    });
+                }
+            });
+        });
+
+        async function fetchUsers() {
+            const params = new URLSearchParams();
+            const kw = $("#keyword").val();
+            if (kw) params.append('searchKeyword', kw);
+            const role = $("#roleFilter").val();
+            if (role) params.append('roleId', role);
+            const locked = $("#lockFilter").val();
+            if (locked !== '') params.append('isLocked', locked);
+
+            const res = await fetch(`${apiBase}/search-customer?${params.toString()}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const json = await res.json();
+            usersTable.clear();
+            usersTable.rows.add(json.data.data ?? json.data);
+            usersTable.draw();
+        }
+
+        // Helper function để đóng modal an toàn
+        function closeModalSafely(modalId) {
+            $(modalId).modal('hide');
+            // Đảm bảo backdrop được xóa và body được reset
+            setTimeout(() => {
+                $('.modal-backdrop').remove();
+                $('body').removeClass('modal-open').css('padding-right', '');
+            }, 300); // Đợi animation hoàn tất
+        }
+
+        function resetModal(user = null) {
+            $("#userId").val(user?.id || '');
+            $("#email").val(user?.email || '').prop('readonly', !!user);
+            $("#password").val('');
+            $("#userName").val(user?.userName || '');
+            $("#phoneNumber").val(user?.phoneNumber || '');
+            $("#emailConfirmed").prop('checked', user?.emailConfirmed ?? false);
+
+            // map role names -> ids for preselect
+            if (user?.roles && rolesMaster.length) {
+                const ids = rolesMaster.filter(r => user.roles.includes(r.displayName) || user.roles.includes(r.name)).map(r => r.id);
+                $("#rolesSelect").val(ids).change();
+            } else {
+                $("#rolesSelect").val([]).change();
+            }
+
+            $("#userModalLabel").text(user ? 'Cập nhật Người dùng' : 'Thêm Người dùng');
+        }
+    </script>
+}

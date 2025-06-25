@@ -1,0 +1,196 @@
+﻿@page
+@model FoodieAPII.Pages.Account.UserModel
+@{
+    ViewData["HideLayoutHeader"] = true;
+
+}
+
+
+
+<div class="sticky-top bg-white shadow-sm" style="z-index:1030;">
+    <div class="container sticky-top bd-white">
+        <div class="header d-flex justify-content-between align-items-center">
+            <!-- Logo and Menu Section -->
+            <div class="d-flex align-items-center">
+                <img src="~/images/logo_foddie.jpg" alt="GrabFood Logo" style="height: 80px;">
+                <div class="header-menu mx-3">
+                    <a href="/Account/HomePageLogin" class="text-dark fw-semibold menu-link">Menu</a>
+                </div>
+            </div>
+
+            <!-- User Profile Section -->
+            <div class="header-search-button d-flex align-items-center gap-3">
+                <a href="/Account/User">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="bi bi-person-circle text-dark" style="font-size: 30px;"></i>
+                        <div class="fw-semibold text-dark mt-1">Nguyễn Văn A</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <div class="list-group shadow-sm">
+                <a class="list-group-item list-group-item-action active" data-bs-toggle="tab" href="#tab-profile">
+                    <i class="bi bi-person-fill me-2"></i> Cập nhật tài khoản
+                </a>
+                <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#tab-orders">
+                    <i class="bi bi-cart3 me-2"></i> Thông tin đơn hàng
+                </a>
+                <a class="list-group-item list-group-item-action" data-bs-toggle="tab" href="#tab-payment">
+                    <i class="bi bi-credit-card me-2"></i> Phương thức thanh toán
+                </a>
+            </div>
+        </div>
+
+        <!-- Nội dung -->
+        <div class="col-md-9">
+            <div class="tab-content">
+                <!-- Thông tin cá nhân -->
+                <div class="tab-pane fade show active" id="tab-profile">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Thông tin người dùng</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label>Ảnh đại diện:</label><br />
+                                <img src="https://via.placeholder.com/80x80" class="rounded-circle mb-2" />
+                                <input type="file" class="form-control w-50" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Tên:</label>
+                                <input type="text" class="form-control" value="Bùi Hiếu" />
+                            </div>
+                            <div class="mb-3">
+                                <label>Giới tính:</label>
+                                <select class="form-select">
+                                    <option selected>Nam</option>
+                                    <option>Nữ</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label>Email:</label>
+                                <input type="email" class="form-control" value="bhieu40@yahoo.com" disabled />
+                            </div>
+                            <div class="mb-3">
+                                <label>Mật khẩu:</label>
+                                <input type="password" class="form-control w-50" value="********" disabled />
+                                <a href="#" class="d-inline-block mt-1">Đổi mật khẩu</a>
+                            </div>
+
+                            <button class="btn btn-warning">Lưu thay đổi</button>
+
+                            <hr />
+                            <h6>Quản lý số điện thoại</h6>
+                            <p><strong>0962702002</strong> <span class="text-success">✔ Đã xác thực</span></p>
+                            <button class="btn btn-outline-warning btn-sm">Cập nhật số điện thoại</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Đơn hàng -->
+                <div class="tab-pane fade" id="tab-orders">
+                    <h5 class="mb-3">Thông tin đơn hàng</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Mã đơn</th>
+                                <th>Ngày đặt</th>
+                                <th>Trạng thái</th>
+                                <th>Tổng tiền</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DH001</td>
+                                <td>2025-06-21</td>
+                                <td><span class="badge bg-success">Đã giao</span></td>
+                                <td>145.000₫</td>
+                                <td><a href="#">Xem</a></td>
+                            </tr>
+                            <tr>
+                                <td>DH002</td>
+                                <td>2025-06-20</td>
+                                <td><span class="badge bg-warning text-dark">Đang xử lý</span></td>
+                                <td>89.000₫</td>
+                                <td><a href="#">Xem</a></td>
+                            </tr>
+                            <!-- thêm đơn hàng nếu cần -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Phương thức thanh toán -->
+                <div class="tab-pane fade" id="tab-payment">
+                    <h5 class="mb-3">Phương thức thanh toán</h5>
+                    <ul>
+                        <li>Tiền mặt khi nhận hàng (COD)</li>
+                        <li>Chuyển khoản ngân hàng</li>
+                        <li>Ví Momo, ZaloPay</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 24px;
+    }
+
+        .header img {
+            margin-right: 20px;
+            border-radius: 8px;
+        }
+
+    .btn-warning {
+        background: linear-gradient(90deg, #ffbf2f, #ff9e3e);
+        color: #222;
+        font-weight: 600;
+        border: none;
+    }
+
+        .btn-warning:hover {
+            background: linear-gradient(90deg, #ffc107, #ff8800);
+            color: white;
+        }
+
+    .menu-link {
+        text-decoration: none; /* Remove underline */
+        transition: background 0.3s ease-in-out; /* Smooth transition for the hover effect */
+    }
+
+        .menu-link:hover {
+            background: linear-gradient(90deg, #ffc107, #ff8800); /* Gradient on hover */
+            color: white; /* Change text color to white on hover */
+            padding: 5px 10px; /* Optional: Add padding to make the effect more noticeable */
+        }
+
+    .btn-outline-warning {
+        border: 2px solid #ffbf2f;
+        color: #ffbf2f;
+        font-weight: 600;
+    }
+
+        .btn-outline-warning:hover {
+            background: linear-gradient(90deg, #ffbf2f, #ff9e3e);
+            color: white;
+        }
+
+</style>

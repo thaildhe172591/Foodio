@@ -1,5 +1,5 @@
 ﻿namespace FoodioAPI.DTOs.Menu;
-public class MenuItemDto
+public class MenuItemv2Dto
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = default!;
@@ -7,4 +7,6 @@ public class MenuItemDto
     public decimal Price { get; set; }
     public string? ImageUrl { get; set; }
     public string Category { get; set; } = default!;
+    public Guid CategoryId { get; set; } = Guid.Empty;
+    public bool IsAvailable { get; set; } = true;
 }

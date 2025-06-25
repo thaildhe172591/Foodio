@@ -1,11 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using FoodioAPI.Entities.Abstractions;
 
 namespace FoodioAPI.Entities;
 
-public class MenuItem
+public class MenuItem : Entity
 {
-    public Guid Id { get; set; }
-
     [Required(ErrorMessage = "Menu item name is required.")]
     [MaxLength(100, ErrorMessage = "Name cannot exceed 100 characters.")]
     public string Name { get; set; } = default!;
@@ -20,6 +19,9 @@ public class MenuItem
     public string? ImageUrl { get; set; }
 
     public Guid CategoryId { get; set; }
+
+    // Trạng thái còn món/hết món
+    public bool IsAvailable { get; set; } = true;
 
     // Navigation
     public virtual Category Category { get; set; } = default!;

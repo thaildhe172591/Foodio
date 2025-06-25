@@ -1,0 +1,274 @@
+﻿@page
+@model FoodieAPII.Pages.KitchenStaff.OrderManagementKitchenStaffModel
+@{
+    ViewData["HideLayoutHeader"] = true;
+
+}
+
+
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Quản lý Đơn Hàng Bếp</h1>
+
+        <!-- Thanh điều hướng -->
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <nav id="navbar-example3" class="nav-container p-3 border rounded">
+                    <nav class="nav nav-pills justify-content-center">
+                        <a class="nav-link active" href="javascript:void(0);" onclick="showSection('item-1')">Danh sách món cần nấu</a>
+                        <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-2')">Danh sách món đang nấu</a>
+                        <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-3')">Danh sách món sẵn sàng</a>
+                    </nav>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Phần bên phải: Nội dung theo từng mục -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <!-- Danh sách món cần nấu -->
+                <div id="item-1" class="section-content">
+                    <h4 class="text-center">Danh sách món cần nấu</h4>
+                    <div class="d-flex justify-content-center mb-3">
+                        <div>
+                            <button class="btn btn-outline-primary mb-3 mx-2" onclick="loadMenu('hot')">Món Nóng</button>
+                            <button class="btn btn-outline-primary mb-3 mx-2" onclick="loadMenu('cold')">Món Lạnh</button>
+                            <button class="btn btn-outline-primary mb-3 mx-2" onclick="loadMenu('drink')">Nước Uống</button>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div id="menu-list" style="width:100%; max-width:600px;"></div>
+                    </div>
+                </div>
+
+                <!-- Danh sách món đang nấu -->
+                <div id="item-2" class="section-content" style="display:none;">
+                    <h4 class="text-center">Danh sách món đang nấu</h4>
+                    <div class="d-flex justify-content-center">
+                        <div id="cooking-menu-list" style="width:100%; max-width:600px;"></div>
+                    </div>
+                </div>
+
+                <!-- Danh sách món đã sẵn sàng -->
+                <div id="item-3" class="section-content" style="display:none;">
+                    <h4 class="text-center">Danh sách món đã sẵn sàng</h4>
+                    <div class="d-flex justify-content-center">
+                        <div id="ready-menu-list" style="width:100%; max-width:600px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Dữ liệu mẫu để test luồng, có thêm ghi chú (note)
+        const menus = {
+            hot: [
+                { id: 1, name: 'Phở Bò', table: 'Bàn 5', note: 'Ít hành, không cay' },
+                { id: 2, name: 'Bánh Mì Thịt Nướng', table: 'Bàn 3', note: 'Thêm pate' }
+            ],
+            cold: [
+                { id: 3, name: 'Salad Rau', table: 'Bàn 7', note: 'Không sốt mayonnaise' },
+                { id: 4, name: 'Sushi Cuộn', table: 'Bàn 2', note: '' }
+            ],
+            drink: [
+                { id: 5, name: 'Trà Sữa', table: 'Bàn 6', note: 'Ít đá, ít ngọt' },
+                { id: 6, name: 'Nước Ép Cam', table: 'Bàn 1', note: '' }
+            ]
+        };
+
+        const cookingMenus = [];
+        const readyMenus = [];
+
+        // Hiển thị các món cần nấu, có ghi chú
+        function loadMenu(type) {
+            const menuList = menus[type];
+            const menuListContainer = document.getElementById('menu-list');
+            menuListContainer.innerHTML = '';
+            menuList.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.classList.add('menu-item');
+                menuItem.setAttribute('data-menu-id', item.id);
+                menuItem.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="menu-name"><strong>${item.name}</strong></span> <span class="menu-table">(Bàn: ${item.table})</span>
+                            ${item.note ? `<div class="menu-note">Ghi chú: ${item.note}</div>` : ''}
+                        </div>
+                        <button class="btn btn-success btn-lg" onclick="startCooking(${item.id}, '${item.name}', '${item.table}', \`${item.note ? item.note.replace(/`/g, '\\`') : ''}\`)">Bắt đầu nấu</button>
+                    </div>
+                `;
+                menuListContainer.appendChild(menuItem);
+            });
+        }
+
+        // Bắt đầu nấu, truyền ghi chú sang
+        function startCooking(menuId, name, table, note) {
+            const menuItem = { id: menuId, name: name, table: table, note: note };
+            cookingMenus.push(menuItem);
+            renderCookingMenu();
+
+            // Ẩn đúng món vừa chọn
+            const menuListContainer = document.getElementById('menu-list');
+            Array.from(menuListContainer.children).forEach(child => {
+                if (child.dataset.menuId == menuId) {
+                    child.style.display = 'none';
+                }
+            });
+        }
+
+        // Hiển thị danh sách món đang nấu, có ghi chú
+        function renderCookingMenu() {
+            const menuList = document.getElementById('cooking-menu-list');
+            menuList.innerHTML = '';
+            cookingMenus.forEach(item => {
+                menuList.appendChild(createCookingMenuItem(item));
+            });
+        }
+
+        function createCookingMenuItem(item) {
+            const menuItem = document.createElement('div');
+            menuItem.classList.add('menu-item');
+            menuItem.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="menu-name"><strong>${item.name}</strong></span> <span class="menu-table">(Bàn: ${item.table})</span>
+                        ${item.note ? `<div class="menu-note">Ghi chú: ${item.note}</div>` : ''}
+                    </div>
+                    <div>
+                        <input type="checkbox" id="complete-${item.id}" onchange="completeCooking(${item.id})"> Đã hoàn thành
+                    </div>
+                </div>
+            `;
+            return menuItem;
+        }
+
+        // Hoàn thành món
+        function completeCooking(menuId) {
+            const menuItem = cookingMenus.find(menu => menu.id === menuId);
+            if (menuItem) {
+                readyMenus.push(menuItem);
+                removeFromCooking(menuId);
+                renderReadyMenu();
+                renderCookingMenu();
+            }
+        }
+
+        // Xóa khỏi danh sách đang nấu
+        function removeFromCooking(menuId) {
+            const index = cookingMenus.findIndex(menu => menu.id === menuId);
+            if (index !== -1) {
+                cookingMenus.splice(index, 1);
+            }
+        }
+
+        // Hiển thị danh sách món đã sẵn sàng
+        function renderReadyMenu() {
+            const menuList = document.getElementById('ready-menu-list');
+            menuList.innerHTML = '';
+            readyMenus.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.classList.add('menu-item');
+                menuItem.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="menu-name"><strong>${item.name}</strong></span> <span class="menu-table">(Bàn: ${item.table})</span> - Đã hoàn thành
+                            ${item.note ? `<div class="menu-note">Ghi chú: ${item.note}</div>` : ''}
+                        </div>
+                    </div>
+                `;
+                menuList.appendChild(menuItem);
+            });
+        }
+
+        // Hiển thị nội dung tab
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            const selectedSection = document.getElementById(sectionId);
+            selectedSection.style.display = 'block';
+
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            const activeLink = Array.from(links).find(link => link.innerText.toLowerCase() === sectionId.split('-')[1].replace(/_/g, ' '));
+            if (activeLink) activeLink.classList.add('active');
+        }
+
+        // Mặc định hiển thị Danh sách món cần nấu
+        document.addEventListener('DOMContentLoaded', function () {
+            showSection('item-1');
+            loadMenu('hot');
+        });
+    </script>
+</body>
+
+<style>
+    .nav-container {
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-pills .nav-link {
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 0.2rem;
+        margin-right: 10px;
+        color: #007bff;
+    }
+
+        .nav-pills .nav-link.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .nav-pills .nav-link:hover {
+            background-color: transparent;
+            color: #0056b3;
+        }
+
+    .menu-item {
+        background-color: #f8f9fa;
+        padding: 20px 24px;
+        border-radius: 8px;
+        margin-bottom: 18px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        font-size: 1.18rem;
+    }
+
+    .menu-name {
+        font-size: 1.22em;
+    }
+
+    .menu-table {
+        font-size: 1em;
+        color: #888;
+        margin-left: 8px;
+    }
+
+    .menu-note {
+        font-size: 1em;
+        color: #ff5722;
+        font-style: italic;
+        margin-top: 4px;
+        margin-bottom: 2px;
+        padding-left: 2px;
+        word-break: break-word;
+    }
+
+    .btn-success.btn-lg {
+        font-size: 1.1em;
+        padding: 10px 24px;
+        border-radius: 30px;
+    }
+</style>

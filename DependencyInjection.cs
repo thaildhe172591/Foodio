@@ -1,17 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FoodioAPI.Configs;
 using FoodioAPI.Database;
-using FoodioAPI.Services.Implements;
-using Microsoft.EntityFrameworkCore;
-using FoodioAPI.Database.Repositories.Implements;
-using FoodioAPI.Exceptions.Handler;
-using FoodioAPI.Configs;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Authentication.OAuth;
-using Microsoft.Extensions.Options;
-using FoodioAPI.Entities;
-using FoodioAPI.Services;
 using FoodioAPI.Database.Repositories;
+using FoodioAPI.Database.Repositories.Implements;
+using FoodioAPI.Entities;
+using FoodioAPI.Exceptions.Handler;
+using FoodioAPI.Services;
+using FoodioAPI.Services.Implements;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -82,21 +79,41 @@ public static class DependencyInjection
         services.AddScoped<IEmailService, EmailService>();
 
         // StorageService
+        services.AddHttpClient();
+        
+        // Configure named HttpClient for API calls
+        services.AddHttpClient("API", client =>
+        {
+            client.BaseAddress = new Uri("https://localhost:5001/"); // Thay đổi port theo cấu hình của bạn
+            client.DefaultRequestHeaders.Add("Accept", "application/json");
+        });
+        
+        services.AddScoped<ApplicationDbContext>();
+        //services.AddScoped<IEmailSender, EmailService>();
         services.AddScoped<ICartService, CartService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IMenuService, MenuService>();
+        services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<IStatisticsService, StatisticsService>();
         services.AddSingleton<IStorageService>(s => new StorageService());
 
         // UnitOfWork, BaseRepository
         services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork))
             .AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
+        // Repository registrations
+        services.AddScoped<IMenuItemRepository, MenuItemRepository>();
+        services.AddScoped<IShiftRepository, ShiftRepository>();
+
         // Auth related services
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserManagementService, UserManagementService>();
 
+        // Shift management services
+        services.AddScoped<IShiftService, ShiftService>();
 
         // Common services
         services.AddHttpClient("FoodioAPI", c =>

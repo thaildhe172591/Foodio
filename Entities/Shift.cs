@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using FoodioAPI.Entities;
+﻿using FoodioAPI.Entities.Abstractions;
+using System.ComponentModel.DataAnnotations;
 
 namespace FoodioAPI.Entities;
 
-public class Shift
+public class Shift : Entity
 {
-    public Guid Id { get; set; }
-
     public string UserId { get; set; } = default!;
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }

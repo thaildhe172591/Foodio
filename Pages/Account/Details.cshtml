@@ -1,0 +1,262 @@
+﻿@page
+@model FoodieAPII.Pages.Account.DetailsModel
+@{
+    ViewData["HideLayoutHeader"] = true;
+}
+<!-- HEADER -->
+<div class="sticky-top bg-white shadow-sm" style="z-index: 1030;">
+    <div class="container">
+        <div class="header d-flex align-items-center justify-content-between py-3">
+            <div class="d-flex align-items-center">
+                <img src="~/images/logo_foddie.jpg" alt="Logo" style="height: 80px;">
+                <div class="delivery-input-box d-flex border rounded px-3 py-2 ms-3" style="max-width: 500px; width: 100%;">
+                    <span class="label text-muted me-2">Giao đến</span>
+                    <span class="location-icon me-2">📍</span>
+                    <input type="text" class="form-control border-0" placeholder="Nhập địa chỉ..." style="min-height: 36px;" />
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center gap-4">
+                <button class="btn btn-success rounded-circle d-flex justify-content-center align-items-center position-relative"
+                        style="width: 50px; height: 50px;" data-bs-toggle="modal" data-bs-target="#cartModal">
+                    <a href="/Account/Cart"><i class="bi bi-cart3 fs-4 text-white"></i></a>
+                    <span id="cart-quantity-badge"
+                          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                          style="font-size: 0.7em;">
+                        0
+                    </span>
+                </button>
+                <div class="d-flex flex-column align-items-center">
+                    <i class="bi bi-person-circle text-dark" style="font-size: 30px;"></i>
+                    <div class="fw-semibold text-dark mt-1">Nguyễn Văn A</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BODY -->
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-lg rounded-4 p-4">
+                <div class="row g-4">
+                    <!-- Ảnh -->
+                    <div class="col-md-5">
+                        <img src="~/images/banner-1.jpg" class="img-fluid rounded w-100" alt="Ảnh sản phẩm" />
+                    </div>
+
+                    <!-- Thông tin -->
+                    <div class="col-md-7">
+                        <h3 class="fw-bold mb-2">Combo: 1 Nem nướng + 1 Trà Tắc 500ml</h3>
+
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="me-2 text-danger">
+                                <i class="bi bi-heart-fill"></i> Yêu thích
+                            </span>
+                            <span class="text-warning">★★★★★ <span class="text-dark">(999+ đánh giá)</span></span>
+                        </div>
+
+                        <p class="text-muted">
+                            Một phần ăn tuyệt vời cho bữa trưa! Nem nướng thơm lừng, ăn kèm với ly trà tắc mát lạnh giúp bạn bùng nổ vị giác!
+                        </p>
+
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <h4 class="text-danger fw-bold mb-0">58.900 đ</h4>
+                            <small class="text-muted text-decoration-line-through">62.000 đ</small>
+                            <span class="badge bg-warning text-dark">Tiết kiệm 3.100 đ</span>
+                        </div>
+
+                        <button class="btn btn-warning fw-bold px-4 py-2 rounded-pill add-to-cart-main add-to-cart-btn">
+                            <i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ hàng
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Đánh giá giả lập -->
+                <hr class="my-4" />
+                <h5 class="fw-bold mb-3">Đánh giá từ người dùng</h5>
+                <div class="border rounded p-3 mb-2">
+                    <div class="d-flex justify-content-between">
+                        <div><strong>Trần Minh</strong> <small class="text-muted">• 2 ngày trước</small></div>
+                        <div class="text-warning">★★★★★</div>
+                    </div>
+                    <div class="mt-1 text-muted">Ngon hơn mình nghĩ, trà tắc vị thanh mát, nem giòn rụm.</div>
+                </div>
+                 <div class="border rounded p-3 mb-2">
+                    <div class="d-flex justify-content-between">
+                        <div><strong>Trần Minh</strong> <small class="text-muted">• 2 ngày trước</small></div>
+                        <div class="text-warning">★★★★★</div>
+                    </div>
+                    <div class="mt-1 text-muted">Ngon hơn mình nghĩ, trà tắc vị thanh mát, nem giòn rụm.</div>
+                </div>
+                 <div class="border rounded p-3 mb-2">
+                    <div class="d-flex justify-content-between">
+                        <div><strong>Trần Minh</strong> <small class="text-muted">• 2 ngày trước</small></div>
+                        <div class="text-warning">★★★★★</div>
+                    </div>
+                    <div class="mt-1 text-muted">Ngon hơn mình nghĩ, trà tắc vị thanh mát, nem giòn rụm.</div>
+                </div>
+                 <div class="border rounded p-3 mb-2">
+                    <div class="d-flex justify-content-between">
+                        <div><strong>Trần Minh</strong> <small class="text-muted">• 2 ngày trước</small></div>
+                        <div class="text-warning">★★★★★</div>
+                    </div>
+                    <div class="mt-1 text-muted">Ngon hơn mình nghĩ, trà tắc vị thanh mát, nem giòn rụm.</div>
+                </div>
+                 <div class="border rounded p-3 mb-2">
+                    <div class="d-flex justify-content-between">
+                        <div><strong>Trần Minh</strong> <small class="text-muted">• 2 ngày trước</small></div>
+                        <div class="text-warning">★★★★★</div>
+                    </div>
+                    <div class="mt-1 text-muted">Ngon hơn mình nghĩ, trà tắc vị thanh mát, nem giòn rụm.</div>
+                </div>
+                 <div class="border rounded p-3 mb-2">
+                    <div class="d-flex justify-content-between">
+                        <div><strong>Trần Minh</strong> <small class="text-muted">• 2 ngày trước</small></div>
+                        <div class="text-warning">★★★★★</div>
+                    </div>
+                    <div class="mt-1 text-muted">Ngon hơn mình nghĩ, trà tắc vị thanh mát, nem giòn rụm.</div>
+                </div>
+
+
+                <div class="border rounded p-3 mb-2">
+                    <div class="d-flex justify-content-between">
+                        <div><strong>Lê Hồng</strong> <small class="text-muted">• 1 tuần trước</small></div>
+                        <div class="text-warning">★★★★☆</div>
+                    </div>
+                    <div class="mt-1 text-muted">Nem hơi ít nhưng vị ổn, sẽ mua lại.</div>
+                </div>
+
+                <!-- Gợi ý món -->
+                <hr class="my-4" />
+                <h5 class="fw-bold mb-3">Gợi ý món ăn cùng loại</h5>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <img src="~/images/banner-1.jpg" class="card-img-top" alt="Nem chua rán">
+                            <div class="card-body">
+                                <h6 class="card-title fw-bold">Nem chua rán</h6>
+                                <p class="card-text text-muted small mb-1">Giòn rụm, thơm ngon, ăn vặt cực đã!</p>
+                                <div class="text-danger fw-bold">35.000 đ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <img src="~/images/banner-1.jpg" class="card-img-top" alt="Chả giò rế">
+                            <div class="card-body">
+                                <h6 class="card-title fw-bold">Chả giò rế</h6>
+                                <p class="card-text text-muted small mb-1">Lớp vỏ rế siêu giòn, nhân đậm đà.</p>
+                                <div class="text-danger fw-bold">42.000 đ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <img src="~/images/banner-1.jpg" class="card-img-top" alt="Bánh tráng trộn">
+                            <div class="card-body">
+                                <h6 class="card-title fw-bold">Bánh tráng trộn</h6>
+                                <p class="card-text text-muted small mb-1">Vị chua cay mặn ngọt, ăn là ghiền!</p>
+                                <div class="text-danger fw-bold">25.000 đ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <img src="~/images/banner-1.jpg" class="card-img-top" alt="Gỏi đu đủ khô bò">
+                            <div class="card-body">
+                                <h6 class="card-title fw-bold">Gỏi đu đủ khô bò</h6>
+                                <p class="card-text text-muted small mb-1">Món khai vị hấp dẫn với khô bò dai ngon.</p>
+                                <div class="text-danger fw-bold">38.000 đ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Kết thúc gợi ý -->
+            </div>
+        </div>
+    </div>
+</div>
+<button id="scrollToTopBtn" class="btn btn-primary rounded-circle"
+        style="position: fixed; bottom: 32px; right: 32px; width: 48px; height: 48px; display: none; z-index: 9999;">
+    <i class="bi bi-arrow-up"></i>
+</button>
+
+<!-- SCRIPT -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const badge = document.getElementById("cart-quantity-badge");
+        const input = document.getElementById("product-qty");
+        let qty = parseInt(localStorage.getItem("cartQuantity")) || 1;
+
+        const updateDisplay = () => {
+            badge.textContent = qty;
+            input.value = qty;
+            localStorage.setItem("cartQuantity", qty);
+        };
+
+        updateDisplay();
+
+        window.updateQty = (change) => {
+            qty = Math.max(1, qty + change);
+            updateDisplay();
+        };
+
+        window.manualQtyChange = () => {
+            qty = Math.max(1, parseInt(input.value) || 1);
+            updateDisplay();
+        };
+    });
+</script>
+
+<!-- STYLE -->
+<style>
+    .label {
+        color: #888;
+        font-size: 14px;
+        margin-right: 6px;
+        white-space: nowrap;
+    }
+
+    .location-icon {
+        color: #f45c4b;
+        font-size: 16px;
+        margin-right: 6px;
+    }
+
+    .delivery-input-box {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 6px 12px;
+        background-color: #fff;
+        font-family: Arial, sans-serif;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        max-width: 100%;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const badge = document.getElementById("cart-quantity-badge");
+        // Lấy số lượng hiện tại từ sessionStorage hoặc 0 nếu chưa có
+        let qty = parseInt(sessionStorage.getItem("cartQuantity")) || 0;
+        badge.textContent = qty;
+
+        // Gắn sự kiện cho tất cả các nút thêm giỏ (class add-to-cart-btn)
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                qty++;
+                badge.textContent = qty;
+                sessionStorage.setItem("cartQuantity", qty);
+                // Hiệu ứng badge (tuỳ chọn)
+                badge.classList.add('animate__animated', 'animate__tada');
+                setTimeout(() => badge.classList.remove('animate__animated', 'animate__tada'), 600);
+            });
+        });
+    });
+</script>

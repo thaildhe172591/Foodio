@@ -1,0 +1,166 @@
+﻿@page
+@model FoodieAPII.Pages.Cashier.SalesRevenueModel
+@{
+    ViewData["HideLayoutHeader"] = true;
+}
+
+<div class="sticky-top bg-white shadow-sm py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+        <img src="~/images/logo_foddie.jpg" style="height: 80px; object-fit: contain;" />
+        <div class="fw-bold fs-5">Quản lý bàn ăn</div>
+        <div class="d-flex">
+            <a href="/Cashier/TableManagement" class="fw-bold fs-5 mx-3">Quay lại màn hình chính</a>
+
+        </div>
+    </div>
+</div>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Phần thống kê (chiếm 8 phần) -->
+            <div class="col-md-8">
+                <h1 class="text-center mb-4">Doanh Thu Hôm Nay</h1>
+
+                <!-- Tổng quan thống kê -->
+                <div class="summary d-flex justify-content-between mb-4">
+                    <div class="summary-item">
+                        <h4>Doanh thu hôm nay</h4>
+                        <p>26,200,000</p>
+                        <p><span class="text-danger">-33.15%</span> So với tháng trước</p>
+                    </div>
+                    <div class="summary-item">
+                        <h4>Doanh thu theo tháng này</h4>
+                        <p>1,344,961,000</p>
+                    </div>
+                    <div class="summary-item">
+                        <h4>Tỷ lệ hoàn thành</h4>
+                        <p><span class="text-success">102.5%</span></p>
+                    </div>
+                </div>
+
+                <!-- Biểu đồ doanh thu theo ngày -->
+                <div class="chart-container">
+                    <h4>Doanh thu theo ngày</h4>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+
+                <!-- Biểu đồ doanh thu theo chi nhánh -->
+                <div class="chart-container mt-4">
+                    <h4>Doanh thu theo chi nhánh tháng này</h4>
+                    <canvas id="branchChart"></canvas>
+                </div>
+
+                <!-- Biểu đồ TOP 10 hàng bán chạy -->
+                <div class="chart-container mt-4">
+                    <h4>TOP 10 hàng bán chạy</h4>
+                    <canvas id="topProductsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Phần thông báo (chiếm 4 phần) -->
+            <div class="col-md-4">
+                <div class="card shadow rounded">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">Lịch sử thanh toán</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Dữ liệu thông báo tĩnh với kiểu bàn và đơn online -->
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="text-primary">Bàn số 10 thanh toán 500,000₫</span>
+                                <p class="mb-0"><small>Đã thanh toán tại bàn - 1 giờ trước</small></p>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="text-primary">Đơn online mã #ON001 thanh toán 100,000₫</span>
+                                <p class="mb-0"><small>Đã thanh toán online - 2 giờ trước</small></p>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="text-primary">Bàn số 7 thanh toán 750,000₫</span>
+                                <p class="mb-0"><small>Đã thanh toán tại bàn - 3 giờ trước</small></p>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="text-primary">Đơn online mã #ON002 thanh toán 150,000₫</span>
+                                <p class="mb-0"><small>Đã thanh toán online - 4 giờ trước</small></p>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="text-primary">Bàn số 5 thanh toán 350,000₫</span>
+                                <p class="mb-0"><small>Đã thanh toán tại bàn - 5 giờ trước</small></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Biểu đồ doanh thu theo ngày
+        const revenueChart = new Chart(document.getElementById('revenueChart'), {
+            type: 'bar',
+            data: {
+                labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14'],
+                datasets: [{
+                    label: 'Doanh thu',
+                    data: [50, 70, 100, 80, 60, 90, 150, 200, 50, 120, 180, 200, 250, 300],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Biểu đồ doanh thu theo chi nhánh
+        const branchChart = new Chart(document.getElementById('branchChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Chi nhánh A', 'Chi nhánh B', 'Chi nhánh C'],
+                datasets: [{
+                    data: [500000000, 600000000, 244000000],
+                    backgroundColor: ['#FF5733', '#33FF57', '#3357FF']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+
+        // Biểu đồ TOP 10 hàng bán chạy
+        const topProductsChart = new Chart(document.getElementById('topProductsChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Sản phẩm A', 'Sản phẩm B', 'Sản phẩm C', 'Sản phẩm D', 'Sản phẩm E', 'Sản phẩm F', 'Sản phẩm G', 'Sản phẩm H', 'Sản phẩm I', 'Sản phẩm J'],
+                datasets: [{
+                    label: 'Sản phẩm bán chạy',
+                    data: [50, 75, 80, 90, 120, 150, 170, 180, 200, 210],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
