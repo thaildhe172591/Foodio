@@ -1,16 +1,19 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using FoodioAPI.Database;
 using FoodioAPI.Services.Implements;
 using Microsoft.EntityFrameworkCore;
 using FoodioAPI.Database.Repositories.Implements;
 using FoodioAPI.Exceptions.Handler;
-using FoodioAPI.DTOs.Configs;
+using FoodioAPI.Configs;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.Extensions.Options;
 using FoodioAPI.Entities;
 using FoodioAPI.Services;
 using FoodioAPI.Database.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace FoodioAPI;
 public static class DependencyInjection
@@ -39,61 +42,72 @@ public static class DependencyInjection
         ).AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
 
-        services.AddHttpClient();
-        services.AddScoped<ApplicationDbContext>();
-        services.AddScoped<IEmailSender, EmailService>();
+        // JWT config
+        var jwtSection = configuration.GetSection("JWT");
+        services.Configure<JwtConfig>(jwtSection);
+        var jwtConfig = jwtSection.Get<JwtConfig>() ?? throw new Exception("Jwt options have not been set!");
+
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(option =>
+        {
+            option.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                ClockSkew = TimeSpan.Zero,
+                ValidIssuer = jwtConfig.Issuer,
+                ValidAudience = jwtConfig.Audience,
+                IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(jwtConfig.SigningKey))
+            };
+            option.Events = new JwtBearerEvents
+            {
+                OnMessageReceived = context =>
+                {
+                    context.Request.Cookies.TryGetValue(jwtConfig.AccessTokenKey, out var accessToken);
+                    if (!string.IsNullOrEmpty(accessToken))
+                        context.Token = accessToken;
+                    return Task.CompletedTask;
+                }
+            };
+        });
+        //Google Config
+        services.Configure<GoogleConfig>(configuration.GetSection("Google"));
+
+        // Email Service
+        services.Configure<EmailConfig>(configuration.GetSection("EmailApiKey"));
+        services.AddScoped<IEmailService, EmailService>();
+
+        // StorageService
         services.AddScoped<ICartService, CartService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IMenuService, MenuService>();
         services.AddSingleton<IStorageService>(s => new StorageService());
 
+        // UnitOfWork, BaseRepository
         services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork))
             .AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
-        services.AddRazorPages();
+        // Auth related services
+        services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IIdentityService, IdentityService>();
+        services.AddScoped<IUserRepository, UserRepository>();
+
+
+        // Common services
+        services.AddHttpClient("FoodioAPI", c =>
+        {
+            c.BaseAddress = new Uri("https://localhost:5001");
+        });
         services.AddExceptionHandler<CustomExceptionHandler>();
-        //services.Configure<EmailConfig>(configuration.GetSection("EmailApiKey"));
+        services.AddRazorPages();
 
-        //services.AddAuthentication()
-        //.AddGoogle(options =>
-        //{
-        //    options.ClientId = configuration["Authentication:Google:ClientId"] ?? throw new InvalidOperationException("ClientId is not configured");
-        //    options.ClientSecret = configuration["Authentication:Google:ClientSecret"] ?? throw new InvalidOperationException("ClientSecret is not configured");
-        //    options.CallbackPath = "/signin-google";
-        //})
-        //.AddFacebook(options =>
-        //{
-        //    options.AppId = configuration["Authentication:Facebook:AppId"] ?? throw new InvalidOperationException("ClientSecret is not configured");
-        //    options.AppSecret = configuration["Authentication:Facebook:AppSecret"] ?? throw new InvalidOperationException("ClientSecret is not configured");
-        //    options.Events = new OAuthEvents
-        //    {
-        //        OnRemoteFailure = context =>
-        //        {
-        //            context.Response.Redirect("/Identity/Account/Login");
-        //            context.HandleResponse();
-        //            return Task.CompletedTask;
-        //        }
-        //    };
-        //});
-        //services.ConfigureApplicationCookie(options =>
-        //{
-        //    options.SlidingExpiration = true;
-        //    options.ExpireTimeSpan = TimeSpan.FromDays(7);
-        //});
-        //services.Configure<CookiePolicyOptions>(options =>
-        //{
-        //    options.CheckConsentNeeded = context => false;
-        //    options.MinimumSameSitePolicy = SameSiteMode.Lax;
-        //});
-        //services.ConfigureApplicationCookie(options =>
-        //{
-        //    options.LoginPath = "/Identity/Account/Login";
-        //    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-        //});
-
-
-        //services.AddSingleton<NotificationQueueService>();
-        //services.AddHostedService(sp => sp.GetService<NotificationQueueService>()!);
+        // Add AutoMapper
+        services.AddAutoMapper(typeof(Program));
 
         return services;
     }

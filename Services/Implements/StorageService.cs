@@ -1,7 +1,7 @@
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Storage.V1;
-
-namespace FoodioAPI.Services;
+using FoodioAPI.Services;
+namespace FoodioAPI.Services.Implements;
 
 public class StorageService : IStorageService
 {

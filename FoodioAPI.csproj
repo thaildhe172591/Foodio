@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>a8d16064-e396-4aea-8776-01cce126098f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,6 +34,8 @@
 	  <PackageReference Include="X.PagedList" Version="10.5.7" />
 	  <PackageReference Include="X.PagedList.Mvc.Core" Version="10.5.7" />
 	  <PackageReference Include="SendGrid" Version="9.29.3" />
+	  <PackageReference Include="AutoMapper" Version="13.0.1" />
+	  <PackageReference Include="Google.Apis.Auth" Version="1.68.0" />
   </ItemGroup>
 
   <ItemGroup>
