@@ -7,7 +7,8 @@ public class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
 {
     private readonly ApplicationDbContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
     private Hashtable _repositories = [];
-
+    public IOrderSessionRepository OrderSessionRepo => _orderSessionRepo ??= new OrderSessionRepository(_dbContext);
+    private IOrderSessionRepository? _orderSessionRepo;
     public IBaseRepository<T> Repository<T>() where T : Entity
     {
         _repositories ??= [];

@@ -9,7 +9,7 @@ namespace FoodioAPI.Database.Repositories
         Task<IEnumerable<MenuItem>> SearchByNameAsync(string name);
         Task<bool> ExistsByNameAsync(string name, Guid? excludeId = null);
         Task<bool> HasOrdersAsync(Guid menuItemId);
-
+        Task<List<MenuItem>> GetAllWithCategoryAsync();
         Task<MenuItem> GetByIdAsync(Guid id);
     }
 }

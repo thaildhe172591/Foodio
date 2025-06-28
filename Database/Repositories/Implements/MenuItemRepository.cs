@@ -51,6 +51,10 @@ namespace FoodioAPI.Database.Repositories.Implements
 
             return await query.AnyAsync();
         }
+        public async Task<List<MenuItem>> GetAllWithCategoryAsync()
+        {
+            return await _context.MenuItems.Include(m => m.Category).ToListAsync();
+        }
 
         public async Task<bool> HasOrdersAsync(Guid menuItemId)
         {

@@ -4,6 +4,7 @@ using FoodioAPI.Database.Repositories;
 using FoodioAPI.Database.Repositories.Implements;
 using FoodioAPI.Entities;
 using FoodioAPI.Exceptions.Handler;
+using FoodioAPI.Middlewares;
 using FoodioAPI.Services;
 using FoodioAPI.Services.Implements;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -99,6 +100,8 @@ public static class DependencyInjection
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IMenuService, MenuService>();
         services.AddSingleton<IStorageService>(s => new StorageService());
+        services.AddScoped<IDineInMenuService, DineInMenuService>();
+        
 
         // UnitOfWork, BaseRepository
         services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork))
@@ -107,6 +110,7 @@ public static class DependencyInjection
         // Repository registrations
         services.AddScoped<IMenuItemRepository, MenuItemRepository>();
         services.AddScoped<IShiftRepository, ShiftRepository>();
+        services.AddScoped<IOrderSessionRepository, OrderSessionRepository>();
 
         // Auth related services
         services.AddScoped<ITokenService, TokenService>();
@@ -117,6 +121,7 @@ public static class DependencyInjection
 
         // Shift management services
         services.AddScoped<IShiftService, ShiftService>();
+        services.AddScoped<IDineInCartService, DineInCartService>();
 
         // Common services
         services.AddHttpClient("FoodioAPI", c =>

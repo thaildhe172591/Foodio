@@ -1,14 +1,15 @@
 using System.ComponentModel.DataAnnotations;
 using FoodioAPI.Entities;
+using FoodioAPI.Entities.Abstractions;
 
 namespace FoodioAPI.Entities;
 
-public class Cart
+public class Cart : Entity
 {
-    public Guid Id { get; set; }
+    //public Guid Id { get; set; }
 
-    [Required(ErrorMessage = "UserId is required.")]
-    public string UserId { get; set; } = default!;
+    //[Required(ErrorMessage = "UserId is required.")]
+    public string UserId { get; set; }
 
     public Guid? TableId { get; set; }
 
@@ -21,7 +22,7 @@ public class Cart
     public bool IsOrdered { get; set; } = false;
 
     // Navigation properties
-    public virtual User User { get; set; } = default!;
+    public virtual User User { get; set; }
     public virtual DiningTable? Table { get; set; }
     public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
 

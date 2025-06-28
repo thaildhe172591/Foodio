@@ -12,6 +12,9 @@ public class CartConfiguration : IEntityTypeConfiguration<Cart>
 
         builder.HasKey(x => x.Id);
 
+        builder.Property(x => x.UserId)
+                .IsRequired(false);
+
         builder.Property(x => x.Type)
                .IsRequired()
                .HasMaxLength(50);

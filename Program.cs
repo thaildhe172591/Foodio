@@ -2,6 +2,7 @@ using FoodioAPI;
 using FoodioAPI.Database.Repositories.Implements;
 using FoodioAPI.Exceptions.Handler;
 using FoodioAPI.Mappings;
+using FoodioAPI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +54,8 @@ app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<TableTokenMiddleware>();
 
 app.MapControllers();    // API Routes (REST API)
 app.MapRazorPages();     // Razor Pages (.cshtml Pages)

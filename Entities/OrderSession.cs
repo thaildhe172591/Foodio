@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
+using FoodioAPI.Entities.Abstractions;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace FoodioAPI.Entities;
 
-public class OrderSession
+public class OrderSession : Entity
 {
-    public Guid Id { get; set; }
+    //public Guid Id { get; set; }
 
     [Required(ErrorMessage = "TableId is required.")]
     public Guid TableId { get; set; }

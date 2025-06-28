@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Mapping\**" />
+    <Content Remove="Mapping\**" />
+    <EmbeddedResource Remove="Mapping\**" />
+    <None Remove="Mapping\**" />
+  </ItemGroup>
+
+  <ItemGroup>
 	  <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
 	  <PackageReference Include="EPPlus" Version="5.8.3" />
 	  <PackageReference Include="MailKit" Version="4.2.0" />
@@ -36,11 +43,6 @@
 	  <PackageReference Include="SendGrid" Version="9.29.3" />
 	  <PackageReference Include="AutoMapper" Version="13.0.1" />
 	  <PackageReference Include="Google.Apis.Auth" Version="1.68.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Mapping\" />
-    <Folder Include="Middlewares\" />
   </ItemGroup>
 
 </Project>

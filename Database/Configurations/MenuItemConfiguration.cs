@@ -26,6 +26,10 @@ public class MenuItemConfiguration : IEntityTypeConfiguration<MenuItem>
         builder.Property(x => x.ImageUrl)
                .HasMaxLength(255);
 
+        builder.Property(x => x.IsAvailable)
+               .HasDefaultValue(true);
+
+
         builder.HasOne(x => x.Category)
                .WithMany(x => x.MenuItems)
                .HasForeignKey(x => x.CategoryId)

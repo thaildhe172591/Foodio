@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using FoodioAPI.Entities.Abstractions;
 
 namespace FoodioAPI.Entities;
 
-public class CartItem
+public class CartItem : Entity
 {
-    public Guid Id { get; set; }
+    //public Guid Id { get; set; }
 
     [Required(ErrorMessage = "CartId is required.")]
     public Guid CartId { get; set; }
