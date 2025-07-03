@@ -4,8 +4,6 @@
     ViewData["HideLayoutHeader"] = true;
 }
 
-
-
 <body>
     <div class="container mt-5">
         <h1 class="text-center mb-4">Quản lý Đơn Hàng - Shipper</h1>
@@ -13,7 +11,7 @@
         <!-- Thanh điều hướng -->
         <div class="row justify-content-center">
             <div class="col-8">
-                <nav id="navbar-example3" class="nav-container p-3 border rounded">
+                <nav class="nav-container p-3 border rounded">
                     <nav class="nav nav-pills justify-content-center">
                         <a class="nav-link active" href="javascript:void(0);" onclick="showSection('item-1')">Đơn Chờ Giao</a>
                         <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-2')">Cập Nhật Trạng Thái</a>
@@ -24,107 +22,175 @@
             </div>
         </div>
 
-        <!-- Phần bên phải: Nội dung theo từng mục -->
+        <!-- Nội dung -->
         <div class="row mt-4">
             <div class="col-12">
                 <!-- Đơn Chờ Giao -->
                 <div id="item-1" class="section-content">
                     <h4>Đơn Chờ Giao</h4>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Tên Khách</th>
-                                    <th>SĐT</th>
-                                    <th>Địa Chỉ</th>
-                                    <th>Món</th>
-                                    <th>Phí Ship</th>
-                                    <th>Hành Động</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Danh sách đơn chờ giao sẽ được điền vào đây -->
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên Khách</th>
+                                <th>Món</th>
+                                <th>Phí Ship</th>
+                                <th>Tổng Tiền Món</th>
+                                <th>Hành Động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-name="Nguyễn Văn A" data-fee="15000" data-totalprice="50000">
+                                <td>1</td>
+                                <td>Nguyễn Văn A</td>
+                                <td>Trà sữa x1</td>
+                                <td>15.000đ</td>
+                                <td>50.000đ</td>
+                                <td>
+                                    <button class="btn btn-sm btn-success" onclick="startDelivery(this)">Nhận giao hàng</button>
+                                    <button class="btn btn-sm btn-primary" onclick="updateOrderStatus('DH001', this)">Cập Nhật Trạng Thái</button>
+                                </td>
+                            </tr>
+                            <tr data-name="Trần Thị B" data-fee="20000" data-totalprice="70000">
+                                <td>2</td>
+                                <td>Trần Thị B</td>
+                                <td>Bánh mì x2</td>
+                                <td>20.000đ</td>
+                                <td>70.000đ</td>
+                                <td>
+                                    <button class="btn btn-sm btn-success" onclick="startDelivery(this)">Nhận giao hàng</button>
+                                    <button class="btn btn-sm btn-primary" onclick="updateOrderStatus('DH002', this)">Cập Nhật Trạng Thái</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Cập Nhật Trạng Thái -->
                 <div id="item-2" class="section-content" style="display:none;">
                     <h4>Cập Nhật Trạng Thái</h4>
-                    <div>
-                        <label for="order-id">Chọn Mã Đơn:</label>
-                        <input type="text" id="order-id" class="form-control" placeholder="Mã đơn hàng">
-                    </div>
-                    <div class="mt-3">
-                        <label for="order-status">Trạng Thái:</label>
-                        <select id="order-status" class="form-select">
-                            <option value="completed">Đã giao</option>
-                            <option value="failed">Thất bại</option>
-                        </select>
-                    </div>
-                    <div class="mt-3">
-                        <label for="failure-reason">Lý Do Thất Bại (nếu có):</label>
-                        <textarea id="failure-reason" class="form-control" rows="3"></textarea>
-                    </div>
-                    <button class="btn btn-primary mt-3">Cập Nhật Trạng Thái</button>
+                    <input type="text" id="order-id" class="form-control" placeholder="Mã đơn hàng" readonly>
+                    <select id="order-status" class="form-select mt-2">
+                        <option value="completed">Đã giao</option>
+                        <option value="failed">Thất bại</option>
+                    </select>
+                    <textarea id="failure-reason" class="form-control mt-2" rows="2" placeholder="Lý do thất bại (nếu có)"></textarea>
+                    <button class="btn btn-primary mt-2" onclick="confirmUpdateStatus()">Cập Nhật Trạng Thái</button>
                 </div>
 
                 <!-- Lịch Sử Giao Hàng -->
                 <div id="item-3" class="section-content" style="display:none;">
                     <h4>Lịch Sử Giao Hàng</h4>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Mã Đơn</th>
-                                    <th>Ngày Giao</th>
-                                    <th>Trạng Thái</th>
-                                    <th>Khách Hàng</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Danh sách đơn đã giao sẽ được điền vào đây -->
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Mã Đơn</th>
+                                <th>Ngày Giao</th>
+                                <th>Khách Hàng</th>
+                                <th>Tổng Tiền Món</th>
+                                <th>Tiền Ship</th>
+                                <th>Trạng Thái</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-body"></tbody>
+                    </table>
                 </div>
 
                 <!-- Màn Tổng Thu -->
                 <div id="item-4" class="section-content" style="display:none;">
-                    <h4>Màn Tổng Thu</h4>
-                    <p>Số Đơn Ship: <span id="total-orders">0</span></p>
-                    <p>Tổng Tiền Ship: <span id="total-shipping">0</span></p>
+                    <h4 class="text-center mb-3">Màn Tổng Thu</h4>
+                    <div class="summary-box mx-auto p-3">
+                        <p><strong>Tổng Tiền Món Ăn:</strong> <span id="total-food">0</span> đ</p>
+                        <p><strong>Tổng Tiền Ship:</strong> <span id="total-shipping">0</span> đ</p>
+                        <p><strong>Số Đơn Thành Công:</strong> <span id="total-orders">0</span></p>
+                        <button class="btn btn-info w-100 mt-2" onclick="calcTotal()">Tính Lại Tổng</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section-content');
-            sections.forEach(section => section.style.display = 'none');
+        let currentRow = null;
+        let totalOrders = 0;
+        let totalShipping = 0;
+        let totalFood = 0;
 
-            const selectedSection = document.getElementById(sectionId);
-            selectedSection.style.display = 'block';
-
-            const links = document.querySelectorAll('.nav-link');
-            links.forEach(link => link.classList.remove('active'));
-
-            const activeLink = Array.from(links).find(link => link.innerText.toLowerCase() === sectionId.split('-')[1].replace(/_/g, ' '));
-            activeLink.classList.add('active');
+        function startDelivery(btn) {
+            btn.innerText = 'Đang giao';
+            btn.disabled = true;
         }
 
-        // Mặc định hiển thị Đơn Chờ Giao
-        document.addEventListener('DOMContentLoaded', function() {
-            showSection('item-1');
-        });
+        function updateOrderStatus(orderId, btn) {
+            document.getElementById('order-id').value = orderId;
+            currentRow = btn.closest('tr');
+            showSection('item-2');
+        }
+
+        function confirmUpdateStatus() {
+            const orderId = document.getElementById('order-id').value;
+            const status = document.getElementById('order-status').value;
+            const name = currentRow.dataset.name;
+            const fee = parseInt(currentRow.dataset.fee);
+            const foodPrice = parseInt(currentRow.dataset.totalprice);
+            const date = new Date().toLocaleString();
+
+            // Thêm vào lịch sử
+            const historyBody = document.getElementById('history-body');
+            const index = historyBody.children.length + 1;
+            historyBody.innerHTML += `
+                <tr>
+                    <td>${index}</td>
+                    <td>${orderId}</td>
+                    <td>${date}</td>
+                    <td>${name}</td>
+                    <td>${foodPrice} đ</td>
+                    <td>${fee} đ</td>
+                    <td>${status === 'completed' ? 'Đã giao' : 'Thất bại'}</td>
+                </tr>
+            `;
+
+            // Tính tổng
+            if (status === 'completed') {
+                totalOrders++;
+                totalShipping += fee;
+                totalFood += foodPrice;
+            }
+
+            showSection('item-3');
+        }
+
+        function calcTotal() {
+            document.getElementById('total-orders').innerText = totalOrders;
+            document.getElementById('total-shipping').innerText = totalShipping;
+            document.getElementById('total-food').innerText = totalFood;
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('.section-content').forEach(sec => sec.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            if (id === 'item-1') document.querySelectorAll('.nav-link')[0].classList.add('active');
+            if (id === 'item-2') document.querySelectorAll('.nav-link')[1].classList.add('active');
+            if (id === 'item-3') document.querySelectorAll('.nav-link')[2].classList.add('active');
+            if (id === 'item-4') document.querySelectorAll('.nav-link')[3].classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => showSection('item-1'));
     </script>
 </body>
 
 <style>
+    .summary-box {
+        width: 300px; /* Chiều ngang gọn dễ nhìn */
+        background-color: #f8f9fa;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        text-align: left;
+    }
+
     .nav-container {
         border: 2px solid #ddd;
         border-radius: 8px;
@@ -135,7 +201,6 @@
     .nav-pills .nav-link {
         font-weight: 600;
         padding: 12px 20px;
-        border-radius: 0.2rem;
         margin-right: 10px;
         color: #007bff;
     }
@@ -145,10 +210,7 @@
             color: white;
         }
 
-    .menu-item {
-        background-color: #f8f9fa;
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 10px;
+    .bg-light {
+        background-color: #f8f9fa !important;
     }
 </style>
