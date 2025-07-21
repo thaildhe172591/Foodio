@@ -14,8 +14,10 @@ namespace FoodioAPI.Controllers
 
         private string GetCurrentUserId()
         {
-            //return User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value!;
-            return "044f88e2-0944-4fa0-a27f-7a368a55b35c";
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+                throw new Exception("Người dùng chưa đăng nhập.");
+            return userId;
 
         }
         public CartController(ICartService cartService)
