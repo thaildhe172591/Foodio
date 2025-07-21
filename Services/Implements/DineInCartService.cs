@@ -1,4 +1,5 @@
-﻿using FoodioAPI.Database.Repositories;
+﻿using FoodioAPI.Constants;
+using FoodioAPI.Database.Repositories;
 using FoodioAPI.DTOs.DinningMenu;
 using FoodioAPI.Entities;
 
@@ -81,6 +82,60 @@ namespace FoodioAPI.Services.Implements
 
             return cart.CartItems.Sum(x => x.Quantity * x.MenuItem.Price);
         }
+
+        public async Task<Guid> PlaceOrderAsync(Guid tableId)
+        {
+            var cart = await _unit.Repository<Cart>()
+                .FirstOrDefaultAsync(x => x.TableId == tableId && !x.IsOrdered, "CartItems.MenuItem");
+
+            if (cart == null || !cart.CartItems.Any())
+                throw new Exception("Cart is empty or does not exist.");
+
+            var order = new Order
+            {
+                Id = Guid.NewGuid(),
+                TableId = tableId,
+                UserId = cart.UserId,
+                OrderTypeId = OrderTypeConstants.DINEIN,
+                StatusId = OrderStatusConstants.PENDING,
+                Total = cart.CartItems.Sum(item => item.Quantity * item.MenuItem.Price),
+                CreatedAt = DateTime.UtcNow
+            };
+
+            foreach (var item in cart.CartItems)
+            {
+                order.OrderItems.Add(new OrderItem
+                {
+                    Id = Guid.NewGuid(),
+                    OrderId = order.Id,
+                    MenuItemId = item.MenuItemId,
+                    Quantity = item.Quantity,
+                    UnitPrice = item.MenuItem.Price,
+                    Note = item.Note
+                });
+            }
+
+            await _unit.Repository<Order>().AddAsync(order);
+
+            foreach (var orderItem in order.OrderItems)
+            {
+                await _unit.Repository<OrderItemStatusHistory>().AddAsync(new OrderItemStatusHistory
+                {
+                    Id = Guid.NewGuid(),
+                    OrderItemId = orderItem.Id,
+                    StatusId = OrderItemStatusConstants.PENDING,
+                    ChangedAt = DateTime.UtcNow
+                });
+            }
+
+            cart.IsOrdered = true;
+
+            await _unit.Save(CancellationToken.None);
+
+            return order.Id;
+        }
+
+
     }
 
 }

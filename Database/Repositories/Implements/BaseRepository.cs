@@ -14,6 +14,11 @@ public class BaseRepository<T>(ApplicationDbContext dbContext)
 
     public IQueryable<T> Entities => _dbContext.Set<T>();
 
+    public IQueryable<T> GetQueryable()
+    {
+        return _dbSet.AsQueryable();
+    }
+
     public async Task<T> AddAsync(T entity)
     {
         await _dbContext.Set<T>().AddAsync(entity);

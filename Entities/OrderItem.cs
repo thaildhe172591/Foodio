@@ -15,6 +15,10 @@ public class OrderItem
     [Range(1, int.MaxValue, ErrorMessage = "Quantity must be at least 1.")]
     public int Quantity { get; set; }
 
+    [Required(ErrorMessage = "Unit price is required.")]
+    [Range(0, double.MaxValue, ErrorMessage = "Unit price must be a non-negative number.")]
+    public decimal UnitPrice { get; set; }
+
     [MaxLength(255, ErrorMessage = "Note must be at most 255 characters.")]
     public string? Note { get; set; }
 

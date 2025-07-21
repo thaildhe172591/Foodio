@@ -6,6 +6,7 @@ namespace FoodioAPI.Database.Repositories;
 public interface IBaseRepository<T> where T : class, IEntity
 {
     IQueryable<T> Entities { get; }
+    IQueryable<T> GetQueryable();
     Task<T?> GetByIdAsync(Guid id);
     Task<List<T>> GetAllAsync();
     Task<T> AddAsync(T entity);

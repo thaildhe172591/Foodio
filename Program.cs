@@ -51,11 +51,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseCors("AllowAll");
+app.UseMiddleware<TableTokenMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseMiddleware<TableTokenMiddleware>();
 
 app.MapControllers();    // API Routes (REST API)
 app.MapRazorPages();     // Razor Pages (.cshtml Pages)

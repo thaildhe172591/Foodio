@@ -12,6 +12,9 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 
         builder.HasKey(x => x.Id);
 
+        builder.Property(x => x.UserId)
+               .IsRequired(false);
+
         builder.Property(x => x.Total)
                .IsRequired()
                .HasColumnType("decimal(10,2)");

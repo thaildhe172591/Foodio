@@ -15,6 +15,10 @@ public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
         builder.Property(x => x.Quantity)
                .IsRequired();
 
+        builder.Property(x => x.UnitPrice)
+               .IsRequired()
+               .HasColumnType("decimal(10,2)");
+
         builder.Property(x => x.Note)
                .HasMaxLength(255);
 

@@ -46,6 +46,24 @@ namespace FoodioAPI.Controllers
                 total
             });
         }
+
+        [HttpPost("place-order")]
+        public async Task<IActionResult> PlaceOrder()
+        {
+            if (!HttpContext.Items.TryGetValue("TableId", out var tableIdObj))
+                return Unauthorized("Missing table token.");
+
+            var tableId = (Guid)tableIdObj;
+
+            var orderId = await _cartService.PlaceOrderAsync(tableId);
+
+            return Ok(new
+            {
+                message = "Order placed successfully.",
+                orderId = orderId
+            });
+        }
+
     }
 
 }

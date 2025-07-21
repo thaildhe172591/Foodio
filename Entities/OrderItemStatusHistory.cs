@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FoodioAPI.Entities.Abstractions;
 
 namespace FoodioAPI.Entities;
 
-public class OrderItemStatusHistory
+public class OrderItemStatusHistory : Entity
 {
-    public Guid Id { get; set; }
+    //public Guid Id { get; set; }
 
     [Required(ErrorMessage = "OrderItemId is required.")]
     public Guid OrderItemId { get; set; }

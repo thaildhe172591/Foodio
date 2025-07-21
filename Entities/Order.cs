@@ -1,14 +1,14 @@
 using System.ComponentModel.DataAnnotations;
 using FoodioAPI.Entities;
+using FoodioAPI.Entities.Abstractions;
 
 namespace FoodioAPI.Entities;
 
-public class Order
+public class Order : Entity
 {
-    public Guid Id { get; set; }
+    //public Guid Id { get; set; }
 
-    [Required(ErrorMessage = "UserId is required.")]
-    public string UserId { get; set; } = default!;
+    public string UserId { get; set; }
 
     public Guid? TableId { get; set; }
 

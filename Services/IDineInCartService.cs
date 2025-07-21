@@ -7,6 +7,8 @@ namespace FoodioAPI.Services
         Task AddOrUpdateCartItemAsync(Guid tableId, DineInCartItemCreateDTO dto);
         Task<List<DineInCartItemResponseDTO>> GetCartAsync(Guid tableId);
         Task<decimal> GetTotalAsync(Guid tableId);
+        Task<Guid> PlaceOrderAsync(Guid tableId);
+
     }
 
 }

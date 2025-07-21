@@ -101,7 +101,8 @@ public static class DependencyInjection
         services.AddScoped<IMenuService, MenuService>();
         services.AddSingleton<IStorageService>(s => new StorageService());
         services.AddScoped<IDineInMenuService, DineInMenuService>();
-        
+        services.AddScoped<IDineInOrderService, DineInOrderService>();
+        services.AddScoped<ICashierOrderService, CashierOrderService>();
 
         // UnitOfWork, BaseRepository
         services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork))
