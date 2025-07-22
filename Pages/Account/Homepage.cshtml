@@ -64,25 +64,25 @@
 					<div class="card border-0 shadow-sm food-card">
 						<img src="~/images/banner-3.jpg" class="card-img-top food-card-img" alt="Đồ uống">
 						<div class="card-img-overlay d-flex align-items-end">
-							<h5 class="text-white fw-bold">Đồ uống</h5>
+							<h5 class="text-white fw-bold">Lẩu</h5>
 						</div>
 					</div>
 					<div class="card border-0 shadow-sm food-card" style="min-width: 200px;">
 						<img src="~/images/banner-3.jpg" class="card-img-top food-card-img" alt="Thức Ăn Nhanh">
 						<div class="card-img-overlay d-flex align-items-end">
-							<h5 class="text-white fw-bold">Thức Ăn Nhanh</h5>
+							<h5 class="text-white fw-bold">Đồ nóng</h5>
 						</div>
 					</div>
 					<div class="card border-0 shadow-sm food-card" style="min-width: 200px;">
 						<img src="~/images/banner-3.jpg" class="card-img-top food-card-img" alt="Món Á - Âu">
 						<div class="card-img-overlay d-flex align-items-end">
-							<h5 class="text-white fw-bold">Món Á - Âu</h5>
+							<h5 class="text-white fw-bold">Đồ lạnh</h5>
 						</div>
 					</div>
 					<div class="card border-0 shadow-sm food-card" style="min-width: 200px;">
 						<img src="~/images/banner-2.jpg" class="card-img-top food-card-img" alt="Món Á - Âu">
 						<div class="card-img-overlay d-flex align-items-end">
-							<h5 class="text-white fw-bold">Món Á - Âu</h5>
+							<h5 class="text-white fw-bold">Nước uống</h5>
 						</div>
 					</div>
 				</div>
@@ -134,350 +134,97 @@
 
 
 <div class="container mt-4">
-	<h3 class="fw-bold mb-4">Đồ nóng </h3>
+	<h3 class="fw-bold mb-4">Đồ nóng</h3>
 	<div class="row">
-		<!-- Mỗi món ăn -->
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
+		@foreach (var item in Model.HotDishes)
+		{
+			<div class="col-md-3 col-sm-6 mb-4">
+				<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
+					<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details?id=@item.Id'">
+						<img src="@item.ImageUrl" class="card-img-top object-fit-cover" alt="@item.Name">
+						<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
+							 style="width: min-content; height: min-content;">
+							PROMO
+						</div>
+						<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
+							<button class="btn btn-light btn-sm rounded-circle"
+									style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
+									tabindex="-1">
+								<i class="bi bi-heart"></i>
+							</button>
+						</div>
 					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
+					<div class="card-body p-2 position-relative" style="cursor:pointer;">
+						<h6 class="card-title mb-1 fw-bold">
+							@item.Name
+						</h6>
+						<p class="card-text text-muted small mb-1">@item.Description</p>
+						<p class="card-text text-muted small mb-0">
+							<i class="bi bi-cash-coin me-1"></i>@item.Price.ToString("N0") VND
+						</p>
+						<!-- Nút thêm vào giỏ hàng -->
+						<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
+								style="right: 14px; bottom: 10px;" data-product-id="@item.Id">
+							<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
 						</button>
 					</div>
 				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer>
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn ABC
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn nổi bật</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>50,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="123">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
 			</div>
-		</div>
-
-
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn XYZ
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn đặc biệt</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>70,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="124">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn DEF
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn hấp dẫn</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>45,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="125">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
-	</div>
-	<h3 class="fw-bold mb-4">Đồ lạnh </h3>
-	<div class="row">
-		<!-- Mỗi món ăn -->
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer>
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn ABC
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn nổi bật</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>50,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="123">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn XYZ
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn đặc biệt</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>70,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="124">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn DEF
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn hấp dẫn</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>45,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="125">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
+		}
 	</div>
 
-	<h3 class="fw-bold mb-4">Nước uống </h3>
+	<h3 class="fw-bold mb-4">Đồ lạnh</h3>
 	<div class="row">
-		<!-- Mỗi món ăn -->
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
+		@foreach (var item in Model.ColdDishes)
+		{
+			<div class="col-md-3 col-sm-6 mb-4">
+				<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
+					<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details?id=@item.Id'">
+						<img src="@item.ImageUrl" class="card-img-top object-fit-cover" alt="@item.Name">
 					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
+					<div class="card-body p-2 position-relative" style="cursor:pointer;">
+						<h6 class="card-title mb-1 fw-bold">
+							@item.Name
+						</h6>
+						<p class="card-text text-muted small mb-1">@item.Description</p>
+						<p class="card-text text-muted small mb-0">
+							<i class="bi bi-cash-coin me-1"></i>@item.Price.ToString("N0") VND
+						</p>
+						<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
+								style="right: 14px; bottom: 10px;" data-product-id="@item.Id">
+							<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
 						</button>
 					</div>
 				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer>
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn ABC
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn nổi bật</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>50,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="123">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
 			</div>
-		</div>
+		}
+	</div>
 
-
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
+	<h3 class="fw-bold mb-4">Nước uống</h3>
+	<div class="row">
+		@foreach (var item in Model.Drinks)
+		{
+			<div class="col-md-3 col-sm-6 mb-4">
+				<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
+					<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details?id=@item.Id'">
+						<img src="@item.ImageUrl" class="card-img-top object-fit-cover" alt="@item.Name">
 					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
+					<div class="card-body p-2 position-relative" style="cursor:pointer;">
+						<h6 class="card-title mb-1 fw-bold">
+							@item.Name
+						</h6>
+						<p class="card-text text-muted small mb-1">@item.Description</p>
+						<p class="card-text text-muted small mb-0">
+							<i class="bi bi-cash-coin me-1"></i>@item.Price.ToString("N0") VND
+						</p>
+						<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
+								style="right: 14px; bottom: 10px;" data-product-id="@item.Id">
+							<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
 						</button>
 					</div>
 				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn XYZ
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn đặc biệt</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>70,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="124">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
 			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn DEF
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn hấp dẫn</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>45,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="125">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn DEF
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn hấp dẫn</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>45,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="125">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
+		}
 	</div>
 </div>
 
