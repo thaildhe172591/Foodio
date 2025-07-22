@@ -8,6 +8,7 @@ using FoodioAPI.DTOs;
 using FoodioAPI.Configs;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.WebUtilities;
+using FoodioAPI.Constants;
 
 
 namespace FoodioAPI.Pages.Auth
@@ -84,6 +85,21 @@ namespace FoodioAPI.Pages.Auth
                 });
 
                 Message = result?.Message ?? "Đăng nhập thất bại.";
+
+                // Nếu login thành công, lưu token vào TempData để JavaScript xử lý
+                if (response.IsSuccessStatusCode && result?.Status == ResponseStatus.SUCCESS)
+                {
+                    // Parse data để lấy token nếu có
+                    if (result.Data != null)
+                    {
+                        var tokenData = JsonSerializer.Deserialize<JsonElement>(result.Data.ToString());
+                        if (tokenData.TryGetProperty("accessToken", out var accessTokenElement))
+                        {
+                            TempData["AccessToken"] = accessTokenElement.GetString();
+                            TempData["LoginSuccess"] = true;
+                        }
+                    }
+                }
             }
             catch
             {

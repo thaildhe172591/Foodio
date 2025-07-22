@@ -278,6 +278,30 @@
         });
     </script>
 
+    <script>
+        // Xử lý token sau khi đăng nhập thành công
+        $(document).ready(function () {
+            @if (TempData["LoginSuccess"] != null && TempData["AccessToken"] != null)
+            {
+                <text>
+                // Lưu access token vào localStorage
+                const accessToken = '@TempData["AccessToken"]';
+                if (accessToken && accessToken.trim()) {
+                    localStorage.setItem('access_token', accessToken);
+                    
+                    // Hiển thị thông báo thành công
+                    showToast('success', 'Đăng nhập thành công! Đang chuyển hướng...');
+                    
+                    // Chuyển hướng sau 1.5 giây
+                    setTimeout(function() {
+                        window.location.href = '/Account/HomePageLogin';
+                    }, 1500);
+                }
+                </text>
+            }
+        });
+    </script>
+
 
 </body>
 
