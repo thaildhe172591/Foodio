@@ -2,252 +2,442 @@
 @model FoodieAPII.Pages.KitchenStaff.OrderManagementKitchenStaffModel
 @{
     ViewData["HideLayoutHeader"] = true;
-
 }
-
-
-
 <body>
     <div class="container mt-5">
         <h1 class="text-center mb-4">Quản lý Đơn Hàng Bếp</h1>
-
-        <!-- Thanh điều hướng -->
         <div class="row justify-content-center">
-            <div class="col-8">
-                <nav id="navbar-example3" class="nav-container p-3 border rounded">
-                    <nav class="nav nav-pills justify-content-center">
-                        <a class="nav-link active" href="javascript:void(0);" onclick="showSection('item-1')">Danh sách món cần nấu</a>
-                        <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-2')">Danh sách món đang nấu</a>
-                        <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-3')">Danh sách món sẵn sàng</a>
+            <div class="col-12">
+                <nav class="main-nav-container p-2 border rounded mb-3">
+                    <nav class="nav nav-pills main-nav-row justify-content-center" id="main-nav">
+                        <a class="nav-link active" href="javascript:void(0);" onclick="showMainTab('need-cook')">Danh sách món cần nấu</a>
+                        <a class="nav-link" href="javascript:void(0);" onclick="showMainTab('cooking')">Danh sách món đang nấu</a>
+                        <a class="nav-link" href="javascript:void(0);" onclick="showMainTab('ready')">Danh sách món sẵn sàng</a>
                     </nav>
                 </nav>
             </div>
         </div>
 
-        <!-- Phần bên phải: Nội dung theo từng mục -->
-        <div class="row mt-4">
-            <div class="col-12">
-                <!-- Danh sách món cần nấu -->
-                <div id="item-1" class="section-content">
-                    <h4 class="text-center">Danh sách món cần nấu</h4>
-                    <div class="d-flex justify-content-center mb-3">
-                        <div>
-                            <button class="btn btn-outline-primary mb-3 mx-2" onclick="loadMenu('hot')">Món Nóng</button>
-                            <button class="btn btn-outline-primary mb-3 mx-2" onclick="loadMenu('cold')">Món Lạnh</button>
-                            <button class="btn btn-outline-primary mb-3 mx-2" onclick="loadMenu('drink')">Nước Uống</button>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div id="menu-list" style="width:100%; max-width:600px;"></div>
-                    </div>
-                </div>
-
-                <!-- Danh sách món đang nấu -->
-                <div id="item-2" class="section-content" style="display:none;">
-                    <h4 class="text-center">Danh sách món đang nấu</h4>
-                    <div class="d-flex justify-content-center">
-                        <div id="cooking-menu-list" style="width:100%; max-width:600px;"></div>
-                    </div>
-                </div>
-
-                <!-- Danh sách món đã sẵn sàng -->
-                <div id="item-3" class="section-content" style="display:none;">
-                    <h4 class="text-center">Danh sách món đã sẵn sàng</h4>
-                    <div class="d-flex justify-content-center">
-                        <div id="ready-menu-list" style="width:100%; max-width:600px;"></div>
-                    </div>
-                </div>
+        <div id="tab-need-cook" class="main-tab-content" style="display:block;">
+            <h4 class="text-center mb-3">Danh sách món cần nấu</h4>
+            <div class="d-flex justify-content-center mb-3">
+                <button class="btn btn-outline-primary mx-2 subtab-btn active" onclick="showSubTab('need-cook', 'hot')">Món Nóng</button>
+                <button class="btn btn-outline-primary mx-2 subtab-btn" onclick="showSubTab('need-cook', 'cold')">Món Lạnh</button>
+                <button class="btn btn-outline-primary mx-2 subtab-btn" onclick="showSubTab('need-cook', 'drink')">Nước Uống</button>
             </div>
+            <div id="subtab-need-cook-hot" class="subtab-content">
+                <h5 class="text-center text-primary mb-3">Đơn hàng PENDING - Món Nóng</h5>
+                @if (Model.HotPendingOrders != null && Model.HotPendingOrders.Count > 0)
+                {
+                    <div class="d-flex flex-column align-items-center">
+                        @foreach (var order in Model.HotPendingOrders)
+                        {
+                            <div class="menu-item w-100" style="max-width: 600px;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="menu-name">
+                                            <strong>@order.MenuItemName</strong>
+                                            <span class="menu-quantity">× @order.Quantity</span>
+                                        </span>
+                                        <span class="menu-table">
+                                            @(order.TableNumber != null ? $"(Bàn: {order.TableNumber})" : "(Mang về)")
+                                        </span>
+                                        @if (!string.IsNullOrWhiteSpace(order.Note))
+                                        {
+                                            <div class="menu-note">Ghi chú: @order.Note</div>
+                                        }
+                                    </div>
+                                    @if (order.ItemStatusCode == "PENDING")
+                                    {
+                                        <button class="btn btn-success btn-lg"
+                                                onclick="startCooking('@order.OrderItemId')">
+                                            @order.OrderItemId  <!-- Hiển thị luôn OrderItemId trên nút -->
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-info text-dark">@order.ItemStatusCode</span>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center">Không có món nóng nào đang chờ nấu.</p>
+                }
+            </div>
+            <div id="subtab-need-cook-cold" class="subtab-content" style="display:none;">
+                <h5 class="text-center text-primary mb-3">Đơn hàng PENDING - Món Lạnh</h5>
+                @if (Model.ColdPendingOrders != null && Model.ColdPendingOrders.Count > 0)
+                {
+                    <div class="d-flex flex-column align-items-center">
+                        @foreach (var order in Model.ColdPendingOrders)
+                        {
+                            <div class="menu-item w-100" style="max-width: 600px;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="menu-name">
+                                            <strong>@order.MenuItemName</strong>
+                                            <span class="menu-quantity">× @order.Quantity</span>
+                                        </span>
+                                        <span class="menu-table">
+                                            @(order.TableNumber != null ? $"(Bàn: {order.TableNumber})" : "(Mang về)")
+                                        </span>
+                                        @if (!string.IsNullOrWhiteSpace(order.Note))
+                                        {
+                                            <div class="menu-note">Ghi chú: @order.Note</div>
+                                        }
+                                    </div>
+                                    @if (order.ItemStatusCode == "PENDING")
+                                    {
+                                        <button class="btn btn-success btn-lg"
+                                                onclick="startCooking('@order.OrderItemId')">
+                                            @order.OrderItemId  <!-- Hiển thị luôn OrderItemId trên nút -->
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-info text-dark">@order.ItemStatusCode</span>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center">Không có món lạnh nào đang chờ làm.</p>
+                }
+            </div>
+            <div id="subtab-need-cook-drink" class="subtab-content" style="display:none;">
+                <h5 class="text-center text-primary mb-3">Đơn hàng PENDING - Nước</h5>
+                @if (Model.DrinkPendingOrders != null && Model.DrinkPendingOrders.Count > 0)
+                {
+                    <div class="d-flex flex-column align-items-center">
+                        @foreach (var order in Model.DrinkPendingOrders)
+                        {
+                            <div class="menu-item w-100" style="max-width: 600px;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="menu-name">
+                                            <strong>@order.MenuItemName</strong>
+                                            <span class="menu-quantity">× @order.Quantity</span>
+                                        </span>
+                                        <span class="menu-table">
+                                            @(order.TableNumber != null ? $"(Bàn: {order.TableNumber})" : "(Mang về)")
+                                        </span>
+                                        @if (!string.IsNullOrWhiteSpace(order.Note))
+                                        {
+                                            <div class="menu-note">Ghi chú: @order.Note</div>
+                                        }
+                                    </div>
+                                    @if (order.ItemStatusCode == "PENDING")
+                                    {
+                                        <button class="btn btn-success btn-lg"
+                                                onclick="startCooking('@order.OrderItemId')">
+                                            @order.OrderItemId  <!-- Hiển thị luôn OrderItemId trên nút -->
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-info text-dark">@order.ItemStatusCode</span>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center">Không có nước uống nào đang chờ làm.</p>
+                }
+            </div>
+        </div>
+
+        <div id="tab-cooking" class="main-tab-content" style="display:none;">
+            <h4 class="text-center mb-3">Danh sách món đang nấu</h4>
+            <div class="d-flex justify-content-center mb-3">
+                <button class="btn btn-outline-primary mx-2 subtab-btn active" onclick="showSubTab('cooking', 'hot')">Món Nóng</button>
+                <button class="btn btn-outline-primary mx-2 subtab-btn" onclick="showSubTab('cooking', 'cold')">Món Lạnh</button>
+                <button class="btn btn-outline-primary mx-2 subtab-btn" onclick="showSubTab('cooking', 'drink')">Nước Uống</button>
+            </div>
+            <div id="subtab-cooking-hot" class="subtab-content">
+                <h5 class="text-center text-danger mb-3">Đang nấu - Món Nóng</h5>
+                @if (Model.HotCookingOrders != null && Model.HotCookingOrders.Count > 0)
+                {
+                    <div class="d-flex flex-column align-items-center">
+                        @foreach (var order in Model.HotCookingOrders)
+                        {
+                            <div class="menu-item w-100" style="max-width: 600px;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="menu-name">
+                                            <strong>@order.MenuItemName</strong>
+                                            <span class="menu-quantity">× @order.Quantity</span>
+                                        </span>
+                                        <span class="menu-table">
+                                            @(order.TableNumber != null ? $"(Bàn: {order.TableNumber})" : "(Mang về)")
+                                        </span>
+                                        @if (!string.IsNullOrWhiteSpace(order.Note))
+                                        {
+                                            <div class="menu-note">Ghi chú: @order.Note</div>
+                                        }
+                                    </div>
+                                    <button class="btn btn-warning btn-lg" onclick="finishCooking('@order.OrderItemId')">Đang nấu...</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center">Không có món nóng nào đang nấu.</p>
+                }
+            </div>
+            <div id="subtab-cooking-cold" class="subtab-content" style="display:none;">
+                <h5 class="text-center text-danger mb-3">Đang nấu - Món Lạnh</h5>
+                @if (Model.ColdCookingOrders != null && Model.ColdCookingOrders.Count > 0)
+                {
+                    <div class="d-flex flex-column align-items-center">
+                        @foreach (var order in Model.ColdCookingOrders)
+                        {
+                            <div class="menu-item w-100" style="max-width: 600px;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="menu-name">
+                                            <strong>@order.MenuItemName</strong>
+                                            <span class="menu-quantity">× @order.Quantity</span>
+                                        </span>
+                                        <span class="menu-table">
+                                            @(order.TableNumber != null ? $"(Bàn: {order.TableNumber})" : "(Mang về)")
+                                        </span>
+                                        @if (!string.IsNullOrWhiteSpace(order.Note))
+                                        {
+                                            <div class="menu-note">Ghi chú: @order.Note</div>
+                                        }
+                                    </div>
+                                    <button class="btn btn-warning btn-lg" onclick="finishCooking('@order.OrderItemId')">Đang nấu...</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center">Không có món lạnh nào đang nấu.</p>
+                }
+            </div>
+            <div id="subtab-cooking-drink" class="subtab-content" style="display:none;">
+                <h5 class="text-center text-danger mb-3">Đang nấu - Nước Uống</h5>
+                @if (Model.DrinkCookingOrders != null && Model.DrinkCookingOrders.Count > 0)
+                {
+                    <div class="d-flex flex-column align-items-center">
+                        @foreach (var order in Model.DrinkCookingOrders)
+                        {
+                            <div class="menu-item w-100" style="max-width: 600px;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="menu-name">
+                                            <strong>@order.MenuItemName</strong>
+                                            <span class="menu-quantity">× @order.Quantity</span>
+                                        </span>
+                                        <span class="menu-table">
+                                            @(order.TableNumber != null ? $"(Bàn: {order.TableNumber})" : "(Mang về)")
+                                        </span>
+                                        @if (!string.IsNullOrWhiteSpace(order.Note))
+                                        {
+                                            <div class="menu-note">Ghi chú: @order.Note</div>
+                                        }
+                                    </div>
+                                    <button class="btn btn-warning btn-lg" onclick="finishCooking('@order.OrderItemId')">Đang nấu...</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-center">Không có nước uống nào đang nấu.</p>
+                }
+            </div>
+        </div>
+
+        <div id="tab-ready" class="main-tab-content" style="display:none;">
+            <h4 class="text-center mb-3">Danh sách món sẵn sàng</h4>
+            @if (Model.ReadyToServeOrders == null || !Model.ReadyToServeOrders.Any())
+            {
+                <p class="text-center">Tạm thời chưa có dữ liệu.</p>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Món ăn</th>
+                                <th>Loại</th>
+                                <th>Số lượng</th>
+                                <th>Bàn</th>
+                                <th>Khách gọi</th>
+                                <th>Ghi chú</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ReadyToServeOrders)
+                            {
+                                <tr>
+                                    <td>@item.MenuItemName</td>
+                                    <td>@item.CategoryName</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.TableNumber</td>
+                                    <td>@item.UserName</td>
+                                    <td>@item.Note</td>
+                                    <td>
+                                        <span class="badge bg-success">@item.ItemStatusCode</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
-        // Dữ liệu mẫu để test luồng, có thêm ghi chú (note)
-        const menus = {
-            hot: [
-                { id: 1, name: 'Phở Bò', table: 'Bàn 5', note: 'Ít hành, không cay' },
-                { id: 2, name: 'Bánh Mì Thịt Nướng', table: 'Bàn 3', note: 'Thêm pate' }
-            ],
-            cold: [
-                { id: 3, name: 'Salad Rau', table: 'Bàn 7', note: 'Không sốt mayonnaise' },
-                { id: 4, name: 'Sushi Cuộn', table: 'Bàn 2', note: '' }
-            ],
-            drink: [
-                { id: 5, name: 'Trà Sữa', table: 'Bàn 6', note: 'Ít đá, ít ngọt' },
-                { id: 6, name: 'Nước Ép Cam', table: 'Bàn 1', note: '' }
-            ]
-        };
-
-        const cookingMenus = [];
-        const readyMenus = [];
-
-        // Hiển thị các món cần nấu, có ghi chú
-        function loadMenu(type) {
-            const menuList = menus[type];
-            const menuListContainer = document.getElementById('menu-list');
-            menuListContainer.innerHTML = '';
-            menuList.forEach(item => {
-                const menuItem = document.createElement('div');
-                menuItem.classList.add('menu-item');
-                menuItem.setAttribute('data-menu-id', item.id);
-                menuItem.innerHTML = `
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <span class="menu-name"><strong>${item.name}</strong></span> <span class="menu-table">(Bàn: ${item.table})</span>
-                            ${item.note ? `<div class="menu-note">Ghi chú: ${item.note}</div>` : ''}
-                        </div>
-                        <button class="btn btn-success btn-lg" onclick="startCooking(${item.id}, '${item.name}', '${item.table}', \`${item.note ? item.note.replace(/`/g, '\\`') : ''}\`)">Bắt đầu nấu</button>
-                    </div>
-                `;
-                menuListContainer.appendChild(menuItem);
-            });
+        function showMainTab(tab) {
+            document.querySelectorAll('.main-tab-content').forEach(e => e.style.display = 'none');
+            document.getElementById('tab-' + tab).style.display = 'block';
+            let navLinks = document.querySelectorAll('#main-nav .nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            if (tab === 'need-cook') navLinks[0].classList.add('active');
+            if (tab === 'cooking') navLinks[1].classList.add('active');
+            if (tab === 'ready') navLinks[2].classList.add('active');
+            if (tab === 'need-cook') showSubTab(tab, 'hot');
+            if (tab === 'cooking') showSubTab(tab, 'hot');
         }
-
-        // Bắt đầu nấu, truyền ghi chú sang
-        function startCooking(menuId, name, table, note) {
-            const menuItem = { id: menuId, name: name, table: table, note: note };
-            cookingMenus.push(menuItem);
-            renderCookingMenu();
-
-            // Ẩn đúng món vừa chọn
-            const menuListContainer = document.getElementById('menu-list');
-            Array.from(menuListContainer.children).forEach(child => {
-                if (child.dataset.menuId == menuId) {
-                    child.style.display = 'none';
-                }
-            });
+        function showSubTab(mainTab, sub) {
+            document.querySelectorAll('#tab-' + mainTab + ' .subtab-content').forEach(e => e.style.display = 'none');
+            document.getElementById('subtab-' + mainTab + '-' + sub).style.display = 'block';
+            let btns = document.querySelectorAll('#tab-' + mainTab + ' .subtab-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            if (sub === 'hot') btns[0].classList.add('active');
+            if (sub === 'cold') btns[1].classList.add('active');
+            if (sub === 'drink') btns[2].classList.add('active');
         }
-
-        // Hiển thị danh sách món đang nấu, có ghi chú
-        function renderCookingMenu() {
-            const menuList = document.getElementById('cooking-menu-list');
-            menuList.innerHTML = '';
-            cookingMenus.forEach(item => {
-                menuList.appendChild(createCookingMenuItem(item));
-            });
-        }
-
-        function createCookingMenuItem(item) {
-            const menuItem = document.createElement('div');
-            menuItem.classList.add('menu-item');
-            menuItem.innerHTML = `
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <span class="menu-name"><strong>${item.name}</strong></span> <span class="menu-table">(Bàn: ${item.table})</span>
-                        ${item.note ? `<div class="menu-note">Ghi chú: ${item.note}</div>` : ''}
-                    </div>
-                    <div>
-                        <input type="checkbox" id="complete-${item.id}" onchange="completeCooking(${item.id})"> Đã hoàn thành
-                    </div>
-                </div>
-            `;
-            return menuItem;
-        }
-
-        // Hoàn thành món
-        function completeCooking(menuId) {
-            const menuItem = cookingMenus.find(menu => menu.id === menuId);
-            if (menuItem) {
-                readyMenus.push(menuItem);
-                removeFromCooking(menuId);
-                renderReadyMenu();
-                renderCookingMenu();
-            }
-        }
-
-        // Xóa khỏi danh sách đang nấu
-        function removeFromCooking(menuId) {
-            const index = cookingMenus.findIndex(menu => menu.id === menuId);
-            if (index !== -1) {
-                cookingMenus.splice(index, 1);
-            }
-        }
-
-        // Hiển thị danh sách món đã sẵn sàng
-        function renderReadyMenu() {
-            const menuList = document.getElementById('ready-menu-list');
-            menuList.innerHTML = '';
-            readyMenus.forEach(item => {
-                const menuItem = document.createElement('div');
-                menuItem.classList.add('menu-item');
-                menuItem.innerHTML = `
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <span class="menu-name"><strong>${item.name}</strong></span> <span class="menu-table">(Bàn: ${item.table})</span> - Đã hoàn thành
-                            ${item.note ? `<div class="menu-note">Ghi chú: ${item.note}</div>` : ''}
-                        </div>
-                    </div>
-                `;
-                menuList.appendChild(menuItem);
-            });
-        }
-
-        // Hiển thị nội dung tab
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section-content');
-            sections.forEach(section => {
-                section.style.display = 'none';
-            });
-
-            const selectedSection = document.getElementById(sectionId);
-            selectedSection.style.display = 'block';
-
-            const links = document.querySelectorAll('.nav-link');
-            links.forEach(link => {
-                link.classList.remove('active');
-            });
-
-            const activeLink = Array.from(links).find(link => link.innerText.toLowerCase() === sectionId.split('-')[1].replace(/_/g, ' '));
-            if (activeLink) activeLink.classList.add('active');
-        }
-
-        // Mặc định hiển thị Danh sách món cần nấu
-        document.addEventListener('DOMContentLoaded', function () {
-            showSection('item-1');
-            loadMenu('hot');
+        document.addEventListener('DOMContentLoaded', () => {
+            showMainTab('need-cook');
+            showSubTab('need-cook', 'hot');
         });
+                     function startCooking(orderItemId) {
+            fetch('/api/kitchenstaff/update-status', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    orderItemId: orderItemId,
+                    newStatusCode: "COOKING"
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Cập nhật trạng thái thành công!");
+                    location.reload(); // Có thể reload sau khi thông báo nếu muốn
+                } else {
+                    alert("Không thể cập nhật trạng thái!");
+                }
+            })
+            .catch(() => alert("Lỗi kết nối server"));
+        }
+
+                function finishCooking(orderItemId) {
+            fetch('/api/kitchenstaff/update-status', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    orderItemId: orderItemId,
+                    newStatusCode: "READY_TO_SERVE"
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Cập nhật trạng thái thành công!");
+                    location.reload();
+                } else {
+                    alert("Không thể cập nhật trạng thái!");
+                }
+            })
+            .catch(() => alert("Lỗi kết nối server"));
+        }
     </script>
 </body>
 
 <style>
-    .nav-container {
+    .main-nav-container {
         border: 2px solid #ddd;
-        border-radius: 8px;
+        border-radius: 12px;
         background-color: #fff;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
     }
 
     .nav-pills .nav-link {
         font-weight: 600;
-        padding: 12px 20px;
+        font-size: 1.14em;
+        padding: 14px 28px;
         border-radius: 0.2rem;
-        margin-right: 10px;
-        color: #007bff;
+        color: #1877f2;
+        margin: 0 12px;
     }
 
         .nav-pills .nav-link.active {
-            background-color: #007bff;
-            color: white;
+            background: none;
+            color: #1250cc;
+            border-bottom: 2px solid #1250cc;
+            font-weight: bold;
         }
 
-        .nav-pills .nav-link:hover {
-            background-color: transparent;
-            color: #0056b3;
+    .subtab-btn {
+        font-size: 1.08em;
+        padding: 6px 18px;
+        border-radius: 8px;
+        min-width: 110px;
+        border: 2px solid #0d6efd;
+        background: #fff;
+        color: #0d6efd;
+        margin: 0 2px;
+        font-weight: 600;
+        transition: 0.15s;
+    }
+
+        .subtab-btn.active, .subtab-btn:hover {
+            background: #eaf2fd;
+            color: #0d6efd;
+            border: 2px solid #0d6efd;
         }
 
     .menu-item {
         background-color: #f8f9fa;
         padding: 20px 24px;
-        border-radius: 8px;
+        border-radius: 10px;
         margin-bottom: 18px;
         box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-        font-size: 1.18rem;
+        font-size: 1.17rem;
     }
 
     .menu-name {
         font-size: 1.22em;
+        display: inline-block;
+        margin-right: 6px;
+    }
+
+    .menu-quantity {
+        font-weight: 500;
+        color: #0d6efd;
+        font-size: 1.06em;
+        margin-left: 4px;
     }
 
     .menu-table {
@@ -261,14 +451,45 @@
         color: #ff5722;
         font-style: italic;
         margin-top: 4px;
-        margin-bottom: 2px;
         padding-left: 2px;
         word-break: break-word;
     }
 
-    .btn-success.btn-lg {
+    .btn-success.btn-lg,
+    .btn-warning.btn-lg {
         font-size: 1.1em;
         padding: 10px 24px;
         border-radius: 30px;
     }
+
+    .main-nav-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+        gap: 0;
+    }
+
+        .main-nav-row .nav-link {
+            flex: 1 1 0;
+            margin: 0;
+            border-radius: 0;
+            border-right: 1px solid #e6e6e6;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.14em;
+            color: #1877f2;
+            background: #fff;
+            transition: 0.15s;
+        }
+
+            .main-nav-row .nav-link:last-child {
+                border-right: none;
+            }
+
+            .main-nav-row .nav-link.active {
+                background: #eaf2fd;
+                color: #1250cc;
+                border-bottom: 2.5px solid #1250cc;
+            }
 </style>

@@ -3,6 +3,8 @@ using FoodioAPI.DTOs.UserDtos;
 using FoodioAPI.Entities;
 using FoodioAPI.Services;
 using Microsoft.EntityFrameworkCore;
+using FoodioAPI.DTOs.KitchenStaff;
+using System.Net.WebSockets; // Thêm namespace đúng cho OrderWithDetails
 
 namespace FoodioAPI.Services.Implements
 {
@@ -19,6 +21,266 @@ namespace FoodioAPI.Services.Implements
             _context = context;
         }
 
+        //Hiếu
+        public async Task<List<OrderWithDetails>> GetOrdersWithStatusPendingAsync()
+        {
+            var result = await (
+          from oi in _context.OrderItems
+          join o in _context.Orders on oi.OrderId equals o.Id
+          join oish in _context.OrderItemStatusHistories on oi.Id equals oish.OrderItemId
+          join ois in _context.OrderItemStatuses on oish.StatusId equals ois.Id
+          join mi in _context.MenuItems on oi.MenuItemId equals mi.Id
+          join c in _context.Categories on mi.CategoryId equals c.Id
+          join u in _context.Users on o.UserId equals u.Id into userJoin
+          from u in userJoin.DefaultIfEmpty()
+          join t in _context.DiningTables on o.TableId equals t.Id into tableJoin
+          from t in tableJoin.DefaultIfEmpty()
+          where c.Name.Contains("Món Lạnh") && ois.Code == "PENDING"
+          select new OrderWithDetails
+          {
+              OrderItemId = oi.Id,    
+              OrderId = o.Id,
+              UserName = u != null ? u.UserName : null,
+              MenuItemName = mi.Name,
+              CategoryName = c.Name,
+              Note = oi.Note,
+              Quantity = oi.Quantity,
+              TableNumber = t != null ? t.TableNumber : (int?)null,
+              ItemStatusCode = ois.Code
+          }
+      ).ToListAsync();
+
+            return result;
+        }
+        // Đơn hàng PENDING - Món Nóng
+        public async Task<List<OrderWithDetails>> GetPendingHotDishOrdersAsync()
+        {
+            var result = await (
+                from oi in _context.OrderItems
+                join o in _context.Orders on oi.OrderId equals o.Id
+                join oish in _context.OrderItemStatusHistories on oi.Id equals oish.OrderItemId
+                join ois in _context.OrderItemStatuses on oish.StatusId equals ois.Id
+                join mi in _context.MenuItems on oi.MenuItemId equals mi.Id
+                join c in _context.Categories on mi.CategoryId equals c.Id
+                join u in _context.Users on o.UserId equals u.Id into userJoin
+                from u in userJoin.DefaultIfEmpty()
+                join t in _context.DiningTables on o.TableId equals t.Id into tableJoin
+                from t in tableJoin.DefaultIfEmpty()
+                where c.Name.Contains("Món Nóng") && ois.Code == "PENDING"
+                select new OrderWithDetails
+                {
+                    OrderItemId = oi.Id,
+                    OrderId = o.Id,
+                    UserName = u != null ? u.UserName : null,
+                    MenuItemName = mi.Name,
+                    CategoryName = c.Name,
+                    Note = oi.Note,
+                    Quantity = oi.Quantity,
+                    TableNumber = t != null ? t.TableNumber : (int?)null,
+                    ItemStatusCode = ois.Code
+                }
+            ).ToListAsync();
+
+            return result;
+        }
+        // Đơn hàng PENDING - Nước Uống
+        public async Task<List<OrderWithDetails>> GetPendingDrinksDishOrdersAsync()
+        {
+            var result = await (
+                from oi in _context.OrderItems
+                join o in _context.Orders on oi.OrderId equals o.Id
+                join oish in _context.OrderItemStatusHistories on oi.Id equals oish.OrderItemId
+                join ois in _context.OrderItemStatuses on oish.StatusId equals ois.Id
+                join mi in _context.MenuItems on oi.MenuItemId equals mi.Id
+                join c in _context.Categories on mi.CategoryId equals c.Id
+                join u in _context.Users on o.UserId equals u.Id into userJoin
+                from u in userJoin.DefaultIfEmpty()
+                join t in _context.DiningTables on o.TableId equals t.Id into tableJoin
+                from t in tableJoin.DefaultIfEmpty()
+                where c.Name.Contains("Nước") && ois.Code == "PENDING"
+                select new OrderWithDetails
+                {
+                    OrderItemId = oi.Id,
+                    OrderId = o.Id,
+                    UserName = u != null ? u.UserName : null,
+                    MenuItemName = mi.Name,
+                    CategoryName = c.Name,
+                    Note = oi.Note,
+                    Quantity = oi.Quantity,
+                    TableNumber = t != null ? t.TableNumber : (int?)null,
+                    ItemStatusCode = ois.Code
+                }
+            ).ToListAsync();
+
+            return result;
+        }
+        //Danh sách Coooking món lạnh 
+        public async Task<List<OrderWithDetails>> GetOrdersWithStatusCookingColdAsync()
+        {
+            var result = await (
+                from oi in _context.OrderItems
+                join o in _context.Orders on oi.OrderId equals o.Id
+                join oish in _context.OrderItemStatusHistories on oi.Id equals oish.OrderItemId
+                join ois in _context.OrderItemStatuses on oish.StatusId equals ois.Id
+                join mi in _context.MenuItems on oi.MenuItemId equals mi.Id
+                join c in _context.Categories on mi.CategoryId equals c.Id
+                join u in _context.Users on o.UserId equals u.Id into userJoin
+                from u in userJoin.DefaultIfEmpty()
+                join t in _context.DiningTables on o.TableId equals t.Id into tableJoin
+                from t in tableJoin.DefaultIfEmpty()
+                where c.Name.Contains("Món Lạnh") && ois.Code == "COOKING"
+                select new OrderWithDetails
+                {
+                    OrderItemId = oi.Id,
+                    OrderId = o.Id,
+                    UserName = u != null ? u.UserName : null,
+                    MenuItemName = mi.Name,
+                    CategoryName = c.Name,
+                    Note = oi.Note,
+                    Quantity = oi.Quantity,
+                    TableNumber = t != null ? t.TableNumber : (int?)null,
+                    ItemStatusCode = ois.Code
+                }
+            ).ToListAsync();
+
+            return result;
+        }
+        //Danh sách Coooking món nóng 
+        public async Task<List<OrderWithDetails>> GetOrdersWithStatusCookingHotAsync()
+        {
+            var result = await (
+                from oi in _context.OrderItems
+                join o in _context.Orders on oi.OrderId equals o.Id
+                join oish in _context.OrderItemStatusHistories on oi.Id equals oish.OrderItemId
+                join ois in _context.OrderItemStatuses on oish.StatusId equals ois.Id
+                join mi in _context.MenuItems on oi.MenuItemId equals mi.Id
+                join c in _context.Categories on mi.CategoryId equals c.Id
+                join u in _context.Users on o.UserId equals u.Id into userJoin
+                from u in userJoin.DefaultIfEmpty()
+                join t in _context.DiningTables on o.TableId equals t.Id into tableJoin
+                from t in tableJoin.DefaultIfEmpty()
+                where c.Name.Contains("Món Nóng") && ois.Code == "COOKING"
+                select new OrderWithDetails
+                {
+                    OrderItemId = oi.Id,
+                    OrderId = o.Id,
+                   
+                    UserName = u != null ? u.UserName : null,
+                    MenuItemName = mi.Name,
+                    CategoryName = c.Name,
+                    Note = oi.Note,
+                    Quantity = oi.Quantity,
+                    TableNumber = t != null ? t.TableNumber : (int?)null,
+                    ItemStatusCode = ois.Code
+                }
+            ).ToListAsync();
+
+            return result;
+        }
+        //Danh sách Coooking Drinks
+        public async Task<List<OrderWithDetails>> GetOrdersWithStatusCookingDrinksAsync()
+        {
+            var result = await (
+                from oi in _context.OrderItems
+                join o in _context.Orders on oi.OrderId equals o.Id
+                join oish in _context.OrderItemStatusHistories on oi.Id equals oish.OrderItemId
+                join ois in _context.OrderItemStatuses on oish.StatusId equals ois.Id
+                join mi in _context.MenuItems on oi.MenuItemId equals mi.Id
+                join c in _context.Categories on mi.CategoryId equals c.Id
+                join u in _context.Users on o.UserId equals u.Id into userJoin
+                from u in userJoin.DefaultIfEmpty()
+                join t in _context.DiningTables on o.TableId equals t.Id into tableJoin
+                from t in tableJoin.DefaultIfEmpty()
+                where c.Name.Contains("Nước") && ois.Code == "COOKING"
+                let latestStatus = (
+                    from sh in _context.OrderItemStatusHistories
+                    where sh.OrderItemId == oi.Id
+                    orderby sh.ChangedAt descending
+                    select sh
+                ).FirstOrDefault()
+                where latestStatus != null && latestStatus.StatusId == ois.Id
+                select new OrderWithDetails
+                {
+                    OrderItemId = oi.Id,
+                    OrderId = o.Id,
+                    UserName = u != null ? u.UserName : null,
+                    MenuItemName = mi.Name,
+                    CategoryName = c.Name,
+                    Note = oi.Note,
+                    Quantity = oi.Quantity,
+                    TableNumber = t != null ? t.TableNumber : (int?)null,
+                    ItemStatusCode = ois.Code
+                }
+            ).ToListAsync();
+
+            return result;
+        }
+        public async Task<List<OrderWithDetails>> GetAllOrderReadyToServeAsync()
+        {
+            var result = await (
+                from oi in _context.OrderItems
+                join o in _context.Orders on oi.OrderId equals o.Id
+                join oish in _context.OrderItemStatusHistories on oi.Id equals oish.OrderItemId
+                join ois in _context.OrderItemStatuses on oish.StatusId equals ois.Id
+                join mi in _context.MenuItems on oi.MenuItemId equals mi.Id
+                join c in _context.Categories on mi.CategoryId equals c.Id
+                join u in _context.Users on o.UserId equals u.Id into userJoin
+                from u in userJoin.DefaultIfEmpty()
+                join t in _context.DiningTables on o.TableId equals t.Id into tableJoin
+                from t in tableJoin.DefaultIfEmpty()
+                where ois.Code == "READY_TO_SERVE"
+                select new OrderWithDetails
+                {
+                    OrderId = o.Id,
+
+                    UserName = u != null ? u.UserName : null,
+                    MenuItemName = mi.Name,
+                    CategoryName = c.Name,
+                    Note = oi.Note,
+                    Quantity = oi.Quantity,
+                    TableNumber = t != null ? t.TableNumber : (int?)null,
+                    ItemStatusCode = ois.Code
+                }
+            ).ToListAsync();
+
+            return result;
+        }
+        public async Task<bool> UpdateOrderItemStatusAsync(Guid orderItemId, string newStatusCode)
+        {
+            // 1. Kiểm tra trạng thái mới
+            var status = await _context.OrderItemStatuses.FirstOrDefaultAsync(x => x.Code == newStatusCode);
+            if (status == null) return false;
+
+            // 2. Xóa toàn bộ lịch sử trạng thái cũ của order item này
+            var histories = await _context.OrderItemStatusHistories
+                .Where(x => x.OrderItemId == orderItemId)
+                .ToListAsync();
+            if (histories.Any())
+            {
+                _context.OrderItemStatusHistories.RemoveRange(histories);
+            }
+
+            // 3. Thêm bản ghi trạng thái mới
+            var newHistory = new OrderItemStatusHistory
+            {
+                Id = Guid.NewGuid(),
+                OrderItemId = orderItemId,
+                StatusId = status.Id,
+                ChangedAt = DateTime.UtcNow
+            };
+            _context.OrderItemStatusHistories.Add(newHistory);
+
+            // 4. Lưu thay đổi
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+      
+
+
+
+
+        //đến đấy
         #region Read Operations - Lấy thông tin danh mục
 
         /// <summary>
@@ -219,7 +481,7 @@ namespace FoodioAPI.Services.Implements
         public async Task<bool> ValidateCategoryNameExistsAsync(string name, Guid? excludeId = null)
         {
             var query = _context.Categories.Where(c => c.Name.ToLower() == name.ToLower());
-            
+
             if (excludeId.HasValue)
             {
                 query = query.Where(c => c.Id != excludeId.Value);
@@ -290,7 +552,7 @@ namespace FoodioAPI.Services.Implements
             switch (sortBy)
             {
                 case "name":
-                    query = sortOrder == "desc" 
+                    query = sortOrder == "desc"
                         ? query.OrderByDescending(c => c.Name)
                         : query.OrderBy(c => c.Name);
                     break;
@@ -337,4 +599,4 @@ namespace FoodioAPI.Services.Implements
 
         #endregion
     }
-} 
+}

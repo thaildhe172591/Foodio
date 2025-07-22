@@ -1,3 +1,5 @@
+using FoodioAPI.DTOs.KitchenStaff; // Đảm bảo thêm namespace cho DTO
+
 using FoodioAPI.DTOs.UserDtos;
 
 namespace FoodioAPI.Services
@@ -8,6 +10,19 @@ namespace FoodioAPI.Services
     /// </summary>
     public interface ICategoryService
     {
+        //Hiếu làm 
+        Task<List<OrderWithDetails>> GetOrdersWithStatusPendingAsync();        
+        Task<List<OrderWithDetails>> GetPendingHotDishOrdersAsync();           
+        Task<List<OrderWithDetails>> GetPendingDrinksDishOrdersAsync();
+
+        Task<List<OrderWithDetails>> GetOrdersWithStatusCookingColdAsync();
+        Task<List<OrderWithDetails>> GetOrdersWithStatusCookingHotAsync();
+        Task<List<OrderWithDetails>> GetOrdersWithStatusCookingDrinksAsync();
+        Task<List<OrderWithDetails>> GetAllOrderReadyToServeAsync();
+        Task<bool> UpdateOrderItemStatusAsync(Guid orderItemId, string newStatusCode);
+        //đến đây
+
+
         #region Read Operations - Lấy thông tin danh mục
 
         /// <summary>
