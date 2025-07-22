@@ -38,7 +38,7 @@ namespace FoodioAPI.Services.Implements
           where c.Name.Contains("Món Lạnh") && ois.Code == "PENDING"
           select new OrderWithDetails
           {
-              OrderItemId = oi.Id,    
+              OrderItemId = oish.Id,    
               OrderId = o.Id,
               UserName = u != null ? u.UserName : null,
               MenuItemName = mi.Name,
@@ -69,7 +69,7 @@ namespace FoodioAPI.Services.Implements
                 where c.Name.Contains("Món Nóng") && ois.Code == "PENDING"
                 select new OrderWithDetails
                 {
-                    OrderItemId = oi.Id,
+                    OrderItemId = oish.Id,
                     OrderId = o.Id,
                     UserName = u != null ? u.UserName : null,
                     MenuItemName = mi.Name,
@@ -100,7 +100,7 @@ namespace FoodioAPI.Services.Implements
                 where c.Name.Contains("Nước") && ois.Code == "PENDING"
                 select new OrderWithDetails
                 {
-                    OrderItemId = oi.Id,
+                    OrderItemId = oish.Id,
                     OrderId = o.Id,
                     UserName = u != null ? u.UserName : null,
                     MenuItemName = mi.Name,
@@ -131,7 +131,7 @@ namespace FoodioAPI.Services.Implements
                 where c.Name.Contains("Món Lạnh") && ois.Code == "COOKING"
                 select new OrderWithDetails
                 {
-                    OrderItemId = oi.Id,
+                    OrderItemId = oish.Id,
                     OrderId = o.Id,
                     UserName = u != null ? u.UserName : null,
                     MenuItemName = mi.Name,
@@ -162,7 +162,7 @@ namespace FoodioAPI.Services.Implements
                 where c.Name.Contains("Món Nóng") && ois.Code == "COOKING"
                 select new OrderWithDetails
                 {
-                    OrderItemId = oi.Id,
+                    OrderItemId = oish.Id,
                     OrderId = o.Id,
                    
                     UserName = u != null ? u.UserName : null,
@@ -201,7 +201,7 @@ namespace FoodioAPI.Services.Implements
                 where latestStatus != null && latestStatus.StatusId == ois.Id
                 select new OrderWithDetails
                 {
-                    OrderItemId = oi.Id,
+                    OrderItemId = oish.Id,
                     OrderId = o.Id,
                     UserName = u != null ? u.UserName : null,
                     MenuItemName = mi.Name,
@@ -229,6 +229,7 @@ namespace FoodioAPI.Services.Implements
                 join t in _context.DiningTables on o.TableId equals t.Id into tableJoin
                 from t in tableJoin.DefaultIfEmpty()
                 where ois.Code == "READY_TO_SERVE"
+                orderby oish.ChangedAt descending
                 select new OrderWithDetails
                 {
                     OrderId = o.Id,
@@ -251,26 +252,24 @@ namespace FoodioAPI.Services.Implements
             var status = await _context.OrderItemStatuses.FirstOrDefaultAsync(x => x.Code == newStatusCode);
             if (status == null) return false;
 
-            // 2. Xóa toàn bộ lịch sử trạng thái cũ của order item này
-            var histories = await _context.OrderItemStatusHistories
-                .Where(x => x.OrderItemId == orderItemId)
-                .ToListAsync();
-            if (histories.Any())
+            // 2. Update bản ghi trạng thái mới
+            var orderItemStatusHistories = _context.OrderItemStatusHistories.FirstOrDefault(x => x.Id == orderItemId);
+            if (orderItemStatusHistories != null)
             {
-                _context.OrderItemStatusHistories.RemoveRange(histories);
+                orderItemStatusHistories.ChangedAt = DateTime.UtcNow;
+                orderItemStatusHistories.StatusId = status.Id;
+                _context.OrderItemStatusHistories.Update(orderItemStatusHistories);
+
+                OrderItem orderItem = _context.OrderItems.FirstOrDefault(x => x.Id == orderItemStatusHistories.OrderItemId);
+                if (orderItem != null)
+                {
+                    Order order = await _context.Orders.FirstOrDefaultAsync(x => x.Id == orderItem.OrderId);
+                    order.StatusId = Guid.Parse("0c334fab-07e1-4c5e-bca0-7d2fefe4e0bd");
+                    _context.Orders.Update(order);
+                }
             }
 
-            // 3. Thêm bản ghi trạng thái mới
-            var newHistory = new OrderItemStatusHistory
-            {
-                Id = Guid.NewGuid(),
-                OrderItemId = orderItemId,
-                StatusId = status.Id,
-                ChangedAt = DateTime.UtcNow
-            };
-            _context.OrderItemStatusHistories.Add(newHistory);
-
-            // 4. Lưu thay đổi
+            // 3. Lưu thay đổi
             await _context.SaveChangesAsync();
             return true;
         }

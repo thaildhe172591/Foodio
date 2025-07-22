@@ -5,8 +5,6 @@
 
 }
 
-
-
 <div class="sticky-top bg-white shadow-sm" style="z-index:1030;">
 	<div class="container sticky-top bd-white">
 		<div class="header d-flex justify-content-between align-items-center py-3">
@@ -22,9 +20,7 @@
 			<!-- Action Buttons Section -->
 			<div class="d-flex align-items-center gap-3">
 				<!-- Online Booking Button -->
-				<a href="/Account/BookingTableOnline" class="btn btn-warning rounded-pill px-4 py-2">
-					Đặt bàn Online
-				</a>
+				
 
 				<!-- Cart Button -->
 				<button class="btn btn-success rounded-circle d-flex justify-content-center align-items-center position-relative"
@@ -41,8 +37,10 @@
 				<a href="/Account/User">
 					<div class="d-flex flex-column align-items-center">
 						<i class="bi bi-person-circle text-dark" style="font-size: 30px;"></i>
-						<div class="fw-semibold text-dark mt-1">Nguyễn Văn A</div>
 					</div>
+				</a>
+				<a href="#" id="logoutBtn" class="btn btn-warning rounded-pill px-4 py-2">
+					Đăng xuất
 				</a>
 			</div>
 		</div>
@@ -648,4 +646,21 @@
 			</div>
 		`;
 	}
+		 document.addEventListener("DOMContentLoaded", function () {
+			const logoutBtn = document.getElementById("logoutBtn");
+
+			if (logoutBtn) {
+				logoutBtn.addEventListener("click", function () {
+					// Xóa token nếu có
+					localStorage.removeItem("access_token");
+					sessionStorage.clear();
+
+					// Gọi logout server nếu cần (tuỳ chọn)
+					// fetch('/api/auth/logout', { method: 'POST' });
+
+					// Chuyển hướng về trang đăng nhập
+					window.location.href = "/auth/login";
+				});
+			}
+		});
 </script>

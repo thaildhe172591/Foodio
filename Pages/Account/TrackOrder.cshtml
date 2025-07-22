@@ -10,47 +10,45 @@
             <div class="d-flex align-items-center">
                 <img src="~/images/logo_foddie.jpg" alt="GrabFood Logo" style="height: 80px;">
                 <div class="header-menu mx-3">
-                    <!-- Sử dụng class 'menu-link' giống như trong ConfirmBill -->
                     <a href="/Account/HomePageLogin" class=" fw-semibold menu-link">Trang chủ</a>
                 </div>
             </div>
             <a href="/Account/User">
                 <div class="d-flex flex-column align-items-center">
                     <i class="bi bi-person-circle text-dark" style="font-size: 30px;"></i>
-                    <div class="fw-semibold text-dark mt-1">Nguyễn Văn A</div>
                 </div>
             </a>
         </div>
     </div>
 </div>
+
 <div class="container mt-5">
     <div class="card shadow rounded">
         <div class="card-header bg-primary text-white">
             <h5 class="mb-0">Đơn hàng của bạn đang được xử lý</h5>
         </div>
         <div class="card-body">
-
-            <!-- Mã đơn và thời gian -->
+            <!-- Thông tin đơn -->
             <div class="mb-3">
-                <p><strong>Mã đơn hàng:</strong> #DH001</p>
-                <p><strong>Thời gian đặt:</strong> 11:42 - 23/06/2025</p>
-                <p><strong>Tổng tiền:</strong> 145.000₫</p>
+                <p><strong>Mã đơn hàng:</strong> <span id="order-code">#---</span></p>
+                <p><strong>Thời gian đặt:</strong> <span id="order-date">--/--/----</span></p>
+                <p><strong>Tổng tiền:</strong> <span id="order-total">--</span></p>
             </div>
 
             <!-- Tiến trình đơn hàng -->
             <div class="mb-4">
                 <h6 class="mb-3">Theo dõi đơn hàng</h6>
                 <ul class="list-group list-group-horizontal-sm">
-                    <li class="list-group-item flex-fill text-center bg-success text-white">
+                    <li class="list-group-item flex-fill text-center bg-success text-white" id="step-1">
                         <i class="bi bi-check-circle-fill me-1"></i> Đang xác nhận
                     </li>
-                    <li class="list-group-item flex-fill text-center bg-warning text-dark">
+                    <li class="list-group-item flex-fill text-center" id="step-2">
                         <i class="bi bi-hourglass-split me-1"></i> Đang chuẩn bị
                     </li>
-                    <li class="list-group-item flex-fill text-center">
+                    <li class="list-group-item flex-fill text-center" id="step-3">
                         <i class="bi bi-truck me-1"></i> Đang giao
                     </li>
-                    <li class="list-group-item flex-fill text-center">
+                    <li class="list-group-item flex-fill text-center" id="step-4">
                         <i class="bi bi-check2-circle me-1"></i> Hoàn tất
                     </li>
                 </ul>
@@ -59,38 +57,30 @@
             <!-- Thông tin người nhận -->
             <div class="mb-3">
                 <h6>Thông tin giao hàng</h6>
-                <p><strong>Tên:</strong> Trần Văn B</p>
-                <p><strong>Địa chỉ:</strong> CT1 Mỹ Đình, Hà Nội</p>
-                <p><strong>SĐT:</strong> 0987654321</p>
+                <p><strong>Tên:</strong> <span id="receiver-name">---</span></p>
+                <p><strong>Địa chỉ:</strong> <span id="receiver-address">---</span></p>
+                <p><strong>SĐT:</strong> <span id="receiver-phone">---</span></p>
             </div>
 
-            <!-- Ghi chú và nút -->
+            <!-- Ghi chú -->
             <div class="mb-3">
                 <h6>Ghi chú:</h6>
-                <p>Không cho rau sống, thêm ớt</p>
+                <p id="order-note">---</p>
             </div>
-
-            <!-- Button to show shipper info -->
+            <!-- Nút hiển thị thông tin ship -->
             <div class="mb-3">
-                <button class="btn btn-outline-primary" id="showShipperBtn">Hiển thị thông tin người ship</button>
+                <button class="btn btn-outline-primary" id="showShipperBtn" style="display:none;">Hiển thị thông tin người ship</button>
             </div>
 
-            <!-- Shipper info (Initially hidden) -->
-            <div id="shipperInfo" class="mb-3" style="display: none;">
+            <!-- Vùng hiển thị thông tin ship -->
+            <div id="shipperInfo" class="mb-3">
                 <h6>Thông tin người ship:</h6>
-                <p><strong>Tên shipper:</strong> Nguyễn Văn A</p>
-                <p><strong>SĐT:</strong> 0908765432</p>
+                <p><strong>Tên shipper:</strong> <span id="shipper-name"></span></p>
+                <p><strong>SĐT:</strong> <span id="shipper-phone"></span></p>
             </div>
-
-            <!-- Hủy đơn button -->
             <div class="text-end">
-                <button class="btn btn-outline-danger">Hủy đơn hàng</button>
-            </div>
-            <div class="text-end mt-3">
                 <a href="/Account/Cart" class="btn btn-outline-secondary">Quay lại giỏ hàng</a>
             </div>
-            
-
         </div>
     </div>
 </div>
@@ -100,53 +90,92 @@
         max-width: 900px;
     }
 
-    /* Styling for the button and shipper info */
-    #shipperInfo {
-        background-color: #f8f9fa;
-        padding: 10px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-outline-primary {
-        margin-top: 10px;
-    }
-
-    .btn-outline-danger {
-        margin-top: 20px;
-    }
-
     .header-menu .menu-link {
         text-decoration: none;
         font-size: 18px;
         font-weight: 600;
         transition: color 0.3s ease;
-        color: #000; /* Đặt màu mặc định */
+        color: #000;
     }
 
-
-    .menu-link {
-        text-decoration: none; /* Remove underline */
-        transition: background 0.3s ease-in-out; /* Smooth transition for the hover effect */
+    .menu-link:hover {
+        background: linear-gradient(90deg, #ffc107, #ff8800);
+        color: white;
+        padding: 5px 10px;
     }
-
-        .menu-link:hover {
-            background: linear-gradient(90deg, #ffc107, #ff8800); /* Gradient on hover */
-            color: white; /* Change text color to white on hover */
-            padding: 5px 10px; /* Optional: Add padding to make the effect more noticeable */
-        }
 </style>
 
 <script>
-    // Show the shipper's information when the button is clicked
-    document.getElementById('showShipperBtn').addEventListener('click', function() {
-        var shipperInfo = document.getElementById('shipperInfo');
-        if (shipperInfo.style.display === 'none') {
-            shipperInfo.style.display = 'block';
-            this.innerText = 'Ẩn thông tin người ship'; // Change button text
-        } else {
-            shipperInfo.style.display = 'none';
-            this.innerText = 'Hiển thị thông tin người ship'; // Reset button text
+    document.addEventListener('DOMContentLoaded', async function () {
+        const token = localStorage.getItem('access_token');
+        const params = new URLSearchParams(window.location.search);
+        const orderId = params.get("id");
+
+        if (!orderId || !token) {
+            alert("Không tìm thấy đơn hàng hoặc chưa đăng nhập.");
+            window.location.href = "/Account/HomePageLogin";
+            return;
+        }
+
+        try {
+            const res = await fetch(`/api/CartV2/order-detail/${orderId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Accept': 'application/json'
+                }
+            });
+
+            const result = await res.json();
+
+            if (!res.ok || !result || !result.data) {
+                alert("Không thể lấy thông tin đơn hàng.");
+                return;
+            }
+
+            const order = result.data;
+                const shipperName = order.shipperName;
+    const shipperPhone = order.shipperPhone;
+
+    if (shipperName && shipperPhone) {
+        document.getElementById('shipperInfo').style.display = 'none'; // chờ người dùng click
+        document.getElementById('shipper-name').innerText = shipperName;
+        document.getElementById('shipper-phone').innerText = shipperPhone;
+        document.getElementById('showShipperBtn').style.display = 'inline-block'; // hiện nút
+    } else {
+        document.getElementById('shipperInfo').style.display = 'none';
+        document.getElementById('showShipperBtn').style.display = 'none'; // ẩn luôn nút nếu không có
+    }
+
+            // Hiển thị thông tin đơn hàng
+            document.getElementById('order-code').innerText = order.orderCode || order.orderId;
+            document.getElementById('order-date').innerText = new Date(order.createdAt).toLocaleString('vi-VN');
+            document.getElementById('order-total').innerText = (order.total || 0).toLocaleString('vi-VN') + "₫";
+
+            document.getElementById('receiver-name').innerText = order.deliveryName || "Không rõ";
+            document.getElementById('receiver-address').innerText = order.deliveryAddress || "Không rõ";
+            document.getElementById('receiver-phone').innerText = order.deliveryPhone || "Không rõ";
+            document.getElementById('order-note').innerText = order.deliveryNote || "Không có ghi chú";
+
+            // Highlight trạng thái đơn hàng nếu cần
+            highlightStatus(order.status);
+
+        } catch (err) {
+            console.error("Lỗi lấy thông tin đơn:", err);
+            alert("Đã xảy ra lỗi khi tải đơn hàng.");
         }
     });
+
+    function highlightStatus(status) {
+        const s = (status || "").toLowerCase();
+        if (s.includes("đã xác nhận")) {
+            document.getElementById("step-2").classList.add("bg-warning", "text-dark");
+        } else if (s.includes("đang giao")) {
+             document.getElementById("step-2").classList.add("bg-warning", "text-dark");
+            document.getElementById("step-3").classList.add("bg-info", "text-white");
+        } else if (s.includes("hoàn tất") || s.includes("đã giao")) {
+             document.getElementById("step-2").classList.add("bg-warning", "text-dark");
+            document.getElementById("step-3").classList.add("bg-info", "text-white");
+            document.getElementById("step-4").classList.add("bg-success", "text-white");
+        }
+    }
 </script>

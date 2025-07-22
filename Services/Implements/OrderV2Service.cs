@@ -17,6 +17,65 @@ namespace FoodioAPI.Services.Implements
             _context = context;
         }
 
+        // Services/Implements/OrderV2Service.cs
+        public async Task<OrderDetailDTO?> GetOrderDetailAsync(Guid orderId, string userName)
+        {
+            User user = _context.User.FirstOrDefault(x => x.UserName == userName);
+            if (user == null)
+            {
+                return null;
+            }
+            var order = await _context.Orders
+                .Include(o => o.Status)
+                .Include(o => o.DeliveryInfo)
+                .Include(o => o.OrderShippers)
+                    .ThenInclude(os => os.Shipper)
+                .FirstOrDefaultAsync(o => o.Id == orderId && o.UserId == user.Id);
+
+            if (order == null) return null;
+
+            var shipper = order.OrderShippers.FirstOrDefault()?.Shipper;
+
+            return new OrderDetailDTO
+            {
+                OrderId = order.Id,
+                OrderCode = "ORD" + order.Id.ToString().Substring(0, 8).ToUpper(),
+                CreatedAt = order.CreatedAt,
+                Total = order.Total,
+                Status = order.Status?.Name ?? "",
+                DeliveryName = order.DeliveryInfo?.ReceiverName,
+                DeliveryAddress = order.DeliveryInfo?.DeliveryAddress,
+                DeliveryPhone = order.DeliveryInfo?.ReceiverPhone,
+                DeliveryNote = order.DeliveryInfo?.DeliveryAddress, // Nếu có trường Note thì sửa lại
+                ShipperName = shipper?.UserName,
+                ShipperPhone = shipper?.PhoneNumber
+            };
+        }
+
+        // Services/Implements/OrderV2Service.cs
+        public async Task<List<OrderSummaryDTO>> GetOrderSummariesAsync(string userName)
+        {
+            User user = _context.User.FirstOrDefault(x => x.UserName == userName);
+            if (user == null)
+            {
+                return null;
+            }
+            var orders = await _context.Orders
+                .Where(o => o.UserId == user.Id)
+                .OrderByDescending(o => o.CreatedAt)
+                .Select(o => new OrderSummaryDTO
+                {
+                    OrderId = o.Id,
+                    OrderCode = "ORD" + o.Id.ToString().Substring(0, 8).ToUpper(),
+                    CreatedAt = o.CreatedAt,
+                    Status = o.Status.Name,
+                    Total = o.Total
+                })
+                .ToListAsync();
+
+            return orders;
+        }
+
         public async Task<Response> CreateOrderAsync(CreateOrderRequestDTO request, string userName)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
@@ -108,11 +167,19 @@ namespace FoodioAPI.Services.Implements
                             UnitPrice = menuItem.Price,
                             Note = item.Note
                         };
-                        orderItems.Add(orderItem);
+                        _context.OrderItems.Add(orderItem);
+
+                        var orderItemStatusHistory = new OrderItemStatusHistory
+                        {
+                            Id = Guid.NewGuid(),
+                            ChangedAt = DateTime.UtcNow,
+                            OrderItemId = orderItem.Id,
+                            StatusId = Guid.Parse("9f9d25c6-f53c-460d-99c0-ac76e015249e")
+                        };
+                        _context.OrderItemStatusHistories.Add(orderItemStatusHistory);
                     }
                 }
 
-                _context.OrderItems.AddRange(orderItems);
 
                 // 6. Tạo OrderDeliveryInfo nếu là đơn giao hàng
                 if (request.OrderType.ToUpper() == "DELIVERY" && request.DeliveryInfo != null)

@@ -19,6 +19,28 @@ namespace FoodioAPI.Controllers
             _orderV2Service = orderV2Service;
         }
 
+        [HttpGet("my-orders")]
+        public async Task<IActionResult> GetMyOrders()
+        {
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+            if (string.IsNullOrEmpty(userName))
+            {
+                return Unauthorized(new Response
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = "Không thể xác thực người dùng"
+                });
+            }
+
+            var orders = await _orderV2Service.GetOrderSummariesAsync(userName);
+            return Ok(new Response
+            {
+                Status = ResponseStatus.SUCCESS,
+                Message = "Lấy danh sách đơn hàng thành công",
+                Data = orders
+            });
+        }
+
         /// <summary>
         /// Tạo đơn hàng từ thông tin giỏ hàng
         /// </summary>
@@ -60,6 +82,37 @@ namespace FoodioAPI.Controllers
                     Message = "Lỗi server: " + ex.Message
                 });
             }
+        }
+
+        [HttpGet("order-detail/{orderId}")]
+        public async Task<IActionResult> GetOrderDetail(Guid orderId)
+        {
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+            if (string.IsNullOrEmpty(userName))
+            {
+                return Unauthorized(new Response
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = "Không thể xác thực người dùng"
+                });
+            }
+
+            var detail = await _orderV2Service.GetOrderDetailAsync(orderId, userName);
+            if (detail == null)
+            {
+                return NotFound(new Response
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = "Không tìm thấy đơn hàng"
+                });
+            }
+
+            return Ok(new Response
+            {
+                Status = ResponseStatus.SUCCESS,
+                Message = "Lấy chi tiết đơn hàng thành công",
+                Data = detail
+            });
         }
     }
 }

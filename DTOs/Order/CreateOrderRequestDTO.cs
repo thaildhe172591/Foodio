@@ -41,4 +41,28 @@ namespace FoodioAPI.DTOs.Order
         [MaxLength(255, ErrorMessage = "Địa chỉ không được vượt quá 255 ký tự")]
         public string DeliveryAddress { get; set; } = string.Empty;
     }
+
+    public class OrderSummaryDTO
+    {
+        public Guid OrderId { get; set; }
+        public string OrderCode { get; set; } = string.Empty;
+        public DateTime CreatedAt { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public decimal Total { get; set; }
+    }
+
+    public class OrderDetailDTO
+    {
+        public Guid OrderId { get; set; }
+        public string OrderCode { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public decimal Total { get; set; }
+        public string Status { get; set; }
+        public string DeliveryName { get; set; }
+        public string DeliveryAddress { get; set; }
+        public string DeliveryPhone { get; set; }
+        public string DeliveryNote { get; set; }
+        public string ShipperName { get; set; }
+        public string ShipperPhone { get; set; }
+    }
 } 
