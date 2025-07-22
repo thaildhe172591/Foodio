@@ -49,6 +49,9 @@ namespace FoodioAPI.DTOs.Order
         public DateTime CreatedAt { get; set; }
         public string Status { get; set; } = string.Empty;
         public decimal Total { get; set; }
+        public List<string> Foods { get; set; }
+        public string Adress { get; set; } = string.Empty;
+        public bool isAssignmentShip { get; set; }
     }
 
     public class OrderDetailDTO

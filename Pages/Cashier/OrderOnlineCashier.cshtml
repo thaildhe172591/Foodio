@@ -4,34 +4,27 @@
     ViewData["HideLayoutHeader"] = true;
 }
 
-
-
-
 <body>
-
     <div class="container mt-5">
         <h1 class="mb-4">Đơn Online - Món ăn</h1>
-
-      
         <table class="table table-striped" id="orders-table">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Khách hàng</th>
+                    <th>Mã đơn</th>
                     <th>Món ăn</th>
                     <th>Địa chỉ giao</th>
                     <th>Trạng thái</th>
                     <th>Phân cho Shipper</th>
-                    <th>Hành động</th> <!-- Cột "Hành động" mới thêm -->
                 </tr>
             </thead>
             <tbody>
-                <!-- Dữ liệu đơn hàng sẽ được điền vào đây bằng JavaScript -->
+                <!-- Dữ liệu đơn hàng sẽ điền vào bằng JavaScript -->
             </tbody>
         </table>
     </div>
 
-    <!-- Modal để chọn shipper -->
+    <!-- Modal phân shipper -->
     <div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="assignModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -43,9 +36,7 @@
                     <form id="assign-form">
                         <div class="mb-3">
                             <label for="shipper-select" class="form-label">Chọn Shipper</label>
-                            <select class="form-select" id="shipper-select">
-                                <!-- Shippers sẽ được điền vào đây bằng JavaScript -->
-                            </select>
+                            <select class="form-select" id="shipper-select"></select>
                         </div>
                         <button type="submit" class="btn btn-primary">Phân công</button>
                     </form>
@@ -56,83 +47,122 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Dữ liệu tĩnh về đơn hàng và shipper
-        const orders = [
-            { id: 1, customerName: "Nguyễn Văn A", foodName: "Phở bò", shippingAddress: "123 Đường ABC", status: "Chờ xử lý" },
-            { id: 2, customerName: "Lê Thị B", foodName: "Bánh mì", shippingAddress: "456 Đường XYZ", status: "Chờ xử lý" },
-            { id: 3, customerName: "Trần Minh C", foodName: "Cơm gà", shippingAddress: "789 Đường DEF", status: "Đang giao" }
-        ];
+        const token = localStorage.getItem("access_token");
+        const orderApi = "/api/CartV2/my-orders-cash";
+        const shipperApi = "/api/admin/users/search-staff?RoleId=4f16b86a-cc61-4e79-9db7-82e98cdd50da";
 
-        const shippers = [
-            { id: 1, name: "Shipper 1" },
-            { id: 2, name: "Shipper 2" },
-            { id: 3, name: "Shipper 3" }
-        ];
+        let orders = [];
+        let shippers = [];
 
-        // Hàm để hiển thị danh sách đơn hàng món ăn
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (!token) {
+                alert("Vui lòng đăng nhập.");
+                window.location.href = "/auth/login";
+                return;
+            }
+
+            await fetchOrders();
+            await fetchShippers();
+            renderOrders();
+        });
+
+        async function fetchOrders() {
+            try {
+                const res = await fetch(orderApi, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const json = await res.json();
+                if (json.status === "Success") {
+                    orders = json.data || [];
+                }
+            } catch (e) {
+                console.error("Lỗi đơn hàng:", e);
+            }
+        }
+
+        async function fetchShippers() {
+            try {
+                const res = await fetch(shipperApi, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const json = await res.json();
+                if (json.status === "Success") {
+                    shippers = json.data.data || [];
+                }
+            } catch (e) {
+                console.error("Lỗi shipper:", e);
+            }
+        }
+
         function renderOrders() {
-            const ordersTable = document.getElementById("orders-table").getElementsByTagName('tbody')[0];
-            ordersTable.innerHTML = ''; // Xóa dữ liệu cũ
+            const tbody = document.querySelector("#orders-table tbody");
+            tbody.innerHTML = "";
 
-            orders.forEach(order => {
-                const row = document.createElement('tr');
+            orders.forEach((order, index) => {
+                const createdAt = new Date(order.createdAt).toLocaleString('vi-VN');
+                const total = (order.total || 0).toLocaleString('vi-VN') + "₫";
+                const foodList = (order.foods || []).join(", ");
+
+                const row = document.createElement("tr");
                 row.innerHTML = `
-                    <td>${order.id}</td>
-                    <td>${order.customerName}</td>
-                    <td>${order.foodName}</td>
-                    <td>${order.shippingAddress}</td>
+                    <td>${index + 1}</td>
+                    <td>${order.orderCode}</td>
+                    <td>${foodList}</td>
+                    <td>${order.adress || ""}</td>
                     <td>${order.status}</td>
                     <td>
-                        ${order.status === "Chờ xử lý" ?
-                            `<button class="btn btn-primary" onclick="openAssignModal(${order.id})">Phân cho Shipper</button>` :
-                            `<span>Đã phân công</span>`}
-                    </td>
-                    <td>
-                        <a href="/Cashier/PayBillCashier" class="btn btn-outline-success">In hóa đơn</a> <!-- Thêm liên kết đến trang PayBillCashier -->
+                        ${order.isAssignmentShip
+                            ? `<span>Đã phân</span>`
+                            : `<button class="btn btn-primary btn-sm" onclick="openAssignModal('${order.orderId}')">Đặt shipper</button>`}
                     </td>
                 `;
-                ordersTable.appendChild(row);
+                tbody.appendChild(row);
             });
         }
 
-        // Hàm mở modal phân công cho shipper
         function openAssignModal(orderId) {
-            const assignModal = new bootstrap.Modal(document.getElementById('assignModal'));
-            const shipperSelect = document.getElementById("shipper-select");
+            const modal = new bootstrap.Modal(document.getElementById('assignModal'));
+            const select = document.getElementById("shipper-select");
+            select.innerHTML = "";
 
-            // Xóa các shipper cũ trong modal
-            shipperSelect.innerHTML = '';
-
-            // Điền danh sách shipper vào modal
             shippers.forEach(shipper => {
-                const option = document.createElement('option');
+                const option = document.createElement("option");
                 option.value = shipper.id;
-                option.textContent = shipper.name;
-                shipperSelect.appendChild(option);
+                option.textContent = `${shipper.userName} (${shipper.email})`;
+                select.appendChild(option);
             });
 
-            // Gán event cho form phân công shipper
-            document.getElementById("assign-form").onsubmit = function (event) {
-                event.preventDefault();
-                const selectedShipperId = shipperSelect.value;
-                assignOrderToShipper(orderId, selectedShipperId);
-                assignModal.hide();
-            }
+            document.getElementById("assign-form").onsubmit = async function (e) {
+                e.preventDefault();
+                const shipperId = select.value;
+                await assignOrder(orderId, shipperId);
+                modal.hide();
+            };
 
-            assignModal.show();
+            modal.show();
         }
 
-        // Hàm phân công shipper cho đơn hàng
-        function assignOrderToShipper(orderId, shipperId) {
-            const order = orders.find(o => o.id === orderId);
-            if (order) {
-                order.status = "Đang giao"; // Cập nhật trạng thái
-                renderOrders(); // Cập nhật lại danh sách đơn hàng
+        async function assignOrder(orderId, shipperId) {
+            try {
+                const res = await fetch("/api/CartV2/assign-shipper", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ orderId, shipperId })
+                });
+
+                if (res.ok) {
+                    alert("Phân shipper thành công!");
+                    await fetchOrders();
+                    renderOrders();
+                } else {
+                    alert("Thất bại khi phân shipper.");
+                }
+            } catch (e) {
+                console.error("Lỗi khi gửi API:", e);
             }
         }
-
-        // Gọi hàm để render đơn hàng ngay khi trang tải
-        renderOrders();
     </script>
-
 </body>

@@ -76,6 +76,37 @@ namespace FoodioAPI.Services.Implements
             return orders;
         }
 
+        public async Task<List<OrderSummaryDTO>> GetOrderSummariesCashAsync(string userName)
+        {
+            User user = _context.User.FirstOrDefault(x => x.UserName == userName);
+            if (user == null)
+            {
+                return null;
+            }
+            var orders = await _context.Orders
+                .Include(o => o.DeliveryInfo)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.MenuItem)
+                .Include(o => o.OrderShippers)
+                .Include(o => o.Status)
+                .Where(o => o.UserId == user.Id && o.OrderTypeId == Guid.Parse("672e29b5-bd2c-4008-9117-d077cc9585d5"))
+                .OrderByDescending(o => o.CreatedAt)
+                .Select(o => new OrderSummaryDTO
+                {
+                    OrderId = o.Id,
+                    OrderCode = "ORD" + o.Id.ToString().Substring(0, 8).ToUpper(),
+                    CreatedAt = o.CreatedAt,
+                    Status = o.Status.Name,
+                    Total = o.Total,
+                    isAssignmentShip = o.OrderShippers.Any(),
+                    Adress = o.DeliveryInfo.DeliveryAddress,
+                    Foods = o.OrderItems.Select(x => x.MenuItem.Name).ToList()
+                })
+                .ToListAsync();
+            return orders;
+        }
+
+
         public async Task<Response> CreateOrderAsync(CreateOrderRequestDTO request, string userName)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();

@@ -41,6 +41,29 @@ namespace FoodioAPI.Controllers
             });
         }
 
+
+        [HttpGet("my-orders-cash")]
+        public async Task<IActionResult> GetMyOrdersCash()
+        {
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+            if (string.IsNullOrEmpty(userName))
+            {
+                return Unauthorized(new Response
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = "Không thể xác thực người dùng"
+                });
+            }
+
+            var orders = await _orderV2Service.GetOrderSummariesCashAsync(userName);
+            return Ok(new Response
+            {
+                Status = ResponseStatus.SUCCESS,
+                Message = "Lấy danh sách đơn hàng thành công",
+                Data = orders
+            });
+        }
+
         /// <summary>
         /// Tạo đơn hàng từ thông tin giỏ hàng
         /// </summary>
