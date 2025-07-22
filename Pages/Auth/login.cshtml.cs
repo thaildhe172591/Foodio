@@ -67,10 +67,10 @@ namespace FoodioAPI.Pages.Auth
 
             var response = await client.PostAsync("https://localhost:5001/api/auth/login", content);
 
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToPage("/Index");
-            }
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    return RedirectToPage("/Index");
+            //}
 
             //var result = await response.Content.ReadAsStringAsync();
             //ErrorMessage = $"Login failed: {result}";

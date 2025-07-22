@@ -50,7 +50,8 @@ public class UserService : IUserService
         return new TokenDTO()
         {
             AccessToken = _tokenService.GenerateAccessToken(claims),
-            RefreshToken = user.RefreshToken
+            RefreshToken = user.RefreshToken,
+            Role = roles.ToList()
         };
     }
 
