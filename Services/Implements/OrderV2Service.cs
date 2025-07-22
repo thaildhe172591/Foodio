@@ -17,14 +17,14 @@ namespace FoodioAPI.Services.Implements
             _context = context;
         }
 
-        public async Task<Response> CreateOrderAsync(CreateOrderRequestDTO request, string userId)
+        public async Task<Response> CreateOrderAsync(CreateOrderRequestDTO request, string userName)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
                 // 1. Validate OrderType
                 var orderType = await _context.OrderTypes
-                    .FirstOrDefaultAsync(ot => ot.Code.ToUpper() == request.OrderType.ToUpper());
+                    .FirstOrDefaultAsync(ot => ot.Code == request.OrderType);
                 
                 if (orderType == null)
                 {
@@ -34,7 +34,15 @@ namespace FoodioAPI.Services.Implements
                         Message = "Loại đơn hàng không hợp lệ"
                     };
                 }
-
+                User user = _context.User.FirstOrDefault(x=> x.UserName == userName);
+                if (user == null)
+                {
+                    return new Response
+                    {
+                        Status = ResponseStatus.ERROR,
+                        Message = "user không hợp lệ"
+                    };
+                }
                 // 2. Validate MenuItems và tính tổng tiền
                 var menuItemIds = request.Items.Select(i => i.MenuItemId).ToList();
                 var menuItems = await _context.MenuItems
@@ -76,7 +84,7 @@ namespace FoodioAPI.Services.Implements
                 var order = new Order
                 {
                     Id = Guid.NewGuid(),
-                    UserId = userId,
+                    UserId = user.Id,
                     OrderTypeId = orderType.Id,
                     StatusId = defaultStatus.Id,
                     Total = total,

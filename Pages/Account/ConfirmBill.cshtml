@@ -148,6 +148,10 @@
 <div class="order-summary">
     <div class="summary-title text-center">Xác Nhận Đơn Hàng</div>
 
+    <div class="summary-item" id="summary-name">
+        <span class="summary-label">Người đặt:</span> Nguyễn Văn A
+    </div>
+
     <div class="summary-item">
         <span class="summary-label">Loại đơn:</span> Giao hàng
     </div>
@@ -182,7 +186,7 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-add-to-cart-custom mt-4" onclick="showSuccessPopup()">Đặt hàng</button>
+    <button type="button" class="btn btn-add-to-cart-custom mt-4" onclick="submitOrder()">Đặt hàng</button>
 </div>
 
 <!-- Modal popup -->
@@ -198,7 +202,7 @@
             <div class="modal-footer border-0 justify-content-center">
                 <button type="button" class="btn btn-success" onclick="redirectAfterClose()">Đóng</button>
                 <!-- New 'Theo dõi đơn hàng' button -->
-                <button type="button" class="btn btn-outline-primary" onclick="trackOrder()">Theo dõi đơn hàng</button>
+                @* <button type="button" class="btn btn-outline-primary" onclick="trackOrder()">Theo dõi đơn hàng</button> *@
             </div>
         </div>
     </div>
@@ -206,7 +210,61 @@
 
 <!-- JS -->
 <script>
+    async function submitOrder() {
+        const deliveryInfoRaw = localStorage.getItem('deliveryInfo');
+        const cartRaw = localStorage.getItem('shoppingCart');
+        const token = localStorage.getItem('access_token');
+
+        if (!deliveryInfoRaw || !cartRaw || !token) {
+            alert("Thông tin đơn hàng không hợp lệ. Vui lòng quay lại.");
+            window.location.href = '/Account/HomePageLogin';
+            return;
+        }
+
+        const deliveryInfo = JSON.parse(deliveryInfoRaw);
+        const cart = JSON.parse(cartRaw);
+
+        const items = Object.entries(cart).map(([menuItemId, quantity]) => ({
+            menuItemId,
+            quantity,
+            note: deliveryInfo.note || ''
+        }));
+
+        const body = {
+            orderType: deliveryInfo.orderType,
+            items: items,
+            deliveryInfo: {
+                receiverName: deliveryInfo.fullName , // thay bằng thông tin thực nếu có
+                receiverPhone: deliveryInfo.phone,
+                deliveryAddress: deliveryInfo.address
+            },
+            note: deliveryInfo.note || ''
+        };
+
+        try {
+            const res = await fetch("/api/CartV2/create-order", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(body)
+            });
+
+            if (res.ok) {
+                showSuccessPopup();
+                localStorage.removeItem("shoppingCart"); // xóa giỏ hàng sau khi đặt
+            } else {
+                const err = await res.text();
+                alert("Đặt hàng thất bại: " + err);
+            }
+        } catch (err) {
+            alert("Lỗi kết nối khi gửi đơn hàng.");
+            console.error(err);
+        }
+    }
     function showSuccessPopup() {
+
         var modal = new bootstrap.Modal(document.getElementById('orderSuccessModal'));
         modal.show();
     }
@@ -231,10 +289,11 @@
         const cart = JSON.parse(cartRaw);
 
         // Điền thông tin giao hàng
-        document.querySelector('.summary-item:nth-child(2)').innerHTML = `<span class="summary-label">Loại đơn:</span> ${deliveryInfo.orderType.includes('pickup') ? 'Mang về' : 'Giao hàng'}`;
-        document.querySelector('.summary-item:nth-child(3)').innerHTML = `<span class="summary-label">Địa chỉ:</span> ${deliveryInfo.address}`;
-        document.querySelector('.summary-item:nth-child(4)').innerHTML = `<span class="summary-label">Số điện thoại:</span> ${deliveryInfo.phone}`;
-        document.querySelector('.summary-item:nth-child(5)').innerHTML = `<span class="summary-label">Ghi chú:</span> ${deliveryInfo.note || 'Không có'}`;
+            document.getElementById('summary-name').innerHTML = `<span class="summary-label">Người đặt:</span> ${deliveryInfo.fullName || 'Không rõ'}`;
+    document.querySelector('.summary-item:nth-child(3)').innerHTML = `<span class="summary-label">Loại đơn:</span> ${deliveryInfo.orderType.includes('pickup') ? 'Mang về' : 'Giao hàng'}`;
+    document.querySelector('.summary-item:nth-child(4)').innerHTML = `<span class="summary-label">Địa chỉ:</span> ${deliveryInfo.address}`;
+    document.querySelector('.summary-item:nth-child(5)').innerHTML = `<span class="summary-label">Số điện thoại:</span> ${deliveryInfo.phone}`;
+    document.querySelector('.summary-item:nth-child(6)').innerHTML = `<span class="summary-label">Ghi chú:</span> ${deliveryInfo.note || 'Không có'}`;
 
         // Load chi tiết món ăn từ API
         const foodListContainer = document.querySelector('.food-list');

@@ -5,6 +5,6 @@ namespace FoodioAPI.Services
 {
     public interface IOrderV2Service
     {
-        Task<Response> CreateOrderAsync(CreateOrderRequestDTO request, string userId);
+        Task<Response> CreateOrderAsync(CreateOrderRequestDTO request, string userName);
     }
 } 

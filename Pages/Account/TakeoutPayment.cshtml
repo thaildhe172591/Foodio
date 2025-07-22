@@ -86,35 +86,46 @@
         <h2 class="mb-4 text-center">Thông Tin Giao Hàng</h2>
 
         <form>
+            <!-- Tên người đặt -->
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Tên người đặt</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Nguyễn Văn A">
+            </div>
+
+            <!-- Loại đơn -->
             <div class="mb-3">
                 <label class="form-label">Loại đơn</label>
                 <div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="orderType" id="delivery" value="672e29b5-bd2c-4008-9117-d077cc9585d5" checked>
+                        <input class="form-check-input" type="radio" name="orderType" id="delivery" value="DELIVERY" checked>
                         <label class="form-check-label" for="delivery">Giao hàng</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="orderType" id="pickup" value="450ace82-44ca-4179-9c1f-dffb3115c52d">
+                        <input class="form-check-input" type="radio" name="orderType" id="pickup" value="TAKEOUT">
                         <label class="form-check-label" for="pickup">Mang về</label>
                     </div>
                 </div>
             </div>
 
+            <!-- Địa chỉ -->
             <div class="mb-3">
                 <label for="address" class="form-label">Địa chỉ</label>
                 <input type="text" class="form-control" id="address" placeholder="123 Đường A, Quận B">
             </div>
 
+            <!-- Số điện thoại -->
             <div class="mb-3">
                 <label for="phone" class="form-label">Số điện thoại</label>
                 <input type="text" class="form-control" id="phone" placeholder="0123 456 789">
             </div>
 
+            <!-- Ghi chú -->
             <div class="mb-3">
                 <label for="note" class="form-label">Ghi chú</label>
                 <textarea class="form-control" id="note" rows="3" placeholder="VD: Giao trước 11h, không lấy ớt..."></textarea>
             </div>
 
+            <!-- Nút xác nhận -->
             <button type="button" id="confirm-btn" class="btn btn-add-to-cart-custom w-100">Xác nhận</button>
         </form>
     </div>
@@ -122,15 +133,47 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // Kiểm tra giỏ hàng
+        const cart = localStorage.getItem("shoppingCart");
+        if (!cart || Object.keys(JSON.parse(cart)).length === 0) {
+            window.location.href = "/Account/HomePageLogin";
+            return;
+        }
+
+        // Load dữ liệu cũ nếu có
+        const savedInfo = localStorage.getItem("deliveryInfo");
+        if (savedInfo) {
+            try {
+                const info = JSON.parse(savedInfo);
+                if (info.fullName) document.getElementById('fullName').value = info.fullName;
+                if (info.address) document.getElementById('address').value = info.address;
+                if (info.phone) document.getElementById('phone').value = info.phone;
+                if (info.note) document.getElementById('note').value = info.note;
+
+                if (info.orderType) {
+                    const radio = document.querySelector(`input[name="orderType"][value="${info.orderType}"]`);
+                    if (radio) radio.checked = true;
+                }
+            } catch (e) {
+                console.warn("Không thể đọc dữ liệu giao hàng:", e);
+            }
+        }
+
+        // Lưu lại thông tin khi bấm Xác nhận
         document.getElementById('confirm-btn').addEventListener('click', function () {
+            const fullName = document.getElementById('fullName').value.trim();
             const orderType = document.querySelector('input[name="orderType"]:checked').value;
             const address = document.getElementById('address').value.trim();
             const phone = document.getElementById('phone').value.trim();
             const note = document.getElementById('note').value.trim();
 
-            // Có thể thêm kiểm tra dữ liệu ở đây nếu cần
+            if (!fullName || !address || !phone) {
+                alert("Vui lòng nhập đầy đủ tên, địa chỉ và số điện thoại.");
+                return;
+            }
 
             const deliveryInfo = {
+                fullName,
                 orderType,
                 address,
                 phone,
@@ -138,60 +181,9 @@
             };
 
             localStorage.setItem('deliveryInfo', JSON.stringify(deliveryInfo));
-
-            // Điều hướng sau khi lưu
-            window.location.href = '/Account/ConfirmBill';
-        });
-    });
-    document.addEventListener("DOMContentLoaded", function () {
-        const cart = localStorage.getItem("shoppingCart");
-        if (!cart || Object.keys(JSON.parse(cart)).length === 0) {
-            // Nếu giỏ hàng rỗng hoặc không có
-            window.location.href = "/Account/HomePageLogin";
-            return;
-        }
-
-        // Các xử lý khác ở đây...
-    });
-      document.addEventListener('DOMContentLoaded', function () {
-        // 1. Kiểm tra giỏ hàng
-        const cart = localStorage.getItem("shoppingCart");
-        if (!cart || Object.keys(JSON.parse(cart)).length === 0) {
-            window.location.href = "/Account/HomePageLogin";
-            return;
-        }
-
-        // 2. Nếu đã lưu thông tin giao hàng trước đó, điền vào form
-        const savedInfo = localStorage.getItem("deliveryInfo");
-        if (savedInfo) {
-            try {
-                const info = JSON.parse(savedInfo);
-                if (info.address) document.getElementById('address').value = info.address;
-                if (info.phone) document.getElementById('phone').value = info.phone;
-                if (info.note) document.getElementById('note').value = info.note;
-
-                // Check radio tương ứng với orderType ID
-                if (info.orderType) {
-                    const radio = document.querySelector(`input[name="orderType"][value="${info.orderType}"]`);
-                    if (radio) radio.checked = true;
-                }
-            } catch (e) {
-                console.warn("Không thể parse deliveryInfo:", e);
-            }
-        }
-
-        // 3. Xác nhận và lưu lại localStorage
-        document.getElementById('confirm-btn').addEventListener('click', function () {
-            const orderType = document.querySelector('input[name="orderType"]:checked').value;
-            const address = document.getElementById('address').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const note = document.getElementById('note').value.trim();
-
-            const deliveryInfo = { orderType, address, phone, note };
-            localStorage.setItem('deliveryInfo', JSON.stringify(deliveryInfo));
-
             window.location.href = '/Account/ConfirmBill';
         });
     });
 </script>
+
 

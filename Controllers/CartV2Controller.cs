@@ -30,9 +30,9 @@ namespace FoodioAPI.Controllers
             try
             {
                 // Lấy userId từ JWT token
-                var userId = User.FindFirst(ClaimTypes.Name)?.Value;
+                var userName = User.FindFirst(ClaimTypes.Name)?.Value;
                 
-                if (string.IsNullOrEmpty(userId))
+                if (string.IsNullOrEmpty(userName))
                 {
                     return Unauthorized(new Response
                     {
@@ -41,7 +41,7 @@ namespace FoodioAPI.Controllers
                     });
                 }
 
-                var result = await _orderV2Service.CreateOrderAsync(request, userId);
+                var result = await _orderV2Service.CreateOrderAsync(request, userName);
                 
                 if (result.Status == ResponseStatus.SUCCESS)
                 {
