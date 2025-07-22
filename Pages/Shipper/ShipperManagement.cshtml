@@ -3,183 +3,373 @@
 @{
     ViewData["HideLayoutHeader"] = true;
 }
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Quản lý Đơn Hàng - Shipper</h1>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
-        <!-- Thanh điều hướng -->
-        <div class="row justify-content-center">
-            <div class="col-8">
-                <nav class="nav-container p-3 border rounded">
-                    <nav class="nav nav-pills justify-content-center">
-                        <a class="nav-link active" href="javascript:void(0);" onclick="showSection('item-1')">Đơn Chờ Giao</a>
-                        <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-2')">Cập Nhật Trạng Thái</a>
-                        <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-3')">Lịch Sử Giao Hàng</a>
-                        <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-4')">Màn Tổng Thu</a>
-                    </nav>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Quản lý Đơn Hàng - Shipper</h1>
+    <div id="today-time" class="text-center mb-4" style="font-weight:bold;color:#2980b9;"></div>
+    <div id="user-info" style="position:fixed;top:20px;right:30px;z-index:1000;"></div>
+
+    <!-- Thanh điều hướng -->
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <nav class="nav-container p-3 border rounded">
+                <nav class="nav nav-pills justify-content-center">
+                    <a class="nav-link active" href="javascript:void(0);" onclick="showSection('item-1')">Đơn Chờ Giao</a>
+                    <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-2')">Cập Nhật Trạng Thái</a>
+                    <a class="nav-link" href="javascript:void(0);" onclick="showSection('item-3')">Lịch Sử Giao Hàng</a>
                 </nav>
-            </div>
-        </div>
-
-        <!-- Nội dung -->
-        <div class="row mt-4">
-            <div class="col-12">
-                <!-- Đơn Chờ Giao -->
-                <div id="item-1" class="section-content">
-                    <h4>Đơn Chờ Giao</h4>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Tên Khách</th>
-                                <th>Món</th>
-                                <th>Phí Ship</th>
-                                <th>Tổng Tiền Món</th>
-                                <th>Hành Động</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr data-name="Nguyễn Văn A" data-fee="15000" data-totalprice="50000">
-                                <td>1</td>
-                                <td>Nguyễn Văn A</td>
-                                <td>Trà sữa x1</td>
-                                <td>15.000đ</td>
-                                <td>50.000đ</td>
-                                <td>
-                                    <button class="btn btn-sm btn-success" onclick="startDelivery(this)">Nhận giao hàng</button>
-                                    <button class="btn btn-sm btn-primary" onclick="updateOrderStatus('DH001', this)">Cập Nhật Trạng Thái</button>
-                                </td>
-                            </tr>
-                            <tr data-name="Trần Thị B" data-fee="20000" data-totalprice="70000">
-                                <td>2</td>
-                                <td>Trần Thị B</td>
-                                <td>Bánh mì x2</td>
-                                <td>20.000đ</td>
-                                <td>70.000đ</td>
-                                <td>
-                                    <button class="btn btn-sm btn-success" onclick="startDelivery(this)">Nhận giao hàng</button>
-                                    <button class="btn btn-sm btn-primary" onclick="updateOrderStatus('DH002', this)">Cập Nhật Trạng Thái</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Cập Nhật Trạng Thái -->
-                <div id="item-2" class="section-content" style="display:none;">
-                    <h4>Cập Nhật Trạng Thái</h4>
-                    <input type="text" id="order-id" class="form-control" placeholder="Mã đơn hàng" readonly>
-                    <select id="order-status" class="form-select mt-2">
-                        <option value="completed">Đã giao</option>
-                        <option value="failed">Thất bại</option>
-                    </select>
-                    <textarea id="failure-reason" class="form-control mt-2" rows="2" placeholder="Lý do thất bại (nếu có)"></textarea>
-                    <button class="btn btn-primary mt-2" onclick="confirmUpdateStatus()">Cập Nhật Trạng Thái</button>
-                </div>
-
-                <!-- Lịch Sử Giao Hàng -->
-                <div id="item-3" class="section-content" style="display:none;">
-                    <h4>Lịch Sử Giao Hàng</h4>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Mã Đơn</th>
-                                <th>Ngày Giao</th>
-                                <th>Khách Hàng</th>
-                                <th>Tổng Tiền Món</th>
-                                <th>Tiền Ship</th>
-                                <th>Trạng Thái</th>
-                            </tr>
-                        </thead>
-                        <tbody id="history-body"></tbody>
-                    </table>
-                </div>
-
-                <!-- Màn Tổng Thu -->
-                <div id="item-4" class="section-content" style="display:none;">
-                    <h4 class="text-center mb-3">Màn Tổng Thu</h4>
-                    <div class="summary-box mx-auto p-3">
-                        <p><strong>Tổng Tiền Món Ăn:</strong> <span id="total-food">0</span> đ</p>
-                        <p><strong>Tổng Tiền Ship:</strong> <span id="total-shipping">0</span> đ</p>
-                        <p><strong>Số Đơn Thành Công:</strong> <span id="total-orders">0</span></p>
-                        <button class="btn btn-info w-100 mt-2" onclick="calcTotal()">Tính Lại Tổng</button>
-                    </div>
-                </div>
-            </div>
+            </nav>
         </div>
     </div>
 
-    <script>
-        let currentRow = null;
-        let totalOrders = 0;
-        let totalShipping = 0;
-        let totalFood = 0;
+    <!-- Nội dung -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <!-- Đơn Chờ Giao -->
+            <div id="item-1" class="section-content">
+                <h4>Đơn Chờ Giao</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Mã Đơn</th>
+                            <th>Tên Người Nhận</th>
+                            <th>SĐT Người Nhận</th>
+                            <th>Địa chỉ</th>
+                            <th>Món Ăn</th>
+                            <th>Số Lượng</th>
+                            <th>Ghi chú</th>
+                            <th>Phí Ship</th>
+                            <th>Tổng Tiền</th>
+                            <th>Ngày Đặt</th>
+                            <th>Trạng Thái</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
 
-        function startDelivery(btn) {
-            btn.innerText = 'Đang giao';
-            btn.disabled = true;
+                    <tbody id="deliveries-body">
+                        <!-- dữ liệu sẽ được render động ở đây -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="item-2" class="section-content" style="display:none;">
+                <h4>Cập Nhật Trạng Thái</h4>
+                <p>Hiển thị nội dung cập nhật trạng thái ở đây.</p>
+                <!-- Bạn có thể thêm form hoặc nội dung cần thiết cho việc cập nhật trạng thái -->
+            </div>
+
+            <!-- Modal Cập Nhật Trạng Thái -->
+            <div id="status-popup" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Cập nhật trạng thái giao hàng</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" id="order-id" class="form-control" placeholder="Mã đơn hàng" readonly>
+                            <select id="order-status" class="form-select mt-2">
+                                <option value="completed">Đã giao</option>
+                                <option value="failed">Thất bại</option>
+                            </select>
+                            <textarea id="failure-reason" class="form-control mt-2" rows="2" placeholder="Lý do thất bại (nếu có)"></textarea>
+                            <button class="btn btn-primary mt-2" onclick="updateStatus()">Cập Nhật Trạng Thái</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lịch Sử Giao Hàng -->
+            <div id="item-3" class="section-content">
+                <h4>Lịch Sử Giao Hàng</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Mã Đơn</th>
+                            <th>Tên Người Nhận</th>
+                            <th>SĐT Người Nhận</th>
+                            <th>Địa chỉ</th>
+                            <th>Món Ăn</th>
+                            <th>Số Lượng</th>
+                            <th>Ghi chú</th>
+                            <th>Phí Ship</th>
+                            <th>Tổng Tiền</th>
+                            <th>Ngày Đặt</th>
+                            <th>Trạng Thái</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+         //Lịch sử giao hàng
+         document.addEventListener('DOMContentLoaded', () => {
+         fetch('/api/shipper/deliveries/delivered', { credentials: 'include' })
+        .then(res => res.json())
+        .then(data => {
+            const deliveries = Array.isArray(data) ? data : data.deliveries;
+            renderDeliveriesHistory(deliveries);
+        })
+        .catch(() => {
+            document.getElementById("history-body").innerHTML =
+                '<tr><td colspan="13" class="text-center">Không có lịch sử giao hàng!</td></tr>';
+        });
+    });
+
+    // Hàm để render dữ liệu vào bảng Lịch Sử Giao Hàng
+        function renderDeliveriesHistory(deliveries) {
+        const tbody = document.getElementById("history-body"); // Lấy tbody của bảng
+        tbody.innerHTML = ""; // Xóa dữ liệu cũ
+
+        // Nếu không có dữ liệu, hiển thị thông báo
+        if (!deliveries || deliveries.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" class="text-center">Không có dữ liệu!</td></tr>';
+            return;
         }
 
-        function updateOrderStatus(orderId, btn) {
-            document.getElementById('order-id').value = orderId;
-            currentRow = btn.closest('tr');
-            showSection('item-2');
-        }
-
-        function confirmUpdateStatus() {
-            const orderId = document.getElementById('order-id').value;
-            const status = document.getElementById('order-status').value;
-            const name = currentRow.dataset.name;
-            const fee = parseInt(currentRow.dataset.fee);
-            const foodPrice = parseInt(currentRow.dataset.totalprice);
-            const date = new Date().toLocaleString();
-
-            // Thêm vào lịch sử
-            const historyBody = document.getElementById('history-body');
-            const index = historyBody.children.length + 1;
-            historyBody.innerHTML += `
+        // Duyệt qua các đơn hàng đã giao và thêm chúng vào bảng
+        deliveries.forEach((delivery, idx) => {
+            tbody.innerHTML += `
                 <tr>
-                    <td>${index}</td>
-                    <td>${orderId}</td>
-                    <td>${date}</td>
-                    <td>${name}</td>
-                    <td>${foodPrice} đ</td>
-                    <td>${fee} đ</td>
-                    <td>${status === 'completed' ? 'Đã giao' : 'Thất bại'}</td>
+                    <td>${idx + 1}</td>
+                    <td>${delivery.deliveryId}</td>
+                    <td>${delivery.receiverName}</td>
+                    <td>${delivery.receiverPhone}</td>
+                    <td>${delivery.deliveryAddress}</td>
+                    <td>${delivery.menuItemName}</td>
+                    <td>${delivery.quantity}</td>
+                    <td>${delivery.note}</td>
+                    <td>${formatMoney(delivery.fee)}</td>
+                    <td>${formatMoney(delivery.total)}</td>
+                    <td>${new Date(delivery.createdAt).toLocaleString()}</td>
+                    <td>${delivery.deliveryStatusName}</td>
+                    <td>-</td>
                 </tr>
             `;
+        });
+    }
 
-            // Tính tổng
-            if (status === 'completed') {
-                totalOrders++;
-                totalShipping += fee;
-                totalFood += foodPrice;
+
+    // Gọi API để lấy các đơn hàng đã giao
+      function formatMoney(money) {
+        if (money == null) return '';
+        return money.toLocaleString('vi-VN') + " đ";
+    }
+
+    
+
+    // Khởi tạo khi trang load
+    document.addEventListener('DOMContentLoaded', () => showSection('item-1'));
+    //Đơn chờ giao
+        fetch('/api/shipper/deliveries/me', {
+        method: 'GET',
+        credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(data => {
+        const isShipper = data.roles && data.roles.includes("Shipper");
+        let roleHtml = isShipper ? `<span class="badge bg-info">Shipper</span>` : '';
+        document.getElementById('user-info').innerHTML =
+            `<span style="font-weight:600;">Xin chào: ${data.userName ?? ''}</span>${roleHtml}<br>`;
+    })
+    .catch(err => {
+        document.getElementById('user-info').innerHTML = 'Chưa có dữ liệu';
+    });
+    // Fetch today's date
+    fetch('/api/shipper/deliveries/today')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('today-time').innerText = 'Hôm nay ngày: ' + data.todayTime;
+        });
+
+    // Format money to Vietnam currency
+    function formatMoney(money) {
+        if (money == null) return '';
+        return money.toLocaleString('vi-VN') + " đ";
+    }
+
+    // Group deliveries by OrderId (Optional, if you want to group multiple items of the same order)
+    function groupByOrderId(deliveries) {
+        const grouped = {};
+        deliveries.forEach(d => {
+            if (!grouped[d.deliveryId]) {
+                grouped[d.deliveryId] = {
+                    ...d,
+                    menuItems: [],
+                    quantities: [],
+                    notes: []
+                };
             }
+            grouped[d.deliveryId].menuItems.push(d.menuItemName);
+            grouped[d.deliveryId].quantities.push(d.quantity);
+            grouped[d.deliveryId].notes.push(d.note);
+        });
+        return Object.values(grouped);
+    }
 
-            showSection('item-3');
+    // Render the deliveries in the table
+    function renderDeliveries(deliveries) {
+        const tbody = document.getElementById("deliveries-body");
+        tbody.innerHTML = "";
+        if (!deliveries || deliveries.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="12" class="text-center">Không có dữ liệu!</td></tr>';
+            return;
+        }
+        const grouped = groupByOrderId(deliveries);
+        grouped.forEach((d, idx) => {
+            tbody.innerHTML += `
+                <tr data-orderid="${d.deliveryId}" data-name="${d.receiverName}" data-phone="${d.receiverPhone}" data-fee="${d.fee}" data-totalprice="${d.total}">
+                    <td>${idx + 1}</td>
+                    <td>${d.deliveryId ?? ""}</td>
+                    <td>${d.receiverName ?? ""}</td>
+                    <td>${d.receiverPhone ?? ""}</td>
+                    <td>${d.deliveryAddress ?? ""}</td>
+                    <td>${d.menuItems.map((m, i) => `${m} x${d.quantities[i]}`).join("<br>")}</td>
+                    <td>${d.quantities}</td>
+                    <td>${d.notes.filter(n => n).join("<br>")}</td>
+                    <td>${formatMoney(d.fee)}</td>
+                    <td>${formatMoney(d.total)}</td>
+                    <td>${d.createdAt ? (new Date(d.createdAt)).toLocaleString() : ""}</td>
+                    <td>${d.deliveryStatusName ?? d.code ?? ""}</td>
+                    <td>
+                        <button class="btn btn-sm btn-success" onclick="shipOrder('${d.deliveryId}')">Nhận giao hàng</button>
+                        <button class="btn btn-sm btn-primary" onclick="openStatusPopup('${d.deliveryId}')">Cập nhật trạng thái</button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    // API call to ship the order (change status to 'ON_THE_WAY')
+       function shipOrder(deliveryId) {
+        // Update status to "ON_THE_WAY" when "Nhận giao hàng" is clicked
+        fetch(`/api/shipper/deliveries/update-status/${deliveryId}?status=ON_THE_WAY`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+                location.reload(); // Reload the page after status update
+            }
+        })
+        .catch(err => {
+            console.error("Error updating status: ", err);
+            alert('Lỗi khi cập nhật trạng thái. Vui lòng thử lại.');
+        });
+    }
+
+    // API call to open the status update popup and populate the fields
+       function openStatusPopup(deliveryId) {
+        
+        document.getElementById('order-id').value = deliveryId;
+
+        $('#status-popup').modal('show');
+    }
+
+
+    // API call to update delivery status
+           function updateStatus() {
+        const orderId = document.getElementById('order-id').value; // Get the Order ID
+        const status = document.getElementById('order-status').value; // Get the selected status (completed / failed)
+        const failureReason = document.getElementById('failure-reason').value; // Get the failure reason (if any)
+
+        // Prepare the appropriate API endpoint based on the status
+        let apiUrl = '';
+        let statusName = '';
+
+        if (status === 'completed') {
+            // Use the "complete-status" endpoint for marking as delivered
+            apiUrl = `/api/shipper/deliveries/complete-status/${orderId}`;
+            statusName = 'Đã giao';
+        } else if (status === 'failed') {
+            // Use the "fail-status" endpoint for marking as failed
+            apiUrl = `/api/shipper/deliveries/fail-status/${orderId}`;
+            statusName = 'Thất bại';
         }
 
-        function calcTotal() {
-            document.getElementById('total-orders').innerText = totalOrders;
-            document.getElementById('total-shipping').innerText = totalShipping;
-            document.getElementById('total-food').innerText = totalFood;
-        }
+        // Send the request to update the status
+        fetch(apiUrl, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                failureReason: failureReason // Send failure reason if applicable
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.message) {
+                // If the update is successful, show a success message and reload the page
+                alert(`Trạng thái giao hàng đã được cập nhật thành '${statusName}'`);
+                location.reload(); // Reload the page after a successful update
+            }
+        })
+        .catch(err => {
+            console.error("Error updating status: ", err);
+            alert('Lỗi khi cập nhật trạng thái. Vui lòng thử lại.');
+        });
+    }
 
+    // Fetch deliveries data
+    fetch('/api/shipper/deliveries/list', {
+        method: 'GET',
+        credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(data => {
+        renderDeliveries(data);
+    })
+    .catch(err => {
+        document.getElementById('deliveries-body').innerHTML = '<tr><td colspan="12" class="text-center">Không có dữ liệu!</td></tr>';
+    });
+
+    // Switch section
         function showSection(id) {
-            document.querySelectorAll('.section-content').forEach(sec => sec.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-            if (id === 'item-1') document.querySelectorAll('.nav-link')[0].classList.add('active');
-            if (id === 'item-2') document.querySelectorAll('.nav-link')[1].classList.add('active');
-            if (id === 'item-3') document.querySelectorAll('.nav-link')[2].classList.add('active');
-            if (id === 'item-4') document.querySelectorAll('.nav-link')[3].classList.add('active');
+        // Ẩn tất cả các phần tử có class 'section-content'
+        document.querySelectorAll('.section-content').forEach(sec => sec.style.display = 'none');
+
+        // Hiển thị phần tử được chọn
+        document.getElementById(id).style.display = 'block';
+
+        // Loại bỏ class 'active' khỏi tất cả các liên kết điều hướng
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+
+        // Kiểm tra và thêm class 'active' cho phần tử tương ứng
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        if (id === 'item-1' && navLinks.length > 0) {
+            navLinks[0].classList.add('active'); // Thêm 'active' cho phần tử đầu tiên
         }
 
-        document.addEventListener('DOMContentLoaded', () => showSection('item-1'));
-    </script>
-</body>
+        if (id === 'item-2' && navLinks.length > 1) {
+            navLinks[1].classList.add('active'); // Thêm 'active' cho phần tử thứ 2
+        }
+
+        if (id === 'item-3' && navLinks.length > 2) {
+            navLinks[2].classList.add('active'); // Thêm 'active' cho phần tử thứ 3
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => showSection('item-1'));
+</script>
 
 <style>
     .summary-box {
@@ -212,5 +402,9 @@
 
     .bg-light {
         background-color: #f8f9fa !important;
+    }
+
+    .modal .modal-dialog {
+        max-width: 500px;
     }
 </style>

@@ -2,6 +2,8 @@ using FoodioAPI;
 using FoodioAPI.Database.Repositories.Implements;
 using FoodioAPI.Exceptions.Handler;
 using FoodioAPI.Mappings;
+using FoodioAPI.Services.Implements;
+using FoodioAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,7 @@ builder.Configuration
 builder.Services.AddDependencyInjection(builder.Configuration);
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddScoped<IDeliveryShipperService, DeliveryShipperService>();//Hieu add thêm
 
 // Add Razor Pages + API Controllers
 builder.Services.AddRazorPages();
