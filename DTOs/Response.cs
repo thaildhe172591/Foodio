@@ -8,6 +8,8 @@ public class Response
     public string Status { get; set; } = ResponseStatus.SUCCESS;
     public string? Message { get; set; }
     public object? Data { get; set; }
+
+    public string Token { get; set; } = String.Empty;
 }
 
 /// <summary>

@@ -129,6 +129,17 @@ public class UserService : IUserService
         var user = await _userManager.FindByEmailAsync(model.Email) ?? throw new Exception("User not found");
         return await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
     }
+
+    public async Task<IdentityResult> DirectUpdatePasswordAsync(DirectUpdatePasswordDTO model)
+    {
+        var user = await _userManager.FindByEmailAsync(model.Email) ?? throw new Exception("User not found");
+        
+        // Tạo token để reset password
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+        
+        // Sử dụng ResetPasswordAsync để update password mới
+        return await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
+    }
     public async Task RemoveRefreshTokenAsync(string refreshToken)
 
     {

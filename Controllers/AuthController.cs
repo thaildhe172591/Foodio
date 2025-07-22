@@ -102,7 +102,8 @@ public class AuthController : ControllerBase
             return Ok(new Response
             {
                 Status = ResponseStatus.SUCCESS,
-                Message = "Đăng nhập thành công"
+                Message = "Đăng nhập thành công",
+                Data = tokenDTO
             });
         }
         catch (Exception ex)
@@ -294,6 +295,52 @@ public class AuthController : ControllerBase
             {
                 Status = ResponseStatus.SUCCESS,
                 Message = "Email or token is invalid"
+            });
+        }
+    }
+
+    [HttpPost("direct-update-password")]
+    public async Task<IActionResult> DirectUpdatePassword([FromBody] DirectUpdatePasswordDTO directUpdatePasswordDTO)
+    {
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+
+            return BadRequest(new Response
+            {
+                Status = ResponseStatus.ERROR,
+                Message = errors.FirstOrDefault() ?? "Dữ liệu không hợp lệ"
+            });
+        }
+
+        try
+        {
+            var result = await _userService.DirectUpdatePasswordAsync(directUpdatePasswordDTO);
+            if (!result.Succeeded)
+            {
+                var errors = result.Errors.Select(e => e.Description).ToList();
+                return BadRequest(new Response
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = string.Join(", ", errors)
+                });
+            }
+
+            return Ok(new Response
+            {
+                Status = ResponseStatus.SUCCESS,
+                Message = "Cập nhật mật khẩu thành công"
+            });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new Response
+            {
+                Status = ResponseStatus.ERROR,
+                Message = ex.Message
             });
         }
     }

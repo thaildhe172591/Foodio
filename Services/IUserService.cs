@@ -14,6 +14,7 @@ public interface IUserService
 
     Task<bool> CheckEmailExistedAsync(string email);
     Task<IdentityResult> ChangePasswordAsync(ChangePasswordDTO model);
+    Task<IdentityResult> DirectUpdatePasswordAsync(DirectUpdatePasswordDTO model);
     Task RemoveRefreshTokenAsync(string refreshToken);
     Task<string?> GetRefreshTokenAsync(string userName);
     Task<UserDTO> LockUser(LockUserDTO lockUserDTO);
