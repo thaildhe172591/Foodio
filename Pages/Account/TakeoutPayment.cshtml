@@ -90,11 +90,11 @@
                 <label class="form-label">Loại đơn</label>
                 <div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="orderType" id="delivery" value="delivery" checked>
+                        <input class="form-check-input" type="radio" name="orderType" id="delivery" value="672e29b5-bd2c-4008-9117-d077cc9585d5" checked>
                         <label class="form-check-label" for="delivery">Giao hàng</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="orderType" id="pickup" value="pickup">
+                        <input class="form-check-input" type="radio" name="orderType" id="pickup" value="450ace82-44ca-4179-9c1f-dffb3115c52d">
                         <label class="form-check-label" for="pickup">Mang về</label>
                     </div>
                 </div>
@@ -115,7 +115,83 @@
                 <textarea class="form-control" id="note" rows="3" placeholder="VD: Giao trước 11h, không lấy ớt..."></textarea>
             </div>
 
-            <a href="/Account/ConfirmBill" type="button" class="btn btn-add-to-cart-custom w-100">Xác nhận</a>
+            <button type="button" id="confirm-btn" class="btn btn-add-to-cart-custom w-100">Xác nhận</button>
         </form>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('confirm-btn').addEventListener('click', function () {
+            const orderType = document.querySelector('input[name="orderType"]:checked').value;
+            const address = document.getElementById('address').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const note = document.getElementById('note').value.trim();
+
+            // Có thể thêm kiểm tra dữ liệu ở đây nếu cần
+
+            const deliveryInfo = {
+                orderType,
+                address,
+                phone,
+                note
+            };
+
+            localStorage.setItem('deliveryInfo', JSON.stringify(deliveryInfo));
+
+            // Điều hướng sau khi lưu
+            window.location.href = '/Account/ConfirmBill';
+        });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        const cart = localStorage.getItem("shoppingCart");
+        if (!cart || Object.keys(JSON.parse(cart)).length === 0) {
+            // Nếu giỏ hàng rỗng hoặc không có
+            window.location.href = "/Account/HomePageLogin";
+            return;
+        }
+
+        // Các xử lý khác ở đây...
+    });
+      document.addEventListener('DOMContentLoaded', function () {
+        // 1. Kiểm tra giỏ hàng
+        const cart = localStorage.getItem("shoppingCart");
+        if (!cart || Object.keys(JSON.parse(cart)).length === 0) {
+            window.location.href = "/Account/HomePageLogin";
+            return;
+        }
+
+        // 2. Nếu đã lưu thông tin giao hàng trước đó, điền vào form
+        const savedInfo = localStorage.getItem("deliveryInfo");
+        if (savedInfo) {
+            try {
+                const info = JSON.parse(savedInfo);
+                if (info.address) document.getElementById('address').value = info.address;
+                if (info.phone) document.getElementById('phone').value = info.phone;
+                if (info.note) document.getElementById('note').value = info.note;
+
+                // Check radio tương ứng với orderType ID
+                if (info.orderType) {
+                    const radio = document.querySelector(`input[name="orderType"][value="${info.orderType}"]`);
+                    if (radio) radio.checked = true;
+                }
+            } catch (e) {
+                console.warn("Không thể parse deliveryInfo:", e);
+            }
+        }
+
+        // 3. Xác nhận và lưu lại localStorage
+        document.getElementById('confirm-btn').addEventListener('click', function () {
+            const orderType = document.querySelector('input[name="orderType"]:checked').value;
+            const address = document.getElementById('address').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const note = document.getElementById('note').value.trim();
+
+            const deliveryInfo = { orderType, address, phone, note };
+            localStorage.setItem('deliveryInfo', JSON.stringify(deliveryInfo));
+
+            window.location.href = '/Account/ConfirmBill';
+        });
+    });
+</script>
+

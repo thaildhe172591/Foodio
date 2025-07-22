@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FoodioAPI.Configs;
+using FoodioAPI.Constants;
+using FoodioAPI.DTOs;
+using FoodioAPI.DTOs.Token;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Options;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using FoodioAPI.DTOs;
-using FoodioAPI.Configs;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.WebUtilities;
-using FoodioAPI.Constants;
 
 
 namespace FoodioAPI.Pages.Auth
@@ -50,61 +51,68 @@ namespace FoodioAPI.Pages.Auth
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
-            {
-                ErrorMessage = "Please enter both email and password.";
-                return Page();
-            }
-
-            var client = _httpClientFactory.CreateClient();
-
-            var loginPayload = new
-            {
-                Email,
-                Password
-            };
-
-            var content = new StringContent(JsonSerializer.Serialize(loginPayload), Encoding.UTF8, "application/json");
-
-            var response = await client.PostAsync("https://localhost:5001/api/auth/login", content);
-
-            //if (response.IsSuccessStatusCode)
+            //if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
             //{
-            //    return RedirectToPage("/Index");
+            //    ErrorMessage = "Please enter both email and password.";
+            //    return Page();
             //}
 
-            //var result = await response.Content.ReadAsStringAsync();
-            //ErrorMessage = $"Login failed: {result}";
-            var resultJson = await response.Content.ReadAsStringAsync();
+            //var client = _httpClientFactory.CreateClient();
 
-            try
-            {
-                var result = JsonSerializer.Deserialize<Response>(resultJson, new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
+            //var loginPayload = new
+            //{
+            //    Email,
+            //    Password
+            //};
 
-                Message = result?.Message ?? "Đăng nhập thất bại.";
+            //var content = new StringContent(JsonSerializer.Serialize(loginPayload), Encoding.UTF8, "application/json");
 
-                // Nếu login thành công, lưu token vào TempData để JavaScript xử lý
-                if (response.IsSuccessStatusCode && result?.Status == ResponseStatus.SUCCESS)
-                {
-                    // Parse data để lấy token nếu có
-                    if (result.Data != null)
-                    {
-                        var tokenData = JsonSerializer.Deserialize<JsonElement>(result.Data.ToString());
-                        if (tokenData.TryGetProperty("accessToken", out var accessTokenElement))
-                        {
-                            TempData["AccessToken"] = accessTokenElement.GetString();
-                            TempData["LoginSuccess"] = true;
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                Message = "Đăng nhập thất bại. Lỗi không chắc chắn.";
-            }
+            //var response = await client.PostAsync("https://localhost:5001/api/auth/login", content);
+
+            ////if (response.IsSuccessStatusCode)
+            ////{
+            ////    return RedirectToPage("/Index");
+            ////}
+
+            ////var result = await response.Content.ReadAsStringAsync();
+            ////ErrorMessage = $"Login failed: {result}";
+            //var resultJson = await response.Content.ReadAsStringAsync();
+
+            //try
+            //{
+            //    var result = JsonSerializer.Deserialize<Response>(resultJson, new JsonSerializerOptions
+            //    {
+            //        PropertyNameCaseInsensitive = true
+            //    });
+
+            //    Message = result?.Message ?? "Đăng nhập thất bại.";
+
+            //    // Nếu login thành công, lưu token vào TempData để JavaScript xử lý
+            //    if (response.IsSuccessStatusCode && result?.Status == ResponseStatus.SUCCESS)
+            //    {
+            //        if (result.Data is JsonElement jsonElement && jsonElement.ValueKind == JsonValueKind.Object)
+            //        {
+            //            // Deserialize từ JsonElement thành TokenDTO
+            //            var tokenDto = JsonSerializer.Deserialize<TokenDTO>(jsonElement.ToString());
+
+            //            if (tokenDto != null)
+            //            {
+            //                TempData["AccessToken"] = tokenDto.AccessToken;
+            //                TempData["LoginSuccess"] = true;
+
+            //                // Lưu vai trò đầu tiên nếu có
+            //                if (tokenDto.Role != null && tokenDto.Role.Any())
+            //                {
+            //                    TempData["UserRole"] = tokenDto.Role.First();  // Ví dụ: "Admin"
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+            //catch
+            //{
+            //    Message = "Đăng nhập thất bại. Lỗi không chắc chắn.";
+            //}
             return Page();
         }
 

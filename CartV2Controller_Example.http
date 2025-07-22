@@ -1,0 +1,63 @@
+### Tạo đơn hàng giao hàng (DELIVERY)
+POST https://localhost:5001/api/cartv2/create-order
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+Content-Type: application/json
+
+{
+  "orderType": "DELIVERY",
+  "items": [
+    {
+      "menuItemId": "b74d406f-7390-41ce-952c-12ceb4374064",
+      "quantity": 2,
+      "note": "Không cay"
+    },
+    {
+      "menuItemId": "a4871081-e9da-4d5b-9596-aaea4981183a",
+      "quantity": 1,
+      "note": "Thêm đá"
+    }
+  ],
+  "deliveryInfo": {
+    "receiverName": "Nguyễn Văn A",
+    "receiverPhone": "0987654321",
+    "deliveryAddress": "123 Đường ABC, Quận 1, TP.HCM"
+  },
+  "note": "Giao hàng trước 12h"
+}
+
+### Tạo đơn hàng mang về (TAKEOUT)
+POST https://localhost:5001/api/cartv2/create-order
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+Content-Type: application/json
+
+{
+  "orderType": "TAKEOUT",
+  "items": [
+    {
+      "menuItemId": "3eaf6dd5-5a69-4e56-a478-2b6f32ae456c",
+      "quantity": 1
+    },
+    {
+      "menuItemId": "27d6d60b-2b06-4027-8094-6793936eb861",
+      "quantity": 3,
+      "note": "Size lớn"
+    }
+  ],
+  "note": "Đóng gói cẩn thận"
+}
+
+### Tạo đơn hàng ăn tại chỗ (DINE_IN)
+POST https://localhost:5001/api/cartv2/create-order
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+Content-Type: application/json
+
+{
+  "orderType": "DINE_IN",
+  "items": [
+    {
+      "menuItemId": "b74d406f-7390-41ce-952c-12ceb4374064",
+      "quantity": 2
+    }
+  ],
+  "note": "Bàn số 5"
+} 

@@ -120,9 +120,21 @@
 
 <script>
          //Lịch sử giao hàng
-         document.addEventListener('DOMContentLoaded', () => {
-         fetch('/api/shipper/deliveries/delivered', { credentials: 'include' })
-        .then(res => res.json())
+             document.addEventListener('DOMContentLoaded', () => {
+        const token = localStorage.getItem('access_token');
+
+        fetch('/api/shipper/deliveries/delivered', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        })
+        .then(res => {
+            if (!res.ok) throw new Error('Fetch failed');
+            return res.json();
+        })
         .then(data => {
             const deliveries = Array.isArray(data) ? data : data.deliveries;
             renderDeliveriesHistory(deliveries);
@@ -132,6 +144,7 @@
                 '<tr><td colspan="13" class="text-center">Không có lịch sử giao hàng!</td></tr>';
         });
     });
+
 
     // Hàm để render dữ liệu vào bảng Lịch Sử Giao Hàng
         function renderDeliveriesHistory(deliveries) {
@@ -187,22 +200,28 @@
         const isShipper = data.roles && data.roles.includes("Shipper");
         let roleHtml = isShipper ? `<span class="badge bg-info">Shipper</span>` : '';
         document.getElementById('user-info').innerHTML =
-            `<span style="font-weight:600;">Xin chào: ${data.userName ?? ''}</span>${roleHtml}<br>`;
+    `<span style="font-weight:600;">Xin chào: ${data.userName ?? ''}</span>${roleHtml}<br>
+     <button class="btn btn-danger btn-sm mt-2" onclick="logout()">Đăng xuất</button>`;
+
     })
     .catch(err => {
         document.getElementById('user-info').innerHTML = 'Chưa có dữ liệu';
     });
-    // Fetch today's date
-    fetch('/api/shipper/deliveries/today')
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById('today-time').innerText = 'Hôm nay ngày: ' + data.todayTime;
-        });
+    // // Fetch today's date
+    // fetch('/api/shipper/deliveries/today')
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         document.getElementById('today-time').innerText = 'Hôm nay ngày: ' + data.todayTime;
+    //     });
 
     // Format money to Vietnam currency
     function formatMoney(money) {
         if (money == null) return '';
         return money.toLocaleString('vi-VN') + " đ";
+    }
+    function logout() {
+        localStorage.removeItem('access_token'); // Xóa token
+        window.location.href = '/auth/login'; // Điều hướng về trang đăng nhập
     }
 
     // Group deliveries by OrderId (Optional, if you want to group multiple items of the same order)

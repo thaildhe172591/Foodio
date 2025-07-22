@@ -93,6 +93,7 @@ public static class DependencyInjection
         //services.AddScoped<IEmailSender, EmailService>();
         services.AddScoped<ICartService, CartService>();
         services.AddScoped<IOrderService, OrderService>();
+        services.AddScoped<IOrderV2Service, OrderV2Service>();
         services.AddScoped<IMenuService, MenuService>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IStatisticsService, StatisticsService>();

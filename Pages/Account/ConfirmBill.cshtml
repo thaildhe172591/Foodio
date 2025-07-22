@@ -217,4 +217,66 @@
         function trackOrder() {
         window.location.href = "/Account/TrackOrder"; 
     }
+     document.addEventListener('DOMContentLoaded', async function () {
+        const deliveryInfoRaw = localStorage.getItem('deliveryInfo');
+        const cartRaw = localStorage.getItem('shoppingCart');
+        const token = localStorage.getItem('access_token');
+
+        if (!deliveryInfoRaw || !cartRaw || !token) {
+            window.location.href = '/Account/HomePageLogin';
+            return;
+        }
+
+        const deliveryInfo = JSON.parse(deliveryInfoRaw);
+        const cart = JSON.parse(cartRaw);
+
+        // Điền thông tin giao hàng
+        document.querySelector('.summary-item:nth-child(2)').innerHTML = `<span class="summary-label">Loại đơn:</span> ${deliveryInfo.orderType.includes('pickup') ? 'Mang về' : 'Giao hàng'}`;
+        document.querySelector('.summary-item:nth-child(3)').innerHTML = `<span class="summary-label">Địa chỉ:</span> ${deliveryInfo.address}`;
+        document.querySelector('.summary-item:nth-child(4)').innerHTML = `<span class="summary-label">Số điện thoại:</span> ${deliveryInfo.phone}`;
+        document.querySelector('.summary-item:nth-child(5)').innerHTML = `<span class="summary-label">Ghi chú:</span> ${deliveryInfo.note || 'Không có'}`;
+
+        // Load chi tiết món ăn từ API
+        const foodListContainer = document.querySelector('.food-list');
+        const foodList = [];
+        let total = 0;
+
+        for (const productId in cart) {
+            const quantity = cart[productId];
+
+            try {
+                const response = await fetch(`/api/admin/menu-items/${productId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    const item = await response.json();
+                    const price = item.price || 0;
+                    const name = item.name || 'Sản phẩm';
+                    const subtotal = price * quantity;
+                    total += subtotal;
+
+                    foodList.push(`<div class="food-item"><span>${name}</span><span>${quantity} x ${price.toLocaleString('vi-VN')}đ</span></div>`);
+                } else {
+                    foodList.push(`<div class="food-item text-danger"><span>Món lỗi</span><span>${quantity} x ???</span></div>`);
+                }
+            } catch (e) {
+                foodList.push(`<div class="food-item text-danger"><span>Món lỗi</span><span>${quantity} x ???</span></div>`);
+            }
+        }
+
+        // Render food list
+        foodListContainer.innerHTML = `
+            <div class="summary-label mb-2">Món đã đặt:</div>
+            ${foodList.join('')}
+            <hr />
+            <div class="food-item fw-bold">
+                <span>Tổng cộng</span>
+                <span>${total.toLocaleString('vi-VN')}đ</span>
+            </div>
+        `;
+    });
 </script>

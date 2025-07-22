@@ -26,7 +26,7 @@
     <!--bootstrap css-->
     <link href="~/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&amp;display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
     <!--main css-->
     <link href="~/assets/css/bootstrap-extended.css" rel="stylesheet">
@@ -42,12 +42,12 @@
         }
 
         .toast-error {
-            background-color: #dc3545 !important; 
+            background-color: #dc3545 !important;
             color: white !important;
         }
 
         .toast-warning {
-            background-color: #ffc107 !important; 
+            background-color: #ffc107 !important;
             color: black !important;
         }
 
@@ -81,20 +81,6 @@
                                     Đăng nhập bằng Google
                                 </a>
                             </div>
-                            @* <div class="col-12 col-lg-12">
-                                <button
-                                    class="btn btn-filter py-2 px-4 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">
-                                    <span class=""><img src="~/assets/images/apps/17.png" width="20" class="me-2"
-                                            alt="">Sign in with Facebook</span>
-                                </button>
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <button
-                                    class="btn btn-filter py-2 px-4 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">
-                                    <span class=""><img src="~/assets/images/apps/18.png" width="20" class="me-2"
-                                            alt="">Sign in with LinkedIn</span>
-                                </button>
-                            </div> *@
                         </div>
 
                         <div class="separator">
@@ -103,7 +89,7 @@
                             <div class="line"></div>
                         </div>
                         <div class="form-body mt-4">
-                            <form method="post" class="row g-3">
+                            <form id="loginForm" class="row g-3">
                                 <div class="col-12">
                                     <label for="inputEmailAddress" class="form-label">Email</label>
                                     <input asp-for="Email" class="form-control" id="inputEmailAddress" placeholder="jhon@example.com">
@@ -112,7 +98,7 @@
                                     <label for="inputChoosePassword" class="form-label">Mật khẩu</label>
                                     <div class="input-group" id="show_hide_password">
                                         <input asp-for="Password" class="form-control border-end-0"
-                                            id="inputChoosePassword" placeholder="Nhập mật khẩu">
+                                               id="inputChoosePassword" placeholder="Nhập mật khẩu">
                                         <a href="javascript:;" class="input-group-text bg-transparent">
                                             <i class="bi bi-eye-slash-fill"></i>
                                         </a>
@@ -121,7 +107,7 @@
                                 <div class="col-md-6">
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                            checked>
+                                               checked>
                                         <label class="form-check-label" for="flexSwitchCheckChecked">Nhớ mật khẩu</label>
                                     </div>
                                 </div>
@@ -225,13 +211,13 @@
         }
 
         $(document).ready(function () {
-            const message = @Html.Raw(JsonSerializer.Serialize(Model.Message)); 
+            const message = @Html.Raw(JsonSerializer.Serialize(Model.Message));
             const isSuccess = @Model.RegisterSuccess.ToString().ToLower();
             const registeredEmail = '@Model.Email';
 
-            if (isSuccess) {                 
+            if (isSuccess) {
                 showToast('success', message);
-                startCountdown();            
+                startCountdown();
             } else {
                 showToast('error', message);
             }
@@ -273,7 +259,7 @@
                     showToast('error', 'Vui lòng nhập đầy đủ Email và Mật khẩu.');
                     e.preventDefault();
                     return;
-                }    
+                }
             });
         });
     </script>
@@ -281,23 +267,87 @@
     <script>
         // Xử lý token sau khi đăng nhập thành công
         $(document).ready(function () {
-            @if (TempData["LoginSuccess"] != null && TempData["AccessToken"] != null)
-            {
-                <text>
-                // Lưu access token vào localStorage
-                const accessToken = '@TempData["AccessToken"]';
-                if (accessToken && accessToken.trim()) {
-                    localStorage.setItem('access_token', accessToken);
-                    
-                    // Hiển thị thông báo thành công
-                    showToast('success', 'Đăng nhập thành công! Đang chuyển hướng...');
-                    
-                    // Chuyển hướng sau 1.5 giây
-                    setTimeout(function() {
-                        window.location.href = '/Account/HomePageLogin';
-                    }, 1500);
+                    @if (TempData["LoginSuccess"] != null && TempData["AccessToken"] != null)
+        {
+                        var role = TempData["UserRole"]?.ToString() ?? "";
+                        <text>
+                            const accessToken = '@TempData["AccessToken"]';
+                            const userRole = '@role'.toLowerCase(); // Chuyển về chữ thường để so sánh dễ
+
+                            if (accessToken && accessToken.trim()) {
+                                localStorage.setItem('access_token', accessToken);
+
+                                showToast('success', 'Đăng nhập thành công! Đang chuyển hướng...');
+
+                                setTimeout(function () {
+                                        if (userRole === 'ADMIN') {
+                                            window.location.href = '/Admin/MenuItems';
+                                        } else if('SHIPPER') {
+                                            window.location.href = '/shipper/ShipperManagement';
+                                            } else {
+                                                    window.location.href = '/Account/HomePageLogin';
+                                            }
+                                }, 1500);
+                            }
+                        </text>
+        }
+
+        });
+
+             document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('inputEmailAddress').value.trim();
+            const password = document.getElementById('inputChoosePassword').value.trim();
+
+            if (!email || !password) {
+                showToast('error', 'Vui lòng nhập đầy đủ Email và Mật khẩu.');
+                return;
+            }
+
+            try {
+                const res = await fetch('https://localhost:5001/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const result = await res.json();
+
+                if (res.ok) {
+                    const data = result.data;
+                    const accessToken = data?.accessToken;
+                    const roles = data?.role || [];
+
+                    if (accessToken) {
+                        localStorage.setItem('access_token', accessToken);
+                        showToast('success', 'Đăng nhập thành công! Đang chuyển hướng...');
+
+                        setTimeout(() => {
+                            if (roles.includes('Admin')) {
+                                window.location.href = '/Admin/MenuItems';
+                            } else if (roles.includes('Shipper')) {
+                                window.location.href = '/shipper/ShipperManagement';
+        } else if (roles.includes('Cashier')) {
+                                        window.location.href = '/Cashier/TableManagement';
+
+                            } else {
+                                window.location.href = '/Account/HomePageLogin';
+                            }
+                        }, 1500);
+                    } else {
+                        showToast('error', 'Không nhận được access token.');
+                    }
+
+                } else {
+                    showToast('error', result?.message || 'Đăng nhập thất bại');
                 }
-                </text>
+
+            } catch (err) {
+                console.error(err);
+                showToast('error', 'Đã xảy ra lỗi khi đăng nhập.');
             }
         });
     </script>

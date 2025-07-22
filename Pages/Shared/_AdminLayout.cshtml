@@ -97,9 +97,9 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascrpt:;">
+                    <a href="javascript:void(0);" id="logoutBtn">
                         <div class="parent-icon">
-                            <i class="material-icons-outlined">support</i>
+                            <i class="material-icons-outlined">logout</i>
                         </div>
                         <div class="menu-title">Logout</div>
                     </a>
@@ -130,5 +130,25 @@
     <script src="~/assets/plugins/simplebar/js/simplebar.min.js"></script>
     <script src="~/assets/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const logoutBtn = document.getElementById("logoutBtn");
+
+            if (logoutBtn) {
+                logoutBtn.addEventListener("click", function () {
+                    // Xóa token nếu có
+                    localStorage.removeItem("access_token");
+                    sessionStorage.clear();
+
+                    // Gọi logout server nếu cần (tuỳ chọn)
+                    // fetch('/api/auth/logout', { method: 'POST' });
+
+                    // Chuyển hướng về trang đăng nhập
+                    window.location.href = "/auth/login";
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
