@@ -161,349 +161,23 @@
 
 <div class="container mt-4">
 	<h3 class="fw-bold mb-4">Đồ nóng </h3>
-	<div class="row">
-		<!-- Mỗi món ăn -->
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer>
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn ABC
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn nổi bật</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>50,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="123">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn XYZ
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn đặc biệt</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>70,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="124">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn DEF
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn hấp dẫn</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>45,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="125">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
+	<div class="row" id="hot-food-container">
+		<!-- Món nóng sẽ được load từ API -->
 	</div>
+	
 	<h3 class="fw-bold mb-4">Đồ lạnh </h3>
-	<div class="row">
-		<!-- Mỗi món ăn -->
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer>
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn ABC
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn nổi bật</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>50,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="123">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn XYZ
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn đặc biệt</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>70,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="124">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn DEF
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn hấp dẫn</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>45,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="125">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
+	<div class="row" id="cold-food-container">
+		<!-- Món lạnh sẽ được load từ API -->
 	</div>
 
 	<h3 class="fw-bold mb-4">Nước uống </h3>
-	<div class="row">
-		<!-- Mỗi món ăn -->
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer>
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn ABC
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn nổi bật</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>50,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="123">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn XYZ
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn đặc biệt</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>70,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="124">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn DEF
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn hấp dẫn</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>45,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="125">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3 col-sm-6 mb-4">
-			<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
-				<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
-					<img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Ảnh món ăn">
-					<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
-						 style="width: min-content; height: min-content;">
-						PROMO
-					</div>
-					<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
-						<button class="btn btn-light btn-sm rounded-circle"
-								style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
-								tabindex="-1">
-							<i class="bi bi-heart"></i>
-						</button>
-					</div>
-				</div>
-				<div class="card-body p-2 position-relative" style="cursor:pointer;">
-					<h6 class="card-title mb-1 fw-bold">
-						Món ăn DEF
-					</h6>
-					<p class="card-text text-muted small mb-1">Món ăn hấp dẫn</p>
-					<p class="card-text text-muted small mb-0">
-						<i class="bi bi-cash-coin me-1"></i>45,000 VND
-					</p>
-					<!-- Nút thêm vào giỏ hàng -->
-					<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
-							style="right: 14px; bottom: 10px;" data-product-id="125">
-						<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-					</button>
-				</div>
-			</div>
-		</div>
-
+	<div class="row" id="drinks-container">
+		<!-- Nước uống sẽ được load từ API -->
+	</div>
+	
+	<h3 class="fw-bold mb-4">Lẩu </h3>
+	<div class="row" id="hotpot-container">
+		<!-- Lẩu sẽ được load từ API -->
 	</div>
 </div>
 
@@ -655,30 +329,170 @@
 	}
 
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	document.addEventListener("DOMContentLoaded", () => {
+	// API Config
+	const menuApi = "/api/admin/menu-items";
+	const token = localStorage.getItem('access_token');
+	
+	// Category IDs
+	const categories = {
+		hotFood: 'b74d406f-7390-41ce-952c-12ceb4374064',
+		coldFood: 'a4871081-e9da-4d5b-9596-aaea4981183a', 
+		drinks: '3eaf6dd5-5a69-4e56-a478-2b6f32ae456c',
+		hotpot: '27d6d60b-2b06-4027-8094-6793936eb861'
+	};
+
+	document.addEventListener("DOMContentLoaded", async () => {
 		const badge = document.getElementById("cart-quantity-badge");
 
 		// Lấy số lượng giỏ hàng từ localStorage
 		let qty = parseInt(localStorage.getItem("cartQuantity")) || 0;
 		badge.textContent = qty;
 
-		// Tìm tất cả các nút "Thêm vào giỏ hàng"
-		const addButtons = document.querySelectorAll('.add-to-cart-main');
-		addButtons.forEach(button => {
-			button.addEventListener('click', function() {
-				// Tăng số lượng giỏ hàng
-				qty++;
-				// Cập nhật số lượng trong giỏ hàng
-				badge.textContent = qty;
-				// Lưu lại số lượng vào localStorage
-				localStorage.setItem("cartQuantity", qty);
+		// Load dữ liệu từ API cho từng category
+		await loadMenuItems();
 
-				// Thêm hiệu ứng khi cập nhật giỏ hàng
-				badge.classList.add('animate__animated', 'animate__tada');
-				setTimeout(() => badge.classList.remove('animate__animated', 'animate__tada'), 600);
-			});
+		// Event listener cho nút thêm vào giỏ hàng (sẽ được add dynamic)
+		$(document).on('click', '.add-to-cart-main', function() {
+			// Tăng số lượng giỏ hàng
+			qty++;
+			// Cập nhật số lượng trong giỏ hàng
+			badge.textContent = qty;
+			// Lưu lại số lượng vào localStorage
+			localStorage.setItem("cartQuantity", qty);
+
+			// Thêm hiệu ứng khi cập nhật giỏ hàng
+			badge.classList.add('animate__animated', 'animate__tada');
+			setTimeout(() => badge.classList.remove('animate__animated', 'animate__tada'), 600);
 		});
 	});
 
+	// Load menu items by category
+	async function loadMenuItems() {
+		try {
+			// Load hot food
+			await loadItemsByCategory('hotFood', '#hot-food-container');
+			// Load cold food
+			await loadItemsByCategory('coldFood', '#cold-food-container');
+			// Load drinks
+			await loadItemsByCategory('drinks', '#drinks-container');
+			// Load hotpot
+			await loadItemsByCategory('hotpot', '#hotpot-container');
+		} catch (error) {
+			console.error('Error loading menu items:', error);
+		}
+	}
+
+	// Load items by specific category
+	async function loadItemsByCategory(categoryKey, containerId) {
+		const categoryId = categories[categoryKey];
+		const params = new URLSearchParams();
+		params.append('categoryId', categoryId);
+		params.append('isAvailable', 'true'); // Chỉ lấy món còn
+
+		// Show loading spinner
+		$(containerId).html(`
+			<div class="col-12 text-center py-4">
+				<div class="spinner-border text-primary" role="status">
+					<span class="visually-hidden">Đang tải...</span>
+				</div>
+				<p class="mt-2 text-muted">Đang tải món ăn...</p>
+			</div>
+		`);
+
+		try {
+			const response = await fetch(`${menuApi}?${params.toString()}`, {
+				headers: {
+					'Authorization': `Bearer ${token}`,
+					'Content-Type': 'application/json'
+				}
+			});
+			
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+			
+			const data = await response.json();
+			const items = data.data?.items || data.items || [];
+			
+			renderMenuItems(items, containerId);
+		} catch (error) {
+			console.error(`Error loading ${categoryKey}:`, error);
+			// Show fallback message
+			$(containerId).html(`
+				<div class="col-12 text-center">
+					<div class="alert alert-warning" role="alert">
+						<i class="bi bi-exclamation-triangle"></i>
+						Không thể tải danh sách món ăn. Vui lòng thử lại sau.
+					</div>
+				</div>
+			`);
+		}
+	}
+
+	// Render menu items to container
+	function renderMenuItems(items, containerId) {
+		const container = $(containerId);
+		container.empty();
+		
+		if (!items || items.length === 0) {
+			container.html(`
+				<div class="col-12 text-center">
+					<p class="text-muted">Chưa có món ăn nào trong danh mục này.</p>
+				</div>
+			`);
+			return;
+		}
+
+		items.forEach(item => {
+			const itemHtml = createMenuItemHtml(item);
+			container.append(itemHtml);
+		});
+	}
+
+	// Create HTML for a menu item
+	function createMenuItemHtml(item) {
+		const defaultImage = '/images/banner-1.jpg';
+		const imageUrl = item.imageUrl && item.imageUrl.trim() ? item.imageUrl : defaultImage;
+		const price = item.price || 0;
+		const formattedPrice = price.toLocaleString('vi-VN', {style:'currency', currency:'VND'});
+
+		return `
+			<div class="col-md-3 col-sm-6 mb-4">
+				<div class="card shadow-sm rounded-3 overflow-hidden h-100 position-relative">
+					<div class="ratio ratio-1x1" style="cursor:pointer;" onclick="window.location='/Account/Details'">
+						<img src="${imageUrl}" class="card-img-top object-fit-cover" alt="${item.name || 'Ảnh món ăn'}" 
+							 onerror="this.src='${defaultImage}'">
+						${item.isAvailable ? `
+						<div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-success text-white rounded small fw-bold"
+							 style="width: min-content; height: min-content;">
+							PROMO
+						</div>` : ''}
+						<div class="d-flex justify-content-end align-items-start w-100 position-absolute top-0 start-0 p-2" style="pointer-events: none;">
+							<button class="btn btn-light btn-sm rounded-circle"
+									style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; pointer-events: auto;"
+									tabindex="-1">
+								<i class="bi bi-heart"></i>
+							</button>
+						</div>
+					</div>
+					<div class="card-body p-2 position-relative" style="cursor:pointer;">
+						<h6 class="card-title mb-1 fw-bold">
+							${item.name || 'Món ăn'}
+						</h6>
+						<p class="card-text text-muted small mb-1">${item.description || 'Món ăn ngon'}</p>
+						<p class="card-text text-muted small mb-0">
+							<i class="bi bi-cash-coin me-1"></i>${formattedPrice}
+						</p>
+						<!-- Nút thêm vào giỏ hàng -->
+						<button class="btn btn-add-to-cart-custom position-absolute add-to-cart-main"
+								style="right: 14px; bottom: 10px;" data-product-id="${item.id}">
+							<i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
+						</button>
+					</div>
+				</div>
+			</div>
+		`;
+	}
 </script>
