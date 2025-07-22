@@ -43,42 +43,14 @@
             </tr>
         </thead>
         <tbody id="cart-body">
-            <!-- Ví dụ tĩnh, JS sẽ quản lý qty -->
-            <tr data-id="ITEM001">
-                <td>Combo: Nem nướng + Trà Tắc 500ml</td>
-                <td class="price">58900</td>
-                <td class="text-center">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <button class="btn btn-sm btn-danger btn-decrease">–</button>
-                        <span class="qty mx-2">6</span>
-                        <button class="btn btn-sm btn-success btn-increase">+</button>
+            <!-- Sẽ được load từ localStorage và API -->
+            <tr id="loading-row">
+                <td colspan="4" class="text-center py-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Đang tải...</span>
                     </div>
+                    <p class="mt-2 text-muted">Đang tải giỏ hàng...</p>
                 </td>
-                <td class="subtotal">353,400 ₫</td>
-            </tr>
-            <tr data-id="ITEM002">
-                <td>Bánh Mì Cô Chun</td>
-                <td class="price">35000</td>
-                <td class="text-center">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <button class="btn btn-sm btn-danger btn-decrease">–</button>
-                        <span class="qty mx-2">1</span>
-                        <button class="btn btn-sm btn-success btn-increase">+</button>
-                    </div>
-                </td>
-                <td class="subtotal">35,000 ₫</td>
-            </tr>
-            <tr data-id="ITEM003">
-                <td>Chả Giò Rế</td>
-                <td class="price">42000</td>
-                <td class="text-center">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <button class="btn btn-sm btn-danger btn-decrease">–</button>
-                        <span class="qty mx-2">1</span>
-                        <button class="btn btn-sm btn-success btn-increase">+</button>
-                    </div>
-                </td>
-                <td class="subtotal">42,000 ₫</td>
             </tr>
         </tbody>
         <tfoot>
@@ -88,70 +60,242 @@
             </tr>
         </tfoot>
     </table>
-    <a href="/Account/HomePageLogin" class="btn btn-secondary">Tiếp tục mua sắm</a>
-    <a href="/Account/TakeoutPayment" class="btn btn-primary ms-2">
-        Thanh toán <i class="bi bi-credit-card ms-1"></i>
-    </a>
+    <div id="cart-actions" class="mt-3">
+        <a href="/Account/HomePageLogin" class="btn btn-secondary">Tiếp tục mua sắm</a>
+        <a href="/Account/TakeoutPayment" class="btn btn-primary ms-2" id="checkout-btn">
+            Thanh toán <i class="bi bi-credit-card ms-1"></i>
+        </a>
+    </div>
 </div>
 
 <!-- DYNAMIC UPDATE SCRIPT -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-      document.addEventListener("DOMContentLoaded", () => {
+    // API Config
+    const menuApi = "/api/admin/menu-items";
+    const token = localStorage.getItem('access_token');
+    
+    let cartItems = {}; // Store item details from API
+
+    document.addEventListener("DOMContentLoaded", async () => {
         const badge = document.getElementById("cart-quantity-badge");
         const tbody = document.getElementById('cart-body');
         const totalCell = document.getElementById('cart-total');
 
-        // Lấy số lượng giỏ hàng từ localStorage và cập nhật badge
-        let qty = parseInt(localStorage.getItem("cartQuantity")) || 0;
-        badge.textContent = qty;
+        // Load cart from localStorage and render
+        await loadAndRenderCart();
 
-        function formatVND(n) {
-            return n.toLocaleString('vi-VN') + ' ₫';
-        }
-
-        // Tính và cập nhật Tổng cộng
-        function updateTotal() {
-            let sum = 0;
-            tbody.querySelectorAll('tr').forEach(tr => {
-                const txt = tr.querySelector('.subtotal').textContent.replace(/\D/g, '') || '0';
-                sum += parseInt(txt, 10);
-            });
-            totalCell.textContent = formatVND(sum);
-        }
-
-        // Xử lý click + / –
-        tbody.addEventListener('click', e => {
-            let btn = null;
-            if (e.target.classList.contains('btn-increase')) btn = e.target;
-            if (e.target.classList.contains('btn-decrease')) btn = e.target;
-            if (!btn) return;
-
-            const tr    = btn.closest('tr');
-            const price = parseInt(tr.querySelector('.price').textContent, 10);
-            const qtyEl = tr.querySelector('.qty');
-            let   qty   = parseInt(qtyEl.textContent, 10);
-
-            if (btn.classList.contains('btn-increase')) {
-                qty++;
-            } else {
-                qty = Math.max(0, qty - 1);
-            }
-            qtyEl.textContent = qty;
-
-            const sub = price * qty;
-            tr.querySelector('.subtotal').textContent = formatVND(sub);
-
-            // Cập nhật tổng cộng
-            updateTotal();
-
-            // Cập nhật số lượng giỏ hàng vào localStorage
-            localStorage.setItem("cartQuantity", qty);
+        // Event handlers for increase/decrease buttons
+        $(document).on('click', '.btn-increase', function() {
+            const productId = $(this).data('product-id');
+            increaseQuantity(productId);
         });
 
-        // Khởi tạo lại Tổng cộng ngay khi load
-        updateTotal();
+        $(document).on('click', '.btn-decrease', function() {
+            const productId = $(this).data('product-id');
+            decreaseQuantity(productId);
+        });
     });
 
+    // Cart Management Functions
+    function getCart() {
+        const cartData = localStorage.getItem('shoppingCart');
+        return cartData ? JSON.parse(cartData) : {};
+    }
+
+    function saveCart(cart) {
+        localStorage.setItem('shoppingCart', JSON.stringify(cart));
+        updateCartBadge();
+    }
+
+    function updateCartBadge() {
+        const cart = getCart();
+        const totalQuantity = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+        document.getElementById('cart-quantity-badge').textContent = totalQuantity;
+    }
+
+    function formatVND(n) {
+        return n.toLocaleString('vi-VN') + ' ₫';
+    }
+
+    function increaseQuantity(productId) {
+        const cart = getCart();
+        cart[productId] = (cart[productId] || 0) + 1;
+        saveCart(cart);
+        updateCartDisplay();
+    }
+
+    function decreaseQuantity(productId) {
+        const cart = getCart();
+        if (cart[productId] && cart[productId] > 1) {
+            cart[productId]--;
+            saveCart(cart);
+            updateCartDisplay();
+        } else {
+            // Remove item from cart
+            delete cart[productId];
+            saveCart(cart);
+            // Remove row from table and update display
+            $(`tr[data-product-id="${productId}"]`).remove();
+            updateTotal();
+            
+            // Check if cart is empty
+            if (Object.keys(cart).length === 0) {
+                showEmptyCart();
+            } else {
+                $('body').removeClass('cart-empty');
+            }
+        }
+    }
+
+    function updateCartDisplay() {
+        const cart = getCart();
+        
+        // Update quantities and subtotals in the table
+        Object.keys(cart).forEach(productId => {
+            const quantity = cart[productId];
+            const row = $(`tr[data-product-id="${productId}"]`);
+            if (row.length && cartItems[productId]) {
+                const price = cartItems[productId].price || 0;
+                const subtotal = price * quantity;
+                
+                row.find('.qty').text(quantity);
+                row.find('.subtotal').text(formatVND(subtotal));
+            }
+        });
+        
+        updateTotal();
+    }
+
+    function updateTotal() {
+        let total = 0;
+        $('#cart-body tr[data-product-id]').each(function() {
+            const subtotalText = $(this).find('.subtotal').text().replace(/\D/g, '');
+            total += parseInt(subtotalText) || 0;
+        });
+        $('#cart-total').text(formatVND(total));
+    }
+
+    async function loadAndRenderCart() {
+        const cart = getCart();
+        const tbody = $('#cart-body');
+        
+        // Update badge first
+        updateCartBadge();
+        
+        if (Object.keys(cart).length === 0) {
+            showEmptyCart();
+            return;
+        }
+
+        try {
+            // Fetch item details from API
+            const itemPromises = Object.keys(cart).map(async (productId) => {
+                const response = await fetch(`${menuApi}/${productId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const itemData = await response.json();
+                    cartItems[productId] = itemData;
+                    return { productId, itemData, quantity: cart[productId] };
+                } else {
+                    console.error(`Failed to fetch item ${productId}`);
+                    return null;
+                }
+            });
+
+            const items = await Promise.all(itemPromises);
+            renderCartTable(items.filter(item => item !== null));
+            
+        } catch (error) {
+            console.error('Error loading cart:', error);
+            showErrorState();
+        }
+    }
+
+    function renderCartTable(items) {
+        const tbody = $('#cart-body');
+        tbody.empty();
+        $('body').removeClass('cart-empty');
+        
+        if (items.length === 0) {
+            showEmptyCart();
+            return;
+        }
+
+        items.forEach(({ productId, itemData, quantity }) => {
+            const price = itemData.price || 0;
+            const subtotal = price * quantity;
+            const defaultImage = '/images/banner-1.jpg';
+            const imageUrl = itemData.imageUrl && itemData.imageUrl.trim() ? itemData.imageUrl : defaultImage;
+            
+            const row = `
+                <tr data-product-id="${productId}">
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src="${imageUrl}" alt="${itemData.name}" class="cart-item-image me-3" 
+                                 style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;"
+                                 onerror="this.src='${defaultImage}'">
+                            <div>
+                                <h6 class="mb-1">${itemData.name || 'Món ăn'}</h6>
+                                <small class="text-muted">${itemData.description || ''}</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="price">${formatVND(price)}</td>
+                    <td class="text-center">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button class="btn btn-sm btn-danger btn-decrease" data-product-id="${productId}">–</button>
+                            <span class="qty mx-2">${quantity}</span>
+                            <button class="btn btn-sm btn-success btn-increase" data-product-id="${productId}">+</button>
+                        </div>
+                    </td>
+                    <td class="subtotal">${formatVND(subtotal)}</td>
+                </tr>
+            `;
+            tbody.append(row);
+        });
+        
+        updateTotal();
+    }
+
+    function showEmptyCart() {
+        const tbody = $('#cart-body');
+        $('body').addClass('cart-empty');
+        tbody.html(`
+            <tr>
+                <td colspan="4" class="text-center py-5">
+                    <div class="empty-cart">
+                        <i class="bi bi-cart-x" style="font-size: 4rem; color: #6c757d;"></i>
+                        <h4 class="mt-3 mb-2">Giỏ hàng trống</h4>
+                        <p class="text-muted">Bạn chưa có món ăn nào trong giỏ hàng</p>
+                        <a href="/Account/HomePageLogin" class="btn btn-primary mt-2">
+                            <i class="bi bi-arrow-left me-2"></i>Tiếp tục mua sắm
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        `);
+        $('#cart-total').text('0 ₫');
+    }
+
+    function showErrorState() {
+        const tbody = $('#cart-body');
+        tbody.html(`
+            <tr>
+                <td colspan="4" class="text-center py-5">
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        Không thể tải thông tin giỏ hàng. Vui lòng thử lại sau.
+                    </div>
+                </td>
+            </tr>
+        `);
+    }
 </script>
 
 <!-- STYLES -->
@@ -296,5 +440,51 @@
         translate: middle;
         badge rounded-pill bg-danger;
         font-size: 0.7em;
+    }
+
+    /* Empty cart styling */
+    .empty-cart {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .empty-cart i {
+        opacity: 0.6;
+    }
+
+    .empty-cart h4 {
+        color: #495057;
+        font-weight: 600;
+    }
+
+    /* Loading animation */
+    .spinner-border {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    /* Cart item image styling */
+    .cart-item-image {
+        border: 1px solid #dee2e6;
+        transition: all 0.2s ease;
+    }
+
+    .cart-item-image:hover {
+        transform: scale(1.05);
+    }
+
+    /* Quantity controls styling */
+    .btn-increase:hover, .btn-decrease:hover {
+        transform: scale(1.1);
+    }
+
+    .btn-increase, .btn-decrease {
+        transition: all 0.2s ease;
+        min-width: 30px;
+    }
+
+    /* Hide checkout button when cart is empty */
+    .cart-empty #checkout-btn {
+        display: none !important;
     }
 </style>
