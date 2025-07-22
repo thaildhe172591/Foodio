@@ -2,7 +2,6 @@
 using FoodioAPI.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Http;  // Thêm namespace cho Session
 
 namespace FoodieAPII.Pages.Account
 {
@@ -19,16 +18,8 @@ namespace FoodieAPII.Pages.Account
         public List<MenuItem> ColdDishes { get; set; }
         public List<MenuItem> Drinks { get; set; }
 
-        // Thông tin người dùng
-        public string UserName { get; set; }
-        public string UserEmail { get; set; }
-
         public void OnGet()
         {
-            // Lấy thông tin người dùng từ Session
-            UserName = HttpContext.Session.GetString("Username");
-            UserEmail = HttpContext.Session.GetString("UserEmail");
-
             // Lấy danh sách món ăn theo CategoryId, không theo tên
             HotDishes = _context.MenuItems
                 .Where(m => m.CategoryId == new Guid("b74d406f-7390-41ce-952c-12ceb4374064"))  // CategoryId cho "Món Nóng"
