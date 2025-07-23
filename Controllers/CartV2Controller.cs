@@ -64,6 +64,23 @@ namespace FoodioAPI.Controllers
             });
         }
 
+        [HttpPost("add-ship-orders")]
+        public async Task<IActionResult> AddShipOrder([FromBody] AddShipOrderRequestDTO addShipOrderRequest)
+        {
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+            if (string.IsNullOrEmpty(userName))
+            {
+                return Unauthorized(new Response
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = "Không thể xác thực người dùng"
+                });
+            }
+
+            var result = await _orderV2Service.AddShipOrder(addShipOrderRequest);
+
+            return Ok(result);
+        }
         /// <summary>
         /// Tạo đơn hàng từ thông tin giỏ hàng
         /// </summary>

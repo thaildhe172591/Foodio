@@ -15,6 +15,15 @@ namespace FoodioAPI.DTOs.Order
         public string? Note { get; set; }
     }
 
+    public class AddShipOrderRequestDTO
+    {
+        [Required(ErrorMessage = "ShipId không được trống")]
+        public string ShipId { get; set; }
+
+        [Required(ErrorMessage = "OrderId không được trống")]
+        public Guid OrderId { get; set; }
+    }
+
     public class OrderItemRequestDTO
     {
         [Required(ErrorMessage = "ID sản phẩm là bắt buộc")]

@@ -89,21 +89,20 @@ namespace FoodioAPI.Services.Implements
                     .ThenInclude(oi => oi.MenuItem)
                 .Include(o => o.OrderShippers)
                 .Include(o => o.Status)
-                .Where(o => o.UserId == user.Id && o.OrderTypeId == Guid.Parse("672e29b5-bd2c-4008-9117-d077cc9585d5"))
+                .Where(o => o.OrderTypeId == Guid.Parse("672e29b5-bd2c-4008-9117-d077cc9585d5"))
                 .OrderByDescending(o => o.CreatedAt)
-                .Select(o => new OrderSummaryDTO
-                {
-                    OrderId = o.Id,
-                    OrderCode = "ORD" + o.Id.ToString().Substring(0, 8).ToUpper(),
-                    CreatedAt = o.CreatedAt,
-                    Status = o.Status.Name,
-                    Total = o.Total,
-                    isAssignmentShip = o.OrderShippers.Any(),
-                    Adress = o.DeliveryInfo.DeliveryAddress,
-                    Foods = o.OrderItems.Select(x => x.MenuItem.Name).ToList()
-                })
                 .ToListAsync();
-            return orders;
+            return orders.Select(o => new OrderSummaryDTO
+            {
+                OrderId = o.Id,
+                OrderCode = "ORD" + o.Id.ToString().Substring(0, 8).ToUpper(),
+                CreatedAt = o.CreatedAt,
+                Status = o.Status.Name,
+                Total = o.Total,
+                isAssignmentShip = o.OrderShippers.Any(),
+                Adress = o.DeliveryInfo?.DeliveryAddress,
+                Foods = o.OrderItems?.Select(x => x.MenuItem.Name).ToList()
+            }).ToList();
         }
 
 
@@ -249,6 +248,76 @@ namespace FoodioAPI.Services.Implements
                         Total = total,
                         OrderCode = $"ORD{order.Id.ToString().Substring(0, 8).ToUpper()}"
                     }
+                };
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return new Response
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = "Có lỗi xảy ra khi tạo đơn hàng: " + ex.Message
+                };
+            }
+        }
+
+        public async Task<Response?> AddShipOrder(AddShipOrderRequestDTO addShipOrderRequest)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                // 1. Validate OrderType
+                var user = await _context.User
+                    .FirstOrDefaultAsync(ot => ot.Id == addShipOrderRequest.ShipId);
+
+                if (user == null)
+                {
+                    return new Response
+                    {
+                        Status = ResponseStatus.ERROR,
+                        Message = "user không hợp lệ"
+                    };
+                }
+                Order order = _context.Orders.FirstOrDefault(x => x.Id == addShipOrderRequest.OrderId);
+                if (order == null)
+                {
+                    return new Response
+                    {
+                        Status = ResponseStatus.ERROR,
+                        Message = "order không hợp lệ"
+                    };
+                }
+
+                // 2. Tạo OrderShipper
+                var orderShipper = new OrderShipper
+                {
+                    Id = Guid.NewGuid(),
+                    OrderId = addShipOrderRequest.OrderId,
+                    ShipperId = addShipOrderRequest.ShipId,
+                    AssignedAt = DateTime.UtcNow
+                };
+
+                _context.OrderShippers.Add(orderShipper);
+
+                Delivery delivery = new Delivery
+                {
+                    Id = Guid.NewGuid(),
+                    Fee = 0,
+                    StatusId = Guid.Parse("c65243e7-e815-4461-bd2b-7ae39b48077d"),
+                    OrderId = addShipOrderRequest.OrderId,
+                    ShipperId = addShipOrderRequest.ShipId
+                };
+
+                _context.Deliveries.Add(delivery);
+
+                // 3. Lưu tất cả vào database
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+
+                return new Response
+                {
+                    Status = ResponseStatus.SUCCESS,
+                    Message = "Update đơn hàng thành công",
                 };
             }
             catch (Exception ex)
