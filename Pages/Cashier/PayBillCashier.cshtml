@@ -4,6 +4,18 @@
     ViewData["HideLayoutHeader"] = true;
 }
 
+<div class="sticky-top bg-white shadow-sm px-4 py-2 d-flex align-items-center justify-content-between" style="z-index:1040;">
+    <div class="d-flex align-items-center">
+        <img src="~/images/logo_foddie.jpg" alt="GrabFood Logo" style="height: 60px; border-radius: 8px;">
+        <div class="text-dark fw-bold fs-5 ms-3" id="ban-dat-so">
+            Bàn Đặt số
+        </div>
+    </div>
+    <div class="header-search-button d-flex align-items-center gap-3">
+        <button class="btn btn-outline-info" onclick="trangchu()">Trang chủ</button>
+        <button class="btn btn-outline-danger" onclick="logout()">Đăng xuất</button>
+    </div>
+</div>
 
 <div class="sticky-top bg-white shadow-sm" style="z-index:1030;">
     <div class="container sticky-top bd-white">
@@ -11,11 +23,6 @@
             <!-- Logo Section -->
             <div class="d-flex align-items-center">
                 <img src="~/images/logo_foddie.jpg" alt="GrabFood Logo" style="height: 80px;">
-            </div>
-
-            <!-- Text "Bàn số ..." ở giữa -->
-            <div class="fw-bold fs-5 mx-3 text-center" style="flex: 1;">
-                Bàn số
             </div>
 
             <div class="header-search-button d-flex align-items-center gap-3">
@@ -152,16 +159,10 @@
 
     <!-- Thay đổi thông tin từ Loại đơn, Địa chỉ, Số điện thoại, Ghi chú sang Số bàn, Tên khách hàng, Số điện thoại -->
     <div class="summary-item">
-        <span class="summary-label">Số bàn:</span> 5
-    </div>
-    <div class="summary-item">
-        <span class="summary-label">Tên khách hàng:</span> Nguyễn Văn A
-    </div>
-    <div class="summary-item">
-        <span class="summary-label">Số điện thoại:</span> 0123 456 789
+        <span class="summary-label">Số bàn:</span> <span id="table-number-display">?</span>
     </div>
 
-    <div class="food-list">
+    <div class="food-list" id="food-list-display">
         <div class="summary-label mb-2">Món đã đặt:</div>
         <div class="food-item">
             <span>Bánh mì bò nướng</span>
@@ -229,4 +230,67 @@
         // Sau khi in xong, quay lại trang quản lý bàn
         window.location.href = "/Cashier/TableManagement";
     }
+
+     document.addEventListener('DOMContentLoaded', function () {
+        // Lấy thông tin bàn từ localStorage
+        const selectedTable = JSON.parse(localStorage.getItem('selectedTable') || '{}');
+        if (selectedTable?.tableNumber) {
+            document.getElementById("table-number-display").textContent = selectedTable.tableNumber;
+        }
+
+        // Lấy thông tin cart từ sessionStorage
+        const cart = JSON.parse(sessionStorage.getItem('cashierCart') || '[]');
+        const foodListContainer = document.getElementById("food-list-display");
+
+        if (!cart.length) {
+            foodListContainer.innerHTML = `<p class="text-muted">Không có món nào trong giỏ hàng.</p>`;
+            return;
+        }
+
+        let total = 0;
+        let html = `
+            <div class="summary-label mb-2">Món đã đặt:</div>
+        `;
+
+        cart.forEach(item => {
+            const itemTotal = item.qty * item.price;
+            total += itemTotal;
+
+            html += `
+                <div class="food-item">
+                    <span>${item.name}</span>
+                    <span>${item.qty} x ${item.price.toLocaleString('vi-VN')}đ</span>
+                </div>
+            `;
+        });
+
+        html += `
+            <hr />
+            <div class="food-item fw-bold">
+                <span>Tổng cộng</span>
+                <span>${total.toLocaleString('vi-VN')}đ</span>
+            </div>
+        `;
+
+        foodListContainer.innerHTML = html;
+    });
+
+    function placeOrder() {
+        // Giả lập đặt hàng
+        showSuccessPopup();
+
+        // Xoá giỏ hàng sau khi đặt hàng thành công
+        sessionStorage.removeItem('cashierCart');
+    }
+     function logout() {
+            // Xóa tất cả thông tin session và localStorage
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("shoppingCart");
+            sessionStorage.clear();
+            window.location.href = "/auth/login";
+        }
+
+        function trangchu() {
+            window.location.href = "/Cashier/TableManagement";
+        }
 </script>

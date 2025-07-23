@@ -7,21 +7,13 @@
 <div class="sticky-top bg-white shadow-sm px-4 py-2 d-flex align-items-center justify-content-between" style="z-index:1040;">
     <div class="d-flex align-items-center">
         <img src="~/images/logo_foddie.jpg" alt="GrabFood Logo" style="height: 60px; border-radius: 8px;">
-        <div class="text-dark fw-bold fs-5 ms-3">
-            Bàn Đặt số 
+        <div class="text-dark fw-bold fs-5 ms-3" id="ban-dat-so">
+            Bàn Đặt số
         </div>
     </div>
     <div class="header-search-button d-flex align-items-center gap-3">
-        <input type="text" class="form-control" placeholder="Tìm món (F3)..." style="width: 300px;">
-        <button class="btn btn-success rounded-circle d-flex justify-content-center align-items-center position-relative"
-                style="width: 40px; height: 40px;">
-            <a href="#cart-section"><i class="bi bi-cart3 fs-4 text-white"></i></a>
-            <span id="cart-quantity-badge"
-                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                  style="font-size: 0.7em;">
-                0
-            </span>
-        </button>
+        <button class="btn btn-outline-info" onclick="trangchu()">Trang chủ</button>
+        <button class="btn btn-outline-danger" onclick="logout()">Đăng xuất</button>
     </div>
 </div>
 
@@ -45,55 +37,28 @@
                 <div class="tab-content" style="height: calc(100vh - 200px); overflow-y: auto;">
                     <!-- Tab: Đồ nóng -->
                     <div class="tab-pane fade show active" id="hot">
-                        <div class="row">
-                            <div class="col-md-3 mb-4">
-                                <div class="card text-center shadow-lg rounded-3 overflow-hidden h-100 position-relative">
-                                    <img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Phở bò tái" style="height: 160px; object-fit: cover;">
-                                    <div class="card-body p-3">
-                                        <h6 class="card-title fw-bold">Phở bò tái</h6>
-                                        <p class="fw-bold text-primary">45.000 ₫</p>
-                                        <button class="btn btn-add-to-cart-custom add-to-cart-btn" data-product-id="001">
-                                            <i class="bi bi-cart-plus"></i> Thêm vào giỏ
-                                        </button>
-                                    </div>
+                        <div class="row" id="hot-food-container">
+                            <!-- Sẽ được load từ API -->
+                            <div class="col-12 text-center py-4">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Đang tải...</span>
                                 </div>
+                                <p class="mt-2 text-muted">Đang tải món ăn...</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Tab: Đồ mát -->
                     <div class="tab-pane fade" id="cold">
-                        <div class="row">
-                            <div class="col-md-3 mb-4">
-                                <div class="card text-center shadow-lg rounded-3 overflow-hidden h-100 position-relative">
-                                    <img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Chè thái" style="height: 160px; object-fit: cover;">
-                                    <div class="card-body p-3">
-                                        <h6 class="card-title fw-bold">Chè thái sầu riêng</h6>
-                                        <p class="fw-bold text-primary">25.000 ₫</p>
-                                        <button class="btn btn-add-to-cart-custom add-to-cart-btn" data-product-id="002">
-                                            <i class="bi bi-cart-plus"></i> Thêm vào giỏ
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row" id="cold-food-container">
+                            <!-- Sẽ được load từ API -->
                         </div>
                     </div>
 
                     <!-- Tab: Nước -->
                     <div class="tab-pane fade" id="drink">
-                        <div class="row">
-                            <div class="col-md-3 mb-4">
-                                <div class="card text-center shadow-lg rounded-3 overflow-hidden h-100 position-relative">
-                                    <img src="~/images/banner-1.jpg" class="card-img-top object-fit-cover" alt="Trà đào" style="height: 160px; object-fit: cover;">
-                                    <div class="card-body p-3">
-                                        <h6 class="card-title fw-bold">Trà đào</h6>
-                                        <p class="fw-bold text-primary">22.000 ₫</p>
-                                        <button class="btn btn-add-to-cart-custom add-to-cart-btn" data-product-id="003">
-                                            <i class="bi bi-cart-plus"></i> Thêm vào giỏ
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row" id="drinks-container">
+                            <!-- Sẽ được load từ API -->
                         </div>
                     </div>
                 </div>
@@ -124,8 +89,7 @@
                         </tr>
                     </tfoot>
                 </table>
-                <a href="/Cashier/PayBillCashier" class="btn btn-primary ms-2">Thanh toán</a>
-                
+                <a href="/Cashier/PayBillCashier" class="btn btn-primary ms-2 d-none" id="pay-button">Thanh toán</a>
             </div>
         </div>
     </div>
@@ -206,103 +170,312 @@
 
 </style>
 
-<!-- Script -->
+
 @section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        // API Config
+        const menuApi = "/api/admin/menu-items";
+        const token = localStorage.getItem('access_token');
+
+        // Category IDs
+        const categories = {
+            hotFood: 'b74d406f-7390-41ce-952c-12ceb4374064',
+            coldFood: 'a4871081-e9da-4d5b-9596-aaea4981183a',
+            drinks: '3eaf6dd5-5a69-4e56-a478-2b6f32ae456c',
+            hotpot: '27d6d60b-2b06-4027-8094-6793936eb861'
+        };
+
+        function logout() {
+            // Xóa tất cả thông tin session và localStorage
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("shoppingCart");
+            sessionStorage.clear();
+            window.location.href = "/auth/login";
+        }
+
+        function trangchu() {
+            window.location.href = "/Cashier/TableManagement";
+        }
+
+
+
+        document.addEventListener('DOMContentLoaded', async function () {
+             const selectedTableRaw = localStorage.getItem("selectedTable");
+             console.log(selectedTableRaw)
+        if (selectedTableRaw) {
+            try {
+                const selectedTable = JSON.parse(selectedTableRaw);
+                if (selectedTable.tableNumber) {
+                    document.getElementById("ban-dat-so").textContent = `Bàn số ${selectedTable.tableNumber}`;
+                }
+            } catch (err) {
+                console.warn("Lỗi khi đọc dữ liệu bàn từ localStorage:", err);
+            }
+        }
             const cartBody = document.getElementById('cart-body');
             const cartTotal = document.getElementById('cart-total');
-            const completeOrderButton = document.getElementById('completeOrderButton');
             const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
             const orderNotesInput = document.getElementById('orderNotes');
 
-            let cart = [];
+            // Load menu items from API
+            await loadMenuItems();
 
-            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-                button.addEventListener('click', function () {
-                    const productId = this.getAttribute('data-product-id');
-                    const productName = this.closest('.card').querySelector('.card-title').textContent;
-                    const productPrice = parseInt(this.closest('.card').querySelector('.fw-bold.text-primary').textContent.replace(/[^\d]/g, ''));
+            // Load cart from session
+            loadCartFromSession();
 
-                    let product = cart.find(item => item.id === productId);
-
-                    if (product) {
-                        product.qty++;
-                    } else {
-                        product = {
-                            id: productId,
-                            name: productName,
-                            price: productPrice,
-                            qty: 1
-                        };
-                        cart.push(product);
+            // Event handlers cho tab switching
+            document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+                tab.addEventListener('shown.bs.tab', function (event) {
+                    const targetTab = event.target.getAttribute('data-bs-target');
+                    if (targetTab === '#cold' && !document.querySelector('#cold-food-container .col-md-3')) {
+                        loadItemsByCategory('coldFood', '#cold-food-container');
                     }
-
-                    updateCart();
+                    if (targetTab === '#drink' && !document.querySelector('#drinks-container .col-md-3')) {
+                        loadItemsByCategory('drinks', '#drinks-container');
+                    }
                 });
             });
 
-            function updateCart() {
-                cartBody.innerHTML = '';
-                let total = 0;
+            // Event delegation cho nút thêm vào giỏ hàng
+            $(document).on('click', '.add-to-cart-btn', function() {
+                const productId = $(this).data('product-id');
+                const productName = $(this).closest('.card').find('.card-title').text();
+                const productPriceText = $(this).closest('.card').find('.fw-bold.text-primary').text();
+                const productPrice = parseInt(productPriceText.replace(/[^\d]/g, ''));
 
-                cart.forEach(item => {
-                    const row = document.createElement('tr');
-                    row.setAttribute('data-id', item.id);
-                    row.innerHTML = `
-                        <td>${item.name}</td>
-                        <td class="price">${item.price}</td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-danger btn-decrease">–</button>
-                            <span class="qty mx-2">${item.qty}</span>
-                            <button class="btn btn-sm btn-success btn-increase">+</button>
-                        </td>
-                        <td class="subtotal">${(item.qty * item.price).toLocaleString('vi-VN')} ₫</td>
-                        <td><button class="btn btn-sm btn-danger btn-remove">Xóa</button></td>
-                    `;
-                    cartBody.appendChild(row);
+                addToCart(productId, productName, productPrice);
+            });
 
-                    total += item.qty * item.price;
-                });
-
-                cartTotal.textContent = total.toLocaleString('vi-VN') + ' ₫';
-            }
-
+            // Event handlers cho cart
             cartBody.addEventListener('click', function (e) {
                 const row = e.target.closest('tr');
                 if (!row) return;
 
                 const productId = row.getAttribute('data-id');
-                const product = cart.find(item => item.id === productId);
-                const qtySpan = row.querySelector('.qty');
-                const subtotalCell = row.querySelector('.subtotal');
 
                 if (e.target.classList.contains('btn-increase')) {
-                    product.qty++;
+                    increaseQuantity(productId);
                 } else if (e.target.classList.contains('btn-decrease')) {
-                    product.qty = Math.max(1, product.qty - 1);
+                    decreaseQuantity(productId);
                 } else if (e.target.classList.contains('btn-remove')) {
-                    cart = cart.filter(item => item.id !== productId);
+                    removeFromCart(productId);
                 }
-
-                qtySpan.textContent = product.qty;
-                subtotalCell.textContent = (product.qty * product.price).toLocaleString('vi-VN') + ' ₫';
-
-                updateCart();
-            });
-
-            completeOrderButton.addEventListener('click', function (e) {
-                e.preventDefault(); // Prevent default form submit
-                confirmModal.show(); // Show confirmation modal
             });
 
             document.getElementById('confirmSubmit').addEventListener('click', function () {
-                const orderNotes = orderNotesInput.value; // Get notes
-                // You can pass this data to the backend to save if needed
+                const orderNotes = orderNotesInput.value;
                 alert('Đơn đã được gửi đến bếp với ghi chú: ' + orderNotes);
-                // Redirect to the OrderStatus page
-                window.location.href = '/Offline/OrderStatus'; // Change the redirection link to your desired page
+                clearCart();
+                window.location.href = '/Offline/OrderStatus';
             });
         });
+
+        // Load menu items by category
+        async function loadMenuItems() {
+            try {
+                // Load hot food first (active tab)
+                await loadItemsByCategory('hotFood', '#hot-food-container');
+            } catch (error) {
+                console.error('Error loading menu items:', error);
+            }
+        }
+
+        // Load items by specific category
+        async function loadItemsByCategory(categoryKey, containerId) {
+            const categoryId = categories[categoryKey];
+            const params = new URLSearchParams();
+            params.append('categoryId', categoryId);
+            params.append('isAvailable', 'true');
+
+            // Show loading
+            $(containerId).html(`
+                <div class="col-12 text-center py-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Đang tải...</span>
+                    </div>
+                    <p class="mt-2 text-muted">Đang tải món ăn...</p>
+                </div>
+            `);
+
+            try {
+                const response = await fetch(`${menuApi}?${params.toString()}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const items = data.data?.items || data.items || [];
+
+                renderMenuItems(items, containerId);
+            } catch (error) {
+                console.error(`Error loading ${categoryKey}:`, error);
+                $(containerId).html(`
+                    <div class="col-12 text-center py-4">
+                        <div class="alert alert-warning" role="alert">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            Không thể tải danh sách món ăn. Vui lòng thử lại sau.
+                        </div>
+                    </div>
+                `);
+            }
+        }
+
+        // Render menu items to container
+        function renderMenuItems(items, containerId) {
+            const container = $(containerId);
+            container.empty();
+
+            if (!items || items.length === 0) {
+                container.html(`
+                    <div class="col-12 text-center py-4">
+                        <p class="text-muted">Chưa có món ăn nào trong danh mục này.</p>
+                    </div>
+                `);
+                return;
+            }
+
+            items.forEach(item => {
+                const itemHtml = createMenuItemHtml(item);
+                container.append(itemHtml);
+            });
+        }
+
+        // Create HTML for a menu item
+        function createMenuItemHtml(item) {
+            const defaultImage = '/images/banner-1.jpg';
+            const imageUrl = item.imageUrl && item.imageUrl.trim() ? item.imageUrl : defaultImage;
+            const price = item.price || 0;
+            const formattedPrice = price.toLocaleString('vi-VN') + ' ₫';
+
+            return `
+                <div class="col-md-3 mb-4">
+                    <div class="card text-center shadow-lg rounded-3 overflow-hidden h-100 position-relative">
+                        <img src="${imageUrl}" class="card-img-top object-fit-cover" alt="${item.name || 'Món ăn'}"
+                             style="height: 160px; object-fit: cover;" onerror="this.src='${defaultImage}'">
+                        <div class="card-body p-3">
+                            <h6 class="card-title fw-bold">${item.name || 'Món ăn'}</h6>
+                            <p class="fw-bold text-primary">${formattedPrice}</p>
+                            <button class="btn btn-add-to-cart-custom add-to-cart-btn" data-product-id="${item.id}">
+                                <i class="bi bi-cart-plus"></i> Thêm vào giỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Cart Management Functions
+        function getCart() {
+            const cartData = sessionStorage.getItem('cashierCart');
+            return cartData ? JSON.parse(cartData) : [];
+        }
+
+        function saveCart(cart) {
+            sessionStorage.setItem('cashierCart', JSON.stringify(cart));
+        }
+
+        function addToCart(productId, productName, productPrice) {
+            let cart = getCart();
+            let product = cart.find(item => item.id === productId);
+
+            if (product) {
+                product.qty++;
+            } else {
+                product = {
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    qty: 1
+                };
+                cart.push(product);
+            }
+
+            saveCart(cart);
+            updateCartDisplay();
+        }
+
+        function increaseQuantity(productId) {
+            let cart = getCart();
+            let product = cart.find(item => item.id === productId);
+            if (product) {
+                product.qty++;
+                saveCart(cart);
+                updateCartDisplay();
+            }
+        }
+
+        function decreaseQuantity(productId) {
+            let cart = getCart();
+            let product = cart.find(item => item.id === productId);
+            if (product) {
+                product.qty = Math.max(1, product.qty - 1);
+                saveCart(cart);
+                updateCartDisplay();
+            }
+        }
+
+        function removeFromCart(productId) {
+            let cart = getCart();
+            cart = cart.filter(item => item.id !== productId);
+            saveCart(cart);
+            updateCartDisplay();
+        }
+
+        function clearCart() {
+            sessionStorage.removeItem('cashierCart');
+            updateCartDisplay();
+        }
+
+        function loadCartFromSession() {
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartBody = document.getElementById('cart-body');
+            const cartTotal = document.getElementById('cart-total');
+            const cart = getCart();
+
+            cartBody.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const row = document.createElement('tr');
+                row.setAttribute('data-id', item.id);
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td class="price">${item.price.toLocaleString('vi-VN')} ₫</td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-danger btn-decrease">–</button>
+                        <span class="qty mx-2">${item.qty}</span>
+                        <button class="btn btn-sm btn-success btn-increase">+</button>
+                    </td>
+                    <td class="subtotal">${(item.qty * item.price).toLocaleString('vi-VN')} ₫</td>
+                    <td><button class="btn btn-sm btn-danger btn-remove">Xóa</button></td>
+                `;
+                cartBody.appendChild(row);
+
+                total += item.qty * item.price;
+            });
+
+            cartTotal.textContent = total.toLocaleString('vi-VN') + ' ₫';
+            // Ẩn/hiện nút Thanh toán
+            const payBtn = document.getElementById('pay-button');
+            if (cart.length > 0) {
+                payBtn.classList.remove('d-none');
+            } else {
+                payBtn.classList.add('d-none');
+            }
+
+        }
+                // Hiển thị số bàn từ localStorage
+
+
     </script>
 }

@@ -12,7 +12,7 @@
         <div class="fw-bold fs-5">Quản lý bàn ăn</div>
         <div class="d-flex">
             <a href="#" class="fw-bold fs-5 mx-3">Thu ngân </a>
-       
+
         </div>
     </div>
 </div>
@@ -34,7 +34,7 @@
                 <div class="d-flex flex-column">
                     <a href="/Cashier/OrderOnlineCashier" class="sidebar-link mb-2">Đơn online</a>
                     <a href="/Cashier/SalesRevenue" class="sidebar-link mb-2">Doanh thu</a>
-                   
+
                 </div>
             </div>
         </div>
@@ -58,6 +58,7 @@
             background-color: #007bff;
             color: white;
         }
+
     a {
         text-decoration: none; /* Loại bỏ dấu chân (underline) */
         color: inherit; /* Đảm bảo màu sắc của thẻ a giống với màu sắc mặc định của văn bản */
@@ -104,64 +105,84 @@
             font-size: 20px;
         }
 </style>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const API_ENDPOINT = 'https://localhost:5001/api/CartV2/dining-tables';
 
-<!-- Scripts -->
-<script>
-    // Dữ liệu trạng thái bàn (có 8 bàn)
-    const tables = [
-        { id: 1, status: 'empty' },
-        { id: 2, status: 'empty' },
-        { id: 3, status: 'empty' },
-        { id: 4, status: 'empty' },
-        { id: 5, status: 'empty' },
-        { id: 6, status: 'empty' },
-        { id: 7, status: 'empty' },
-        { id: 8, status: 'empty' }
-    ];
-
-    function createTableElement(table) {
-        return `
-            <div class="col-md-3 mb-4">
-                <a href="/Cashier/FoodManagementCashier" class="d-block text-decoration-none" id="table-${table.id}">
-                    <div class="card text-center shadow-sm rounded-3">
-                        <div class="card-body">
-                            <div class="fw-bold d-block mb-2">Bàn ${table.id}</div>
-                            <p class="text-muted">${table.status === 'empty' ? 'Trống' : 'Có khách'}</p>
-                              </a>
-                            <button class="btn btn-${table.status === 'empty' ? 'success' : 'warning'} btn-sm"
-                                    onclick="toggleTableStatus(event, ${table.id})">
-                                ${table.status === 'empty' ? 'Có khách' : 'Trống lại'}
-                            </button>
-                        </div>
-                    </div>
-              
-            </div>
-        `;
-    }
-
-    function toggleTableStatus(event, tableId) {
-        const table = tables.find(t => t.id === tableId);
-
-        // Nếu trạng thái bàn là 'Có khách', ngừng hành động mặc định của thẻ <a>
-        if (table.status === 'occupied') {
-            event.preventDefault();  // Ngừng điều hướng của <a>
+        function fetchTables() {
+            fetch(API_ENDPOINT, {
+                method: 'GET',
+                headers: {
+                    'Accept': '*/*'
+                }
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(result => {
+                if (result.status === "Success") {
+                    renderTables(result.data);
+                } else {
+                    console.error("Lỗi từ API:", result.message);
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi khi gọi API bàn:", error);
+            });
         }
 
-        // Cập nhật trạng thái bàn
-        table.status = table.status === 'empty' ? 'occupied' : 'empty';
+        function renderTables(tables) {
+            const tableManagementElement = document.getElementById('table-management');
+            if (!tableManagementElement) return;
 
-        // Render lại các bàn
-        renderTables();
-    }
+            const statusText = {
+                "Empty": "Trống",
+                "Occupied": "Đang có khách",
+                "Reserved": "Đã đặt bàn",
+                "WaitingPayment": "Chờ thanh toán"
+            };
 
-    // Hàm render tất cả các bàn
-    function renderTables() {
-        const tableManagementElement = document.getElementById('table-management');
-        tableManagementElement.innerHTML = tables.map(createTableElement).join('');
-    }
+            const statusColor = {
+                "Empty": "success",
+                "Occupied": "warning",
+                "Reserved": "info",
+                "WaitingPayment": "danger"
+            };
 
-    // Khởi tạo trang
-    document.addEventListener('DOMContentLoaded', function () {
-        renderTables();
-    });
-</script>
+            tableManagementElement.innerHTML = '';
+
+            tables.forEach(table => {
+                const card = document.createElement('div');
+                card.className = 'col-md-3 mb-4';
+                        card.innerHTML = `
+            <a href="/Cashier/FoodManagementCashier"
+               onclick="selectTable('${table.id}', ${table.tableNumber}, '${table.status}', ${table.activeOrderCount})"
+               class="d-block text-decoration-none" id="table-${table.id}">
+                <div class="card text-center shadow-sm rounded-3">
+                    <div class="card-body">
+                        <div class="fw-bold mb-2">Bàn ${table.tableNumber}</div>
+                        <p class="text-muted">${statusText[table.status] || 'Không rõ'}</p>
+                        <span class="badge bg-${statusColor[table.status] || 'secondary'}">
+                            ${table.activeOrderCount} đơn
+                        </span>
+                    </div>
+                </div>
+            </a>
+        `;
+
+                tableManagementElement.appendChild(card);
+            });
+        }
+
+        // Gọi sau khi DOM và jQuery đã sẵn sàng
+        $(function () {
+            fetchTables();
+        });
+                function selectTable(id, tableNumber, status, activeOrderCount) {
+            const table = { id, tableNumber, status, activeOrderCount };
+            localStorage.setItem("selectedTable", JSON.stringify(table));
+        }
+    </script>
+}

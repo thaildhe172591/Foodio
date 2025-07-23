@@ -330,5 +330,29 @@ namespace FoodioAPI.Services.Implements
                 };
             }
         }
+
+        public async Task<List<DiningTableDTO>> GetDiningTablesAsync()
+        {
+            var tables = await _context.DiningTables
+                .Include(dt => dt.Orders.Where(o => o.Status.Name != "Completed" && o.Status.Name != "Cancelled"))
+                .OrderBy(dt => dt.TableNumber)
+                .Select(dt => new DiningTableDTO
+                {
+                    Id = dt.Id,
+                    TableNumber = dt.TableNumber,
+                    Status = dt.Status,
+                    IsOccupied = dt.Orders.Any(o => o.Status.Name != "Completed" && o.Status.Name != "Cancelled"),
+                    HasActiveOrder = dt.Orders.Any(o => o.Status.Name != "Completed" && o.Status.Name != "Cancelled"),
+                    LastOrderTime = dt.Orders
+                        .Where(o => o.Status.Name != "Completed" && o.Status.Name != "Cancelled")
+                        .OrderByDescending(o => o.CreatedAt)
+                        .Select(o => o.CreatedAt)
+                        .FirstOrDefault(),
+                    ActiveOrderCount = dt.Orders.Count(o => o.Status.Name != "Completed" && o.Status.Name != "Cancelled")
+                })
+                .ToListAsync();
+
+            return tables;
+        }
     }
 } 

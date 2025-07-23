@@ -154,5 +154,28 @@ namespace FoodioAPI.Controllers
                 Data = detail
             });
         }
+
+        [HttpGet("dining-tables")]
+        public async Task<IActionResult> GetDiningTables()
+        {
+            try
+            {
+                var tables = await _orderV2Service.GetDiningTablesAsync();
+                return Ok(new Response
+                {
+                    Status = ResponseStatus.SUCCESS,
+                    Message = "Lấy danh sách bàn thành công",
+                    Data = tables
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new Response
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = "Lỗi server: " + ex.Message
+                });
+            }
+        }
     }
 }
