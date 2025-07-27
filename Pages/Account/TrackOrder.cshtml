@@ -78,7 +78,14 @@
                 <p><strong>Tên shipper:</strong> <span id="shipper-name"></span></p>
                 <p><strong>SĐT:</strong> <span id="shipper-phone"></span></p>
             </div>
+            <!-- Trạng thái hiện tại -->
+            <div class="mb-3">
+                <h6>Trạng thái hiện tại:</h6>
+                <p><strong><span id="current-status" class="badge bg-secondary">---</span></strong></p>
+            </div>
+            
             <div class="text-end">
+                <a href="/Account/User" class="btn btn-outline-primary me-2">Quay lại danh sách đơn</a>
                 <a href="/Account/Cart" class="btn btn-outline-secondary">Quay lại giỏ hàng</a>
             </div>
         </div>
@@ -156,8 +163,28 @@
             document.getElementById('receiver-phone').innerText = order.deliveryPhone || "Không rõ";
             document.getElementById('order-note').innerText = order.deliveryNote || "Không có ghi chú";
 
-            // Highlight trạng thái đơn hàng nếu cần
+            // Hiển thị trạng thái hiện tại
+            const currentStatusElement = document.getElementById('current-status');
+            currentStatusElement.innerText = order.status || "Không rõ";
+            currentStatusElement.className = getStatusBadgeClass(order.status);
+
+            // Highlight trạng thái đơn hàng
             highlightStatus(order.status);
+
+            // Setup shipper info toggle
+            const showShipperBtn = document.getElementById('showShipperBtn');
+            if (showShipperBtn) {
+                showShipperBtn.addEventListener('click', function() {
+                    const shipperInfo = document.getElementById('shipperInfo');
+                    if (shipperInfo.style.display === 'none') {
+                        shipperInfo.style.display = 'block';
+                        this.innerText = 'Ẩn thông tin người ship';
+                    } else {
+                        shipperInfo.style.display = 'none';
+                        this.innerText = 'Hiển thị thông tin người ship';
+                    }
+                });
+            }
 
         } catch (err) {
             console.error("Lỗi lấy thông tin đơn:", err);
@@ -167,15 +194,61 @@
 
     function highlightStatus(status) {
         const s = (status || "").toLowerCase();
-        if (s.includes("đã xác nhận")) {
+        
+        // Reset all steps to default state first
+        document.getElementById("step-1").className = "list-group-item flex-fill text-center bg-success text-white";
+        document.getElementById("step-2").className = "list-group-item flex-fill text-center";
+        document.getElementById("step-3").className = "list-group-item flex-fill text-center";
+        document.getElementById("step-4").className = "list-group-item flex-fill text-center";
+        
+        // Update step labels and highlighting based on status
+        if (s.includes("chờ xác nhận") || s.includes("pending")) {
+            // Step 1: Waiting for confirmation - already highlighted by default
+            document.getElementById("step-1").innerHTML = '<i class="bi bi-hourglass-split me-1"></i> Chờ xác nhận';
+        } else if (s.includes("đã xác nhận") || s.includes("confirmed") || s.includes("đang chuẩn bị")) {
+            // Step 2: Confirmed/Preparing
+            document.getElementById("step-1").innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> Đã xác nhận';
             document.getElementById("step-2").classList.add("bg-warning", "text-dark");
-        } else if (s.includes("đang giao")) {
-             document.getElementById("step-2").classList.add("bg-warning", "text-dark");
+            document.getElementById("step-2").innerHTML = '<i class="bi bi-gear-fill me-1"></i> Đang chuẩn bị';
+        } else if (s.includes("đang giao") || s.includes("on_the_way") || s.includes("shipping")) {
+            // Step 3: On the way
+            document.getElementById("step-1").innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> Đã xác nhận';
+            document.getElementById("step-2").classList.add("bg-success", "text-white");
+            document.getElementById("step-2").innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> Đã chuẩn bị';
             document.getElementById("step-3").classList.add("bg-info", "text-white");
-        } else if (s.includes("hoàn tất") || s.includes("đã giao")) {
-             document.getElementById("step-2").classList.add("bg-warning", "text-dark");
-            document.getElementById("step-3").classList.add("bg-info", "text-white");
+            document.getElementById("step-3").innerHTML = '<i class="bi bi-truck me-1"></i> Đang giao';
+        } else if (s.includes("hoàn tất") || s.includes("đã giao") || s.includes("completed") || s.includes("delivered")) {
+            // Step 4: Completed
+            document.getElementById("step-1").innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> Đã xác nhận';
+            document.getElementById("step-2").classList.add("bg-success", "text-white");
+            document.getElementById("step-2").innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> Đã chuẩn bị';
+            document.getElementById("step-3").classList.add("bg-success", "text-white");
+            document.getElementById("step-3").innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> Đã giao';
             document.getElementById("step-4").classList.add("bg-success", "text-white");
+            document.getElementById("step-4").innerHTML = '<i class="bi bi-check2-circle me-1"></i> Hoàn tất';
+        } else if (s.includes("hủy") || s.includes("cancelled") || s.includes("failed") || s.includes("thất bại")) {
+            // Cancelled or Failed
+            document.getElementById("step-1").classList.remove("bg-success");
+            document.getElementById("step-1").classList.add("bg-danger", "text-white");
+            document.getElementById("step-1").innerHTML = '<i class="bi bi-x-circle-fill me-1"></i> Đã hủy/Thất bại';
+        }
+    }
+
+    // Function to get status badge class
+    function getStatusBadgeClass(status) {
+        const s = (status || "").toLowerCase();
+        if (s.includes("chờ xác nhận") || s.includes("pending")) {
+            return "badge bg-secondary";
+        } else if (s.includes("đã xác nhận") || s.includes("confirmed")) {
+            return "badge bg-warning text-dark";
+        } else if (s.includes("đang giao") || s.includes("on_the_way")) {
+            return "badge bg-info";
+        } else if (s.includes("hoàn tất") || s.includes("đã giao") || s.includes("completed")) {
+            return "badge bg-success";
+        } else if (s.includes("hủy") || s.includes("cancelled") || s.includes("failed")) {
+            return "badge bg-danger";
+        } else {
+            return "badge bg-secondary";
         }
     }
 </script>

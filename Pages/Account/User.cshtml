@@ -134,7 +134,14 @@
         }
 
         const tbody = document.getElementById('order-list-body');
-        tbody.innerHTML = `<tr><td colspan="5" class="text-center">Đang tải...</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4">
+            <div class="d-flex flex-column align-items-center">
+                <div class="spinner-border text-primary mb-3" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="text-muted mb-0">Đang tải thông tin đơn hàng...</p>
+            </div>
+        </td></tr>`;
 
         try {
             const response = await fetch('/api/CartV2/my-orders', {
@@ -183,16 +190,52 @@
 
     function getStatusBadge(status) {
         const lower = (status || "").toLowerCase();
-        if (lower.includes("chờ xác nhận")) {
-            return '<span class="badge bg-secondary">Chờ xác nhận</span>';
-        } else if (lower.includes("giao")) {
-            return '<span class="badge bg-success">Đã giao</span>';
-        } else if (lower.includes("đã xác nhận")) {
-            return '<span class="badge bg-warning text-dark">Đang xử lý</span>';
-        } else if (lower.includes("hủy") || lower.includes("fail")) {
-            return '<span class="badge bg-danger">Thất bại</span>';
-        } else {
-            return `<span class="badge bg-secondary">${status || "Không rõ"}</span>`;
+        
+        // Order matters: Check most specific conditions first
+        
+        // Completed/Delivered statuses
+        if (lower.includes("đã giao") || lower.includes("delivered") || lower.includes("completed") || lower.includes("hoàn thành")) {
+            return '<span class="badge bg-success text-white rounded-pill"><i class="bi bi-check-circle me-1"></i>Đã giao</span>';
+        }
+        
+        // Shipping/On the way statuses
+        else if (lower.includes("đang giao") || lower.includes("on_the_way") || lower.includes("shipping") || lower.includes("đang vận chuyển")) {
+            return '<span class="badge bg-primary text-white rounded-pill"><i class="bi bi-truck me-1"></i>Đang giao hàng</span>';
+        }
+        
+        // Confirmed/Preparing statuses
+        else if (lower.includes("đã xác nhận") || lower.includes("confirmed") || lower.includes("đang chuẩn bị") || lower.includes("preparing")) {
+            return '<span class="badge bg-info text-white rounded-pill"><i class="bi bi-gear me-1"></i>Đang chuẩn bị</span>';
+        }
+        
+        // Pending/Waiting statuses
+        else if (lower.includes("chờ xác nhận") || lower.includes("pending") || lower.includes("chờ")) {
+            return '<span class="badge bg-warning text-dark rounded-pill"><i class="bi bi-clock me-1"></i>Chờ xác nhận</span>';
+        }
+        
+        // Cancelled statuses
+        else if (lower.includes("hủy") || lower.includes("cancelled") || lower.includes("canceled")) {
+            return '<span class="badge bg-secondary text-white rounded-pill"><i class="bi bi-x-circle me-1"></i>Đã hủy</span>';
+        }
+        
+        // Failed statuses
+        else if (lower.includes("thất bại") || lower.includes("failed") || lower.includes("fail")) {
+            return '<span class="badge bg-danger text-white rounded-pill"><i class="bi bi-exclamation-triangle me-1"></i>Thất bại</span>';
+        }
+        
+        // Refund statuses
+        else if (lower.includes("hoàn trả") || lower.includes("refund") || lower.includes("refunded")) {
+            return '<span class="badge bg-dark text-white rounded-pill"><i class="bi bi-arrow-counterclockwise me-1"></i>Hoàn trả</span>';
+        }
+        
+        // Generic "giao" without specific context (fallback)
+        else if (lower.includes("giao") && !lower.includes("đang") && !lower.includes("đã")) {
+            return '<span class="badge bg-success text-white rounded-pill"><i class="bi bi-check-circle me-1"></i>Đã giao</span>';
+        }
+        
+        // Default/Unknown status
+        else {
+            return `<span class="badge bg-light text-dark rounded-pill"><i class="bi bi-question-circle me-1"></i>${status || "Không rõ"}</span>`;
         }
     }
 </script>
