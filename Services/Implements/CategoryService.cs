@@ -265,6 +265,40 @@ namespace FoodioAPI.Services.Implements
                 {
                     Order order = await _context.Orders.FirstOrDefaultAsync(x => x.Id == orderItem.OrderId);
                     order.StatusId = Guid.Parse("0c334fab-07e1-4c5e-bca0-7d2fefe4e0bd");
+                    
+
+                    if (newStatusCode.Equals("READY_TO_SERVE") && order.TableId is not null)
+                    {
+                        List<OrderItem> orderItems = _context.OrderItems
+                            .Include(x => x.StatusHistories)
+                            .ThenInclude(sh => sh.OrderItemStatus)
+                            .Where(x => x.OrderId == order.Id).ToList();
+                        foreach (var item in orderItems)
+                        {
+                            item.StatusHistories = _context.OrderItemStatusHistories
+                                .Include(x => x.OrderItemStatus)
+                                .Where(x => x.OrderItemId == item.Id).ToList();
+                            foreach (var item2 in item.StatusHistories)
+                            {
+                                if(item2.OrderItemStatus is null && item2.StatusId != null)
+                                {
+                                    item2.OrderItemStatus = _context.OrderItemStatuses.FirstOrDefault(x => x.Id == item2.StatusId);
+                                }
+                            }
+                        }
+                        var orderItemsCheck = orderItems.Where(x => x.StatusHistories.FirstOrDefault().OrderItemStatus.Code.Equals("READY_TO_SERVE")).ToList();
+                        if (orderItemsCheck.Any() && orderItemsCheck.Count == orderItems.Count)
+                        {
+                            order.StatusId = Guid.Parse("96267d4f-78bb-4f78-acb2-2ca07ba9313c");
+                            DiningTable diningTable = _context.DiningTables.FirstOrDefault(x => x.Id.Equals(order.TableId));
+                            if (diningTable != null)
+                            {
+                                diningTable.Status = "Empty";
+                                _context.DiningTables.Update(diningTable);
+                            }
+                        }
+                    }
+
                     _context.Orders.Update(order);
                 }
             }

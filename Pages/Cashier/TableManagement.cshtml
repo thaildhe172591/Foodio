@@ -132,9 +132,9 @@
                 <button type="button" class="btn btn-secondary" onclick="closeOrderModal()">
                     <i class="bi bi-x-circle me-1"></i>Đóng
                 </button>
-                <button type="button" class="btn btn-primary" onclick="goToFoodManagement()">
+                @* <button type="button" class="btn btn-primary" onclick="goToFoodManagement()">
                     <i class="bi bi-plus-circle me-1"></i>Thêm món
-                </button>
+                </button> *@
             </div>
         </div>
     </div>
@@ -378,10 +378,11 @@
             document.getElementById('tableNumber').textContent = orderData.tableNumber;
             document.getElementById('orderTime').textContent = new Date(orderData.createdAt).toLocaleString('vi-VN');
             
-            // Status badge
+            // Status badge with mapping
             const statusElement = document.getElementById('orderStatus');
-            statusElement.textContent = orderData.status;
-            statusElement.className = `badge ${getStatusBadgeClass(orderData.status)}`;
+            const displayStatus = mapOrderStatus(orderData.status);
+            statusElement.textContent = displayStatus;
+            statusElement.className = `badge ${getStatusBadgeClass(displayStatus)}`;
             
             document.getElementById('customerName').textContent = orderData.customerName || 'Khách tại bàn';
             document.getElementById('customerPhone').textContent = orderData.customerPhone || 'Không có';
@@ -394,13 +395,14 @@
             
             orderData.items.forEach(item => {
                 const row = document.createElement('tr');
+                const displayItemStatus = mapOrderStatus(item.itemStatus);
                 row.innerHTML = `
                     <td>${item.menuItemName}</td>
                     <td class="text-center">${item.quantity}</td>
                     <td class="text-end">${formatMoney(item.unitPrice)}</td>
                     <td class="text-end">${formatMoney(item.totalPrice)}</td>
                     <td class="text-center">
-                        <span class="badge ${getItemStatusBadgeClass(item.itemStatus)}">${item.itemStatus}</span>
+                        <span class="badge ${getItemStatusBadgeClass(displayItemStatus)}">${displayItemStatus}</span>
                     </td>
                 `;
                 itemsList.appendChild(row);
@@ -441,15 +443,32 @@
             return amount.toLocaleString('vi-VN') + 'đ';
         }
 
+        // Map status names for display
+        function mapOrderStatus(status) {
+            if (!status) return 'Không rõ';
+            
+            const statusLower = status.toLowerCase();
+            
+            // Map "Chờ xác nhận" to "Chờ xử lý"
+            if (statusLower.includes('chờ xác nhận') || statusLower === 'chờ xác nhận') {
+                return 'Chờ xử lý';
+            }
+            
+            // Return original status for other cases
+            return status;
+        }
+
         // Get status badge class
         function getStatusBadgeClass(status) {
             const statusLower = (status || '').toLowerCase();
-            if (statusLower.includes('pending') || statusLower.includes('chờ')) {
+            if (statusLower.includes('pending') || statusLower.includes('chờ xử lý') || statusLower.includes('chờ xác nhận')) {
                 return 'bg-warning text-dark';
-            } else if (statusLower.includes('preparing') || statusLower.includes('chuẩn bị')) {
+            } else if (statusLower.includes('preparing') || statusLower.includes('chuẩn bị') || statusLower.includes('đang chuẩn bị')) {
                 return 'bg-info';
-            } else if (statusLower.includes('ready') || statusLower.includes('sẵn sàng')) {
+            } else if (statusLower.includes('ready') || statusLower.includes('sẵn sàng') || statusLower.includes('hoàn thành')) {
                 return 'bg-success';
+            } else if (statusLower.includes('cancelled') || statusLower.includes('hủy')) {
+                return 'bg-danger';
             } else {
                 return 'bg-secondary';
             }
@@ -458,12 +477,14 @@
         // Get item status badge class
         function getItemStatusBadgeClass(status) {
             const statusLower = (status || '').toLowerCase();
-            if (statusLower.includes('pending') || statusLower.includes('chờ')) {
+            if (statusLower.includes('pending') || statusLower.includes('chờ xử lý') || statusLower.includes('chờ xác nhận')) {
                 return 'bg-warning text-dark';
-            } else if (statusLower.includes('preparing') || statusLower.includes('chuẩn bị')) {
+            } else if (statusLower.includes('preparing') || statusLower.includes('chuẩn bị') || statusLower.includes('đang chuẩn bị')) {
                 return 'bg-info';
-            } else if (statusLower.includes('ready') || statusLower.includes('sẵn sàng')) {
+            } else if (statusLower.includes('ready') || statusLower.includes('sẵn sàng') || statusLower.includes('hoàn thành')) {
                 return 'bg-success';
+            } else if (statusLower.includes('cancelled') || statusLower.includes('hủy')) {
+                return 'bg-danger';
             } else {
                 return 'bg-secondary';
             }
