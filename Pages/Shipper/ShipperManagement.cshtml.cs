@@ -1,10 +1,12 @@
 ﻿using FoodioAPI.DTOs.DeliveryShipper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net.Http.Json;
 
 namespace FoodieAPII.Pages.Shipper
 {
+    [Authorize(Roles = "Shipper")]
     public class ShipperManagementModel : PageModel
     {
         public List<DeliveryShipperDTO> Deliveries { get; set; } = new();

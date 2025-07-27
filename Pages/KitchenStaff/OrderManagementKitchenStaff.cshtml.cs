@@ -1,4 +1,5 @@
 ﻿using FoodioAPI.DTOs.KitchenStaff;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace FoodieAPII.Pages.KitchenStaff
 {
+    [Authorize(Roles = "Kitchen")]
     public class OrderManagementKitchenStaffModel : PageModel
     {
         private readonly IHttpClientFactory _httpClientFactory;
