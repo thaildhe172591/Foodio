@@ -211,7 +211,7 @@
 
     <div class="container my-5">
         <button type="button" class="btn btn-success btn-lg w-100 mb-3" onclick="placeOrder()">Thanh toán </button>
-        <button type="button" class="btn btn-outline-primary btn-lg w-100" onclick="printInvoice()">In hóa đơn</button>
+        @* <button type="button" class="btn btn-outline-primary btn-lg w-100" onclick="printInvoice()">In hóa đơn</button> *@
     </div>
 </div>
 
@@ -276,8 +276,6 @@
             </div>
             <div class="modal-footer border-0 justify-content-center">
                 <button type="button" class="btn btn-success" onclick="redirectAfterClose()">Đóng</button>
-                <!-- New 'Theo dõi đơn hàng' button -->
-                <button type="button" class="btn btn-outline-primary" onclick="trackOrder()">Theo dõi đơn hàng</button>
             </div>
         </div>
     </div>
@@ -291,7 +289,7 @@
     }
 
     function redirectAfterClose() {
-        window.location.href = "/Offline/TableManagement"; // Redirect after closing modal
+        window.location.href = "/Cashier/TableManagement"; // Redirect after closing modal
     }
 
     function trackOrder() {
@@ -364,7 +362,9 @@
         cart.forEach(item => {
             total += item.qty * item.price;
         });
-        
+        if(total == 0){
+            window.location.href = "/Cashier/TableManagement";
+        }
         // Tạo mã đơn hàng (giả lập)
         const orderId = 'ORD' + Date.now().toString().substr(-8).toUpperCase();
         
@@ -387,8 +387,12 @@
             qrModal.hide();
         }
     }
-    
+    var isCheck = false;
     async function confirmPayment() {
+        if(isCheck == true){
+            alert('Đơn hàng đã được thanh toán');
+            window.location.href = "/Cashier/TableManagement";
+        }
         try {
             // Get authentication token
             const token = localStorage.getItem('access_token');
