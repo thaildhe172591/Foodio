@@ -1,7 +1,9 @@
 ﻿namespace FoodioAPI.DTOs.DeliveryShipper
 {
     public class DeliveryShipperDTO
-    {   public Guid DeliveryId { get; set; }
+    {  
+        public Guid DeliveryId { get; set; }
+        public Guid OrderId { get; set; }
         public string ReceiverName { get; set; }
         public string MenuItemName { get; set; }
         public string ReceiverPhone { get; set; }

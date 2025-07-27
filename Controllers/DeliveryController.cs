@@ -80,6 +80,11 @@ namespace FoodioAPI.Controllers
             if (!result)
                 return BadRequest("Cập nhật trạng thái thất bại. Vui lòng kiểm tra lại.");
 
+            if (status.Equals("ON_THE_WAY"))
+            {
+                return Ok(new { message = $"Trạng thái giao hàng đã được cập nhật thành: Đang Giao" });
+            }
+
             return Ok(new { message = $"Trạng thái giao hàng đã được cập nhật thành '{status}'." });
         }
 

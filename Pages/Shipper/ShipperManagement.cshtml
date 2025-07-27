@@ -5,14 +5,16 @@
 }
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<div class="container mt-5">
+<div class="container-fluid mt-5">
     <h1 class="text-center mb-4">Quản lý Đơn Hàng - Shipper</h1>
     <div id="today-time" class="text-center mb-4" style="font-weight:bold;color:#2980b9;"></div>
     <div id="user-info" style="position:fixed;top:20px;right:30px;z-index:1000;"></div>
@@ -35,115 +37,149 @@
         <div class="col-12">
             <!-- Đơn Chờ Giao -->
             <div id="item-1" class="section-content">
-                <h4>Đơn Chờ Giao</h4>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Mã Đơn</th>
-                            <th>Tên Người Nhận</th>
-                            <th>SĐT Người Nhận</th>
-                            <th>Địa chỉ</th>
-                            <th>Món Ăn</th>
-                            <th>Số Lượng</th>
-                            <th>Ghi chú</th>
-                            <th>Phí Ship</th>
-                            <th>Tổng Tiền</th>
-                            <th>Ngày Đặt</th>
-                            <th>Trạng Thái</th>
-                            <th>Hành Động</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="deliveries-body">
-                        <!-- dữ liệu sẽ được render động ở đây -->
-                    </tbody>
-                </table>
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-truck"></i> Đơn Chờ Giao</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="pending-orders-table" class="table table-hover table-bordered display" style="width:100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th><i class="fas fa-hashtag"></i> Mã Đơn</th>
+                                        <th><i class="fas fa-user"></i> Người Nhận</th>
+                                        <th><i class="fas fa-phone"></i> SĐT</th>
+                                        <th><i class="fas fa-map-marker-alt"></i> Địa chỉ</th>
+                                        <th><i class="fas fa-utensils"></i> Món Ăn</th>
+                                        <th class="text-center"><i class="fas fa-sort-numeric-up"></i> SL</th>
+                                        <th><i class="fas fa-sticky-note"></i> Ghi chú</th>
+                                        <th class="text-right"><i class="fas fa-shipping-fast"></i> Ship</th>
+                                        <th class="text-right"><i class="fas fa-money-bill-wave"></i> Tổng</th>
+                                        <th><i class="fas fa-calendar-alt"></i> Ngày Đặt</th>
+                                        <th class="text-center"><i class="fas fa-info-circle"></i> Trạng Thái</th>
+                                        <th class="text-center"><i class="fas fa-cogs"></i> Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="deliveries-body">
+                                    <!-- dữ liệu sẽ được render động ở đây -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="item-2" class="section-content" style="display:none;">
-                <h4>Cập Nhật Trạng Thái</h4>
-                <p>Hiển thị nội dung cập nhật trạng thái ở đây.</p>
-                <!-- Bạn có thể thêm form hoặc nội dung cần thiết cho việc cập nhật trạng thái -->
+                <div class="card shadow-sm">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0"><i class="fas fa-sync-alt"></i> Cập Nhật Trạng Thái</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="update-status-table" class="table table-hover table-bordered display" style="width:100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th><i class="fas fa-hashtag"></i> Mã Đơn</th>
+                                        <th><i class="fas fa-user"></i> Người Nhận</th>
+                                        <th><i class="fas fa-phone"></i> SĐT</th>
+                                        <th><i class="fas fa-map-marker-alt"></i> Địa chỉ</th>
+                                        <th><i class="fas fa-utensils"></i> Món Ăn</th>
+                                        <th class="text-center"><i class="fas fa-sort-numeric-up"></i> SL</th>
+                                        <th><i class="fas fa-sticky-note"></i> Ghi chú</th>
+                                        <th class="text-right"><i class="fas fa-shipping-fast"></i> Ship</th>
+                                        <th class="text-right"><i class="fas fa-money-bill-wave"></i> Tổng</th>
+                                        <th><i class="fas fa-calendar-alt"></i> Ngày Đặt</th>
+                                        <th class="text-center"><i class="fas fa-info-circle"></i> Trạng Thái</th>
+                                        <th class="text-center"><i class="fas fa-cogs"></i> Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="update-status-body">
+                                    <!-- dữ liệu sẽ được render động ở đây -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Modal Cập Nhật Trạng Thái -->
-            <div id="status-popup" class="modal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
+            <div id="status-popup" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Cập nhật trạng thái giao hàng</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <h5 class="modal-title"><i class="fas fa-edit"></i> Cập nhật trạng thái giao hàng</h5>
+                            <button type="button" class="close" onclick="closeStatusPopup()" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <input type="text" id="order-id" class="form-control" placeholder="Mã đơn hàng" readonly>
-                            <select id="order-status" class="form-select mt-2">
-                                <option value="completed">Đã giao</option>
-                                <option value="failed">Thất bại</option>
-                            </select>
-                            <textarea id="failure-reason" class="form-control mt-2" rows="2" placeholder="Lý do thất bại (nếu có)"></textarea>
-                            <button class="btn btn-primary mt-2" onclick="updateStatus()">Cập Nhật Trạng Thái</button>
+                            <div class="form-group">
+                                <label for="order-id"><i class="fas fa-hashtag"></i> Mã đơn hàng</label>
+                                <input type="text" id="order-id" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="order-status"><i class="fas fa-flag"></i> Trạng thái</label>
+                                <select id="order-status" class="form-control custom-select" onchange="toggleFailureReason()">
+                                    <option value="completed"><i class="fas fa-check"></i> Đã giao thành công</option>
+                                    <option value="failed"><i class="fas fa-times"></i> Giao hàng thất bại</option>
+                                </select>
+                            </div>
+                            @* <div class="form-group" id="failure-reason-group" style="display:none;">
+                                <label for="failure-reason"><i class="fas fa-comment-alt"></i> Lý do thất bại</label>
+                                <textarea id="failure-reason" class="form-control" rows="3" placeholder="Nhập lý do giao hàng thất bại..."></textarea>
+                            </div> *@
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" onclick="closeStatusPopup()">
+                                <i class="fas fa-times"></i> Hủy
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="updateStatus()">
+                                <i class="fas fa-save"></i> Lưu thay đổi
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Lịch Sử Giao Hàng -->
-            <div id="item-3" class="section-content">
-                <h4>Lịch Sử Giao Hàng</h4>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Mã Đơn</th>
-                            <th>Tên Người Nhận</th>
-                            <th>SĐT Người Nhận</th>
-                            <th>Địa chỉ</th>
-                            <th>Món Ăn</th>
-                            <th>Số Lượng</th>
-                            <th>Ghi chú</th>
-                            <th>Phí Ship</th>
-                            <th>Tổng Tiền</th>
-                            <th>Ngày Đặt</th>
-                            <th>Trạng Thái</th>
-                            <th>Hành Động</th>
-                        </tr>
-                    </thead>
-                    <tbody id="history-body">
-                    </tbody>
-                </table>
+            <div id="item-3" class="section-content" style="display:none;">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-history"></i> Lịch Sử Giao Hàng</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="history-table" class="table table-hover table-bordered display" style="width:100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th><i class="fas fa-hashtag"></i> Mã Đơn</th>
+                                        <th><i class="fas fa-user"></i> Người Nhận</th>
+                                        <th><i class="fas fa-phone"></i> SĐT</th>
+                                        <th><i class="fas fa-map-marker-alt"></i> Địa chỉ</th>
+                                        <th><i class="fas fa-utensils"></i> Món Ăn</th>
+                                        <th class="text-center"><i class="fas fa-sort-numeric-up"></i> SL</th>
+                                        <th><i class="fas fa-sticky-note"></i> Ghi chú</th>
+                                        <th class="text-right"><i class="fas fa-shipping-fast"></i> Ship</th>
+                                        <th class="text-right"><i class="fas fa-money-bill-wave"></i> Tổng</th>
+                                        <th><i class="fas fa-calendar-alt"></i> Ngày Đặt</th>
+                                        <th class="text-center"><i class="fas fa-info-circle"></i> Trạng Thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="history-body">
+                                    <!-- dữ liệu sẽ được render động ở đây -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-         //Lịch sử giao hàng
-             document.addEventListener('DOMContentLoaded', () => {
-        const token = localStorage.getItem('access_token');
-
-        fetch('/api/shipper/deliveries/delivered', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-        })
-        .then(res => {
-            if (!res.ok) throw new Error('Fetch failed');
-            return res.json();
-        })
-        .then(data => {
-            const deliveries = Array.isArray(data) ? data : data.deliveries;
-            renderDeliveriesHistory(deliveries);
-        })
-        .catch(() => {
-            document.getElementById("history-body").innerHTML =
-                '<tr><td colspan="13" class="text-center">Không có lịch sử giao hàng!</td></tr>';
-        });
-    });
 
 
     // Hàm để render dữ liệu vào bảng Lịch Sử Giao Hàng
@@ -156,27 +192,66 @@
             tbody.innerHTML = '<tr><td colspan="7" class="text-center">Không có dữ liệu!</td></tr>';
             return;
         }
+        // Filter only orders with ON_THE_WAY status
+        const onDeliveries = deliveries.filter(d =>
+            d.deliveryStatusName === 'Đã giao' || d.code === 'COMPLETED' || d.deliveryStatusName === 'Thất bại' || d.code === 'FAILED'
+        );
 
+        if (onDeliveries.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="13" class="text-center">Không có đơn hàng!</td></tr>';
+            return;
+        }
+        const grouped = groupByOrderId(onDeliveries);
         // Duyệt qua các đơn hàng đã giao và thêm chúng vào bảng
-        deliveries.forEach((delivery, idx) => {
+        grouped.forEach((delivery, idx) => {
+            const statusBadge = delivery.deliveryStatusName === 'COMPLETED' || delivery.deliveryStatusName === 'Đã giao' 
+                ? 'badge-completed' 
+                : delivery.deliveryStatusName === 'FAILED' || delivery.deliveryStatusName === 'Thất bại' 
+                ? 'badge-failed' 
+                : 'badge-info';
+                
             tbody.innerHTML += `
                 <tr>
-                    <td>${idx + 1}</td>
-                    <td>${delivery.deliveryId}</td>
+                    <td class="text-center">${idx + 1}</td>
+                    <td><code>${formatOrderCode(delivery.deliveryId)}</code></td>
                     <td>${delivery.receiverName}</td>
                     <td>${delivery.receiverPhone}</td>
-                    <td>${delivery.deliveryAddress}</td>
-                    <td>${delivery.menuItemName}</td>
-                    <td>${delivery.quantity}</td>
-                    <td>${delivery.note}</td>
-                    <td>${formatMoney(delivery.fee)}</td>
-                    <td>${formatMoney(delivery.total)}</td>
-                    <td>${new Date(delivery.createdAt).toLocaleString()}</td>
-                    <td>${delivery.deliveryStatusName}</td>
-                    <td>-</td>
+                    <td><small>${delivery.deliveryAddress}</small></td>
+                    <td>${delivery.menuItems.map((m, i) => `${m} x${delivery.quantities[i]}`).join("<br>")}</td>
+                    <td class="text-center">${Array.isArray(delivery.quantities) ? delivery.quantities.reduce((a, b) => a + b, 0) : delivery.quantities}</td>
+                    <td><small>${delivery.note || '-'}</small></td>
+                    <td class="text-right">${formatMoney(delivery.fee)}</td>
+                    <td class="text-right font-weight-bold">${formatMoney(delivery.total)}</td>
+                    <td><small>${new Date(delivery.createdAt).toLocaleString('vi-VN')}</small></td>
+                    <td class="text-center"><span class="badge badge-status ${statusBadge}">${delivery.deliveryStatusName}</span></td>
                 </tr>
             `;
         });
+        // grouped.forEach((d, idx) => {
+        //     const statusBadge = delivery.deliveryStatusName === 'COMPLETED' || delivery.deliveryStatusName === 'Đã giao'
+        //         ? 'badge-completed'
+        //         : delivery.deliveryStatusName === 'FAILED' || delivery.deliveryStatusName === 'Thất bại'
+        //         ? 'badge-failed'
+        //         : 'badge-info';
+
+        //     tbody.innerHTML += `
+        //         <tr>
+        //             <td class="text-center">${idx + 1}</td>
+        //             <td><code>${formatOrderCode(d.orderId)}</code></td>
+        //             <td>${d.receiverName ?? ""}</td>
+        //             <td>${d.receiverPhone ?? ""}</td>
+        //             <td title="${d.deliveryAddress ?? ""}">${d.deliveryAddress ?? ""}</td>
+        //             <td>${d.menuItems.map((m, i) => `${m} x${d.quantities[i]}`).join("<br>")}</td>
+        //             <td class="text-center">${Array.isArray(d.quantities) ? d.quantities.reduce((a, b) => a + b, 0) : d.quantities}</td>
+        //             <td title="${d.notes.filter(n => n).join(', ')}">${d.notes.filter(n => n).join("<br>")}</td>
+        //             <td class="text-right">${formatMoney(d.fee)}</td>
+        //             <td class="text-right font-weight-bold">${formatMoney(d.total)}</td>
+        //             <td><small>${d.createdAt ? (new Date(d.createdAt)).toLocaleString('vi-VN') : ""}</small></td>
+        //             <td class="text-center"><span class="badge badge-status badge-pending">${d.deliveryStatusName ?? 'Chờ giao'}</span></td>
+        //             <td class="text-center"><span class="badge badge-status ${statusBadge}">${delivery.deliveryStatusName}</span></td>
+        //         </tr>
+        //     `;
+        // });
     }
 
 
@@ -188,24 +263,47 @@
 
     
 
+    // Function to check and set authentication token
+    function checkAuthToken() {
+        // Check if token exists in localStorage
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            // Try to get token from cookies or session
+            console.warn('No access token found in localStorage');
+        }
+        return token;
+    }
+    
     // Khởi tạo khi trang load
-    document.addEventListener('DOMContentLoaded', () => showSection('item-1'));
-    //Đơn chờ giao
+    document.addEventListener('DOMContentLoaded', () => {
+        showSection('item-1');
+        
+        // Check authentication token
+        const token = checkAuthToken();
+        
+        // Get user info
         fetch('/api/shipper/deliveries/me', {
-        method: 'GET',
-        credentials: 'include'
-    })
-    .then(res => res.json())
-    .then(data => {
-        const isShipper = data.roles && data.roles.includes("Shipper");
-        let roleHtml = isShipper ? `<span class="badge bg-info">Shipper</span>` : '';
-        document.getElementById('user-info').innerHTML =
-    `<span style="font-weight:600;">Xin chào: ${data.userName ?? ''}</span>${roleHtml}<br>
-     <button class="btn btn-danger btn-sm mt-2" onclick="logout()">Đăng xuất</button>`;
+            method: 'GET',
+            headers: token ? { 'Authorization': `Bearer ${token}` } : {},
+            credentials: 'include'
+        })
+        .then(res => res.json())
+        .then(data => {
+            const isShipper = data.roles && data.roles.includes("Shipper");
+            let roleHtml = isShipper ? `<span class="badge bg-info">Shipper</span>` : '';
+            document.getElementById('user-info').innerHTML =
+        `<span style="font-weight:600;">Xin chào: ${data.userName ?? ''}</span>${roleHtml}<br>
+         <button class="btn btn-danger btn-sm mt-2" onclick="logout()">Đăng xuất</button>`;
 
-    })
-    .catch(err => {
-        document.getElementById('user-info').innerHTML = 'Chưa có dữ liệu';
+        })
+        .catch(err => {
+            console.error('Error fetching user info:', err);
+            document.getElementById('user-info').innerHTML = 'Chưa có dữ liệu';
+        });
+        
+        // Set today's date
+        const today = new Date();
+        document.getElementById('today-time').innerText = 'Hôm nay ngày: ' + today.toLocaleDateString('vi-VN');
     });
     // // Fetch today's date
     // fetch('/api/shipper/deliveries/today')
@@ -218,6 +316,15 @@
     function formatMoney(money) {
         if (money == null) return '';
         return money.toLocaleString('vi-VN') + " đ";
+    }
+    
+    // Format order code from ID
+    function formatOrderCode(id) {
+        if (!id) return '';
+        // If it's already formatted as ORD code, return as is
+        if (id.startsWith('ORD')) return id;
+        // Otherwise format as ORD + first 8 chars uppercase
+        return 'ORD' + id.toString().substring(0, 8).toUpperCase();
     }
     function logout() {
         localStorage.removeItem('access_token'); // Xóa token
@@ -248,28 +355,40 @@
         const tbody = document.getElementById("deliveries-body");
         tbody.innerHTML = "";
         if (!deliveries || deliveries.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="12" class="text-center">Không có dữ liệu!</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="13" class="text-center">Không có dữ liệu!</td></tr>';
             return;
         }
-        const grouped = groupByOrderId(deliveries);
+        // Filter only orders with ON_THE_WAY status
+        const onDeliveries = deliveries.filter(d =>
+            d.deliveryStatusName === 'Chờ xử lý' || d.code === 'PENDING'
+        );
+        if (!onDeliveries || onDeliveries.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="13" class="text-center">Không có dữ liệu!</td></tr>';
+            return;
+        }
+        const grouped = groupByOrderId(onDeliveries);
         grouped.forEach((d, idx) => {
             tbody.innerHTML += `
                 <tr data-orderid="${d.deliveryId}" data-name="${d.receiverName}" data-phone="${d.receiverPhone}" data-fee="${d.fee}" data-totalprice="${d.total}">
-                    <td>${idx + 1}</td>
-                    <td>${d.deliveryId ?? ""}</td>
+                    <td class="text-center">${idx + 1}</td>
+                    <td><code>${formatOrderCode(d.orderId)}</code></td>
                     <td>${d.receiverName ?? ""}</td>
                     <td>${d.receiverPhone ?? ""}</td>
-                    <td>${d.deliveryAddress ?? ""}</td>
+                    <td title="${d.deliveryAddress ?? ""}">${d.deliveryAddress ?? ""}</td>
                     <td>${d.menuItems.map((m, i) => `${m} x${d.quantities[i]}`).join("<br>")}</td>
-                    <td>${d.quantities}</td>
-                    <td>${d.notes.filter(n => n).join("<br>")}</td>
-                    <td>${formatMoney(d.fee)}</td>
-                    <td>${formatMoney(d.total)}</td>
-                    <td>${d.createdAt ? (new Date(d.createdAt)).toLocaleString() : ""}</td>
-                    <td>${d.deliveryStatusName ?? d.code ?? ""}</td>
-                    <td>
-                        <button class="btn btn-sm btn-success" onclick="shipOrder('${d.deliveryId}')">Nhận giao hàng</button>
-                        <button class="btn btn-sm btn-primary" onclick="openStatusPopup('${d.deliveryId}')">Cập nhật trạng thái</button>
+                    <td class="text-center">${Array.isArray(d.quantities) ? d.quantities.reduce((a, b) => a + b, 0) : d.quantities}</td>
+                    <td>${d.note}</td>
+                    <td class="text-right">${formatMoney(d.fee)}</td>
+                    <td class="text-right font-weight-bold">${formatMoney(d.total)}</td>
+                    <td><small>${d.createdAt ? (new Date(d.createdAt)).toLocaleString('vi-VN') : ""}</small></td>
+                    <td class="text-center"><span class="badge badge-status badge-pending">${d.deliveryStatusName ?? 'Chờ giao'}</span></td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-success" onclick="shipOrder('${d.deliveryId}')" title="Nhận giao hàng">
+                            <i class="fas fa-truck"></i>
+                        </button>
+                        <button class="btn btn-sm btn-info ml-1" onclick="openStatusPopup('${d.deliveryId}')" title="Cập nhật trạng thái">
+                            <i class="fas fa-edit"></i>
+                        </button>
                     </td>
                 </tr>
             `;
@@ -278,16 +397,36 @@
 
     // API call to ship the order (change status to 'ON_THE_WAY')
        function shipOrder(deliveryId) {
+        // Get authentication token
+        const token = localStorage.getItem('access_token');
+        
         // Update status to "ON_THE_WAY" when "Nhận giao hàng" is clicked
         fetch(`/api/shipper/deliveries/update-status/${deliveryId}?status=ON_THE_WAY`, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': token ? `Bearer ${token}` : ''
+            },
+            credentials: 'include'
         })
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
         .then(data => {
             if (data.message) {
-                alert(data.message);
-                location.reload(); // Reload the page after status update
+                if(data.message == 'ON_THE_WAY'){
+                    alert('Trạng thái giao hàng đã được cập nhật thành: Nhận giao hàng');
+                }else{
+                    alert(data.message);
+                }
+                // Refresh data and switch to update status tab
+                refreshDeliveryData();
+                showSection('item-2');
+            } else {
+                alert('Cập nhật thất bại. Vui lòng thử lại.');
             }
         })
         .catch(err => {
@@ -298,8 +437,9 @@
 
     // API call to open the status update popup and populate the fields
        function openStatusPopup(deliveryId) {
-        
-        document.getElementById('order-id').value = deliveryId;
+        // Store the actual delivery ID in a data attribute
+        document.getElementById('order-id').value = formatOrderCode(deliveryId);
+        document.getElementById('order-id').setAttribute('data-delivery-id', deliveryId);
 
         $('#status-popup').modal('show');
     }
@@ -307,9 +447,10 @@
 
     // API call to update delivery status
            function updateStatus() {
-        const orderId = document.getElementById('order-id').value; // Get the Order ID
+        const orderIdElement = document.getElementById('order-id');
+        const orderId = orderIdElement.getAttribute('data-delivery-id'); // Get the actual delivery ID
         const status = document.getElementById('order-status').value; // Get the selected status (completed / failed)
-        const failureReason = document.getElementById('failure-reason').value; // Get the failure reason (if any)
+        //const failureReason = document.getElementById('failure-reason').value; // Get the failure reason (if any)
 
         // Prepare the appropriate API endpoint based on the status
         let apiUrl = '';
@@ -325,40 +466,239 @@
             statusName = 'Thất bại';
         }
 
+        // Get authentication token
+        const token = localStorage.getItem('access_token');
+        
         // Send the request to update the status
         fetch(apiUrl, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                failureReason: failureReason // Send failure reason if applicable
-            })
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': token ? `Bearer ${token}` : ''
+            },
+            credentials: 'include',
+            // body: JSON.stringify({
+            //     failureReason: failureReason  
+            // })
         })
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) {
+                if (res.status === 401) {
+                    throw new Error('Không có quyền truy cập. Vui lòng đăng nhập lại.');
+                } else if (res.status === 400) {
+                    return res.json().then(data => {
+                        throw new Error(data.message || 'Yêu cầu không hợp lệ');
+                    });
+                } else {
+                    throw new Error(`Lỗi server: ${res.status}`);
+                }
+            }
+            return res.json();
+        })
         .then(data => {
             if (data.message) {
-                // If the update is successful, show a success message and reload the page
+                // If the update is successful, show a success message and refresh data
                 alert(`Trạng thái giao hàng đã được cập nhật thành '${statusName}'`);
-                location.reload(); // Reload the page after a successful update
+                closeStatusPopup(); // Close modal and reset form
+                // Refresh data without reloading the entire page
+                refreshDeliveryData();
+                // If completed, switch to history tab to show the updated order
+                if (status === 'completed') {
+                    setTimeout(() => showSection('item-3'), 500);
+                }
+            } else {
+                alert('Cập nhật thất bại. Vui lòng thử lại.');
             }
         })
         .catch(err => {
             console.error("Error updating status: ", err);
-            alert('Lỗi khi cập nhật trạng thái. Vui lòng thử lại.');
+            alert(err.message || 'Lỗi khi cập nhật trạng thái. Vui lòng thử lại.');
         });
     }
 
-    // Fetch deliveries data
-    fetch('/api/shipper/deliveries/list', {
-        method: 'GET',
-        credentials: 'include'
-    })
-    .then(res => res.json())
-    .then(data => {
-        renderDeliveries(data);
-    })
-    .catch(err => {
-        document.getElementById('deliveries-body').innerHTML = '<tr><td colspan="12" class="text-center">Không có dữ liệu!</td></tr>';
-    });
+    // Function to show loading animation
+    function showLoading(elementId) {
+        // All tables have 13 columns
+        document.getElementById(elementId).innerHTML = 
+            '<tr><td colspan="13" class="table-loading"><i class="fas fa-spinner"></i> Đang tải dữ liệu...</td></tr>';
+    }
+    
+    // Function to refresh all delivery data
+    function refreshDeliveryData() {
+        // Show loading animations
+        showLoading('deliveries-body');
+        showLoading('update-status-body');
+        showLoading('history-body');
+        
+        // Fetch pending deliveries
+        fetch('/api/shipper/deliveries/list', {
+            method: 'GET',
+            credentials: 'include'
+        })
+        .then(res => res.json())
+        .then(data => {
+            renderDeliveries(data);
+            // Also render to update status section
+            renderDeliveriesForUpdate(data);
+            renderDeliveriesHistory(data);
+        })
+        .catch(err => {
+            document.getElementById('deliveries-body').innerHTML = '<tr><td colspan="13" class="text-center">Không có dữ liệu!</td></tr>';
+            document.getElementById('update-status-body').innerHTML = '<tr><td colspan="13" class="text-center">Không có dữ liệu!</td></tr>';
+        });
+
+        // Fetch delivered/history
+        // const token = localStorage.getItem('access_token');
+        // fetch('/api/shipper/deliveries/delivered', {
+        //     method: 'GET',
+        //     headers: {
+        //         'Authorization': `Bearer ${token}`,
+        //         'Content-Type': 'application/json'
+        //     },
+        //     credentials: 'include'
+        // })
+        // .then(res => {
+        //     if (!res.ok) throw new Error('Fetch failed');
+        //     return res.json();
+        // })
+        // .then(data => {
+        //     const deliveries = Array.isArray(data) ? data : data.deliveries;
+            
+        // })
+        // .catch(() => {
+        //     document.getElementById("history-body").innerHTML =
+        //         '<tr><td colspan="13" class="text-center">Không có lịch sử giao hàng!</td></tr>';
+        // });
+        
+        // Comment out DataTables reinitialization to avoid errors
+        // setTimeout(initDataTables, 300);
+    }
+
+    // Function to render deliveries for update status section
+    function renderDeliveriesForUpdate(deliveries) {
+        const tbody = document.getElementById("update-status-body");
+        tbody.innerHTML = "";
+        if (!deliveries || deliveries.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="13" class="text-center">Không có dữ liệu!</td></tr>';
+            return;
+        }
+        
+        // Filter only orders with ON_THE_WAY status
+        const onTheWayDeliveries = deliveries.filter(d => 
+            d.deliveryStatusName === 'ON_THE_WAY' || d.code === 'ON_THE_WAY'
+        );
+        
+        if (onTheWayDeliveries.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="13" class="text-center">Không có đơn hàng đang giao!</td></tr>';
+            return;
+        }
+
+        const grouped = groupByOrderId(onTheWayDeliveries);
+        grouped.forEach((d, idx) => {
+            tbody.innerHTML += `
+                <tr data-orderid="${d.deliveryId}" data-name="${d.receiverName}" data-phone="${d.receiverPhone}" data-fee="${d.fee}" data-totalprice="${d.total}">
+                    <td class="text-center">${idx + 1}</td>
+                    <td><code>${formatOrderCode(d.orderId)}</code></td>
+                    <td>${d.receiverName ?? ""}</td>
+                    <td>${d.receiverPhone ?? ""}</td>
+                    <td title="${d.deliveryAddress ?? ""}">${d.deliveryAddress ?? ""}</td>
+                    <td>${d.menuItems.map((m, i) => `${m} x${d.quantities[i]}`).join("<br>")}</td>
+                    <td class="text-center">${Array.isArray(d.quantities) ? d.quantities.reduce((a, b) => a + b, 0) : d.quantities}</td>
+                    <td>${d.note}</td>
+                    <td class="text-right">${formatMoney(d.fee)}</td>
+                    <td class="text-right font-weight-bold">${formatMoney(d.total)}</td>
+                    <td><small>${d.createdAt ? (new Date(d.createdAt)).toLocaleString('vi-VN') : ""}</small></td>
+                    <td class="text-center"><span class="badge badge-status badge-delivering">Đang giao</span></td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-warning" onclick="openStatusPopup('${d.deliveryId}')" title="Cập nhật trạng thái giao hàng">
+                            <i class="fas fa-check-circle"></i> Cập nhật
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    // Function to close status popup
+    function closeStatusPopup() {
+        $('#status-popup').modal('hide');
+        // Reset form
+        document.getElementById('order-status').value = 'completed';
+    }
+    
+    // Function to toggle failure reason field (kept for compatibility)
+    function toggleFailureReason() {
+        // No longer needed since failure reason field is removed
+        // This function is kept to avoid errors from existing calls
+    }
+    
+    // Function to view order details
+    function viewOrderDetails(deliveryId) {
+        alert(`Xem chi tiết đơn hàng: ${formatOrderCode(deliveryId)}`);
+        // You can implement a modal or redirect to details page here
+    }
+    
+    // Initialize DataTables
+    function initDataTables() {
+        try {
+            // Check if tables exist before initializing
+            if ($.fn.DataTable.isDataTable('#pending-orders-table')) {
+                $('#pending-orders-table').DataTable().destroy();
+            }
+            if ($.fn.DataTable.isDataTable('#update-status-table')) {
+                $('#update-status-table').DataTable().destroy();
+            }
+            if ($.fn.DataTable.isDataTable('#history-table')) {
+                $('#history-table').DataTable().destroy();
+            }
+            
+            // Initialize DataTables with Vietnamese language
+            const dataTableOptions = {
+                language: {
+                    "sProcessing": "Đang xử lý...",
+                    "sLengthMenu": "Xem _MENU_ mục",
+                    "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
+                    "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                    "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+                    "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                    "sSearch": "Tìm:",
+                    "oPaginate": {
+                        "sFirst": "Đầu",
+                        "sPrevious": "Trước",
+                        "sNext": "Tiếp",
+                        "sLast": "Cuối"
+                    }
+                },
+                pageLength: 10,
+                responsive: true,
+                order: [[0, 'desc']],
+                columnDefs: [
+                    { orderable: false, targets: -1 } // Disable sorting on last column (actions)
+                ]
+            };
+            
+            setTimeout(() => {
+                // Only initialize if table has data rows (not just loading/empty message)
+                if ($('#pending-orders-table tbody tr').length > 0 && !$('#pending-orders-table tbody tr td').hasClass('table-loading')) {
+                    $('#pending-orders-table').DataTable(dataTableOptions);
+                }
+                if ($('#update-status-table tbody tr').length > 0 && !$('#update-status-table tbody tr td').hasClass('table-loading')) {
+                    $('#update-status-table').DataTable(dataTableOptions);
+                }
+                if ($('#history-table tbody tr').length > 0 && !$('#history-table tbody tr td').hasClass('table-loading')) {
+                    $('#history-table').DataTable(dataTableOptions);
+                }
+            }, 100);
+        } catch (error) {
+            console.error('Error initializing DataTables:', error);
+        }
+    }
+
+    // Initial data load
+    refreshDeliveryData();
+    
+    // Comment out DataTables initialization to avoid errors
+    // setTimeout(initDataTables, 500);
 
     // Switch section
         function showSection(id) {
@@ -386,44 +726,241 @@
             navLinks[2].classList.add('active'); // Thêm 'active' cho phần tử thứ 3
         }
     }
-
-    document.addEventListener('DOMContentLoaded', () => showSection('item-1'));
 </script>
 
 <style>
-    .summary-box {
-        width: 300px; /* Chiều ngang gọn dễ nhìn */
-        background-color: #f8f9fa;
-        border: 2px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        text-align: left;
+    /* Professional Table Styling */
+    .table {
+        font-size: 13px;
     }
-
+    
+    .table thead th {
+        vertical-align: middle;
+        white-space: nowrap;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        padding: 0.5rem;
+    }
+    
+    .table tbody td {
+        vertical-align: middle;
+        padding: 0.5rem;
+    }
+    
+    /* Compact columns */
+    .table th:nth-child(1), /* # */
+    .table td:nth-child(1) {
+        width: 40px;
+    }
+    
+    .table th:nth-child(2), /* Mã Đơn */
+    .table td:nth-child(2) {
+        width: 100px;
+    }
+    
+    .table th:nth-child(7), /* SL */
+    .table td:nth-child(7) {
+        width: 40px;
+    }
+    
+    /* Address column */
+    .table th:nth-child(5),
+    .table td:nth-child(5) {
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    /* Notes column */
+    .table th:nth-child(8),
+    .table td:nth-child(8) {
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    /* Action column */
+    .table th:nth-child(13),
+    .table td:nth-child(13) {
+        width: 100px;
+        white-space: nowrap;
+    }
+    
+    /* Card Styling */
+    .card {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .card-header {
+        border-bottom: 3px solid rgba(0,0,0,0.1);
+        padding: 1rem 1.5rem;
+    }
+    
+    .card-header h5 {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    
+    .card-header i {
+        margin-right: 8px;
+    }
+    
+    /* Navigation Styling */
     .nav-container {
-        border: 2px solid #ddd;
-        border-radius: 8px;
+        border: none;
+        border-radius: 10px;
         background-color: #fff;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     }
 
     .nav-pills .nav-link {
         font-weight: 600;
-        padding: 12px 20px;
+        padding: 12px 24px;
         margin-right: 10px;
-        color: #007bff;
+        color: #495057;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
     }
 
-        .nav-pills .nav-link.active {
-            background-color: #007bff;
-            color: white;
-        }
-
-    .bg-light {
-        background-color: #f8f9fa !important;
+    .nav-pills .nav-link:hover {
+        background-color: #f8f9fa;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    .modal .modal-dialog {
-        max-width: 500px;
+    .nav-pills .nav-link.active {
+        background-color: #007bff;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0,123,255,0.3);
     }
+
+    /* Button Styling */
+    .btn {
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: none;
+        padding: 4px 12px;
+    }
+    
+    .btn-sm {
+        padding: 3px 8px;
+        font-size: 12px;
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .btn-success {
+        background-color: #28a745;
+    }
+    
+    .btn-primary {
+        background-color: #007bff;
+    }
+    
+    .btn-warning {
+        background-color: #ffc107;
+        color: #212529;
+    }
+    
+    .btn-info {
+        background-color: #17a2b8;
+    }
+    
+    /* Status Badge Styling */
+    .badge-status {
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    
+    .badge-pending {
+        background-color: #ffc107;
+        color: #212529;
+    }
+    
+    .badge-delivering {
+        background-color: #17a2b8;
+        color: white;
+    }
+    
+    .badge-completed {
+        background-color: #28a745;
+        color: white;
+    }
+    
+    .badge-failed {
+        background-color: #dc3545;
+        color: white;
+    }
+    
+    /* Modal Styling */
+    .modal-content {
+        border-radius: 10px;
+        border: none;
+    }
+    
+    .modal-header {
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #dee2e6;
+        border-radius: 10px 10px 0 0;
+    }
+    
+    /* Responsive Table */
+    .table-responsive {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    
+    /* User Info Box */
+    #user-info {
+        background: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    /* DataTables Custom Styling */
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.3em 0.8em;
+        margin: 0 0.2em;
+        border-radius: 4px;
+    }
+    
+    .dataTables_wrapper .dataTables_filter input {
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        padding: 6px 12px;
+    }
+    
+    .dataTables_wrapper .dataTables_length select {
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        padding: 4px 8px;
+    }
+    
+    /* Loading Animation */
+    .table-loading {
+        text-align: center;
+        padding: 40px;
+        color: #6c757d;
+    }
+    
+    .table-loading i {
+        font-size: 2rem;
+        animation: spin 1s linear infinite;
+    }
+    
+     
 </style>

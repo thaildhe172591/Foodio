@@ -20,42 +20,41 @@ namespace FoodioAPI.Services.Implements
         public async Task<List<DeliveryShipperDTO>> GetDeliveriesByShipperAsync(string username)
         {
             var result = await (
-    from d in _context.Deliveries
-    join ds in _context.DeliveryStatuses on d.StatusId equals ds.Id
-    join o in _context.Orders on d.OrderId equals o.Id
-    join oi in _context.OrderItems on o.Id equals oi.OrderId
-    join mi in _context.MenuItems on oi.MenuItemId equals mi.Id
-    join odi in _context.OrderDeliveryInfos on o.Id equals odi.OrderId
-    join ot in _context.OrderTypes on o.OrderTypeId equals ot.Id
-    join u in _context.Users on d.ShipperId equals u.Id
-    join ur in _context.UserRoles on u.Id equals ur.UserId into urJoin
-    from ur in urJoin.DefaultIfEmpty()
-    join r in _context.Roles on ur.RoleId equals r.Id into rJoin
-    from r in rJoin.DefaultIfEmpty()
-    where ot.Code == "DELIVERY"
-          && ds.Code == "PENDING"
-          && r != null && r.Name == "Shipper"
-          && u.UserName == username
-    select new DeliveryShipperDTO
-    {
-        DeliveryId = d.Id,
-        ReceiverName = odi.ReceiverName,
-        MenuItemName = mi.Name,
-        ReceiverPhone = odi.ReceiverPhone,
-        DeliveryAddress = odi.DeliveryAddress,
-        Quantity = oi.Quantity,
-        Note = oi.Note,
-        Total = o.Total,
-        Fee = d.Fee,
-        CreatedAt = o.CreatedAt,
-        Code = ds.Code,
-        DeliveryStatusName = ds.Name,
-        OrderUserName = u.UserName,
-        RoleName = r.Name
-    }
-).ToListAsync();
-
-
+                                 from d in _context.Deliveries
+                                 join ds in _context.DeliveryStatuses on d.StatusId equals ds.Id
+                                 join o in _context.Orders on d.OrderId equals o.Id
+                                 join oi in _context.OrderItems on o.Id equals oi.OrderId
+                                 join mi in _context.MenuItems on oi.MenuItemId equals mi.Id
+                                 join odi in _context.OrderDeliveryInfos on o.Id equals odi.OrderId
+                                 join ot in _context.OrderTypes on o.OrderTypeId equals ot.Id
+                                 join u in _context.Users on d.ShipperId equals u.Id
+                                 join ur in _context.UserRoles on u.Id equals ur.UserId into urJoin
+                                 from ur in urJoin.DefaultIfEmpty()
+                                 join r in _context.Roles on ur.RoleId equals r.Id into rJoin
+                                 from r in rJoin.DefaultIfEmpty()
+                                 where ot.Code == "DELIVERY"
+                                       //&& ds.Code == "PENDING"
+                                       && r != null && r.Name == "Shipper"
+                                       && u.UserName == username
+                                 select new DeliveryShipperDTO
+                                 {
+                                     DeliveryId = d.Id,
+                                     ReceiverName = odi.ReceiverName,
+                                     MenuItemName = mi.Name,
+                                     ReceiverPhone = odi.ReceiverPhone,
+                                     DeliveryAddress = odi.DeliveryAddress,
+                                     Quantity = oi.Quantity,
+                                     Note = oi.Note,
+                                     Total = o.Total,
+                                     Fee = d.Fee,
+                                     CreatedAt = o.CreatedAt,
+                                     Code = ds.Code,
+                                     DeliveryStatusName = ds.Name,
+                                     OrderUserName = u.UserName,
+                                     RoleName = r.Name,
+                                     OrderId = o.Id
+                                 }
+                             ).ToListAsync();
             return result;
         }
 
