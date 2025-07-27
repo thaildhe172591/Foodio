@@ -210,6 +210,71 @@
 
         $(function () {
             usersTable = $("#usersTable").DataTable({
+                serverSide: true,
+                processing: true,
+                paging: true,
+                searching: false,
+                pageLength: 10,
+                lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
+                language: {
+                    processing: "Đang tải...",
+                    lengthMenu: "Hiển thị _MENU_ mục",
+                    zeroRecords: "Không tìm thấy dữ liệu",
+                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+                    infoEmpty: "Hiển thị 0 đến 0 của 0 mục",
+                    infoFiltered: "(lọc từ _MAX_ mục)",
+                    paginate: {
+                        first: "Đầu",
+                        last: "Cuối",
+                        next: "Tiếp",
+                        previous: "Trước"
+                    }
+                },
+                ajax: {
+                    url: `${apiBase}/search-staff`,
+                    type: 'GET',
+                    headers: { 
+                        Authorization: `Bearer ${token}` 
+                    },
+                    data: function(d) {
+                        // Store the draw parameter for response
+                        const drawParam = d.draw;
+                        
+                        const params = {
+                            page: Math.floor(d.start / d.length) + 1,
+                            pageSize: d.length
+                        };
+                        
+                        const kw = $("#keyword").val();
+                        if (kw) params.searchKeyword = kw;
+                        
+                        const role = $("#roleFilter").val();
+                        if (role) params.roleId = role;
+                        
+                        const locked = $("#lockFilter").val();
+                        if (locked !== '') params.isLocked = locked;
+                        
+                        // Add draw parameter for DataTables
+                        params.draw = drawParam;
+                        
+                        return params;
+                    },
+                    dataFilter: function(data) {
+                        // Parse the JSON response
+                        const json = JSON.parse(data);
+                        const paginatedData = json.data;
+                        
+                        // Create DataTables expected format
+                        const result = {
+                            draw: parseInt($('#usersTable').DataTable().settings()[0].iDraw),
+                            recordsTotal: paginatedData.totalCount,
+                            recordsFiltered: paginatedData.totalCount,
+                            data: paginatedData.data || []
+                        };
+                        
+                        return JSON.stringify(result);
+                    }
+                },
                 columns: [
                     { data: "email" },
                     { data: "userName" },
@@ -236,20 +301,18 @@
             });
 
             loadRoles();
-            fetchUsers();
 
-            // search
-            $("#btnSearch").click(fetchUsers);
+            // search - reload datatable when filters change
             
             // Tự động tìm kiếm khi nhập text
             let searchTimeout;
             $('#keyword').on('input keyup', function() {
                 clearTimeout(searchTimeout);
-                searchTimeout = setTimeout(fetchUsers, 500); // Debounce 500ms
+                searchTimeout = setTimeout(() => usersTable.ajax.reload(), 500); // Debounce 500ms
             });
             
             // Tự động tìm kiếm khi thay đổi dropdown
-            $('#roleFilter, #lockFilter').on('change', fetchUsers);
+            $('#roleFilter, #lockFilter').on('change', () => usersTable.ajax.reload());
             
             // Khởi tạo DataTable cho ca làm việc
             window.shiftsTable = $('#shiftsTable').DataTable({
@@ -347,7 +410,7 @@
                 });
                 if (res.ok) {
                     closeModalSafely('#userModal');
-                    await fetchUsers();
+                    usersTable.ajax.reload();
                     await Swal.fire({
                         icon: 'success',
                         title: 'Thành công!',
@@ -405,7 +468,7 @@
                         timer: 2000,
                         showConfirmButton: false
                     });
-                    await fetchUsers();
+                    usersTable.ajax.reload();
                 } else {
                     const err = await res.json();
                     await Swal.fire({
@@ -459,23 +522,6 @@
             });
         }
 
-        async function fetchUsers() {
-            const params = new URLSearchParams();
-            const kw = $("#keyword").val();
-            if (kw) params.append('searchKeyword', kw);
-            const role = $("#roleFilter").val();
-            if (role) params.append('roleId', role);
-            const locked = $("#lockFilter").val();
-            if (locked !== '') params.append('isLocked', locked);
-
-            const res = await fetch(`${apiBase}/search-staff?${params.toString()}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            const json = await res.json();
-            usersTable.clear();
-            usersTable.rows.add(json.data.data ?? json.data);
-            usersTable.draw();
-        }
 
         function resetModal(user = null) {
             $("#userId").val(user?.id || '');
