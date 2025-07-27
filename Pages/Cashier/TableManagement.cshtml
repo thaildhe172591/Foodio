@@ -41,6 +41,105 @@
     </div>
 </div>
 
+<!-- Order Details Modal -->
+<div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title" id="orderDetailsModalLabel">
+                    <i class="bi bi-clipboard-check me-2"></i>Chi tiết đơn hàng đang xử lý
+                </h5>
+                <button type="button" class="btn-close btn-close-white" onclick="closeOrderModal()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Loading state -->
+                <div id="orderModalLoading" class="text-center py-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2 text-muted">Đang tải thông tin đơn hàng...</p>
+                </div>
+
+                <!-- Order details content -->
+                <div id="orderDetailsContent" style="display: none;">
+                    <!-- Order info -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>Mã đơn:</strong> <span id="orderCode" class="text-primary">---</span>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Bàn số:</strong> <span id="tableNumber" class="text-success">---</span>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>Thời gian đặt:</strong> <span id="orderTime">---</span>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Trạng thái:</strong> <span id="orderStatus" class="badge">---</span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>Khách hàng:</strong> <span id="customerName">---</span>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>SĐT:</strong> <span id="customerPhone">---</span>
+                        </div>
+                    </div>
+
+                    <!-- Order items -->
+                    <div class="mb-3">
+                        <h6 class="fw-bold">Món đã đặt:</h6>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Món ăn</th>
+                                        <th class="text-center">SL</th>
+                                        <th class="text-end">Đơn giá</th>
+                                        <th class="text-end">Thành tiền</th>
+                                        <th class="text-center">Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orderItemsList">
+                                    <!-- Items will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Total and note -->
+                    <div class="row">
+                        <div class="col-md-8">
+                            <strong>Ghi chú:</strong> <span id="orderNote" class="text-muted">---</span>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <h5><strong>Tổng cộng: <span id="orderTotal" class="text-success">0đ</span></strong></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error state -->
+                <div id="orderModalError" style="display: none;" class="text-center py-4">
+                    <i class="bi bi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>
+                    <p class="mt-2 text-danger">Không thể tải thông tin đơn hàng</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeOrderModal()">
+                    <i class="bi bi-x-circle me-1"></i>Đóng
+                </button>
+                <button type="button" class="btn btn-primary" onclick="goToFoodManagement()">
+                    <i class="bi bi-plus-circle me-1"></i>Thêm món
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
     .sidebar-link {
         text-decoration: none;
@@ -104,6 +203,33 @@
             margin-right: 10px;
             font-size: 20px;
         }
+
+    /* Table card hover effects */
+    .table-card:hover .card {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .table-card .card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    /* Booked table styling */
+    .border-warning {
+        border-width: 2px !important;
+    }
+
+    /* Modal styling */
+    .modal-header.bg-info {
+        background-color: #0dcaf0 !important;
+    }
+
+    /* Badge styling in tables */
+    .table .badge {
+        font-size: 0.75rem;
+    }
 </style>
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -139,6 +265,7 @@
 
             const statusText = {
                 "Empty": "Trống",
+                "Book": "Đang có khách",
                 "Occupied": "Đang có khách",
                 "Reserved": "Đã đặt bàn",
                 "WaitingPayment": "Chờ thanh toán"
@@ -146,6 +273,7 @@
 
             const statusColor = {
                 "Empty": "success",
+                "Book": "warning",
                 "Occupied": "warning",
                 "Reserved": "info",
                 "WaitingPayment": "danger"
@@ -156,17 +284,27 @@
             tables.forEach(table => {
                 const card = document.createElement('div');
                 card.className = 'col-md-3 mb-4';
-                        card.innerHTML = `
-            <a href="/Cashier/FoodManagementCashier"
-               onclick="selectTable('${table.id}', ${table.tableNumber}, '${table.status}', ${table.activeOrderCount})"
-               class="d-block text-decoration-none" id="table-${table.id}">
-                <div class="card text-center shadow-sm rounded-3">
+                
+                // Different behavior for booked tables vs empty tables
+                const isBooked = table.status === 'Book' || table.status === 'Occupied';
+                const clickHandler = isBooked 
+                    ? `onclick="showOrderDetails(${table.tableNumber}); return false;"`
+                    : `onclick="selectTable('${table.id}', ${table.tableNumber}, '${table.status}', ${table.activeOrderCount})"`;
+                    
+                const href = isBooked ? '#' : '/Cashier/FoodManagementCashier';
+                
+                card.innerHTML = `
+            <a href="${href}"
+               ${clickHandler}
+               class="d-block text-decoration-none table-card" id="table-${table.id}">
+                <div class="card text-center shadow-sm rounded-3 ${isBooked ? 'border-warning' : ''}">
                     <div class="card-body">
                         <div class="fw-bold mb-2">Bàn ${table.tableNumber}</div>
                         <p class="text-muted">${statusText[table.status] || 'Không rõ'}</p>
                         <span class="badge bg-${statusColor[table.status] || 'secondary'}">
                             ${table.activeOrderCount} đơn
                         </span>
+                        ${isBooked ? '<div class="mt-2"><small class="text-info"><i class="bi bi-info-circle"></i> Nhấp để xem chi tiết</small></div>' : ''}
                     </div>
                 </div>
             </a>
@@ -180,9 +318,155 @@
         $(function () {
             fetchTables();
         });
-                function selectTable(id, tableNumber, status, activeOrderCount) {
+        function selectTable(id, tableNumber, status, activeOrderCount) {
             const table = { id, tableNumber, status, activeOrderCount };
             localStorage.setItem("selectedTable", JSON.stringify(table));
+        }
+
+        // Show order details popup for booked tables
+        async function showOrderDetails(tableNumber) {
+            // Show modal and loading state
+            const modal = new bootstrap.Modal(document.getElementById('orderDetailsModal'));
+            modal.show();
+            
+            // Show loading, hide content and error
+            document.getElementById('orderModalLoading').style.display = 'block';
+            document.getElementById('orderDetailsContent').style.display = 'none';
+            document.getElementById('orderModalError').style.display = 'none';
+            
+            try {
+                // Get authentication token
+                const token = localStorage.getItem('access_token');
+                if (!token) {
+                    throw new Error('Vui lòng đăng nhập lại');
+                }
+
+                // Call API to get order details
+                const response = await fetch(`/api/CartV2/get-order-by-table/${tableNumber}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.status === 'Success') {
+                    // Success - populate modal with order details
+                    populateOrderDetails(result.data);
+                } else {
+                    // Error from API
+                    throw new Error(result.message || 'Không thể tải thông tin đơn hàng');
+                }
+
+            } catch (error) {
+                console.error('Error fetching order details:', error);
+                showOrderError();
+            }
+        }
+
+        // Populate order details in modal
+        function populateOrderDetails(orderData) {
+            // Hide loading, show content
+            document.getElementById('orderModalLoading').style.display = 'none';
+            document.getElementById('orderDetailsContent').style.display = 'block';
+            document.getElementById('orderModalError').style.display = 'none';
+
+            // Populate basic info
+            document.getElementById('orderCode').textContent = orderData.orderCode;
+            document.getElementById('tableNumber').textContent = orderData.tableNumber;
+            document.getElementById('orderTime').textContent = new Date(orderData.createdAt).toLocaleString('vi-VN');
+            
+            // Status badge
+            const statusElement = document.getElementById('orderStatus');
+            statusElement.textContent = orderData.status;
+            statusElement.className = `badge ${getStatusBadgeClass(orderData.status)}`;
+            
+            document.getElementById('customerName').textContent = orderData.customerName || 'Khách tại bàn';
+            document.getElementById('customerPhone').textContent = orderData.customerPhone || 'Không có';
+            document.getElementById('orderNote').textContent = orderData.note || 'Không có ghi chú';
+            document.getElementById('orderTotal').textContent = formatMoney(orderData.total);
+
+            // Populate order items
+            const itemsList = document.getElementById('orderItemsList');
+            itemsList.innerHTML = '';
+            
+            orderData.items.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.menuItemName}</td>
+                    <td class="text-center">${item.quantity}</td>
+                    <td class="text-end">${formatMoney(item.unitPrice)}</td>
+                    <td class="text-end">${formatMoney(item.totalPrice)}</td>
+                    <td class="text-center">
+                        <span class="badge ${getItemStatusBadgeClass(item.itemStatus)}">${item.itemStatus}</span>
+                    </td>
+                `;
+                itemsList.appendChild(row);
+            });
+
+            // Store current table info for "Thêm món" button
+            const tableInfo = {
+                id: orderData.orderId,
+                tableNumber: orderData.tableNumber,
+                status: 'Book',
+                activeOrderCount: 1
+            };
+            localStorage.setItem("selectedTable", JSON.stringify(tableInfo));
+        }
+
+        // Show error state
+        function showOrderError() {
+            document.getElementById('orderModalLoading').style.display = 'none';
+            document.getElementById('orderDetailsContent').style.display = 'none';
+            document.getElementById('orderModalError').style.display = 'block';
+        }
+
+        // Close order modal
+        function closeOrderModal() {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('orderDetailsModal'));
+            if (modal) {
+                modal.hide();
+            }
+        }
+
+        // Go to food management to add more items
+        function goToFoodManagement() {
+            window.location.href = '/Cashier/FoodManagementCashier';
+        }
+
+        // Helper function to format money
+        function formatMoney(amount) {
+            return amount.toLocaleString('vi-VN') + 'đ';
+        }
+
+        // Get status badge class
+        function getStatusBadgeClass(status) {
+            const statusLower = (status || '').toLowerCase();
+            if (statusLower.includes('pending') || statusLower.includes('chờ')) {
+                return 'bg-warning text-dark';
+            } else if (statusLower.includes('preparing') || statusLower.includes('chuẩn bị')) {
+                return 'bg-info';
+            } else if (statusLower.includes('ready') || statusLower.includes('sẵn sàng')) {
+                return 'bg-success';
+            } else {
+                return 'bg-secondary';
+            }
+        }
+
+        // Get item status badge class
+        function getItemStatusBadgeClass(status) {
+            const statusLower = (status || '').toLowerCase();
+            if (statusLower.includes('pending') || statusLower.includes('chờ')) {
+                return 'bg-warning text-dark';
+            } else if (statusLower.includes('preparing') || statusLower.includes('chuẩn bị')) {
+                return 'bg-info';
+            } else if (statusLower.includes('ready') || statusLower.includes('sẵn sàng')) {
+                return 'bg-success';
+            } else {
+                return 'bg-secondary';
+            }
         }
     </script>
 }

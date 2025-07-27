@@ -9,6 +9,7 @@ namespace FoodioAPI.Services
         Task<Response> CreateOrderAsync(CreateOrderRequestDTO request, string userName);
         Task<Response> CreateOrderByTableAsync(CreateOrderByTableRequestDTO request, string userName);
         Task<OrderDetailDTO?> GetOrderDetailAsync(Guid orderId, string userName);
+        Task<TableOrderDetailDTO?> GetOrderByTableAsync(int tableNumber);
         Task<List<OrderSummaryDTO>> GetOrderSummariesAsync(string userId);
         Task<List<OrderSummaryDTO>> GetOrderSummariesCashAsync(string userId);
         Task<List<DiningTableDTO>> GetDiningTablesAsync();

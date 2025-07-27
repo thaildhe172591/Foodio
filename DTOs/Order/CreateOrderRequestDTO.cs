@@ -92,4 +92,29 @@ namespace FoodioAPI.DTOs.Order
 
         public string? CustomerPhone { get; set; }
     }
+
+    public class TableOrderDetailDTO
+    {
+        public Guid OrderId { get; set; }
+        public string OrderCode { get; set; } = string.Empty;
+        public int TableNumber { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public decimal Total { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public string? CustomerName { get; set; }
+        public string? CustomerPhone { get; set; }
+        public string? Note { get; set; }
+        public List<TableOrderItemDTO> Items { get; set; } = new();
+    }
+
+    public class TableOrderItemDTO
+    {
+        public Guid MenuItemId { get; set; }
+        public string MenuItemName { get; set; } = string.Empty;
+        public int Quantity { get; set; }
+        public decimal UnitPrice { get; set; }
+        public decimal TotalPrice { get; set; }
+        public string? Note { get; set; }
+        public string ItemStatus { get; set; } = string.Empty;
+    }
 } 

@@ -536,5 +536,75 @@ namespace FoodioAPI.Services.Implements
 
             return tables;
         }
+
+        public async Task<TableOrderDetailDTO?> GetOrderByTableAsync(int tableNumber)
+        {
+            try
+            {
+                // Find the table
+                var diningTable = await _context.DiningTables
+                    .FirstOrDefaultAsync(dt => dt.TableNumber == tableNumber);
+
+                if (diningTable == null)
+                {
+                    return null;
+                }
+
+                // Find active order for this table (not DELIVERED, COMPLETED, or CANCELLED)
+                var order = await _context.Orders
+                    .Include(o => o.Status)
+                    .Include(o => o.DeliveryInfo)
+                    .Include(o => o.OrderItems)
+                        .ThenInclude(oi => oi.MenuItem)
+                    .Include(o => o.OrderItems)
+                    .Where(o => o.TableId == diningTable.Id && 
+                               o.Status.Code != "DELIVERED"
+                               )
+                    .OrderByDescending(o => o.CreatedAt)
+                    .FirstOrDefaultAsync();
+
+                if (order == null)
+                {
+                    return null;
+                }
+
+                foreach (var item in order.OrderItems)
+                {
+                    item.StatusHistories = _context.OrderItemStatusHistories
+                        .Include(x=> x.OrderItemStatus)
+                        .Where(x => x.OrderItemId == item.Id).ToList();
+                }
+
+                // Map to DTO
+                var orderDetail = new TableOrderDetailDTO
+                {
+                    OrderId = order.Id,
+                    OrderCode = "ORD" + order.Id.ToString().Substring(0, 8).ToUpper(),
+                    TableNumber = tableNumber,
+                    CreatedAt = order.CreatedAt,
+                    Total = order.Total,
+                    Status = order.Status?.Name ?? "Unknown",
+                    CustomerName = order.DeliveryInfo?.ReceiverName,
+                    CustomerPhone = order.DeliveryInfo?.ReceiverPhone,
+                    Items = order.OrderItems.Select(oi => new TableOrderItemDTO
+                    {
+                        MenuItemId = oi.MenuItemId,
+                        MenuItemName = oi.MenuItem?.Name ?? "Unknown",
+                        Quantity = oi.Quantity,
+                        UnitPrice = oi.UnitPrice,
+                        TotalPrice = oi.UnitPrice * oi.Quantity,
+                        Note = oi.Note,
+                        ItemStatus = oi.StatusHistories.Any() ?  oi.StatusHistories.FirstOrDefault().OrderItemStatus.Name : "",
+                    }).ToList()
+                };
+
+                return orderDetail;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed
+                return null;
+            }
+        }
     }
 } 

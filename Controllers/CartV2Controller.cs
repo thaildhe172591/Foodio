@@ -220,5 +220,53 @@ namespace FoodioAPI.Controllers
                 });
             }
         }
+
+        /// <summary>
+        /// Lấy thông tin đơn hàng đang xử lý của bàn
+        /// </summary>
+        /// <param name="tableNumber">Số bàn</param>
+        /// <returns>Chi tiết đơn hàng</returns>
+        [HttpGet("get-order-by-table/{tableNumber}")]
+        public async Task<IActionResult> GetOrderByTable(int tableNumber)
+        {
+            try
+            {
+                var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+                if (string.IsNullOrEmpty(userName))
+                {
+                    return Unauthorized(new Response
+                    {
+                        Status = ResponseStatus.ERROR,
+                        Message = "Không thể xác thực người dùng"
+                    });
+                }
+
+                var orderDetail = await _orderV2Service.GetOrderByTableAsync(tableNumber);
+                
+                if (orderDetail == null)
+                {
+                    return NotFound(new Response
+                    {
+                        Status = ResponseStatus.ERROR,
+                        Message = "Không tìm thấy đơn hàng đang xử lý cho bàn này"
+                    });
+                }
+
+                return Ok(new Response
+                {
+                    Status = ResponseStatus.SUCCESS,
+                    Message = "Lấy thông tin đơn hàng thành công",
+                    Data = orderDetail
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new Response
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = "Lỗi server: " + ex.Message
+                });
+            }
+        }
     }
 }
