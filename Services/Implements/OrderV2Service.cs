@@ -1,10 +1,11 @@
 using FoodioAPI.Constants;
+using FoodioAPI.Database;
 using FoodioAPI.DTOs;
 using FoodioAPI.DTOs.Order;
 using FoodioAPI.Entities;
-using FoodioAPI.Database;
-using Microsoft.EntityFrameworkCore;
 using FoodioAPI.Services;
+using Microsoft.EntityFrameworkCore;
+using SendGrid.Helpers.Mail;
 
 namespace FoodioAPI.Services.Implements
 {
@@ -247,6 +248,187 @@ namespace FoodioAPI.Services.Implements
                         OrderId = order.Id,
                         Total = total,
                         OrderCode = $"ORD{order.Id.ToString().Substring(0, 8).ToUpper()}"
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return new Response
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = "Có lỗi xảy ra khi tạo đơn hàng: " + ex.Message
+                };
+            }
+        }
+
+        public async Task<Response> CreateOrderByTableAsync(CreateOrderByTableRequestDTO request, string userName)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                // 1. Get DINE_IN order type
+                var orderType = await _context.OrderTypes
+                    .FirstOrDefaultAsync(ot => ot.Code == "DINEIN");
+                
+                if (orderType == null)
+                {
+                    return new Response
+                    {
+                        Status = ResponseStatus.ERROR,
+                        Message = "Loại đơn hàng DINEIN không tồn tại"
+                    };
+                }
+
+                DiningTable diningTable = _context.DiningTables.FirstOrDefault(x => x.TableNumber == request.TableNumber);
+
+                if (diningTable == null)
+                {
+                    return new Response
+                    {
+                        Status = ResponseStatus.ERROR,
+                        Message = "Số bàn không tồn tại"
+                    };
+                }
+                else if (!diningTable.Status.Equals("Empty"))
+                {
+                    return new Response
+                    {
+                        Status = ResponseStatus.ERROR,
+                        Message = "Bàn đang có đơn chưa xử lý xong không thể đặt thêm"
+                    };
+                }
+
+                // 2. Get cashier user
+                User user = _context.User.FirstOrDefault(x => x.UserName == userName);
+                if (user == null)
+                {
+                    return new Response
+                    {
+                        Status = ResponseStatus.ERROR,
+                        Message = "Cashier không hợp lệ"
+                    };
+                }
+
+                // 3. Validate MenuItems và tính tổng tiền
+                var menuItemIds = request.Items.Select(i => i.MenuItemId).ToList();
+                var menuItems = await _context.MenuItems
+                    .Where(mi => menuItemIds.Contains(mi.Id) && mi.IsAvailable)
+                    .ToDictionaryAsync(mi => mi.Id, mi => mi);
+
+                if (menuItems.Count != menuItemIds.Count)
+                {
+                    return new Response
+                    {
+                        Status = ResponseStatus.ERROR,
+                        Message = "Một số sản phẩm không tồn tại hoặc đã hết hàng"
+                    };
+                }
+
+                decimal total = 0;
+                foreach (var item in request.Items)
+                {
+                    if (menuItems.TryGetValue(item.MenuItemId, out var menuItem))
+                    {
+                        total += menuItem.Price * item.Quantity;
+                    }
+                }
+
+                // 4. Get default status (PENDING)
+                var defaultStatus = await _context.OrderStatuses
+                    .FirstOrDefaultAsync(os => os.Code == "PENDING");
+                
+                if (defaultStatus == null)
+                {
+                    return new Response
+                    {
+                        Status = ResponseStatus.ERROR,
+                        Message = "Không tìm thấy trạng thái đơn hàng mặc định"
+                    };
+                }
+
+                // 5. Create Order
+                var order = new Order
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = user.Id, // Cashier ID
+                    OrderTypeId = orderType.Id,
+                    StatusId = defaultStatus.Id,
+                    Total = total,
+                    CreatedAt = DateTime.UtcNow,
+                    TableId = diningTable.Id
+                };
+
+                _context.Orders.Add(order);
+
+                // 6. Create OrderItems
+                foreach (var item in request.Items)
+                {
+                    if (menuItems.TryGetValue(item.MenuItemId, out var menuItem))
+                    {
+                        var orderItem = new OrderItem
+                        {
+                            Id = Guid.NewGuid(),
+                            OrderId = order.Id,
+                            MenuItemId = item.MenuItemId,
+                            Quantity = item.Quantity,
+                            UnitPrice = menuItem.Price,
+                            Note = item.Note
+                        };
+
+                        _context.OrderItems.Add(orderItem);
+
+                        // Add status history for order item
+                        var orderItemStatusHistory = new OrderItemStatusHistory
+                        {
+                            Id = Guid.NewGuid(),
+                            ChangedAt = DateTime.UtcNow,
+                            OrderItemId = orderItem.Id,
+                            StatusId = Guid.Parse("9f9d25c6-f53c-460d-99c0-ac76e015249e") // Default status
+                        };
+                        _context.OrderItemStatusHistories.Add(orderItemStatusHistory);
+                    }
+                }
+
+                // 7. Create table info in delivery info (reusing the structure)
+                var tableInfo = new OrderDeliveryInfo
+                {
+                    Id = Guid.NewGuid(),
+                    OrderId = order.Id,
+                    ReceiverName = request.CustomerName ?? "Khách tại bàn",
+                    ReceiverPhone = request.CustomerPhone ?? "",
+                    DeliveryAddress = $"Bàn số {request.TableNumber}"
+                };
+
+                _context.OrderDeliveryInfos.Add(tableInfo);
+
+                // Cập nhật bàn
+                diningTable.Status = "Book";
+                _context.DiningTables.Update(diningTable);
+
+                TableOrder tableOrder = new TableOrder
+                {
+                    Id = Guid.NewGuid(),
+                    TableId = diningTable.Id,
+                    OrderId = order.Id
+                };
+
+                _context.TableOrders.Add(tableOrder);
+
+                // 8. Save all changes
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+
+                return new Response
+                {
+                    Status = ResponseStatus.SUCCESS,
+                    Message = "Tạo đơn hàng tại bàn thành công",
+                    Data = new
+                    {
+                        OrderId = order.Id,
+                        Total = total,
+                        OrderCode = $"ORD{order.Id.ToString().Substring(0, 8).ToUpper()}",
+                        TableNumber = request.TableNumber
                     }
                 };
             }

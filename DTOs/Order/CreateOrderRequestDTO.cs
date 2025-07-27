@@ -77,4 +77,19 @@ namespace FoodioAPI.DTOs.Order
         public string ShipperName { get; set; }
         public string ShipperPhone { get; set; }
     }
+
+    public class CreateOrderByTableRequestDTO
+    {
+        [Required(ErrorMessage = "Số bàn là bắt buộc")]
+        public int TableNumber { get; set; }
+
+        [Required(ErrorMessage = "Danh sách sản phẩm không được trống")]
+        public List<OrderItemRequestDTO> Items { get; set; } = new();
+
+        public string? Note { get; set; }
+
+        public string? CustomerName { get; set; }
+
+        public string? CustomerPhone { get; set; }
+    }
 } 

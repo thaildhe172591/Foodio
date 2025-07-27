@@ -177,5 +177,48 @@ namespace FoodioAPI.Controllers
                 });
             }
         }
+
+        /// <summary>
+        /// Tạo đơn hàng từ bàn ăn (dành cho cashier)
+        /// </summary>
+        /// <param name="request">Thông tin đơn hàng từ bàn</param>
+        /// <returns>Kết quả tạo đơn hàng</returns>
+        [HttpPost("create-order-by-table")]
+        public async Task<IActionResult> CreateOrderByTable([FromBody] CreateOrderByTableRequestDTO request)
+        {
+            try
+            {
+                // Lấy userId từ JWT token (cashier)
+                var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+                
+                if (string.IsNullOrEmpty(userName))
+                {
+                    return Unauthorized(new Response
+                    {
+                        Status = ResponseStatus.ERROR,
+                        Message = "Không thể xác thực người dùng"
+                    });
+                }
+
+                var result = await _orderV2Service.CreateOrderByTableAsync(request, userName);
+                
+                if (result.Status == ResponseStatus.SUCCESS)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return BadRequest(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new Response
+                {
+                    Status = ResponseStatus.ERROR,
+                    Message = "Lỗi server: " + ex.Message
+                });
+            }
+        }
     }
 }

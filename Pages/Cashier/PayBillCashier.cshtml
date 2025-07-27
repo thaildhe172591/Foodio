@@ -388,16 +388,93 @@
         }
     }
     
-    function confirmPayment() {
-        // Đóng modal QR và hiển thị thông báo thành công
-        closeQRModal();
-        
-        // Delay ngắn để modal QR đóng hoàn toàn trước khi mở modal thành công
-        setTimeout(() => {
-            showSuccessPopup();
-            // Xoá giỏ hàng sau khi đặt hàng thành công
-            sessionStorage.removeItem('cashierCart');
-        }, 300);
+    async function confirmPayment() {
+        try {
+            // Get authentication token
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                alert('Vui lòng đăng nhập lại');
+                window.location.href = '/auth/login';
+                return;
+            }
+
+            // Get cart and table information
+            const cart = JSON.parse(sessionStorage.getItem('cashierCart') || '[]');
+            const selectedTable = JSON.parse(localStorage.getItem('selectedTable') || '{}');
+
+            if (!cart.length) {
+                alert('Giỏ hàng trống!');
+                return;
+            }
+
+            if (!selectedTable.tableNumber) {
+                alert('Vui lòng chọn bàn!');
+                return;
+            }
+
+            // Prepare order items
+            const orderItems = cart.map(item => ({
+                menuItemId: item.id,
+                quantity: item.qty,
+                note: item.note || ''
+            }));
+
+            // Prepare order request
+            const orderRequest = {
+                tableNumber: selectedTable.tableNumber,
+                items: orderItems,
+                note: '', // Can add overall order note if needed
+                customerName: '', // Can be added later if needed
+                customerPhone: '' // Can be added later if needed
+            };
+
+            // Show loading state
+            const confirmBtn = document.querySelector('button[onclick="confirmPayment()"]');
+            const originalText = confirmBtn.innerHTML;
+            confirmBtn.innerHTML = '<i class="spinner-border spinner-border-sm me-2"></i>Đang xử lý...';
+            confirmBtn.disabled = true;
+
+            // Call API to create order
+            const response = await fetch('/api/CartV2/create-order-by-table', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(orderRequest)
+            });
+
+            const result = await response.json();
+
+            // Reset button state
+            confirmBtn.innerHTML = originalText;
+            confirmBtn.disabled = false;
+
+            if (response.ok && result.status === 'Success') {
+                // Success - close QR modal and show success
+                closeQRModal();
+                
+                // Delay ngắn để modal QR đóng hoàn toàn trước khi mở modal thành công
+                setTimeout(() => {
+                    showSuccessPopup();
+                    // Xoá giỏ hàng sau khi đặt hàng thành công
+                    sessionStorage.removeItem('cashierCart');
+                    localStorage.removeItem('selectedTable');
+                }, 300);
+            } else {
+                // Error
+                alert(result.message || 'Có lỗi xảy ra khi tạo đơn hàng. Vui lòng thử lại.');
+            }
+
+        } catch (error) {
+            console.error('Error creating order:', error);
+            alert('Có lỗi xảy ra khi tạo đơn hàng. Vui lòng kiểm tra kết nối mạng và thử lại.');
+            
+            // Reset button state
+            const confirmBtn = document.querySelector('button[onclick="confirmPayment()"]');
+            confirmBtn.innerHTML = '<i class="bi bi-check-circle me-1"></i>Xác nhận đã thanh toán';
+            confirmBtn.disabled = false;
+        }
     }
      function logout() {
             // Xóa tất cả thông tin session và localStorage
