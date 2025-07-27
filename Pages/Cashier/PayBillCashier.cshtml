@@ -151,6 +151,32 @@
         width: 100%;
         padding: 4px 0;
     }
+    
+    /* QR Payment Modal Styles */
+    .qr-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 200px;
+    }
+    
+    #qr-code-image {
+        border: 3px solid #dee2e6;
+        transition: transform 0.3s ease;
+    }
+    
+    #qr-code-image:hover {
+        transform: scale(1.05);
+    }
+    
+    .payment-info {
+        border-left: 4px solid #007bff;
+    }
+    
+    .modal-lg {
+        max-width: 600px;
+    }
+    
 </style>
 
 <!-- HTML -->
@@ -186,6 +212,55 @@
     <div class="container my-5">
         <button type="button" class="btn btn-success btn-lg w-100 mb-3" onclick="placeOrder()">Thanh toán </button>
         <button type="button" class="btn btn-outline-primary btn-lg w-100" onclick="printInvoice()">In hóa đơn</button>
+    </div>
+</div>
+
+<!-- QR Payment Modal -->
+<div class="modal fade" id="qrPaymentModal" tabindex="-1" aria-labelledby="qrPaymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="qrPaymentModalLabel">
+                    <i class="bi bi-qr-code me-2"></i>Thanh toán QR Code
+                </h5>
+                <button type="button" class="btn-close btn-close-white" onclick="closeQRModal()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-4">
+                <div class="mb-3">
+                    <h6 class="text-muted">Quét mã QR để thanh toán</h6>
+                </div>
+                
+                <!-- QR Code Image -->
+                <div class="qr-container mb-4">
+                    <img id="qr-code-image" src="" alt="QR Code Payment" class="img-fluid rounded shadow" style="max-width: 300px; max-height: 300px;">
+                </div>
+                
+                <!-- Payment Info -->
+                <div class="payment-info bg-light rounded p-3 mb-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong>Số tiền:</strong> <span id="payment-amount" class="text-success fw-bold">0đ</span>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Mã đơn:</strong> <span id="payment-order-id" class="text-primary">---</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Vui lòng sử dụng ứng dụng ngân hàng để quét mã QR và thực hiện thanh toán
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeQRModal()">
+                    <i class="bi bi-x-circle me-1"></i>Hủy
+                </button>
+                <button type="button" class="btn btn-success" onclick="confirmPayment()">
+                    <i class="bi bi-check-circle me-1"></i>Xác nhận đã thanh toán
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -276,11 +351,53 @@
     });
 
     function placeOrder() {
-        // Giả lập đặt hàng
-        showSuccessPopup();
-
-        // Xoá giỏ hàng sau khi đặt hàng thành công
-        sessionStorage.removeItem('cashierCart');
+        // Mở popup QR thanh toán thay vì đặt hàng ngay
+        showQRPaymentModal();
+    }
+    
+    function showQRPaymentModal() {
+        // Lấy thông tin giỏ hàng và tính tổng tiền
+        const cart = JSON.parse(sessionStorage.getItem('cashierCart') || '[]');
+        const selectedTable = JSON.parse(localStorage.getItem('selectedTable') || '{}');
+        
+        let total = 0;
+        cart.forEach(item => {
+            total += item.qty * item.price;
+        });
+        
+        // Tạo mã đơn hàng (giả lập)
+        const orderId = 'ORD' + Date.now().toString().substr(-8).toUpperCase();
+        
+        // Cập nhật thông tin thanh toán
+        document.getElementById('payment-amount').textContent = total.toLocaleString('vi-VN') + 'đ';
+        document.getElementById('payment-order-id').textContent = orderId;
+        
+        // Tạo URL QR Code với thông tin động
+        const qrUrl = `https://img.vietqr.io/image/970415-stk-compact2.jpg?amount=${total}&addInfo=${orderId}&accountName=Phan Khanh`;
+        document.getElementById('qr-code-image').src = qrUrl;
+        
+        // Hiển thị modal
+        var qrModal = new bootstrap.Modal(document.getElementById('qrPaymentModal'));
+        qrModal.show();
+    }
+    
+    function closeQRModal() {
+        var qrModal = bootstrap.Modal.getInstance(document.getElementById('qrPaymentModal'));
+        if (qrModal) {
+            qrModal.hide();
+        }
+    }
+    
+    function confirmPayment() {
+        // Đóng modal QR và hiển thị thông báo thành công
+        closeQRModal();
+        
+        // Delay ngắn để modal QR đóng hoàn toàn trước khi mở modal thành công
+        setTimeout(() => {
+            showSuccessPopup();
+            // Xoá giỏ hàng sau khi đặt hàng thành công
+            sessionStorage.removeItem('cashierCart');
+        }, 300);
     }
      function logout() {
             // Xóa tất cả thông tin session và localStorage
